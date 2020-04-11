@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f11136daadff0b44ac2278a314682ab, type: 3}
+  m_Name: ToggleSync
+  m_EditorClassIdentifier: 
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 089468c1a0d78d041b1e777ef1e4e364,
+    type: 2}
+  udonAssembly: ".data_start\r\n\r\n    .export uiToggle\r\n    .sync toggleValue,
+    none\r\n    \r\n    instance_0: %UnityEngineUIToggle, null\r\n    instance_1:
+    %UnityEngineUIToggle, null\r\n    value_0: %SystemBoolean, null\r\n    uiToggle:
+    %UnityEngineUIToggle, null\r\n    toggleValue: %SystemBoolean, null\r\n\r\n.data_end\r\n\r\n.code_start\r\n\r\n
+    \   .export _interact\r\n    \r\n    _interact:\r\n    \r\n        PUSH, uiToggle\r\n
+    \       PUSH, instance_0\r\n        COPY\r\n        PUSH, instance_0\r\n        PUSH,
+    toggleValue\r\n        EXTERN, \"UnityEngineUIToggle.__get_isOn__SystemBoolean\"\r\n
+    \       JUMP, 0xFFFFFFFC\r\n    \r\n    .export _update\r\n    \r\n    _update:\r\n
+    \   \r\n        PUSH, uiToggle\r\n        PUSH, instance_1\r\n        COPY\r\n
+    \       PUSH, instance_1\r\n        PUSH, toggleValue\r\n        EXTERN, \"UnityEngineUIToggle.__set_isOn__SystemBoolean__SystemVoid\"\r\n
+    \       JUMP, 0xFFFFFFFC\r\n    \r\n\r\n.code_end\r\n"
+  assemblyError: 
+  graphData:
+    name: 
+    description: 
+    nodes:
+    - fullName: Variable_UnityEngineUIToggle
+      uid: be512329-18e8-4ac0-acfe-35a4c18e11c4
+      position: {x: -216, y: -840}
+      nodeUIDs:
+      - 
+      - 
+      - 
+      - 
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|uiToggle
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|True
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: Event_Interact
+      uid: 156b9d56-a486-4433-b6de-42c85d5b2913
+      position: {x: -432, y: -600}
+      nodeUIDs: []
+      flowUIDs:
+      - 89f2ad6b-3973-4adf-bcf7-1085cbbc9b8c
+      nodeValues: []
+    - fullName: Variable_SystemBoolean
+      uid: a48993e1-e5db-47cf-87f9-4c49228708a6
+      position: {x: -408, y: -840}
+      nodeUIDs:
+      - 
+      - 
+      - 
+      - 
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|toggleValue
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|True
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: Get_Variable
+      uid: 0cb40eff-4fec-4eed-ba1d-89008fe8cf27
+      position: {x: -444, y: -480}
+      nodeUIDs:
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|be512329-18e8-4ac0-acfe-35a4c18e11c4
+    - fullName: Set_Variable
+      uid: 89f2ad6b-3973-4adf-bcf7-1085cbbc9b8c
+      position: {x: 180, y: -600}
+      nodeUIDs:
+      - 
+      - a5df33d8-196b-4676-a6e2-17e738e85255|0
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|a48993e1-e5db-47cf-87f9-4c49228708a6
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: UnityEngineUIToggle.__get_isOn__SystemBoolean
+      uid: a5df33d8-196b-4676-a6e2-17e738e85255
+      position: {x: -144, y: -528}
+      nodeUIDs:
+      - 0cb40eff-4fec-4eed-ba1d-89008fe8cf27|0
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: Event_Update
+      uid: 81628280-5a43-4336-a5d4-5d87eabbf78b
+      position: {x: -432, y: -336}
+      nodeUIDs: []
+      flowUIDs:
+      - f59e1ddd-56f4-4e29-8969-474e698482c6
+      nodeValues: []
+    - fullName: UnityEngineUIToggle.__set_isOn__SystemBoolean__SystemVoid
+      uid: f59e1ddd-56f4-4e29-8969-474e698482c6
+      position: {x: -144, y: -336}
+      nodeUIDs:
+      - 0cb40eff-4fec-4eed-ba1d-89008fe8cf27|0
+      - 59246b09-fc5a-4ab2-915a-6d0c86a5d1e3|0
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: Get_Variable
+      uid: 59246b09-fc5a-4ab2-915a-6d0c86a5d1e3
+      position: {x: -432, y: -240}
+      nodeUIDs:
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|a48993e1-e5db-47cf-87f9-4c49228708a6
+  showAssembly: 0

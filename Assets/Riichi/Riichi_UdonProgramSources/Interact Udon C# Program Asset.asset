@@ -1,0 +1,1843 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
+  m_Name: Interact Udon C# Program Asset
+  m_EditorClassIdentifier: 
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 0324399dfd38c1e419b72ccfb4f5e843,
+    type: 2}
+  udonAssembly: ".data_start\r\n\r\n    .export origin\r\n    .export halfExtents\r\n
+    \   .export tileLayer\r\n\r\n    __refl_const_intnl_udonTypeID: %SystemInt64,
+    null\r\n    __refl_const_intnl_udonTypeName: %SystemString, null\r\n    tileLayer:
+    %UnityEngineLayerMask, null\r\n    origin: %UnityEngineTransform, null\r\n    halfExtents:
+    %UnityEngineVector3, null\r\n    __0_sorted_Boolean: %SystemBoolean, null\r\n
+    \   __0_swap_Collider: %UnityEngineCollider, null\r\n    __0_t_Collider: %UnityEngineCollider,
+    null\r\n    __0_tiles_ColliderArray: %UnityEngineColliderArray, null\r\n    __1_tiles_ColliderArray:
+    %UnityEngineColliderArray, null\r\n    __0_obj_GameObject: %UnityEngineGameObject,
+    null\r\n    __0_i_Int32: %SystemInt32, null\r\n    __0_z_Single: %SystemSingle,
+    null\r\n    __0_tile1_String: %SystemString, null\r\n    __0_tile2_String: %SystemString,
+    null\r\n    __0_const_intnl_SystemBoolean: %SystemBoolean, null\r\n    __1_const_intnl_SystemBoolean:
+    %SystemBoolean, null\r\n    __0_const_intnl_SystemInt32: %SystemInt32, null\r\n
+    \   __1_const_intnl_SystemInt32: %SystemInt32, null\r\n    __2_const_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __0_const_intnl_SystemSingle: %SystemSingle, null\r\n
+    \   __1_const_intnl_SystemSingle: %SystemSingle, null\r\n    __2_const_intnl_SystemSingle:
+    %SystemSingle, null\r\n    __0_const_intnl_SystemString: %SystemString, null\r\n
+    \   __1_const_intnl_SystemString: %SystemString, null\r\n    __0_const_intnl_exitJumpLoc_UInt32:
+    %SystemUInt32, null\r\n    __0_const_intnl_SystemUInt32: %SystemUInt32, null\r\n
+    \   __0_intnl_SystemBoolean: %SystemBoolean, null\r\n    __1_intnl_SystemBoolean:
+    %SystemBoolean, null\r\n    __2_intnl_SystemBoolean: %SystemBoolean, null\r\n
+    \   __3_intnl_SystemBoolean: %SystemBoolean, null\r\n    __0_intnl_UnityEngineCollider:
+    %UnityEngineCollider, null\r\n    __1_intnl_UnityEngineCollider: %UnityEngineCollider,
+    null\r\n    __2_intnl_UnityEngineCollider: %UnityEngineCollider, null\r\n    __3_intnl_UnityEngineCollider:
+    %UnityEngineCollider, null\r\n    __4_intnl_UnityEngineCollider: %UnityEngineCollider,
+    null\r\n    __0_intnl_UnityEngineColliderArray: %UnityEngineColliderArray, null\r\n
+    \   __0_intnl_UnityEngineGameObject: %UnityEngineGameObject, null\r\n    __1_intnl_UnityEngineGameObject:
+    %UnityEngineGameObject, null\r\n    __2_intnl_UnityEngineGameObject: %UnityEngineGameObject,
+    null\r\n    __0_intnl_SystemInt32: %SystemInt32, null\r\n    __1_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __10_intnl_SystemInt32: %SystemInt32, null\r\n    __11_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __12_intnl_SystemInt32: %SystemInt32, null\r\n    __13_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __14_intnl_SystemInt32: %SystemInt32, null\r\n    __15_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __16_intnl_SystemInt32: %SystemInt32, null\r\n    __2_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __3_intnl_SystemInt32: %SystemInt32, null\r\n    __4_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __5_intnl_SystemInt32: %SystemInt32, null\r\n    __6_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __7_intnl_SystemInt32: %SystemInt32, null\r\n    __8_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __9_intnl_SystemInt32: %SystemInt32, null\r\n    __0_intnl_UnityEngineQuaternion:
+    %UnityEngineQuaternion, null\r\n    __1_intnl_UnityEngineQuaternion: %UnityEngineQuaternion,
+    null\r\n    __0_intnl_SystemSingle: %SystemSingle, null\r\n    __1_intnl_SystemSingle:
+    %SystemSingle, null\r\n    __2_intnl_SystemSingle: %SystemSingle, null\r\n    __3_intnl_SystemSingle:
+    %SystemSingle, null\r\n    __4_intnl_SystemSingle: %SystemSingle, null\r\n    __5_intnl_SystemSingle:
+    %SystemSingle, null\r\n    __6_intnl_SystemSingle: %SystemSingle, null\r\n    __7_intnl_SystemSingle:
+    %SystemSingle, null\r\n    __8_intnl_SystemSingle: %SystemSingle, null\r\n    __0_intnl_interpolatedStr_String:
+    %SystemString, null\r\n    __0_intnl_SystemString: %SystemString, null\r\n    __1_intnl_interpolatedStr_String:
+    %SystemString, null\r\n    __1_intnl_SystemString: %SystemString, null\r\n    __2_intnl_SystemString:
+    %SystemString, null\r\n    __3_intnl_SystemString: %SystemString, null\r\n    __4_intnl_SystemString:
+    %SystemString, null\r\n    __5_intnl_SystemString: %SystemString, null\r\n    __0_intnl_UnityEngineTransform:
+    %UnityEngineTransform, null\r\n    __1_intnl_UnityEngineTransform: %UnityEngineTransform,
+    null\r\n    __2_intnl_UnityEngineTransform: %UnityEngineTransform, null\r\n    __0_intnl_oldReturnLoc_UInt32:
+    %SystemUInt32, null\r\n    __0_intnl_returnTarget_UInt32: %SystemUInt32, null\r\n
+    \   __0_intnl_UnityEngineVector3: %UnityEngineVector3, null\r\n    __1_intnl_UnityEngineVector3:
+    %UnityEngineVector3, null\r\n    __0_intnl_VRCSDKBaseVRCPlayerApi: %VRCSDKBaseVRCPlayerApi,
+    null\r\n\r\n.data_end\r\n\r\n        \r\n         # using UdonSharp;\r\n        \r\n
+    \        # using UnityEngine;\r\n        \r\n         # using VRC.SDKBase;\r\n
+    \       \r\n         # using VRC.Udon;\r\n        \r\n         # public class
+    OwnAndSortTiles : UdonSharpBehaviour\r\n.code_start\r\n        \r\n         #
+    public Transform origin;\r\n        \r\n         # public Vector3 halfExtents;\r\n
+    \       \r\n         # public LayerMask tileLayer;\r\n        \r\n         # public
+    override void Interact()\r\n    .export _interact\r\n        \r\n    _interact:\r\n
+    \       \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
+    \       COPY\r\n        \r\n         # {\r\n        \r\n         # var tiles =
+    Physics.OverlapBox(origin.position, halfExtents, origin.rotation, tileLayer);\r\n
+    \       PUSH, origin\r\n        PUSH, __0_intnl_UnityEngineVector3\r\n        EXTERN,
+    \"UnityEngineTransform.__get_position__UnityEngineVector3\"\r\n        PUSH, origin\r\n
+    \       PUSH, __0_intnl_UnityEngineQuaternion\r\n        EXTERN, \"UnityEngineTransform.__get_rotation__UnityEngineQuaternion\"\r\n
+    \       PUSH, tileLayer\r\n        PUSH, __0_intnl_SystemInt32\r\n        EXTERN,
+    \"UnityEngineLayerMask.__op_Implicit__UnityEngineLayerMask__SystemInt32\"\r\n
+    \       PUSH, __0_intnl_UnityEngineVector3\r\n        PUSH, halfExtents\r\n        PUSH,
+    __0_intnl_UnityEngineQuaternion\r\n        PUSH, __0_intnl_SystemInt32\r\n        PUSH,
+    __0_intnl_UnityEngineColliderArray\r\n        EXTERN, \"UnityEnginePhysics.__OverlapBox__UnityEngineVector3_UnityEngineVector3_UnityEngineQuaternion_SystemInt32__UnityEngineColliderArray\"\r\n
+    \       PUSH, __0_intnl_UnityEngineColliderArray\r\n        PUSH, __1_tiles_ColliderArray\r\n
+    \       COPY\r\n        \r\n         # Debug.Log($\"tiles: {tiles.Length}\");\r\n
+    \       PUSH, __0_const_intnl_SystemString\r\n        PUSH, __0_intnl_interpolatedStr_String\r\n
+    \       COPY\r\n        PUSH, __1_tiles_ColliderArray\r\n        PUSH, __1_intnl_SystemInt32\r\n
+    \       EXTERN, \"UnityEngineColliderArray.__get_Length__SystemInt32\"\r\n        PUSH,
+    __1_intnl_SystemInt32\r\n        PUSH, __0_intnl_SystemString\r\n        EXTERN,
+    \"SystemInt32.__ToString__SystemString\"\r\n        PUSH, __0_intnl_interpolatedStr_String\r\n
+    \       PUSH, __0_intnl_SystemString\r\n        PUSH, __1_intnl_SystemString\r\n
+    \       EXTERN, \"SystemString.__op_Addition__SystemString_SystemString__SystemString\"\r\n
+    \       PUSH, __1_intnl_SystemString\r\n        PUSH, __0_intnl_interpolatedStr_String\r\n
+    \       COPY\r\n        PUSH, __0_intnl_interpolatedStr_String\r\n        EXTERN,
+    \"UnityEngineDebug.__Log__SystemObject__SystemVoid\"\r\n        \r\n         #
+    Sort(tiles);\r\n        PUSH, __1_tiles_ColliderArray\r\n        PUSH, __0_tiles_ColliderArray\r\n
+    \       COPY\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n        PUSH, __0_intnl_oldReturnLoc_UInt32\r\n
+    \       COPY\r\n        PUSH, __0_const_intnl_exitJumpLoc_UInt32\r\n        PUSH,
+    __0_intnl_returnTarget_UInt32\r\n        COPY\r\n        JUMP, 0x00000518\r\n
+    \       PUSH, __0_intnl_oldReturnLoc_UInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
+    \       COPY\r\n        \r\n         # float z = -7.5f;\r\n        PUSH, __0_const_intnl_SystemSingle\r\n
+    \       PUSH, __0_intnl_SystemSingle\r\n        EXTERN, \"SystemSingle.__op_UnaryMinus__SystemSingle__SystemSingle\"\r\n
+    \       PUSH, __0_intnl_SystemSingle\r\n        PUSH, __0_z_Single\r\n        COPY\r\n
+    \       \r\n         # foreach (Collider t in tiles)\r\n        PUSH, __0_const_intnl_SystemInt32\r\n
+    \       PUSH, __2_intnl_SystemInt32\r\n        COPY\r\n        PUSH, __1_tiles_ColliderArray\r\n
+    \       PUSH, __3_intnl_SystemInt32\r\n        EXTERN, \"UnityEngineColliderArray.__get_Length__SystemInt32\"\r\n
+    \       PUSH, __2_intnl_SystemInt32\r\n        PUSH, __3_intnl_SystemInt32\r\n
+    \       PUSH, __0_intnl_SystemBoolean\r\n        EXTERN, \"SystemInt32.__op_LessThan__SystemInt32_SystemInt32__SystemBoolean\"\r\n
+    \       PUSH, __0_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x000004FC\r\n
+    \       PUSH, __1_tiles_ColliderArray\r\n        PUSH, __2_intnl_SystemInt32\r\n
+    \       PUSH, __0_intnl_UnityEngineCollider\r\n        EXTERN, \"UnityEngineColliderArray.__Get__SystemInt32__UnityEngineCollider\"\r\n
+    \       PUSH, __0_intnl_UnityEngineCollider\r\n        PUSH, __0_t_Collider\r\n
+    \       COPY\r\n        \r\n         # {\r\n        \r\n         # var obj = t.gameObject;\r\n
+    \       PUSH, __0_t_Collider\r\n        PUSH, __0_intnl_UnityEngineGameObject\r\n
+    \       EXTERN, \"UnityEngineCollider.__get_gameObject__UnityEngineGameObject\"\r\n
+    \       PUSH, __0_intnl_UnityEngineGameObject\r\n        PUSH, __0_obj_GameObject\r\n
+    \       COPY\r\n        \r\n         # Debug.Log($\"tile {obj.name}\");\r\n        PUSH,
+    __1_const_intnl_SystemString\r\n        PUSH, __1_intnl_interpolatedStr_String\r\n
+    \       COPY\r\n        PUSH, __0_obj_GameObject\r\n        PUSH, __2_intnl_SystemString\r\n
+    \       EXTERN, \"UnityEngineGameObject.__get_name__SystemString\"\r\n        PUSH,
+    __1_intnl_interpolatedStr_String\r\n        PUSH, __2_intnl_SystemString\r\n        PUSH,
+    __3_intnl_SystemString\r\n        EXTERN, \"SystemString.__op_Addition__SystemString_SystemString__SystemString\"\r\n
+    \       PUSH, __3_intnl_SystemString\r\n        PUSH, __1_intnl_interpolatedStr_String\r\n
+    \       COPY\r\n        PUSH, __1_intnl_interpolatedStr_String\r\n        EXTERN,
+    \"UnityEngineDebug.__Log__SystemObject__SystemVoid\"\r\n        \r\n         #
+    Networking.SetOwner(Networking.LocalPlayer, obj);\r\n        PUSH, __0_intnl_VRCSDKBaseVRCPlayerApi\r\n
+    \       EXTERN, \"VRCSDKBaseNetworking.__get_LocalPlayer__VRCSDKBaseVRCPlayerApi\"\r\n
+    \       PUSH, __0_intnl_VRCSDKBaseVRCPlayerApi\r\n        PUSH, __0_obj_GameObject\r\n
+    \       EXTERN, \"VRCSDKBaseNetworking.__SetOwner__VRCSDKBaseVRCPlayerApi_UnityEngineGameObject__SystemVoid\"\r\n
+    \       \r\n         # obj.transform.parent = origin;\r\n        PUSH, __0_obj_GameObject\r\n
+    \       PUSH, __0_intnl_UnityEngineTransform\r\n        EXTERN, \"UnityEngineGameObject.__get_transform__UnityEngineTransform\"\r\n
+    \       PUSH, __0_intnl_UnityEngineTransform\r\n        PUSH, origin\r\n        EXTERN,
+    \"UnityEngineTransform.__set_parent__UnityEngineTransform__SystemVoid\"\r\n        \r\n
+    \        # obj.transform.localPosition = new Vector3(0, 0, z * 0.038f);\r\n        PUSH,
+    __0_z_Single\r\n        PUSH, __1_intnl_SystemSingle\r\n        COPY\r\n        PUSH,
+    __1_intnl_SystemSingle\r\n        PUSH, __1_const_intnl_SystemSingle\r\n        PUSH,
+    __2_intnl_SystemSingle\r\n        EXTERN, \"SystemSingle.__op_Multiplication__SystemSingle_SystemSingle__SystemSingle\"\r\n
+    \       PUSH, __0_const_intnl_SystemInt32\r\n        PUSH, __3_intnl_SystemSingle\r\n
+    \       EXTERN, \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n        PUSH,
+    __0_const_intnl_SystemInt32\r\n        PUSH, __4_intnl_SystemSingle\r\n        EXTERN,
+    \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n        PUSH, __3_intnl_SystemSingle\r\n
+    \       PUSH, __4_intnl_SystemSingle\r\n        PUSH, __2_intnl_SystemSingle\r\n
+    \       PUSH, __1_intnl_UnityEngineVector3\r\n        EXTERN, \"UnityEngineVector3.__ctor__SystemSingle_SystemSingle_SystemSingle__UnityEngineVector3\"\r\n
+    \       PUSH, __0_obj_GameObject\r\n        PUSH, __1_intnl_UnityEngineTransform\r\n
+    \       EXTERN, \"UnityEngineGameObject.__get_transform__UnityEngineTransform\"\r\n
+    \       PUSH, __1_intnl_UnityEngineTransform\r\n        PUSH, __1_intnl_UnityEngineVector3\r\n
+    \       EXTERN, \"UnityEngineTransform.__set_localPosition__UnityEngineVector3__SystemVoid\"\r\n
+    \       \r\n         # obj.transform.localRotation = Quaternion.Euler(0, 90, 0);\r\n
+    \       PUSH, __0_const_intnl_SystemInt32\r\n        PUSH, __5_intnl_SystemSingle\r\n
+    \       EXTERN, \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n        PUSH,
+    __1_const_intnl_SystemInt32\r\n        PUSH, __6_intnl_SystemSingle\r\n        EXTERN,
+    \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n        PUSH, __0_const_intnl_SystemInt32\r\n
+    \       PUSH, __7_intnl_SystemSingle\r\n        EXTERN, \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n
+    \       PUSH, __5_intnl_SystemSingle\r\n        PUSH, __6_intnl_SystemSingle\r\n
+    \       PUSH, __7_intnl_SystemSingle\r\n        PUSH, __1_intnl_UnityEngineQuaternion\r\n
+    \       EXTERN, \"UnityEngineQuaternion.__Euler__SystemSingle_SystemSingle_SystemSingle__UnityEngineQuaternion\"\r\n
+    \       PUSH, __0_obj_GameObject\r\n        PUSH, __2_intnl_UnityEngineTransform\r\n
+    \       EXTERN, \"UnityEngineGameObject.__get_transform__UnityEngineTransform\"\r\n
+    \       PUSH, __2_intnl_UnityEngineTransform\r\n        PUSH, __1_intnl_UnityEngineQuaternion\r\n
+    \       EXTERN, \"UnityEngineTransform.__set_localRotation__UnityEngineQuaternion__SystemVoid\"\r\n
+    \       \r\n         # z += 1f;\r\n        PUSH, __0_z_Single\r\n        PUSH,
+    __2_const_intnl_SystemSingle\r\n        PUSH, __8_intnl_SystemSingle\r\n        EXTERN,
+    \"SystemSingle.__op_Addition__SystemSingle_SystemSingle__SystemSingle\"\r\n        PUSH,
+    __8_intnl_SystemSingle\r\n        PUSH, __0_z_Single\r\n        COPY\r\n        PUSH,
+    __2_intnl_SystemInt32\r\n        PUSH, __2_const_intnl_SystemInt32\r\n        PUSH,
+    __4_intnl_SystemInt32\r\n        EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n
+    \       PUSH, __4_intnl_SystemInt32\r\n        PUSH, __2_intnl_SystemInt32\r\n
+    \       COPY\r\n        JUMP, 0x000001D8\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n
+    \       \r\n        \r\n         # private void Sort(Collider[] tiles)\r\n    Sort:\r\n
+    \       \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
+    \       COPY\r\n        \r\n         # {\r\n        \r\n         # Collider swap;\r\n
+    \       \r\n         # bool sorted = false;\r\n        PUSH, __0_const_intnl_SystemBoolean\r\n
+    \       PUSH, __0_sorted_Boolean\r\n        COPY\r\n        \r\n         # while
+    (!sorted)\r\n        PUSH, __0_sorted_Boolean\r\n        PUSH, __1_intnl_SystemBoolean\r\n
+    \       EXTERN, \"SystemBoolean.__op_UnaryNegation__SystemBoolean__SystemBoolean\"\r\n
+    \       PUSH, __1_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x000008C0\r\n
+    \       \r\n         # {\r\n        \r\n         # sorted = true;\r\n        PUSH,
+    __1_const_intnl_SystemBoolean\r\n        PUSH, __0_sorted_Boolean\r\n        COPY\r\n
+    \       \r\n         # for (int i = 0; i < tiles.Length - 1; ++i)\r\n        PUSH,
+    __0_const_intnl_SystemInt32\r\n        PUSH, __0_i_Int32\r\n        COPY\r\n        PUSH,
+    __0_i_Int32\r\n        PUSH, __5_intnl_SystemInt32\r\n        COPY\r\n        PUSH,
+    __0_tiles_ColliderArray\r\n        PUSH, __7_intnl_SystemInt32\r\n        EXTERN,
+    \"UnityEngineColliderArray.__get_Length__SystemInt32\"\r\n        PUSH, __7_intnl_SystemInt32\r\n
+    \       PUSH, __6_intnl_SystemInt32\r\n        COPY\r\n        PUSH, __6_intnl_SystemInt32\r\n
+    \       PUSH, __2_const_intnl_SystemInt32\r\n        PUSH, __8_intnl_SystemInt32\r\n
+    \       EXTERN, \"SystemInt32.__op_Subtraction__SystemInt32_SystemInt32__SystemInt32\"\r\n
+    \       PUSH, __5_intnl_SystemInt32\r\n        PUSH, __8_intnl_SystemInt32\r\n
+    \       PUSH, __2_intnl_SystemBoolean\r\n        EXTERN, \"SystemInt32.__op_LessThan__SystemInt32_SystemInt32__SystemBoolean\"\r\n
+    \       PUSH, __2_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x000008B8\r\n
+    \       \r\n         # {\r\n        \r\n         # string tile1 = tiles[i].gameObject.name;\r\n
+    \       PUSH, __0_tiles_ColliderArray\r\n        PUSH, __0_i_Int32\r\n        PUSH,
+    __1_intnl_UnityEngineCollider\r\n        EXTERN, \"UnityEngineColliderArray.__Get__SystemInt32__UnityEngineCollider\"\r\n
+    \       PUSH, __1_intnl_UnityEngineCollider\r\n        PUSH, __1_intnl_UnityEngineGameObject\r\n
+    \       EXTERN, \"UnityEngineCollider.__get_gameObject__UnityEngineGameObject\"\r\n
+    \       PUSH, __1_intnl_UnityEngineGameObject\r\n        PUSH, __4_intnl_SystemString\r\n
+    \       EXTERN, \"UnityEngineGameObject.__get_name__SystemString\"\r\n        PUSH,
+    __4_intnl_SystemString\r\n        PUSH, __0_tile1_String\r\n        COPY\r\n        \r\n
+    \        # string tile2 = tiles[i+1].gameObject.name;\r\n        PUSH, __0_i_Int32\r\n
+    \       PUSH, __9_intnl_SystemInt32\r\n        COPY\r\n        PUSH, __9_intnl_SystemInt32\r\n
+    \       PUSH, __2_const_intnl_SystemInt32\r\n        PUSH, __10_intnl_SystemInt32\r\n
+    \       EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n
+    \       PUSH, __0_tiles_ColliderArray\r\n        PUSH, __10_intnl_SystemInt32\r\n
+    \       PUSH, __2_intnl_UnityEngineCollider\r\n        EXTERN, \"UnityEngineColliderArray.__Get__SystemInt32__UnityEngineCollider\"\r\n
+    \       PUSH, __2_intnl_UnityEngineCollider\r\n        PUSH, __2_intnl_UnityEngineGameObject\r\n
+    \       EXTERN, \"UnityEngineCollider.__get_gameObject__UnityEngineGameObject\"\r\n
+    \       PUSH, __2_intnl_UnityEngineGameObject\r\n        PUSH, __5_intnl_SystemString\r\n
+    \       EXTERN, \"UnityEngineGameObject.__get_name__SystemString\"\r\n        PUSH,
+    __5_intnl_SystemString\r\n        PUSH, __0_tile2_String\r\n        COPY\r\n        \r\n
+    \        # if (tile1.CompareTo(tile2) > 0)\r\n        PUSH, __0_tile1_String\r\n
+    \       PUSH, __0_tile2_String\r\n        PUSH, __11_intnl_SystemInt32\r\n        EXTERN,
+    \"SystemString.__CompareTo__SystemString__SystemInt32\"\r\n        PUSH, __11_intnl_SystemInt32\r\n
+    \       PUSH, __12_intnl_SystemInt32\r\n        COPY\r\n        PUSH, __12_intnl_SystemInt32\r\n
+    \       PUSH, __0_const_intnl_SystemInt32\r\n        PUSH, __3_intnl_SystemBoolean\r\n
+    \       EXTERN, \"SystemInt32.__op_GreaterThan__SystemInt32_SystemInt32__SystemBoolean\"\r\n
+    \       PUSH, __3_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x0000087C\r\n
+    \       \r\n         # {\r\n        \r\n         # swap = tiles[i];\r\n        PUSH,
+    __0_tiles_ColliderArray\r\n        PUSH, __0_i_Int32\r\n        PUSH, __3_intnl_UnityEngineCollider\r\n
+    \       EXTERN, \"UnityEngineColliderArray.__Get__SystemInt32__UnityEngineCollider\"\r\n
+    \       PUSH, __3_intnl_UnityEngineCollider\r\n        PUSH, __0_swap_Collider\r\n
+    \       COPY\r\n        \r\n         # tiles[i] = tiles[i+1];\r\n        PUSH,
+    __0_i_Int32\r\n        PUSH, __13_intnl_SystemInt32\r\n        COPY\r\n        PUSH,
+    __13_intnl_SystemInt32\r\n        PUSH, __2_const_intnl_SystemInt32\r\n        PUSH,
+    __14_intnl_SystemInt32\r\n        EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n
+    \       PUSH, __0_tiles_ColliderArray\r\n        PUSH, __14_intnl_SystemInt32\r\n
+    \       PUSH, __4_intnl_UnityEngineCollider\r\n        EXTERN, \"UnityEngineColliderArray.__Get__SystemInt32__UnityEngineCollider\"\r\n
+    \       PUSH, __0_tiles_ColliderArray\r\n        PUSH, __0_i_Int32\r\n        PUSH,
+    __4_intnl_UnityEngineCollider\r\n        EXTERN, \"UnityEngineColliderArray.__Set__SystemInt32_UnityEngineCollider__SystemVoid\"\r\n
+    \       \r\n         # tiles[i+1] = swap;\r\n        PUSH, __0_i_Int32\r\n        PUSH,
+    __15_intnl_SystemInt32\r\n        COPY\r\n        PUSH, __15_intnl_SystemInt32\r\n
+    \       PUSH, __2_const_intnl_SystemInt32\r\n        PUSH, __16_intnl_SystemInt32\r\n
+    \       EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n
+    \       PUSH, __0_tiles_ColliderArray\r\n        PUSH, __16_intnl_SystemInt32\r\n
+    \       PUSH, __0_swap_Collider\r\n        EXTERN, \"UnityEngineColliderArray.__Set__SystemInt32_UnityEngineCollider__SystemVoid\"\r\n
+    \       \r\n         # sorted = false;\r\n        PUSH, __0_const_intnl_SystemBoolean\r\n
+    \       PUSH, __0_sorted_Boolean\r\n        COPY\r\n        PUSH, __0_i_Int32\r\n
+    \       PUSH, __2_const_intnl_SystemInt32\r\n        PUSH, __9_intnl_SystemInt32\r\n
+    \       EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n
+    \       PUSH, __9_intnl_SystemInt32\r\n        PUSH, __0_i_Int32\r\n        COPY\r\n
+    \       JUMP, 0x0000057C\r\n        JUMP, 0x0000052C\r\n        JUMP_INDIRECT,
+    __0_intnl_returnTarget_UInt32\r\n        \r\n.code_end\r\n"
+  assemblyError: 
+  sourceCsScript: {fileID: 11500000, guid: 6971a93cc8c178444814ddb3a2f178dd, type: 3}
+  behaviourIDHeapVarName: __refl_const_intnl_udonTypeID
+  compileErrors: []
+  debugInfo:
+    serializedDebugSpans:
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 0
+      endSourceChar: 2
+      line: 0
+      lineChar: 0
+      spanCodeSection: "\r\n"
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 2
+      endSourceChar: 2
+      line: 1
+      lineChar: 0
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 2
+      endSourceChar: 8
+      line: 1
+      lineChar: 0
+      spanCodeSection: 'using '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 8
+      endSourceChar: 20
+      line: 1
+      lineChar: 6
+      spanCodeSection: "UdonSharp;\r\n"
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 20
+      endSourceChar: 26
+      line: 2
+      lineChar: 0
+      spanCodeSection: 'using '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 26
+      endSourceChar: 40
+      line: 2
+      lineChar: 6
+      spanCodeSection: "UnityEngine;\r\n"
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 40
+      endSourceChar: 46
+      line: 3
+      lineChar: 0
+      spanCodeSection: 'using '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 46
+      endSourceChar: 46
+      line: 3
+      lineChar: 6
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 46
+      endSourceChar: 50
+      line: 3
+      lineChar: 6
+      spanCodeSection: VRC.
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 50
+      endSourceChar: 60
+      line: 3
+      lineChar: 10
+      spanCodeSection: "SDKBase;\r\n"
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 60
+      endSourceChar: 66
+      line: 4
+      lineChar: 0
+      spanCodeSection: 'using '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 66
+      endSourceChar: 66
+      line: 4
+      lineChar: 6
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 66
+      endSourceChar: 70
+      line: 4
+      lineChar: 6
+      spanCodeSection: VRC.
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 70
+      endSourceChar: 79
+      line: 4
+      lineChar: 10
+      spanCodeSection: "Udon;\r\n\r\n"
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 79
+      endSourceChar: 108
+      line: 6
+      lineChar: 0
+      spanCodeSection: 'public class OwnAndSortTiles '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 108
+      endSourceChar: 110
+      line: 6
+      lineChar: 29
+      spanCodeSection: ': '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 110
+      endSourceChar: 110
+      line: 6
+      lineChar: 31
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 110
+      endSourceChar: 137
+      line: 6
+      lineChar: 31
+      spanCodeSection: "UdonSharpBehaviour\r\n{\r\n    "
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 137
+      endSourceChar: 144
+      line: 8
+      lineChar: 4
+      spanCodeSection: 'public '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 144
+      endSourceChar: 144
+      line: 8
+      lineChar: 11
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 144
+      endSourceChar: 167
+      line: 8
+      lineChar: 11
+      spanCodeSection: "Transform origin;\r\n    "
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 167
+      endSourceChar: 174
+      line: 9
+      lineChar: 4
+      spanCodeSection: 'public '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 174
+      endSourceChar: 174
+      line: 9
+      lineChar: 11
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 174
+      endSourceChar: 200
+      line: 9
+      lineChar: 11
+      spanCodeSection: "Vector3 halfExtents;\r\n    "
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 200
+      endSourceChar: 207
+      line: 10
+      lineChar: 4
+      spanCodeSection: 'public '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 207
+      endSourceChar: 207
+      line: 10
+      lineChar: 11
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 207
+      endSourceChar: 235
+      line: 10
+      lineChar: 11
+      spanCodeSection: "LayerMask tileLayer;\r\n\r\n    "
+    - startInstruction: 0
+      endInstruction: 19
+      startSourceChar: 235
+      endSourceChar: 272
+      line: 12
+      lineChar: 4
+      spanCodeSection: "public override void Interact()\r\n    "
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 272
+      endSourceChar: 283
+      line: 13
+      lineChar: 4
+      spanCodeSection: "{\r\n        "
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 283
+      endSourceChar: 283
+      line: 14
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 283
+      endSourceChar: 283
+      line: 14
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 283
+      endSourceChar: 293
+      line: 14
+      lineChar: 8
+      spanCodeSection: 'var tiles '
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 293
+      endSourceChar: 295
+      line: 14
+      lineChar: 18
+      spanCodeSection: '= '
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 295
+      endSourceChar: 314
+      line: 14
+      lineChar: 20
+      spanCodeSection: Physics.OverlapBox(
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 314
+      endSourceChar: 314
+      line: 14
+      lineChar: 39
+      spanCodeSection: 
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 314
+      endSourceChar: 321
+      line: 14
+      lineChar: 39
+      spanCodeSection: origin.
+    - startInstruction: 20
+      endInstruction: 43
+      startSourceChar: 321
+      endSourceChar: 331
+      line: 14
+      lineChar: 46
+      spanCodeSection: 'position, '
+    - startInstruction: 44
+      endInstruction: 43
+      startSourceChar: 331
+      endSourceChar: 344
+      line: 14
+      lineChar: 56
+      spanCodeSection: 'halfExtents, '
+    - startInstruction: 44
+      endInstruction: 43
+      startSourceChar: 344
+      endSourceChar: 344
+      line: 14
+      lineChar: 69
+      spanCodeSection: 
+    - startInstruction: 44
+      endInstruction: 43
+      startSourceChar: 344
+      endSourceChar: 351
+      line: 14
+      lineChar: 69
+      spanCodeSection: origin.
+    - startInstruction: 44
+      endInstruction: 67
+      startSourceChar: 351
+      endSourceChar: 361
+      line: 14
+      lineChar: 76
+      spanCodeSection: 'rotation, '
+    - startInstruction: 68
+      endInstruction: 159
+      startSourceChar: 361
+      endSourceChar: 382
+      line: 14
+      lineChar: 86
+      spanCodeSection: "tileLayer);\r\n        "
+    - startInstruction: 160
+      endInstruction: 159
+      startSourceChar: 382
+      endSourceChar: 382
+      line: 15
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 160
+      endInstruction: 159
+      startSourceChar: 382
+      endSourceChar: 392
+      line: 15
+      lineChar: 8
+      spanCodeSection: Debug.Log(
+    - startInstruction: 160
+      endInstruction: 159
+      startSourceChar: 392
+      endSourceChar: 394
+      line: 15
+      lineChar: 18
+      spanCodeSection: $"
+    - startInstruction: 160
+      endInstruction: 179
+      startSourceChar: 394
+      endSourceChar: 401
+      line: 15
+      lineChar: 20
+      spanCodeSection: 'tiles: '
+    - startInstruction: 180
+      endInstruction: 179
+      startSourceChar: 401
+      endSourceChar: 402
+      line: 15
+      lineChar: 27
+      spanCodeSection: '{'
+    - startInstruction: 180
+      endInstruction: 179
+      startSourceChar: 402
+      endSourceChar: 402
+      line: 15
+      lineChar: 28
+      spanCodeSection: 
+    - startInstruction: 180
+      endInstruction: 179
+      startSourceChar: 402
+      endSourceChar: 408
+      line: 15
+      lineChar: 28
+      spanCodeSection: tiles.
+    - startInstruction: 180
+      endInstruction: 295
+      startSourceChar: 408
+      endSourceChar: 428
+      line: 15
+      lineChar: 34
+      spanCodeSection: "Length}\");\r\n        "
+    - startInstruction: 296
+      endInstruction: 295
+      startSourceChar: 428
+      endSourceChar: 428
+      line: 16
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 296
+      endInstruction: 295
+      startSourceChar: 428
+      endSourceChar: 433
+      line: 16
+      lineChar: 8
+      spanCodeSection: Sort(
+    - startInstruction: 296
+      endInstruction: 383
+      startSourceChar: 433
+      endSourceChar: 450
+      line: 16
+      lineChar: 13
+      spanCodeSection: "tiles);\r\n        "
+    - startInstruction: 384
+      endInstruction: 383
+      startSourceChar: 450
+      endSourceChar: 450
+      line: 17
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 384
+      endInstruction: 383
+      startSourceChar: 450
+      endSourceChar: 450
+      line: 17
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 384
+      endInstruction: 383
+      startSourceChar: 450
+      endSourceChar: 450
+      line: 17
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 384
+      endInstruction: 383
+      startSourceChar: 450
+      endSourceChar: 458
+      line: 17
+      lineChar: 8
+      spanCodeSection: 'float z '
+    - startInstruction: 384
+      endInstruction: 383
+      startSourceChar: 458
+      endSourceChar: 460
+      line: 17
+      lineChar: 16
+      spanCodeSection: '= '
+    - startInstruction: 384
+      endInstruction: 383
+      startSourceChar: 460
+      endSourceChar: 461
+      line: 17
+      lineChar: 18
+      spanCodeSection: '-'
+    - startInstruction: 384
+      endInstruction: 427
+      startSourceChar: 461
+      endSourceChar: 476
+      line: 17
+      lineChar: 19
+      spanCodeSection: "7.5f;\r\n        "
+    - startInstruction: 428
+      endInstruction: 427
+      startSourceChar: 476
+      endSourceChar: 485
+      line: 18
+      lineChar: 8
+      spanCodeSection: foreach (
+    - startInstruction: 428
+      endInstruction: 427
+      startSourceChar: 485
+      endSourceChar: 499
+      line: 18
+      lineChar: 17
+      spanCodeSection: 'Collider t in '
+    - startInstruction: 428
+      endInstruction: 571
+      startSourceChar: 499
+      endSourceChar: 515
+      line: 18
+      lineChar: 31
+      spanCodeSection: "tiles)\r\n        "
+    - startInstruction: 572
+      endInstruction: 571
+      startSourceChar: 515
+      endSourceChar: 530
+      line: 19
+      lineChar: 8
+      spanCodeSection: "{\r\n            "
+    - startInstruction: 572
+      endInstruction: 571
+      startSourceChar: 530
+      endSourceChar: 530
+      line: 20
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 572
+      endInstruction: 571
+      startSourceChar: 530
+      endSourceChar: 530
+      line: 20
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 572
+      endInstruction: 571
+      startSourceChar: 530
+      endSourceChar: 538
+      line: 20
+      lineChar: 12
+      spanCodeSection: 'var obj '
+    - startInstruction: 572
+      endInstruction: 571
+      startSourceChar: 538
+      endSourceChar: 540
+      line: 20
+      lineChar: 20
+      spanCodeSection: '= '
+    - startInstruction: 572
+      endInstruction: 571
+      startSourceChar: 540
+      endSourceChar: 540
+      line: 20
+      lineChar: 22
+      spanCodeSection: 
+    - startInstruction: 572
+      endInstruction: 571
+      startSourceChar: 540
+      endSourceChar: 542
+      line: 20
+      lineChar: 22
+      spanCodeSection: t.
+    - startInstruction: 572
+      endInstruction: 615
+      startSourceChar: 542
+      endSourceChar: 567
+      line: 20
+      lineChar: 24
+      spanCodeSection: "gameObject;\r\n            "
+    - startInstruction: 616
+      endInstruction: 615
+      startSourceChar: 567
+      endSourceChar: 567
+      line: 21
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 616
+      endInstruction: 615
+      startSourceChar: 567
+      endSourceChar: 577
+      line: 21
+      lineChar: 12
+      spanCodeSection: Debug.Log(
+    - startInstruction: 616
+      endInstruction: 615
+      startSourceChar: 577
+      endSourceChar: 579
+      line: 21
+      lineChar: 22
+      spanCodeSection: $"
+    - startInstruction: 616
+      endInstruction: 635
+      startSourceChar: 579
+      endSourceChar: 584
+      line: 21
+      lineChar: 24
+      spanCodeSection: 'tile '
+    - startInstruction: 636
+      endInstruction: 635
+      startSourceChar: 584
+      endSourceChar: 585
+      line: 21
+      lineChar: 29
+      spanCodeSection: '{'
+    - startInstruction: 636
+      endInstruction: 635
+      startSourceChar: 585
+      endSourceChar: 585
+      line: 21
+      lineChar: 30
+      spanCodeSection: 
+    - startInstruction: 636
+      endInstruction: 635
+      startSourceChar: 585
+      endSourceChar: 589
+      line: 21
+      lineChar: 30
+      spanCodeSection: obj.
+    - startInstruction: 636
+      endInstruction: 727
+      startSourceChar: 589
+      endSourceChar: 611
+      line: 21
+      lineChar: 34
+      spanCodeSection: "name}\");\r\n            "
+    - startInstruction: 728
+      endInstruction: 727
+      startSourceChar: 611
+      endSourceChar: 611
+      line: 22
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 728
+      endInstruction: 727
+      startSourceChar: 611
+      endSourceChar: 631
+      line: 22
+      lineChar: 12
+      spanCodeSection: Networking.SetOwner(
+    - startInstruction: 728
+      endInstruction: 727
+      startSourceChar: 631
+      endSourceChar: 631
+      line: 22
+      lineChar: 32
+      spanCodeSection: 
+    - startInstruction: 728
+      endInstruction: 727
+      startSourceChar: 631
+      endSourceChar: 642
+      line: 22
+      lineChar: 32
+      spanCodeSection: Networking.
+    - startInstruction: 728
+      endInstruction: 743
+      startSourceChar: 642
+      endSourceChar: 655
+      line: 22
+      lineChar: 43
+      spanCodeSection: 'LocalPlayer, '
+    - startInstruction: 744
+      endInstruction: 767
+      startSourceChar: 655
+      endSourceChar: 674
+      line: 22
+      lineChar: 56
+      spanCodeSection: "obj);\r\n            "
+    - startInstruction: 768
+      endInstruction: 767
+      startSourceChar: 674
+      endSourceChar: 674
+      line: 23
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 768
+      endInstruction: 767
+      startSourceChar: 674
+      endSourceChar: 697
+      line: 23
+      lineChar: 12
+      spanCodeSection: 'obj.transform.parent = '
+    - startInstruction: 768
+      endInstruction: 815
+      startSourceChar: 697
+      endSourceChar: 718
+      line: 23
+      lineChar: 35
+      spanCodeSection: "origin;\r\n            "
+    - startInstruction: 816
+      endInstruction: 815
+      startSourceChar: 718
+      endSourceChar: 718
+      line: 24
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 816
+      endInstruction: 815
+      startSourceChar: 718
+      endSourceChar: 748
+      line: 24
+      lineChar: 12
+      spanCodeSection: 'obj.transform.localPosition = '
+    - startInstruction: 816
+      endInstruction: 815
+      startSourceChar: 748
+      endSourceChar: 752
+      line: 24
+      lineChar: 42
+      spanCodeSection: 'new '
+    - startInstruction: 816
+      endInstruction: 815
+      startSourceChar: 752
+      endSourceChar: 760
+      line: 24
+      lineChar: 46
+      spanCodeSection: Vector3(
+    - startInstruction: 816
+      endInstruction: 815
+      startSourceChar: 760
+      endSourceChar: 760
+      line: 24
+      lineChar: 54
+      spanCodeSection: 
+    - startInstruction: 816
+      endInstruction: 815
+      startSourceChar: 760
+      endSourceChar: 763
+      line: 24
+      lineChar: 54
+      spanCodeSection: '0, '
+    - startInstruction: 816
+      endInstruction: 815
+      startSourceChar: 763
+      endSourceChar: 763
+      line: 24
+      lineChar: 57
+      spanCodeSection: 
+    - startInstruction: 816
+      endInstruction: 815
+      startSourceChar: 763
+      endSourceChar: 766
+      line: 24
+      lineChar: 57
+      spanCodeSection: '0, '
+    - startInstruction: 816
+      endInstruction: 815
+      startSourceChar: 766
+      endSourceChar: 766
+      line: 24
+      lineChar: 60
+      spanCodeSection: 
+    - startInstruction: 816
+      endInstruction: 815
+      startSourceChar: 766
+      endSourceChar: 766
+      line: 24
+      lineChar: 60
+      spanCodeSection: 
+    - startInstruction: 816
+      endInstruction: 835
+      startSourceChar: 766
+      endSourceChar: 770
+      line: 24
+      lineChar: 60
+      spanCodeSection: 'z * '
+    - startInstruction: 836
+      endInstruction: 1003
+      startSourceChar: 770
+      endSourceChar: 792
+      line: 24
+      lineChar: 64
+      spanCodeSection: "0.038f);\r\n            "
+    - startInstruction: 1004
+      endInstruction: 1003
+      startSourceChar: 792
+      endSourceChar: 792
+      line: 25
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 1004
+      endInstruction: 1003
+      startSourceChar: 792
+      endSourceChar: 822
+      line: 25
+      lineChar: 12
+      spanCodeSection: 'obj.transform.localRotation = '
+    - startInstruction: 1004
+      endInstruction: 1003
+      startSourceChar: 822
+      endSourceChar: 839
+      line: 25
+      lineChar: 42
+      spanCodeSection: Quaternion.Euler(
+    - startInstruction: 1004
+      endInstruction: 1003
+      startSourceChar: 839
+      endSourceChar: 842
+      line: 25
+      lineChar: 59
+      spanCodeSection: '0, '
+    - startInstruction: 1004
+      endInstruction: 1003
+      startSourceChar: 842
+      endSourceChar: 846
+      line: 25
+      lineChar: 62
+      spanCodeSection: '90, '
+    - startInstruction: 1004
+      endInstruction: 1163
+      startSourceChar: 846
+      endSourceChar: 865
+      line: 25
+      lineChar: 66
+      spanCodeSection: "0);\r\n\r\n            "
+    - startInstruction: 1164
+      endInstruction: 1163
+      startSourceChar: 865
+      endSourceChar: 865
+      line: 27
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 1164
+      endInstruction: 1163
+      startSourceChar: 865
+      endSourceChar: 870
+      line: 27
+      lineChar: 12
+      spanCodeSection: 'z += '
+    - startInstruction: 1164
+      endInstruction: 1283
+      startSourceChar: 870
+      endSourceChar: 899
+      line: 27
+      lineChar: 17
+      spanCodeSection: "1f;\r\n        }\r\n    }\r\n\r\n    "
+    - startInstruction: 1284
+      endInstruction: 1303
+      startSourceChar: 899
+      endSourceChar: 940
+      line: 31
+      lineChar: 4
+      spanCodeSection: "private void Sort(Collider[] tiles)\r\n    "
+    - startInstruction: 1304
+      endInstruction: 1303
+      startSourceChar: 940
+      endSourceChar: 951
+      line: 32
+      lineChar: 4
+      spanCodeSection: "{\r\n        "
+    - startInstruction: 1304
+      endInstruction: 1303
+      startSourceChar: 951
+      endSourceChar: 951
+      line: 33
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1304
+      endInstruction: 1303
+      startSourceChar: 951
+      endSourceChar: 951
+      line: 33
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1304
+      endInstruction: 1303
+      startSourceChar: 951
+      endSourceChar: 951
+      line: 33
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1304
+      endInstruction: 1303
+      startSourceChar: 951
+      endSourceChar: 1037
+      line: 33
+      lineChar: 8
+      spanCodeSection: "Collider swap;\r\n        // finally those Art of Programming
+        books have value\r\n        "
+    - startInstruction: 1304
+      endInstruction: 1303
+      startSourceChar: 1037
+      endSourceChar: 1037
+      line: 35
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1304
+      endInstruction: 1303
+      startSourceChar: 1037
+      endSourceChar: 1037
+      line: 35
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1304
+      endInstruction: 1303
+      startSourceChar: 1037
+      endSourceChar: 1037
+      line: 35
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1304
+      endInstruction: 1303
+      startSourceChar: 1037
+      endSourceChar: 1049
+      line: 35
+      lineChar: 8
+      spanCodeSection: 'bool sorted '
+    - startInstruction: 1304
+      endInstruction: 1303
+      startSourceChar: 1049
+      endSourceChar: 1051
+      line: 35
+      lineChar: 20
+      spanCodeSection: '= '
+    - startInstruction: 1304
+      endInstruction: 1323
+      startSourceChar: 1051
+      endSourceChar: 1067
+      line: 35
+      lineChar: 22
+      spanCodeSection: "false;\r\n        "
+    - startInstruction: 1324
+      endInstruction: 1323
+      startSourceChar: 1067
+      endSourceChar: 1074
+      line: 36
+      lineChar: 8
+      spanCodeSection: while (
+    - startInstruction: 1324
+      endInstruction: 1323
+      startSourceChar: 1074
+      endSourceChar: 1075
+      line: 36
+      lineChar: 15
+      spanCodeSection: '!'
+    - startInstruction: 1324
+      endInstruction: 1363
+      startSourceChar: 1075
+      endSourceChar: 1092
+      line: 36
+      lineChar: 16
+      spanCodeSection: "sorted)\r\n        "
+    - startInstruction: 1364
+      endInstruction: 1363
+      startSourceChar: 1092
+      endSourceChar: 1107
+      line: 37
+      lineChar: 8
+      spanCodeSection: "{\r\n            "
+    - startInstruction: 1364
+      endInstruction: 1363
+      startSourceChar: 1107
+      endSourceChar: 1107
+      line: 38
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 1364
+      endInstruction: 1363
+      startSourceChar: 1107
+      endSourceChar: 1116
+      line: 38
+      lineChar: 12
+      spanCodeSection: 'sorted = '
+    - startInstruction: 1364
+      endInstruction: 1383
+      startSourceChar: 1116
+      endSourceChar: 1135
+      line: 38
+      lineChar: 21
+      spanCodeSection: "true;\r\n            "
+    - startInstruction: 1384
+      endInstruction: 1383
+      startSourceChar: 1135
+      endSourceChar: 1140
+      line: 39
+      lineChar: 12
+      spanCodeSection: for (
+    - startInstruction: 1384
+      endInstruction: 1383
+      startSourceChar: 1140
+      endSourceChar: 1140
+      line: 39
+      lineChar: 17
+      spanCodeSection: 
+    - startInstruction: 1384
+      endInstruction: 1383
+      startSourceChar: 1140
+      endSourceChar: 1140
+      line: 39
+      lineChar: 17
+      spanCodeSection: 
+    - startInstruction: 1384
+      endInstruction: 1383
+      startSourceChar: 1140
+      endSourceChar: 1146
+      line: 39
+      lineChar: 17
+      spanCodeSection: 'int i '
+    - startInstruction: 1384
+      endInstruction: 1383
+      startSourceChar: 1146
+      endSourceChar: 1148
+      line: 39
+      lineChar: 23
+      spanCodeSection: '= '
+    - startInstruction: 1384
+      endInstruction: 1403
+      startSourceChar: 1148
+      endSourceChar: 1151
+      line: 39
+      lineChar: 25
+      spanCodeSection: '0; '
+    - startInstruction: 1404
+      endInstruction: 1403
+      startSourceChar: 1151
+      endSourceChar: 1151
+      line: 39
+      lineChar: 28
+      spanCodeSection: 
+    - startInstruction: 1404
+      endInstruction: 1423
+      startSourceChar: 1151
+      endSourceChar: 1155
+      line: 39
+      lineChar: 28
+      spanCodeSection: 'i < '
+    - startInstruction: 1424
+      endInstruction: 1423
+      startSourceChar: 1155
+      endSourceChar: 1155
+      line: 39
+      lineChar: 32
+      spanCodeSection: 
+    - startInstruction: 1424
+      endInstruction: 1423
+      startSourceChar: 1155
+      endSourceChar: 1155
+      line: 39
+      lineChar: 32
+      spanCodeSection: 
+    - startInstruction: 1424
+      endInstruction: 1423
+      startSourceChar: 1155
+      endSourceChar: 1161
+      line: 39
+      lineChar: 32
+      spanCodeSection: tiles.
+    - startInstruction: 1424
+      endInstruction: 1467
+      startSourceChar: 1161
+      endSourceChar: 1170
+      line: 39
+      lineChar: 38
+      spanCodeSection: 'Length - '
+    - startInstruction: 1468
+      endInstruction: 1547
+      startSourceChar: 1170
+      endSourceChar: 1191
+      line: 39
+      lineChar: 47
+      spanCodeSection: "1; ++i)\r\n            "
+    - startInstruction: 1548
+      endInstruction: 1547
+      startSourceChar: 1191
+      endSourceChar: 1411
+      line: 40
+      lineChar: 12
+      spanCodeSection: "{\r\n                // gameobject names are sorted by tile
+        value and suit\r\n                // since that's more convenient than trying
+        to read values out\r\n                // of some custom udon component\r\n
+        \               "
+    - startInstruction: 1548
+      endInstruction: 1547
+      startSourceChar: 1411
+      endSourceChar: 1411
+      line: 44
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 1548
+      endInstruction: 1547
+      startSourceChar: 1411
+      endSourceChar: 1411
+      line: 44
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 1548
+      endInstruction: 1547
+      startSourceChar: 1411
+      endSourceChar: 1411
+      line: 44
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 1548
+      endInstruction: 1547
+      startSourceChar: 1411
+      endSourceChar: 1424
+      line: 44
+      lineChar: 16
+      spanCodeSection: 'string tile1 '
+    - startInstruction: 1548
+      endInstruction: 1547
+      startSourceChar: 1424
+      endSourceChar: 1426
+      line: 44
+      lineChar: 29
+      spanCodeSection: '= '
+    - startInstruction: 1548
+      endInstruction: 1547
+      startSourceChar: 1426
+      endSourceChar: 1426
+      line: 44
+      lineChar: 31
+      spanCodeSection: 
+    - startInstruction: 1548
+      endInstruction: 1547
+      startSourceChar: 1426
+      endSourceChar: 1426
+      line: 44
+      lineChar: 31
+      spanCodeSection: 
+    - startInstruction: 1548
+      endInstruction: 1547
+      startSourceChar: 1426
+      endSourceChar: 1426
+      line: 44
+      lineChar: 31
+      spanCodeSection: 
+    - startInstruction: 1548
+      endInstruction: 1547
+      startSourceChar: 1426
+      endSourceChar: 1432
+      line: 44
+      lineChar: 31
+      spanCodeSection: tiles[
+    - startInstruction: 1548
+      endInstruction: 1547
+      startSourceChar: 1432
+      endSourceChar: 1432
+      line: 44
+      lineChar: 37
+      spanCodeSection: 
+    - startInstruction: 1548
+      endInstruction: 1547
+      startSourceChar: 1432
+      endSourceChar: 1435
+      line: 44
+      lineChar: 37
+      spanCodeSection: i].
+    - startInstruction: 1548
+      endInstruction: 1579
+      startSourceChar: 1435
+      endSourceChar: 1446
+      line: 44
+      lineChar: 40
+      spanCodeSection: gameObject.
+    - startInstruction: 1580
+      endInstruction: 1647
+      startSourceChar: 1446
+      endSourceChar: 1469
+      line: 44
+      lineChar: 51
+      spanCodeSection: "name;\r\n                "
+    - startInstruction: 1648
+      endInstruction: 1647
+      startSourceChar: 1469
+      endSourceChar: 1469
+      line: 45
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 1648
+      endInstruction: 1647
+      startSourceChar: 1469
+      endSourceChar: 1469
+      line: 45
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 1648
+      endInstruction: 1647
+      startSourceChar: 1469
+      endSourceChar: 1469
+      line: 45
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 1648
+      endInstruction: 1647
+      startSourceChar: 1469
+      endSourceChar: 1482
+      line: 45
+      lineChar: 16
+      spanCodeSection: 'string tile2 '
+    - startInstruction: 1648
+      endInstruction: 1647
+      startSourceChar: 1482
+      endSourceChar: 1484
+      line: 45
+      lineChar: 29
+      spanCodeSection: '= '
+    - startInstruction: 1648
+      endInstruction: 1647
+      startSourceChar: 1484
+      endSourceChar: 1484
+      line: 45
+      lineChar: 31
+      spanCodeSection: 
+    - startInstruction: 1648
+      endInstruction: 1647
+      startSourceChar: 1484
+      endSourceChar: 1484
+      line: 45
+      lineChar: 31
+      spanCodeSection: 
+    - startInstruction: 1648
+      endInstruction: 1647
+      startSourceChar: 1484
+      endSourceChar: 1484
+      line: 45
+      lineChar: 31
+      spanCodeSection: 
+    - startInstruction: 1648
+      endInstruction: 1647
+      startSourceChar: 1484
+      endSourceChar: 1490
+      line: 45
+      lineChar: 31
+      spanCodeSection: tiles[
+    - startInstruction: 1648
+      endInstruction: 1647
+      startSourceChar: 1490
+      endSourceChar: 1490
+      line: 45
+      lineChar: 37
+      spanCodeSection: 
+    - startInstruction: 1648
+      endInstruction: 1647
+      startSourceChar: 1490
+      endSourceChar: 1490
+      line: 45
+      lineChar: 37
+      spanCodeSection: 
+    - startInstruction: 1648
+      endInstruction: 1667
+      startSourceChar: 1490
+      endSourceChar: 1492
+      line: 45
+      lineChar: 37
+      spanCodeSection: i+
+    - startInstruction: 1668
+      endInstruction: 1699
+      startSourceChar: 1492
+      endSourceChar: 1495
+      line: 45
+      lineChar: 39
+      spanCodeSection: 1].
+    - startInstruction: 1700
+      endInstruction: 1731
+      startSourceChar: 1495
+      endSourceChar: 1506
+      line: 45
+      lineChar: 42
+      spanCodeSection: gameObject.
+    - startInstruction: 1732
+      endInstruction: 1799
+      startSourceChar: 1506
+      endSourceChar: 1529
+      line: 45
+      lineChar: 53
+      spanCodeSection: "name;\r\n                "
+    - startInstruction: 1800
+      endInstruction: 1799
+      startSourceChar: 1529
+      endSourceChar: 1533
+      line: 46
+      lineChar: 16
+      spanCodeSection: if (
+    - startInstruction: 1800
+      endInstruction: 1799
+      startSourceChar: 1533
+      endSourceChar: 1533
+      line: 46
+      lineChar: 20
+      spanCodeSection: 
+    - startInstruction: 1800
+      endInstruction: 1799
+      startSourceChar: 1533
+      endSourceChar: 1549
+      line: 46
+      lineChar: 20
+      spanCodeSection: tile1.CompareTo(
+    - startInstruction: 1800
+      endInstruction: 1851
+      startSourceChar: 1549
+      endSourceChar: 1558
+      line: 46
+      lineChar: 36
+      spanCodeSection: 'tile2) > '
+    - startInstruction: 1852
+      endInstruction: 1899
+      startSourceChar: 1558
+      endSourceChar: 1578
+      line: 46
+      lineChar: 45
+      spanCodeSection: "0)\r\n                "
+    - startInstruction: 1900
+      endInstruction: 1899
+      startSourceChar: 1578
+      endSourceChar: 1601
+      line: 47
+      lineChar: 16
+      spanCodeSection: "{\r\n                    "
+    - startInstruction: 1900
+      endInstruction: 1899
+      startSourceChar: 1601
+      endSourceChar: 1601
+      line: 48
+      lineChar: 20
+      spanCodeSection: 
+    - startInstruction: 1900
+      endInstruction: 1899
+      startSourceChar: 1601
+      endSourceChar: 1608
+      line: 48
+      lineChar: 20
+      spanCodeSection: 'swap = '
+    - startInstruction: 1900
+      endInstruction: 1899
+      startSourceChar: 1608
+      endSourceChar: 1608
+      line: 48
+      lineChar: 27
+      spanCodeSection: 
+    - startInstruction: 1900
+      endInstruction: 1899
+      startSourceChar: 1608
+      endSourceChar: 1614
+      line: 48
+      lineChar: 27
+      spanCodeSection: tiles[
+    - startInstruction: 1900
+      endInstruction: 1899
+      startSourceChar: 1614
+      endSourceChar: 1614
+      line: 48
+      lineChar: 33
+      spanCodeSection: 
+    - startInstruction: 1900
+      endInstruction: 1951
+      startSourceChar: 1614
+      endSourceChar: 1639
+      line: 48
+      lineChar: 33
+      spanCodeSection: "i];\r\n                    "
+    - startInstruction: 1952
+      endInstruction: 1951
+      startSourceChar: 1639
+      endSourceChar: 1639
+      line: 49
+      lineChar: 20
+      spanCodeSection: 
+    - startInstruction: 1952
+      endInstruction: 1951
+      startSourceChar: 1639
+      endSourceChar: 1650
+      line: 49
+      lineChar: 20
+      spanCodeSection: 'tiles[i] = '
+    - startInstruction: 1952
+      endInstruction: 1951
+      startSourceChar: 1650
+      endSourceChar: 1650
+      line: 49
+      lineChar: 31
+      spanCodeSection: 
+    - startInstruction: 1952
+      endInstruction: 1951
+      startSourceChar: 1650
+      endSourceChar: 1656
+      line: 49
+      lineChar: 31
+      spanCodeSection: tiles[
+    - startInstruction: 1952
+      endInstruction: 1951
+      startSourceChar: 1656
+      endSourceChar: 1656
+      line: 49
+      lineChar: 37
+      spanCodeSection: 
+    - startInstruction: 1952
+      endInstruction: 1951
+      startSourceChar: 1656
+      endSourceChar: 1656
+      line: 49
+      lineChar: 37
+      spanCodeSection: 
+    - startInstruction: 1952
+      endInstruction: 1971
+      startSourceChar: 1656
+      endSourceChar: 1658
+      line: 49
+      lineChar: 37
+      spanCodeSection: i+
+    - startInstruction: 1972
+      endInstruction: 2067
+      startSourceChar: 1658
+      endSourceChar: 1683
+      line: 49
+      lineChar: 39
+      spanCodeSection: "1];\r\n                    "
+    - startInstruction: 2068
+      endInstruction: 2067
+      startSourceChar: 1683
+      endSourceChar: 1683
+      line: 50
+      lineChar: 20
+      spanCodeSection: 
+    - startInstruction: 2068
+      endInstruction: 2067
+      startSourceChar: 1683
+      endSourceChar: 1696
+      line: 50
+      lineChar: 20
+      spanCodeSection: 'tiles[i+1] = '
+    - startInstruction: 2068
+      endInstruction: 2151
+      startSourceChar: 1696
+      endSourceChar: 1723
+      line: 50
+      lineChar: 33
+      spanCodeSection: "swap;\r\n                    "
+    - startInstruction: 2152
+      endInstruction: 2151
+      startSourceChar: 1723
+      endSourceChar: 1723
+      line: 51
+      lineChar: 20
+      spanCodeSection: 
+    - startInstruction: 2152
+      endInstruction: 2151
+      startSourceChar: 1723
+      endSourceChar: 1732
+      line: 51
+      lineChar: 20
+      spanCodeSection: 'sorted = '
+    - startInstruction: 2152
+      endInstruction: 2152
+      startSourceChar: 1732
+      endSourceChar: 1732
+      line: 51
+      lineChar: 29
+      spanCodeSection: 
+  hasInteractEvent: 1
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: fieldDefinitions
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[UdonSharp.FieldDefinition,
+        UdonSharp.Editor]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: origin
+    - Name: $v
+      Entry: 7
+      Data: 2|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 3|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 7
+      Data: 4|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: UnityEngine.Transform, UnityEngine.CoreModule
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declarationType
+      Entry: 3
+      Data: 1
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineTransform
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: origin
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: origin
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 5|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: halfExtents
+    - Name: $v
+      Entry: 7
+      Data: 6|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 7|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 7
+      Data: 8|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declarationType
+      Entry: 3
+      Data: 1
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineVector3
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: halfExtents
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: halfExtents
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 9|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: tileLayer
+    - Name: $v
+      Entry: 7
+      Data: 10|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 11|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 7
+      Data: 12|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: UnityEngine.LayerMask, UnityEngine.CoreModule
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declarationType
+      Entry: 3
+      Data: 1
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineLayerMask
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: tileLayer
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: tileLayer
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 13|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
