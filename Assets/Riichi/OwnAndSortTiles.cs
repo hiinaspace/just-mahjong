@@ -24,6 +24,9 @@ public class OwnAndSortTiles : UdonSharpBehaviour
             obj.transform.parent = origin;
             obj.transform.localPosition = new Vector3(0, 0, z * 0.038f);
             obj.transform.localRotation = Quaternion.Euler(0, 90, 0);
+            var r = obj.GetComponent<Rigidbody>();
+            r.isKinematic = false; // allow movement
+            r.velocity = Vector3.zero; // dunno if this actually works, try to prevent explode
 
             z += 1f;
         }

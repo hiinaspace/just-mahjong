@@ -1,0 +1,1741 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
+  m_Name: MaskTiles
+  m_EditorClassIdentifier: 
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 0bdb8e5fd39c80b459a9e903ffb356a2,
+    type: 2}
+  udonAssembly: ".data_start\r\n\r\n    .export tileParent\r\n    .export onMat\r\n
+    \   .export offMat\r\n    .export localMask\r\n    .sync syncedMask, none\r\n\r\n
+    \   __refl_const_intnl_udonTypeID: %SystemInt64, null\r\n    __refl_const_intnl_udonTypeName:
+    %SystemString, null\r\n    localMask: %SystemBoolean, null\r\n    offMat: %UnityEngineMaterial,
+    null\r\n    onMat: %UnityEngineMaterial, null\r\n    tileParent: %UnityEngineTransform,
+    null\r\n    syncedMask: %SystemBoolean, null\r\n    tiles: %UnityEngineMeshRendererArray,
+    null\r\n    __0_this_intnl_MaskTiles: %VRCUdonUdonBehaviour, this\r\n    __0_i_Int32:
+    %SystemInt32, null\r\n    __0_mpb_MaterialPropertyBlock: %UnityEngineMaterialPropertyBlock,
+    null\r\n    __1_mpb_MaterialPropertyBlock: %UnityEngineMaterialPropertyBlock,
+    null\r\n    __0_e_MeshRenderer: %UnityEngineMeshRenderer, null\r\n    __1_e_MeshRenderer:
+    %UnityEngineMeshRenderer, null\r\n    __0_const_intnl_SystemInt32: %SystemInt32,
+    null\r\n    __1_const_intnl_SystemInt32: %SystemInt32, null\r\n    __2_const_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __3_const_intnl_SystemInt32: %SystemInt32, null\r\n
+    \   __0_const_intnl_SystemString: %SystemString, null\r\n    __1_const_intnl_SystemString:
+    %SystemString, null\r\n    __2_const_intnl_SystemString: %SystemString, null\r\n
+    \   __3_const_intnl_SystemString: %SystemString, null\r\n    __0_const_intnl_SystemType:
+    %SystemType, null\r\n    __0_const_intnl_exitJumpLoc_UInt32: %SystemUInt32, null\r\n
+    \   __0_const_intnl_SystemUInt32: %SystemUInt32, null\r\n    __1_const_intnl_exitJumpLoc_UInt32:
+    %SystemUInt32, null\r\n    __0_intnl_SystemBoolean: %SystemBoolean, null\r\n    __1_intnl_SystemBoolean:
+    %SystemBoolean, null\r\n    __2_intnl_SystemBoolean: %SystemBoolean, null\r\n
+    \   __3_intnl_SystemBoolean: %SystemBoolean, null\r\n    __4_intnl_SystemBoolean:
+    %SystemBoolean, null\r\n    __5_intnl_SystemBoolean: %SystemBoolean, null\r\n
+    \   __6_intnl_SystemBoolean: %SystemBoolean, null\r\n    __7_intnl_SystemBoolean:
+    %SystemBoolean, null\r\n    __0_intnl_UnityEngineGameObject: %UnityEngineGameObject,
+    null\r\n    __1_intnl_UnityEngineGameObject: %UnityEngineGameObject, null\r\n
+    \   __0_intnl_SystemInt32: %SystemInt32, null\r\n    __1_intnl_SystemInt32: %SystemInt32,
+    null\r\n    __2_intnl_SystemInt32: %SystemInt32, null\r\n    __3_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __4_intnl_SystemInt32: %SystemInt32, null\r\n    __5_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __6_intnl_SystemInt32: %SystemInt32, null\r\n    __7_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __0_intnl_UnityEngineMaterialPropertyBlock: %UnityEngineMaterialPropertyBlock,
+    null\r\n    __1_intnl_UnityEngineMaterialPropertyBlock: %UnityEngineMaterialPropertyBlock,
+    null\r\n    __0_intnl_UnityEngineMeshRenderer: %UnityEngineMeshRenderer, null\r\n
+    \   __1_intnl_UnityEngineMeshRenderer: %UnityEngineMeshRenderer, null\r\n    __2_intnl_UnityEngineMeshRenderer:
+    %UnityEngineMeshRenderer, null\r\n    __3_intnl_UnityEngineMeshRenderer: %UnityEngineMeshRenderer,
+    null\r\n    __4_intnl_UnityEngineMeshRenderer: %UnityEngineMeshRenderer, null\r\n
+    \   __0_intnl_UnityEngineMeshRendererArray: %UnityEngineMeshRendererArray, null\r\n
+    \   __1_intnl_UnityEngineMeshRendererArray: %UnityEngineMeshRendererArray, null\r\n
+    \   __0_intnl_SystemSingle: %SystemSingle, null\r\n    __1_intnl_SystemSingle:
+    %SystemSingle, null\r\n    __2_intnl_SystemSingle: %SystemSingle, null\r\n    __0_intnl_SystemString:
+    %SystemString, null\r\n    __0_intnl_UnityEngineTransform: %UnityEngineTransform,
+    null\r\n    __1_intnl_UnityEngineTransform: %UnityEngineTransform, null\r\n    __0_intnl_oldReturnLoc_UInt32:
+    %SystemUInt32, null\r\n    __0_intnl_returnTarget_UInt32: %SystemUInt32, null\r\n\r\n.data_end\r\n\r\n
+    \       \r\n         # using UdonSharp;\r\n        \r\n         # using UnityEngine;\r\n
+    \       \r\n         # using VRC.SDKBase;\r\n        \r\n         # using VRC.Udon;\r\n
+    \       \r\n         # public class MaskTiles : UdonSharpBehaviour\r\n.code_start\r\n
+    \       \r\n         # public Transform tileParent;\r\n        \r\n         #
+    public Material onMat;\r\n        \r\n         # public Material offMat;\r\n        \r\n
+    \        # MeshRenderer[] tiles;\r\n        \r\n         # [UdonSynced] bool syncedMask
+    = false;\r\n        \r\n         # public bool localMask = false;\r\n        \r\n
+    \        # void Start()\r\n    .export _start\r\n        \r\n    _start:\r\n        \r\n
+    \       PUSH, __0_const_intnl_SystemUInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
+    \       COPY\r\n        \r\n         # {\r\n        \r\n         # tiles = new
+    MeshRenderer[136];\r\n        PUSH, __0_const_intnl_SystemInt32\r\n        PUSH,
+    __1_intnl_UnityEngineMeshRendererArray\r\n        EXTERN, \"UnityEngineMeshRendererArray.__ctor__SystemInt32__UnityEngineMeshRendererArray\"\r\n
+    \       PUSH, __1_intnl_UnityEngineMeshRendererArray\r\n        PUSH, __0_intnl_UnityEngineMeshRendererArray\r\n
+    \       COPY\r\n        PUSH, __0_intnl_UnityEngineMeshRendererArray\r\n        PUSH,
+    tiles\r\n        COPY\r\n        \r\n         # for (int i = 0; i < 136; ++i)\r\n
+    \       PUSH, __1_const_intnl_SystemInt32\r\n        PUSH, __0_i_Int32\r\n        COPY\r\n
+    \       PUSH, __0_i_Int32\r\n        PUSH, __0_intnl_SystemInt32\r\n        COPY\r\n
+    \       PUSH, __0_intnl_SystemInt32\r\n        PUSH, __0_const_intnl_SystemInt32\r\n
+    \       PUSH, __0_intnl_SystemBoolean\r\n        EXTERN, \"SystemInt32.__op_LessThan__SystemInt32_SystemInt32__SystemBoolean\"\r\n
+    \       PUSH, __0_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x00000178\r\n
+    \       \r\n         # {\r\n        \r\n         # tiles[i] = tileParent.GetChild(i).gameObject.GetComponent<MeshRenderer>();\r\n
+    \       PUSH, tileParent\r\n        PUSH, __0_i_Int32\r\n        PUSH, __0_intnl_UnityEngineTransform\r\n
+    \       EXTERN, \"UnityEngineTransform.__GetChild__SystemInt32__UnityEngineTransform\"\r\n
+    \       PUSH, __0_intnl_UnityEngineTransform\r\n        PUSH, __0_intnl_UnityEngineGameObject\r\n
+    \       EXTERN, \"UnityEngineTransform.__get_gameObject__UnityEngineGameObject\"\r\n
+    \       PUSH, __0_intnl_UnityEngineGameObject\r\n        PUSH, __1_intnl_UnityEngineTransform\r\n
+    \       EXTERN, \"UnityEngineGameObject.__get_transform__UnityEngineTransform\"\r\n
+    \       PUSH, __1_intnl_UnityEngineTransform\r\n        PUSH, __0_const_intnl_SystemType\r\n
+    \       PUSH, __0_intnl_UnityEngineMeshRenderer\r\n        EXTERN, \"UnityEngineMeshRenderer.__GetComponent__T\"\r\n
+    \       PUSH, tiles\r\n        PUSH, __0_i_Int32\r\n        PUSH, __0_intnl_UnityEngineMeshRenderer\r\n
+    \       EXTERN, \"UnityEngineMeshRendererArray.__Set__SystemInt32_UnityEngineMeshRenderer__SystemVoid\"\r\n
+    \       PUSH, __0_i_Int32\r\n        PUSH, __2_const_intnl_SystemInt32\r\n        PUSH,
+    __1_intnl_SystemInt32\r\n        EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n
+    \       PUSH, __1_intnl_SystemInt32\r\n        PUSH, __0_i_Int32\r\n        COPY\r\n
+    \       JUMP, 0x00000068\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n
+    \       \r\n        \r\n         # void FixedUpdate()\r\n    .export _fixedUpdate\r\n
+    \       \r\n    _fixedUpdate:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n
+    \       PUSH, __0_intnl_returnTarget_UInt32\r\n        COPY\r\n        \r\n         #
+    {\r\n        \r\n         # if (syncedMask != localMask)\r\n        PUSH, syncedMask\r\n
+    \       PUSH, __1_intnl_SystemBoolean\r\n        COPY\r\n        PUSH, __1_intnl_SystemBoolean\r\n
+    \       PUSH, localMask\r\n        PUSH, __2_intnl_SystemBoolean\r\n        EXTERN,
+    \"SystemBoolean.__op_Inequality__SystemBoolean_SystemBoolean__SystemBoolean\"\r\n
+    \       PUSH, __2_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x0000028C\r\n
+    \       \r\n         # {\r\n        \r\n         # localMask = syncedMask;\r\n
+    \       PUSH, syncedMask\r\n        PUSH, localMask\r\n        COPY\r\n        \r\n
+    \        # if (syncedMask)\r\n        PUSH, syncedMask\r\n        JUMP_IF_FALSE,
+    0x00000248\r\n        \r\n         # {\r\n        \r\n         # DoMask();\r\n
+    \       PUSH, __0_intnl_returnTarget_UInt32\r\n        PUSH, __0_intnl_oldReturnLoc_UInt32\r\n
+    \       COPY\r\n        PUSH, __0_const_intnl_exitJumpLoc_UInt32\r\n        PUSH,
+    __0_intnl_returnTarget_UInt32\r\n        COPY\r\n        JUMP, 0x00000340\r\n
+    \       PUSH, __0_intnl_oldReturnLoc_UInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
+    \       COPY\r\n        JUMP, 0x0000028C\r\n        \r\n         # } else\r\n
+    \       \r\n         # {\r\n        \r\n         # DoUnMask();\r\n        PUSH,
+    __0_intnl_returnTarget_UInt32\r\n        PUSH, __0_intnl_oldReturnLoc_UInt32\r\n
+    \       COPY\r\n        PUSH, __1_const_intnl_exitJumpLoc_UInt32\r\n        PUSH,
+    __0_intnl_returnTarget_UInt32\r\n        COPY\r\n        JUMP, 0x000004E4\r\n
+    \       PUSH, __0_intnl_oldReturnLoc_UInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
+    \       COPY\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n
+    \       \r\n         # void Interact()\r\n    .export _interact\r\n        \r\n
+    \   _interact:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n        PUSH,
+    __0_intnl_returnTarget_UInt32\r\n        COPY\r\n        \r\n         # {\r\n
+    \       \r\n         # Debug.Log(\"trying to toggle mask\");\r\n        PUSH,
+    __0_const_intnl_SystemString\r\n        EXTERN, \"UnityEngineDebug.__Log__SystemObject__SystemVoid\"\r\n
+    \       \r\n         # if (!Networking.IsMaster) return;\r\n        PUSH, __3_intnl_SystemBoolean\r\n
+    \       EXTERN, \"VRCSDKBaseNetworking.__get_IsMaster__SystemBoolean\"\r\n        PUSH,
+    __3_intnl_SystemBoolean\r\n        PUSH, __4_intnl_SystemBoolean\r\n        EXTERN,
+    \"SystemBoolean.__op_UnaryNegation__SystemBoolean__SystemBoolean\"\r\n        PUSH,
+    __4_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x000002F8\r\n        JUMP_INDIRECT,
+    __0_intnl_returnTarget_UInt32\r\n        \r\n         # syncedMask = !syncedMask;\r\n
+    \       PUSH, syncedMask\r\n        PUSH, __5_intnl_SystemBoolean\r\n        EXTERN,
+    \"SystemBoolean.__op_UnaryNegation__SystemBoolean__SystemBoolean\"\r\n        PUSH,
+    __5_intnl_SystemBoolean\r\n        PUSH, syncedMask\r\n        COPY\r\n        JUMP_INDIRECT,
+    __0_intnl_returnTarget_UInt32\r\n        \r\n        \r\n         # void DoMask()\r\n
+    \   DoMask:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n        PUSH,
+    __0_intnl_returnTarget_UInt32\r\n        COPY\r\n        \r\n         # {\r\n
+    \       \r\n         # Debug.Log(\"masking all tiles\");\r\n        PUSH, __1_const_intnl_SystemString\r\n
+    \       EXTERN, \"UnityEngineDebug.__Log__SystemObject__SystemVoid\"\r\n        \r\n
+    \        # GetComponent<MeshRenderer>().sharedMaterial = offMat;\r\n        PUSH,
+    __0_this_intnl_MaskTiles\r\n        PUSH, __0_const_intnl_SystemType\r\n        PUSH,
+    __1_intnl_UnityEngineMeshRenderer\r\n        EXTERN, \"UnityEngineMeshRenderer.__GetComponent__T\"\r\n
+    \       PUSH, __1_intnl_UnityEngineMeshRenderer\r\n        PUSH, offMat\r\n        EXTERN,
+    \"UnityEngineMeshRenderer.__set_sharedMaterial__UnityEngineMaterial__SystemVoid\"\r\n
+    \       \r\n         # var mpb = new MaterialPropertyBlock();\r\n        PUSH,
+    __0_intnl_UnityEngineMaterialPropertyBlock\r\n        EXTERN, \"UnityEngineMaterialPropertyBlock.__ctor____UnityEngineMaterialPropertyBlock\"\r\n
+    \       PUSH, __0_intnl_UnityEngineMaterialPropertyBlock\r\n        PUSH, __0_mpb_MaterialPropertyBlock\r\n
+    \       COPY\r\n        \r\n         # mpb.SetFloat(\"_Tile\", 37); // empty spot
+    in tile atlas\r\n        PUSH, __3_const_intnl_SystemInt32\r\n        PUSH, __0_intnl_SystemSingle\r\n
+    \       EXTERN, \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n        PUSH,
+    __0_mpb_MaterialPropertyBlock\r\n        PUSH, __2_const_intnl_SystemString\r\n
+    \       PUSH, __0_intnl_SystemSingle\r\n        EXTERN, \"UnityEngineMaterialPropertyBlock.__SetFloat__SystemString_SystemSingle__SystemVoid\"\r\n
+    \       \r\n         # foreach (MeshRenderer e in tiles)\r\n        PUSH, __1_const_intnl_SystemInt32\r\n
+    \       PUSH, __2_intnl_SystemInt32\r\n        COPY\r\n        PUSH, tiles\r\n
+    \       PUSH, __3_intnl_SystemInt32\r\n        EXTERN, \"UnityEngineMeshRendererArray.__get_Length__SystemInt32\"\r\n
+    \       PUSH, __2_intnl_SystemInt32\r\n        PUSH, __3_intnl_SystemInt32\r\n
+    \       PUSH, __6_intnl_SystemBoolean\r\n        EXTERN, \"SystemInt32.__op_LessThan__SystemInt32_SystemInt32__SystemBoolean\"\r\n
+    \       PUSH, __6_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x000004C8\r\n
+    \       PUSH, tiles\r\n        PUSH, __2_intnl_SystemInt32\r\n        PUSH, __2_intnl_UnityEngineMeshRenderer\r\n
+    \       EXTERN, \"UnityEngineMeshRendererArray.__Get__SystemInt32__UnityEngineMeshRenderer\"\r\n
+    \       PUSH, __2_intnl_UnityEngineMeshRenderer\r\n        PUSH, __0_e_MeshRenderer\r\n
+    \       COPY\r\n        \r\n         # {\r\n        \r\n         # e.SetPropertyBlock(mpb);\r\n
+    \       PUSH, __0_e_MeshRenderer\r\n        PUSH, __0_mpb_MaterialPropertyBlock\r\n
+    \       EXTERN, \"UnityEngineMeshRenderer.__SetPropertyBlock__UnityEngineMaterialPropertyBlock__SystemVoid\"\r\n
+    \       PUSH, __2_intnl_SystemInt32\r\n        PUSH, __2_const_intnl_SystemInt32\r\n
+    \       PUSH, __4_intnl_SystemInt32\r\n        EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n
+    \       PUSH, __4_intnl_SystemInt32\r\n        PUSH, __2_intnl_SystemInt32\r\n
+    \       COPY\r\n        JUMP, 0x00000410\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n
+    \       \r\n        \r\n         # void DoUnMask()\r\n    DoUnMask:\r\n        \r\n
+    \       PUSH, __0_const_intnl_SystemUInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
+    \       COPY\r\n        \r\n         # {\r\n        \r\n         # Debug.Log(\"unmasking
+    all tiles\");\r\n        PUSH, __3_const_intnl_SystemString\r\n        EXTERN,
+    \"UnityEngineDebug.__Log__SystemObject__SystemVoid\"\r\n        \r\n         #
+    GetComponent<MeshRenderer>().sharedMaterial = onMat;\r\n        PUSH, __0_this_intnl_MaskTiles\r\n
+    \       PUSH, __0_const_intnl_SystemType\r\n        PUSH, __3_intnl_UnityEngineMeshRenderer\r\n
+    \       EXTERN, \"UnityEngineMeshRenderer.__GetComponent__T\"\r\n        PUSH,
+    __3_intnl_UnityEngineMeshRenderer\r\n        PUSH, onMat\r\n        EXTERN, \"UnityEngineMeshRenderer.__set_sharedMaterial__UnityEngineMaterial__SystemVoid\"\r\n
+    \       \r\n         # var mpb = new MaterialPropertyBlock();\r\n        PUSH,
+    __1_intnl_UnityEngineMaterialPropertyBlock\r\n        EXTERN, \"UnityEngineMaterialPropertyBlock.__ctor____UnityEngineMaterialPropertyBlock\"\r\n
+    \       PUSH, __1_intnl_UnityEngineMaterialPropertyBlock\r\n        PUSH, __1_mpb_MaterialPropertyBlock\r\n
+    \       COPY\r\n        \r\n         # foreach (MeshRenderer e in tiles)\r\n        PUSH,
+    __1_const_intnl_SystemInt32\r\n        PUSH, __5_intnl_SystemInt32\r\n        COPY\r\n
+    \       PUSH, tiles\r\n        PUSH, __6_intnl_SystemInt32\r\n        EXTERN,
+    \"UnityEngineMeshRendererArray.__get_Length__SystemInt32\"\r\n        PUSH, __5_intnl_SystemInt32\r\n
+    \       PUSH, __6_intnl_SystemInt32\r\n        PUSH, __7_intnl_SystemBoolean\r\n
+    \       EXTERN, \"SystemInt32.__op_LessThan__SystemInt32_SystemInt32__SystemBoolean\"\r\n
+    \       PUSH, __7_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x000006B4\r\n
+    \       PUSH, tiles\r\n        PUSH, __5_intnl_SystemInt32\r\n        PUSH, __4_intnl_UnityEngineMeshRenderer\r\n
+    \       EXTERN, \"UnityEngineMeshRendererArray.__Get__SystemInt32__UnityEngineMeshRenderer\"\r\n
+    \       PUSH, __4_intnl_UnityEngineMeshRenderer\r\n        PUSH, __1_e_MeshRenderer\r\n
+    \       COPY\r\n        \r\n         # {\r\n        \r\n         # mpb.SetFloat(\"_Tile\",
+    Mathf.Floor(float.Parse(e.gameObject.name)));\r\n        PUSH, __1_e_MeshRenderer\r\n
+    \       PUSH, __1_intnl_UnityEngineGameObject\r\n        EXTERN, \"UnityEngineMeshRenderer.__get_gameObject__UnityEngineGameObject\"\r\n
+    \       PUSH, __1_intnl_UnityEngineGameObject\r\n        PUSH, __0_intnl_SystemString\r\n
+    \       EXTERN, \"UnityEngineGameObject.__get_name__SystemString\"\r\n        PUSH,
+    __0_intnl_SystemString\r\n        PUSH, __1_intnl_SystemSingle\r\n        EXTERN,
+    \"SystemSingle.__Parse__SystemString__SystemSingle\"\r\n        PUSH, __1_intnl_SystemSingle\r\n
+    \       PUSH, __2_intnl_SystemSingle\r\n        EXTERN, \"UnityEngineMathf.__Floor__SystemSingle__SystemSingle\"\r\n
+    \       PUSH, __1_mpb_MaterialPropertyBlock\r\n        PUSH, __2_const_intnl_SystemString\r\n
+    \       PUSH, __2_intnl_SystemSingle\r\n        EXTERN, \"UnityEngineMaterialPropertyBlock.__SetFloat__SystemString_SystemSingle__SystemVoid\"\r\n
+    \       \r\n         # e.SetPropertyBlock(mpb);\r\n        PUSH, __1_e_MeshRenderer\r\n
+    \       PUSH, __1_mpb_MaterialPropertyBlock\r\n        EXTERN, \"UnityEngineMeshRenderer.__SetPropertyBlock__UnityEngineMaterialPropertyBlock__SystemVoid\"\r\n
+    \       PUSH, __5_intnl_SystemInt32\r\n        PUSH, __2_const_intnl_SystemInt32\r\n
+    \       PUSH, __7_intnl_SystemInt32\r\n        EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n
+    \       PUSH, __7_intnl_SystemInt32\r\n        PUSH, __5_intnl_SystemInt32\r\n
+    \       COPY\r\n        JUMP, 0x0000057C\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n
+    \       \r\n.code_end\r\n"
+  assemblyError: 
+  sourceCsScript: {fileID: 11500000, guid: 17b1419e71fdc0247adf60cccf3adb44, type: 3}
+  behaviourIDHeapVarName: __refl_const_intnl_udonTypeID
+  compileErrors: []
+  debugInfo:
+    serializedDebugSpans:
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 0
+      endSourceChar: 2
+      line: 0
+      lineChar: 0
+      spanCodeSection: "\r\n"
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 2
+      endSourceChar: 2
+      line: 1
+      lineChar: 0
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 2
+      endSourceChar: 8
+      line: 1
+      lineChar: 0
+      spanCodeSection: 'using '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 8
+      endSourceChar: 20
+      line: 1
+      lineChar: 6
+      spanCodeSection: "UdonSharp;\r\n"
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 20
+      endSourceChar: 26
+      line: 2
+      lineChar: 0
+      spanCodeSection: 'using '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 26
+      endSourceChar: 40
+      line: 2
+      lineChar: 6
+      spanCodeSection: "UnityEngine;\r\n"
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 40
+      endSourceChar: 46
+      line: 3
+      lineChar: 0
+      spanCodeSection: 'using '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 46
+      endSourceChar: 46
+      line: 3
+      lineChar: 6
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 46
+      endSourceChar: 50
+      line: 3
+      lineChar: 6
+      spanCodeSection: VRC.
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 50
+      endSourceChar: 60
+      line: 3
+      lineChar: 10
+      spanCodeSection: "SDKBase;\r\n"
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 60
+      endSourceChar: 66
+      line: 4
+      lineChar: 0
+      spanCodeSection: 'using '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 66
+      endSourceChar: 66
+      line: 4
+      lineChar: 6
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 66
+      endSourceChar: 70
+      line: 4
+      lineChar: 6
+      spanCodeSection: VRC.
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 70
+      endSourceChar: 79
+      line: 4
+      lineChar: 10
+      spanCodeSection: "Udon;\r\n\r\n"
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 79
+      endSourceChar: 102
+      line: 6
+      lineChar: 0
+      spanCodeSection: 'public class MaskTiles '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 102
+      endSourceChar: 104
+      line: 6
+      lineChar: 23
+      spanCodeSection: ': '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 104
+      endSourceChar: 104
+      line: 6
+      lineChar: 25
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 104
+      endSourceChar: 131
+      line: 6
+      lineChar: 25
+      spanCodeSection: "UdonSharpBehaviour\r\n{\r\n    "
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 131
+      endSourceChar: 138
+      line: 8
+      lineChar: 4
+      spanCodeSection: 'public '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 138
+      endSourceChar: 138
+      line: 8
+      lineChar: 11
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 138
+      endSourceChar: 167
+      line: 8
+      lineChar: 11
+      spanCodeSection: "Transform tileParent;\r\n\r\n    "
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 167
+      endSourceChar: 174
+      line: 10
+      lineChar: 4
+      spanCodeSection: 'public '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 174
+      endSourceChar: 174
+      line: 10
+      lineChar: 11
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 174
+      endSourceChar: 195
+      line: 10
+      lineChar: 11
+      spanCodeSection: "Material onMat;\r\n    "
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 195
+      endSourceChar: 202
+      line: 11
+      lineChar: 4
+      spanCodeSection: 'public '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 202
+      endSourceChar: 202
+      line: 11
+      lineChar: 11
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 202
+      endSourceChar: 226
+      line: 11
+      lineChar: 11
+      spanCodeSection: "Material offMat;\r\n\r\n    "
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 226
+      endSourceChar: 226
+      line: 13
+      lineChar: 4
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 226
+      endSourceChar: 226
+      line: 13
+      lineChar: 4
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 226
+      endSourceChar: 226
+      line: 13
+      lineChar: 4
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 226
+      endSourceChar: 338
+      line: 13
+      lineChar: 4
+      spanCodeSection: "MeshRenderer[] tiles;\r\n\r\n    // SEndCustomNetworkEvent
+        is scuffed, so do the hacky broadcast event instead\r\n    "
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 338
+      endSourceChar: 339
+      line: 16
+      lineChar: 4
+      spanCodeSection: '['
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 339
+      endSourceChar: 339
+      line: 16
+      lineChar: 5
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 339
+      endSourceChar: 351
+      line: 16
+      lineChar: 5
+      spanCodeSection: 'UdonSynced] '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 351
+      endSourceChar: 351
+      line: 16
+      lineChar: 17
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 351
+      endSourceChar: 381
+      line: 16
+      lineChar: 17
+      spanCodeSection: "bool syncedMask = false;\r\n    "
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 381
+      endSourceChar: 388
+      line: 17
+      lineChar: 4
+      spanCodeSection: 'public '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 388
+      endSourceChar: 388
+      line: 17
+      lineChar: 11
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 388
+      endSourceChar: 419
+      line: 17
+      lineChar: 11
+      spanCodeSection: "bool localMask = false;\r\n\r\n    "
+    - startInstruction: 0
+      endInstruction: 19
+      startSourceChar: 419
+      endSourceChar: 437
+      line: 19
+      lineChar: 4
+      spanCodeSection: "void Start()\r\n    "
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 437
+      endSourceChar: 448
+      line: 20
+      lineChar: 4
+      spanCodeSection: "{\r\n        "
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 448
+      endSourceChar: 448
+      line: 21
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 448
+      endSourceChar: 456
+      line: 21
+      lineChar: 8
+      spanCodeSection: 'tiles = '
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 456
+      endSourceChar: 460
+      line: 21
+      lineChar: 16
+      spanCodeSection: 'new '
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 460
+      endSourceChar: 460
+      line: 21
+      lineChar: 20
+      spanCodeSection: 
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 460
+      endSourceChar: 472
+      line: 21
+      lineChar: 20
+      spanCodeSection: MeshRenderer
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 472
+      endSourceChar: 473
+      line: 21
+      lineChar: 32
+      spanCodeSection: '['
+    - startInstruction: 20
+      endInstruction: 83
+      startSourceChar: 473
+      endSourceChar: 488
+      line: 21
+      lineChar: 33
+      spanCodeSection: "136];\r\n        "
+    - startInstruction: 84
+      endInstruction: 83
+      startSourceChar: 488
+      endSourceChar: 493
+      line: 22
+      lineChar: 8
+      spanCodeSection: for (
+    - startInstruction: 84
+      endInstruction: 83
+      startSourceChar: 493
+      endSourceChar: 493
+      line: 22
+      lineChar: 13
+      spanCodeSection: 
+    - startInstruction: 84
+      endInstruction: 83
+      startSourceChar: 493
+      endSourceChar: 493
+      line: 22
+      lineChar: 13
+      spanCodeSection: 
+    - startInstruction: 84
+      endInstruction: 83
+      startSourceChar: 493
+      endSourceChar: 499
+      line: 22
+      lineChar: 13
+      spanCodeSection: 'int i '
+    - startInstruction: 84
+      endInstruction: 83
+      startSourceChar: 499
+      endSourceChar: 501
+      line: 22
+      lineChar: 19
+      spanCodeSection: '= '
+    - startInstruction: 84
+      endInstruction: 103
+      startSourceChar: 501
+      endSourceChar: 504
+      line: 22
+      lineChar: 21
+      spanCodeSection: '0; '
+    - startInstruction: 104
+      endInstruction: 103
+      startSourceChar: 504
+      endSourceChar: 504
+      line: 22
+      lineChar: 24
+      spanCodeSection: 
+    - startInstruction: 104
+      endInstruction: 123
+      startSourceChar: 504
+      endSourceChar: 508
+      line: 22
+      lineChar: 24
+      spanCodeSection: 'i < '
+    - startInstruction: 124
+      endInstruction: 171
+      startSourceChar: 508
+      endSourceChar: 527
+      line: 22
+      lineChar: 28
+      spanCodeSection: "136; ++i)\r\n        "
+    - startInstruction: 172
+      endInstruction: 171
+      startSourceChar: 527
+      endSourceChar: 542
+      line: 23
+      lineChar: 8
+      spanCodeSection: "{\r\n            "
+    - startInstruction: 172
+      endInstruction: 171
+      startSourceChar: 542
+      endSourceChar: 542
+      line: 24
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 172
+      endInstruction: 171
+      startSourceChar: 542
+      endSourceChar: 553
+      line: 24
+      lineChar: 12
+      spanCodeSection: 'tiles[i] = '
+    - startInstruction: 172
+      endInstruction: 171
+      startSourceChar: 553
+      endSourceChar: 553
+      line: 24
+      lineChar: 23
+      spanCodeSection: 
+    - startInstruction: 172
+      endInstruction: 171
+      startSourceChar: 553
+      endSourceChar: 553
+      line: 24
+      lineChar: 23
+      spanCodeSection: 
+    - startInstruction: 172
+      endInstruction: 171
+      startSourceChar: 553
+      endSourceChar: 553
+      line: 24
+      lineChar: 23
+      spanCodeSection: 
+    - startInstruction: 172
+      endInstruction: 171
+      startSourceChar: 553
+      endSourceChar: 573
+      line: 24
+      lineChar: 23
+      spanCodeSection: tileParent.GetChild(
+    - startInstruction: 172
+      endInstruction: 203
+      startSourceChar: 573
+      endSourceChar: 576
+      line: 24
+      lineChar: 43
+      spanCodeSection: i).
+    - startInstruction: 204
+      endInstruction: 203
+      startSourceChar: 576
+      endSourceChar: 587
+      line: 24
+      lineChar: 46
+      spanCodeSection: gameObject.
+    - startInstruction: 204
+      endInstruction: 227
+      startSourceChar: 587
+      endSourceChar: 599
+      line: 24
+      lineChar: 57
+      spanCodeSection: GetComponent
+    - startInstruction: 228
+      endInstruction: 227
+      startSourceChar: 599
+      endSourceChar: 600
+      line: 24
+      lineChar: 69
+      spanCodeSection: <
+    - startInstruction: 228
+      endInstruction: 383
+      startSourceChar: 600
+      endSourceChar: 642
+      line: 24
+      lineChar: 70
+      spanCodeSection: "MeshRenderer>();\r\n        }\r\n    }\r\n\r\n    "
+    - startInstruction: 384
+      endInstruction: 403
+      startSourceChar: 642
+      endSourceChar: 666
+      line: 28
+      lineChar: 4
+      spanCodeSection: "void FixedUpdate()\r\n    "
+    - startInstruction: 404
+      endInstruction: 403
+      startSourceChar: 666
+      endSourceChar: 732
+      line: 29
+      lineChar: 4
+      spanCodeSection: "{\r\n        // if master changed syncedMask, do the thing\r\n
+        \       "
+    - startInstruction: 404
+      endInstruction: 403
+      startSourceChar: 732
+      endSourceChar: 736
+      line: 31
+      lineChar: 8
+      spanCodeSection: if (
+    - startInstruction: 404
+      endInstruction: 403
+      startSourceChar: 736
+      endSourceChar: 736
+      line: 31
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 404
+      endInstruction: 423
+      startSourceChar: 736
+      endSourceChar: 750
+      line: 31
+      lineChar: 12
+      spanCodeSection: 'syncedMask != '
+    - startInstruction: 424
+      endInstruction: 471
+      startSourceChar: 750
+      endSourceChar: 770
+      line: 31
+      lineChar: 26
+      spanCodeSection: "localMask)\r\n        "
+    - startInstruction: 472
+      endInstruction: 471
+      startSourceChar: 770
+      endSourceChar: 785
+      line: 32
+      lineChar: 8
+      spanCodeSection: "{\r\n            "
+    - startInstruction: 472
+      endInstruction: 471
+      startSourceChar: 785
+      endSourceChar: 785
+      line: 33
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 472
+      endInstruction: 471
+      startSourceChar: 785
+      endSourceChar: 797
+      line: 33
+      lineChar: 12
+      spanCodeSection: 'localMask = '
+    - startInstruction: 472
+      endInstruction: 491
+      startSourceChar: 797
+      endSourceChar: 822
+      line: 33
+      lineChar: 24
+      spanCodeSection: "syncedMask;\r\n            "
+    - startInstruction: 492
+      endInstruction: 491
+      startSourceChar: 822
+      endSourceChar: 826
+      line: 34
+      lineChar: 12
+      spanCodeSection: if (
+    - startInstruction: 492
+      endInstruction: 507
+      startSourceChar: 826
+      endSourceChar: 851
+      line: 34
+      lineChar: 16
+      spanCodeSection: "syncedMask)\r\n            "
+    - startInstruction: 508
+      endInstruction: 507
+      startSourceChar: 851
+      endSourceChar: 870
+      line: 35
+      lineChar: 12
+      spanCodeSection: "{\r\n                "
+    - startInstruction: 508
+      endInstruction: 507
+      startSourceChar: 870
+      endSourceChar: 870
+      line: 36
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 508
+      endInstruction: 507
+      startSourceChar: 870
+      endSourceChar: 870
+      line: 36
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 508
+      endInstruction: 583
+      startSourceChar: 870
+      endSourceChar: 895
+      line: 36
+      lineChar: 16
+      spanCodeSection: "DoMask();\r\n            } "
+    - startInstruction: 584
+      endInstruction: 583
+      startSourceChar: 895
+      endSourceChar: 913
+      line: 37
+      lineChar: 14
+      spanCodeSection: "else\r\n            "
+    - startInstruction: 584
+      endInstruction: 583
+      startSourceChar: 913
+      endSourceChar: 932
+      line: 38
+      lineChar: 12
+      spanCodeSection: "{\r\n                "
+    - startInstruction: 584
+      endInstruction: 583
+      startSourceChar: 932
+      endSourceChar: 932
+      line: 39
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 584
+      endInstruction: 583
+      startSourceChar: 932
+      endSourceChar: 932
+      line: 39
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 584
+      endInstruction: 659
+      startSourceChar: 932
+      endSourceChar: 986
+      line: 39
+      lineChar: 16
+      spanCodeSection: "DoUnMask();\r\n            }\r\n        }\r\n\r\n    }\r\n\r\n
+        \   "
+    - startInstruction: 660
+      endInstruction: 679
+      startSourceChar: 986
+      endSourceChar: 1007
+      line: 45
+      lineChar: 4
+      spanCodeSection: "void Interact()\r\n    "
+    - startInstruction: 680
+      endInstruction: 679
+      startSourceChar: 1007
+      endSourceChar: 1018
+      line: 46
+      lineChar: 4
+      spanCodeSection: "{\r\n        "
+    - startInstruction: 680
+      endInstruction: 679
+      startSourceChar: 1018
+      endSourceChar: 1018
+      line: 47
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 680
+      endInstruction: 679
+      startSourceChar: 1018
+      endSourceChar: 1028
+      line: 47
+      lineChar: 8
+      spanCodeSection: Debug.Log(
+    - startInstruction: 680
+      endInstruction: 695
+      startSourceChar: 1028
+      endSourceChar: 1063
+      line: 47
+      lineChar: 18
+      spanCodeSection: "\"trying to toggle mask\");\r\n        "
+    - startInstruction: 696
+      endInstruction: 695
+      startSourceChar: 1063
+      endSourceChar: 1067
+      line: 48
+      lineChar: 8
+      spanCodeSection: if (
+    - startInstruction: 696
+      endInstruction: 695
+      startSourceChar: 1067
+      endSourceChar: 1068
+      line: 48
+      lineChar: 12
+      spanCodeSection: '!'
+    - startInstruction: 696
+      endInstruction: 695
+      startSourceChar: 1068
+      endSourceChar: 1068
+      line: 48
+      lineChar: 13
+      spanCodeSection: 
+    - startInstruction: 696
+      endInstruction: 695
+      startSourceChar: 1068
+      endSourceChar: 1079
+      line: 48
+      lineChar: 13
+      spanCodeSection: Networking.
+    - startInstruction: 696
+      endInstruction: 751
+      startSourceChar: 1079
+      endSourceChar: 1089
+      line: 48
+      lineChar: 24
+      spanCodeSection: 'IsMaster) '
+    - startInstruction: 752
+      endInstruction: 759
+      startSourceChar: 1089
+      endSourceChar: 1106
+      line: 48
+      lineChar: 34
+      spanCodeSection: "return;\r\n        "
+    - startInstruction: 760
+      endInstruction: 759
+      startSourceChar: 1106
+      endSourceChar: 1106
+      line: 49
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 760
+      endInstruction: 759
+      startSourceChar: 1106
+      endSourceChar: 1119
+      line: 49
+      lineChar: 8
+      spanCodeSection: 'syncedMask = '
+    - startInstruction: 760
+      endInstruction: 759
+      startSourceChar: 1119
+      endSourceChar: 1120
+      line: 49
+      lineChar: 21
+      spanCodeSection: '!'
+    - startInstruction: 760
+      endInstruction: 811
+      startSourceChar: 1120
+      endSourceChar: 1146
+      line: 49
+      lineChar: 22
+      spanCodeSection: "syncedMask;\r\n    }\r\n\r\n    "
+    - startInstruction: 812
+      endInstruction: 831
+      startSourceChar: 1146
+      endSourceChar: 1165
+      line: 52
+      lineChar: 4
+      spanCodeSection: "void DoMask()\r\n    "
+    - startInstruction: 832
+      endInstruction: 831
+      startSourceChar: 1165
+      endSourceChar: 1176
+      line: 53
+      lineChar: 4
+      spanCodeSection: "{\r\n        "
+    - startInstruction: 832
+      endInstruction: 831
+      startSourceChar: 1176
+      endSourceChar: 1176
+      line: 54
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 832
+      endInstruction: 831
+      startSourceChar: 1176
+      endSourceChar: 1186
+      line: 54
+      lineChar: 8
+      spanCodeSection: Debug.Log(
+    - startInstruction: 832
+      endInstruction: 847
+      startSourceChar: 1186
+      endSourceChar: 1217
+      line: 54
+      lineChar: 18
+      spanCodeSection: "\"masking all tiles\");\r\n        "
+    - startInstruction: 848
+      endInstruction: 847
+      startSourceChar: 1217
+      endSourceChar: 1217
+      line: 55
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 848
+      endInstruction: 847
+      startSourceChar: 1217
+      endSourceChar: 1263
+      line: 55
+      lineChar: 8
+      spanCodeSection: 'GetComponent<MeshRenderer>().sharedMaterial = '
+    - startInstruction: 848
+      endInstruction: 903
+      startSourceChar: 1263
+      endSourceChar: 1280
+      line: 55
+      lineChar: 54
+      spanCodeSection: "offMat;\r\n        "
+    - startInstruction: 904
+      endInstruction: 903
+      startSourceChar: 1280
+      endSourceChar: 1280
+      line: 56
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 904
+      endInstruction: 903
+      startSourceChar: 1280
+      endSourceChar: 1280
+      line: 56
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 904
+      endInstruction: 903
+      startSourceChar: 1280
+      endSourceChar: 1288
+      line: 56
+      lineChar: 8
+      spanCodeSection: 'var mpb '
+    - startInstruction: 904
+      endInstruction: 903
+      startSourceChar: 1288
+      endSourceChar: 1290
+      line: 56
+      lineChar: 16
+      spanCodeSection: '= '
+    - startInstruction: 904
+      endInstruction: 903
+      startSourceChar: 1290
+      endSourceChar: 1294
+      line: 56
+      lineChar: 18
+      spanCodeSection: 'new '
+    - startInstruction: 904
+      endInstruction: 939
+      startSourceChar: 1294
+      endSourceChar: 1328
+      line: 56
+      lineChar: 22
+      spanCodeSection: "MaterialPropertyBlock();\r\n        "
+    - startInstruction: 940
+      endInstruction: 939
+      startSourceChar: 1328
+      endSourceChar: 1328
+      line: 57
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 940
+      endInstruction: 939
+      startSourceChar: 1328
+      endSourceChar: 1341
+      line: 57
+      lineChar: 8
+      spanCodeSection: mpb.SetFloat(
+    - startInstruction: 940
+      endInstruction: 939
+      startSourceChar: 1341
+      endSourceChar: 1350
+      line: 57
+      lineChar: 21
+      spanCodeSection: '"_Tile", '
+    - startInstruction: 940
+      endInstruction: 995
+      startSourceChar: 1350
+      endSourceChar: 1392
+      line: 57
+      lineChar: 30
+      spanCodeSection: "37); // empty spot in tile atlas\r\n        "
+    - startInstruction: 996
+      endInstruction: 995
+      startSourceChar: 1392
+      endSourceChar: 1401
+      line: 58
+      lineChar: 8
+      spanCodeSection: foreach (
+    - startInstruction: 996
+      endInstruction: 995
+      startSourceChar: 1401
+      endSourceChar: 1419
+      line: 58
+      lineChar: 17
+      spanCodeSection: 'MeshRenderer e in '
+    - startInstruction: 996
+      endInstruction: 1139
+      startSourceChar: 1419
+      endSourceChar: 1435
+      line: 58
+      lineChar: 35
+      spanCodeSection: "tiles)\r\n        "
+    - startInstruction: 1140
+      endInstruction: 1139
+      startSourceChar: 1435
+      endSourceChar: 1450
+      line: 59
+      lineChar: 8
+      spanCodeSection: "{\r\n            "
+    - startInstruction: 1140
+      endInstruction: 1139
+      startSourceChar: 1450
+      endSourceChar: 1450
+      line: 60
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 1140
+      endInstruction: 1139
+      startSourceChar: 1450
+      endSourceChar: 1469
+      line: 60
+      lineChar: 12
+      spanCodeSection: e.SetPropertyBlock(
+    - startInstruction: 1140
+      endInstruction: 1231
+      startSourceChar: 1469
+      endSourceChar: 1498
+      line: 60
+      lineChar: 31
+      spanCodeSection: "mpb);\r\n        }\r\n    }\r\n    "
+    - startInstruction: 1232
+      endInstruction: 1251
+      startSourceChar: 1498
+      endSourceChar: 1519
+      line: 63
+      lineChar: 4
+      spanCodeSection: "void DoUnMask()\r\n    "
+    - startInstruction: 1252
+      endInstruction: 1251
+      startSourceChar: 1519
+      endSourceChar: 1530
+      line: 64
+      lineChar: 4
+      spanCodeSection: "{\r\n        "
+    - startInstruction: 1252
+      endInstruction: 1251
+      startSourceChar: 1530
+      endSourceChar: 1530
+      line: 65
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1252
+      endInstruction: 1251
+      startSourceChar: 1530
+      endSourceChar: 1540
+      line: 65
+      lineChar: 8
+      spanCodeSection: Debug.Log(
+    - startInstruction: 1252
+      endInstruction: 1267
+      startSourceChar: 1540
+      endSourceChar: 1573
+      line: 65
+      lineChar: 18
+      spanCodeSection: "\"unmasking all tiles\");\r\n        "
+    - startInstruction: 1268
+      endInstruction: 1267
+      startSourceChar: 1573
+      endSourceChar: 1573
+      line: 66
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1268
+      endInstruction: 1267
+      startSourceChar: 1573
+      endSourceChar: 1619
+      line: 66
+      lineChar: 8
+      spanCodeSection: 'GetComponent<MeshRenderer>().sharedMaterial = '
+    - startInstruction: 1268
+      endInstruction: 1323
+      startSourceChar: 1619
+      endSourceChar: 1635
+      line: 66
+      lineChar: 54
+      spanCodeSection: "onMat;\r\n        "
+    - startInstruction: 1324
+      endInstruction: 1323
+      startSourceChar: 1635
+      endSourceChar: 1635
+      line: 67
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1324
+      endInstruction: 1323
+      startSourceChar: 1635
+      endSourceChar: 1635
+      line: 67
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1324
+      endInstruction: 1323
+      startSourceChar: 1635
+      endSourceChar: 1643
+      line: 67
+      lineChar: 8
+      spanCodeSection: 'var mpb '
+    - startInstruction: 1324
+      endInstruction: 1323
+      startSourceChar: 1643
+      endSourceChar: 1645
+      line: 67
+      lineChar: 16
+      spanCodeSection: '= '
+    - startInstruction: 1324
+      endInstruction: 1323
+      startSourceChar: 1645
+      endSourceChar: 1649
+      line: 67
+      lineChar: 18
+      spanCodeSection: 'new '
+    - startInstruction: 1324
+      endInstruction: 1359
+      startSourceChar: 1649
+      endSourceChar: 1683
+      line: 67
+      lineChar: 22
+      spanCodeSection: "MaterialPropertyBlock();\r\n        "
+    - startInstruction: 1360
+      endInstruction: 1359
+      startSourceChar: 1683
+      endSourceChar: 1692
+      line: 68
+      lineChar: 8
+      spanCodeSection: foreach (
+    - startInstruction: 1360
+      endInstruction: 1359
+      startSourceChar: 1692
+      endSourceChar: 1710
+      line: 68
+      lineChar: 17
+      spanCodeSection: 'MeshRenderer e in '
+    - startInstruction: 1360
+      endInstruction: 1503
+      startSourceChar: 1710
+      endSourceChar: 1726
+      line: 68
+      lineChar: 35
+      spanCodeSection: "tiles)\r\n        "
+    - startInstruction: 1504
+      endInstruction: 1503
+      startSourceChar: 1726
+      endSourceChar: 1763
+      line: 69
+      lineChar: 8
+      spanCodeSection: "{\r\n            // reset\r\n            "
+    - startInstruction: 1504
+      endInstruction: 1503
+      startSourceChar: 1763
+      endSourceChar: 1763
+      line: 71
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 1504
+      endInstruction: 1503
+      startSourceChar: 1763
+      endSourceChar: 1776
+      line: 71
+      lineChar: 12
+      spanCodeSection: mpb.SetFloat(
+    - startInstruction: 1504
+      endInstruction: 1503
+      startSourceChar: 1776
+      endSourceChar: 1785
+      line: 71
+      lineChar: 25
+      spanCodeSection: '"_Tile", '
+    - startInstruction: 1504
+      endInstruction: 1503
+      startSourceChar: 1785
+      endSourceChar: 1797
+      line: 71
+      lineChar: 34
+      spanCodeSection: Mathf.Floor(
+    - startInstruction: 1504
+      endInstruction: 1503
+      startSourceChar: 1797
+      endSourceChar: 1809
+      line: 71
+      lineChar: 46
+      spanCodeSection: float.Parse(
+    - startInstruction: 1504
+      endInstruction: 1503
+      startSourceChar: 1809
+      endSourceChar: 1809
+      line: 71
+      lineChar: 58
+      spanCodeSection: 
+    - startInstruction: 1504
+      endInstruction: 1503
+      startSourceChar: 1809
+      endSourceChar: 1809
+      line: 71
+      lineChar: 58
+      spanCodeSection: 
+    - startInstruction: 1504
+      endInstruction: 1503
+      startSourceChar: 1809
+      endSourceChar: 1811
+      line: 71
+      lineChar: 58
+      spanCodeSection: e.
+    - startInstruction: 1504
+      endInstruction: 1503
+      startSourceChar: 1811
+      endSourceChar: 1822
+      line: 71
+      lineChar: 60
+      spanCodeSection: gameObject.
+    - startInstruction: 1504
+      endInstruction: 1631
+      startSourceChar: 1822
+      endSourceChar: 1844
+      line: 71
+      lineChar: 71
+      spanCodeSection: "name)));\r\n            "
+    - startInstruction: 1632
+      endInstruction: 1631
+      startSourceChar: 1844
+      endSourceChar: 1844
+      line: 72
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 1632
+      endInstruction: 1631
+      startSourceChar: 1844
+      endSourceChar: 1863
+      line: 72
+      lineChar: 12
+      spanCodeSection: e.SetPropertyBlock(
+    - startInstruction: 1632
+      endInstruction: 1632
+      startSourceChar: 1863
+      endSourceChar: 1863
+      line: 72
+      lineChar: 31
+      spanCodeSection: 
+  hasInteractEvent: 1
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: fieldDefinitions
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[UdonSharp.FieldDefinition,
+        UdonSharp.Editor]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 6
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: tileParent
+    - Name: $v
+      Entry: 7
+      Data: 2|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 3|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 7
+      Data: 4|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: UnityEngine.Transform, UnityEngine.CoreModule
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declarationType
+      Entry: 3
+      Data: 1
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineTransform
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: tileParent
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: tileParent
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 5|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: onMat
+    - Name: $v
+      Entry: 7
+      Data: 6|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 7|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 7
+      Data: 8|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: UnityEngine.Material, UnityEngine.CoreModule
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declarationType
+      Entry: 3
+      Data: 1
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineMaterial
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: onMat
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: onMat
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 9|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: offMat
+    - Name: $v
+      Entry: 7
+      Data: 10|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 11|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 9
+      Data: 8
+    - Name: declarationType
+      Entry: 3
+      Data: 1
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineMaterial
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: offMat
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: offMat
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 12|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: tiles
+    - Name: $v
+      Entry: 7
+      Data: 13|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 14|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 7
+      Data: 15|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: UnityEngine.MeshRenderer[], UnityEngine.CoreModule
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declarationType
+      Entry: 3
+      Data: 2
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineMeshRendererArray
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: tiles
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: tiles
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 16|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: syncedMask
+    - Name: $v
+      Entry: 7
+      Data: 17|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 18|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 7
+      Data: 19|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Boolean, mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declarationType
+      Entry: 3
+      Data: 2
+    - Name: syncMode
+      Entry: 3
+      Data: 1
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: SystemBoolean
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: syncedMask
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: syncedMask
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 20|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 21|UdonSharp.UdonSyncedAttribute, UdonSharp.Runtime
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: localMask
+    - Name: $v
+      Entry: 7
+      Data: 22|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 23|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 9
+      Data: 19
+    - Name: declarationType
+      Entry: 3
+      Data: 1
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: SystemBoolean
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: localMask
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: localMask
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 24|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 

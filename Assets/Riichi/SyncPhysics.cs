@@ -7,8 +7,13 @@ using VRC.Udon;
 public class SyncPhysics : UdonSharpBehaviour
 {
     public Transform tileParent;
-
     Transform[] tiles;
+
+    public Material onMaterial;
+    public Material offMaterial;
+
+    [UdonSynced] private bool physicsOn = true;
+    private bool localPhysicsOn = true;
 
     void Start()
     {
@@ -21,15 +26,56 @@ public class SyncPhysics : UdonSharpBehaviour
 
     void Interact()
     {
-        if (!Networking.IsMaster) return;
-        SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.All, "DoForce");
+        if (Networking.IsMaster)
+        {
+            physicsOn = !physicsOn;
+        }
     }
 
-    void DoForce()
+    void FixedUpdate()
     {
-        foreach (Transform t in tiles)
+        if (localPhysicsOn != physicsOn)
         {
-            t.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up, ForceMode.Impulse);
+            localPhysicsOn = physicsOn;
+            TogglePhysics();
+        }
+    }
+
+    void TogglePhysics()
+    {
+        if (physicsOn)
+        {
+            Debug.Log("turning physics colliders and gravity back on");
+            foreach (Transform t in tiles)
+            {
+                Debug.Log($"tile {t.gameObject.name}");
+                //t.gameObject.GetComponent<BoxCollider>().enabled = true;
+                var r = t.gameObject.GetComponent<Rigidbody>();
+                // r.isKinematic = false; XXX doesn't work with udon sync position
+                r.detectCollisions = true;
+                r.drag = 10;
+                //r.useGravity = true; XXX also doesn't work
+                // but!
+                t.gameObject.GetComponent<ConstantForce>().enabled = false;
+                Debug.Log($"r.isKinematic {r.isKinematic} r.useGravity {r.useGravity}, detectCollisions: {r.detectCollisions}, mass {r.mass}");
+            }
+            GetComponent<MeshRenderer>().material = onMaterial;
+        } else
+        {
+            Debug.Log("turning physics colliders and gravity off");
+            foreach (Transform t in tiles)
+            {
+                Debug.Log($"tile {t.gameObject.name}");
+               // t.gameObject.GetComponent<BoxCollider>().enabled = false;
+                var r = t.gameObject.GetComponent<Rigidbody>();
+                r.detectCollisions = false;
+                r.drag = 100;
+                //r.useGravity = false;
+                // poor man's toggle gravity
+                t.gameObject.GetComponent<ConstantForce>().enabled = true;
+                Debug.Log($"r.isKinematic {r.isKinematic}, r.useGravity {r.useGravity}, detectCollisions: {r.detectCollisions}, mass {r.mass}");
+            }
+            GetComponent<MeshRenderer>().material = offMaterial;
         }
     }
 }

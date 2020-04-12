@@ -22,15 +22,16 @@ MonoBehaviour:
     \   __0_swap_Collider: %UnityEngineCollider, null\r\n    __0_t_Collider: %UnityEngineCollider,
     null\r\n    __0_tiles_ColliderArray: %UnityEngineColliderArray, null\r\n    __1_tiles_ColliderArray:
     %UnityEngineColliderArray, null\r\n    __0_obj_GameObject: %UnityEngineGameObject,
-    null\r\n    __0_i_Int32: %SystemInt32, null\r\n    __0_z_Single: %SystemSingle,
-    null\r\n    __0_tile1_String: %SystemString, null\r\n    __0_tile2_String: %SystemString,
-    null\r\n    __0_const_intnl_SystemBoolean: %SystemBoolean, null\r\n    __1_const_intnl_SystemBoolean:
-    %SystemBoolean, null\r\n    __0_const_intnl_SystemInt32: %SystemInt32, null\r\n
-    \   __1_const_intnl_SystemInt32: %SystemInt32, null\r\n    __2_const_intnl_SystemInt32:
-    %SystemInt32, null\r\n    __0_const_intnl_SystemSingle: %SystemSingle, null\r\n
-    \   __1_const_intnl_SystemSingle: %SystemSingle, null\r\n    __2_const_intnl_SystemSingle:
-    %SystemSingle, null\r\n    __0_const_intnl_SystemString: %SystemString, null\r\n
-    \   __1_const_intnl_SystemString: %SystemString, null\r\n    __0_const_intnl_exitJumpLoc_UInt32:
+    null\r\n    __0_i_Int32: %SystemInt32, null\r\n    __0_r_Rigidbody: %UnityEngineRigidbody,
+    null\r\n    __0_z_Single: %SystemSingle, null\r\n    __0_tile1_String: %SystemString,
+    null\r\n    __0_tile2_String: %SystemString, null\r\n    __0_const_intnl_SystemBoolean:
+    %SystemBoolean, null\r\n    __1_const_intnl_SystemBoolean: %SystemBoolean, null\r\n
+    \   __0_const_intnl_SystemInt32: %SystemInt32, null\r\n    __1_const_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __2_const_intnl_SystemInt32: %SystemInt32, null\r\n
+    \   __0_const_intnl_SystemSingle: %SystemSingle, null\r\n    __1_const_intnl_SystemSingle:
+    %SystemSingle, null\r\n    __2_const_intnl_SystemSingle: %SystemSingle, null\r\n
+    \   __0_const_intnl_SystemString: %SystemString, null\r\n    __1_const_intnl_SystemString:
+    %SystemString, null\r\n    __0_const_intnl_SystemType: %SystemType, null\r\n    __0_const_intnl_exitJumpLoc_UInt32:
     %SystemUInt32, null\r\n    __0_const_intnl_SystemUInt32: %SystemUInt32, null\r\n
     \   __0_intnl_SystemBoolean: %SystemBoolean, null\r\n    __1_intnl_SystemBoolean:
     %SystemBoolean, null\r\n    __2_intnl_SystemBoolean: %SystemBoolean, null\r\n
@@ -45,31 +46,33 @@ MonoBehaviour:
     %SystemInt32, null\r\n    __10_intnl_SystemInt32: %SystemInt32, null\r\n    __11_intnl_SystemInt32:
     %SystemInt32, null\r\n    __12_intnl_SystemInt32: %SystemInt32, null\r\n    __13_intnl_SystemInt32:
     %SystemInt32, null\r\n    __14_intnl_SystemInt32: %SystemInt32, null\r\n    __15_intnl_SystemInt32:
-    %SystemInt32, null\r\n    __16_intnl_SystemInt32: %SystemInt32, null\r\n    __2_intnl_SystemInt32:
-    %SystemInt32, null\r\n    __3_intnl_SystemInt32: %SystemInt32, null\r\n    __4_intnl_SystemInt32:
-    %SystemInt32, null\r\n    __5_intnl_SystemInt32: %SystemInt32, null\r\n    __6_intnl_SystemInt32:
-    %SystemInt32, null\r\n    __7_intnl_SystemInt32: %SystemInt32, null\r\n    __8_intnl_SystemInt32:
-    %SystemInt32, null\r\n    __9_intnl_SystemInt32: %SystemInt32, null\r\n    __0_intnl_UnityEngineQuaternion:
-    %UnityEngineQuaternion, null\r\n    __1_intnl_UnityEngineQuaternion: %UnityEngineQuaternion,
-    null\r\n    __0_intnl_SystemSingle: %SystemSingle, null\r\n    __1_intnl_SystemSingle:
-    %SystemSingle, null\r\n    __2_intnl_SystemSingle: %SystemSingle, null\r\n    __3_intnl_SystemSingle:
-    %SystemSingle, null\r\n    __4_intnl_SystemSingle: %SystemSingle, null\r\n    __5_intnl_SystemSingle:
-    %SystemSingle, null\r\n    __6_intnl_SystemSingle: %SystemSingle, null\r\n    __7_intnl_SystemSingle:
-    %SystemSingle, null\r\n    __8_intnl_SystemSingle: %SystemSingle, null\r\n    __0_intnl_interpolatedStr_String:
-    %SystemString, null\r\n    __0_intnl_SystemString: %SystemString, null\r\n    __1_intnl_interpolatedStr_String:
+    %SystemInt32, null\r\n    __2_intnl_SystemInt32: %SystemInt32, null\r\n    __3_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __4_intnl_SystemInt32: %SystemInt32, null\r\n    __5_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __6_intnl_SystemInt32: %SystemInt32, null\r\n    __7_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __8_intnl_SystemInt32: %SystemInt32, null\r\n    __9_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __0_intnl_UnityEngineQuaternion: %UnityEngineQuaternion,
+    null\r\n    __1_intnl_UnityEngineQuaternion: %UnityEngineQuaternion, null\r\n
+    \   __0_intnl_UnityEngineRigidbody: %UnityEngineRigidbody, null\r\n    __0_intnl_SystemSingle:
+    %SystemSingle, null\r\n    __1_intnl_SystemSingle: %SystemSingle, null\r\n    __2_intnl_SystemSingle:
+    %SystemSingle, null\r\n    __3_intnl_SystemSingle: %SystemSingle, null\r\n    __4_intnl_SystemSingle:
+    %SystemSingle, null\r\n    __5_intnl_SystemSingle: %SystemSingle, null\r\n    __6_intnl_SystemSingle:
+    %SystemSingle, null\r\n    __7_intnl_SystemSingle: %SystemSingle, null\r\n    __8_intnl_SystemSingle:
+    %SystemSingle, null\r\n    __0_intnl_interpolatedStr_String: %SystemString, null\r\n
+    \   __0_intnl_SystemString: %SystemString, null\r\n    __1_intnl_interpolatedStr_String:
     %SystemString, null\r\n    __1_intnl_SystemString: %SystemString, null\r\n    __2_intnl_SystemString:
     %SystemString, null\r\n    __3_intnl_SystemString: %SystemString, null\r\n    __4_intnl_SystemString:
     %SystemString, null\r\n    __5_intnl_SystemString: %SystemString, null\r\n    __0_intnl_UnityEngineTransform:
     %UnityEngineTransform, null\r\n    __1_intnl_UnityEngineTransform: %UnityEngineTransform,
-    null\r\n    __2_intnl_UnityEngineTransform: %UnityEngineTransform, null\r\n    __0_intnl_oldReturnLoc_UInt32:
-    %SystemUInt32, null\r\n    __0_intnl_returnTarget_UInt32: %SystemUInt32, null\r\n
-    \   __0_intnl_UnityEngineVector3: %UnityEngineVector3, null\r\n    __1_intnl_UnityEngineVector3:
-    %UnityEngineVector3, null\r\n    __0_intnl_VRCSDKBaseVRCPlayerApi: %VRCSDKBaseVRCPlayerApi,
-    null\r\n\r\n.data_end\r\n\r\n        \r\n         # using UdonSharp;\r\n        \r\n
-    \        # using UnityEngine;\r\n        \r\n         # using VRC.SDKBase;\r\n
-    \       \r\n         # using VRC.Udon;\r\n        \r\n         # public class
-    OwnAndSortTiles : UdonSharpBehaviour\r\n.code_start\r\n        \r\n         #
-    public Transform origin;\r\n        \r\n         # public Vector3 halfExtents;\r\n
+    null\r\n    __2_intnl_UnityEngineTransform: %UnityEngineTransform, null\r\n    __3_intnl_UnityEngineTransform:
+    %UnityEngineTransform, null\r\n    __0_intnl_oldReturnLoc_UInt32: %SystemUInt32,
+    null\r\n    __0_intnl_returnTarget_UInt32: %SystemUInt32, null\r\n    __0_intnl_UnityEngineVector3:
+    %UnityEngineVector3, null\r\n    __1_intnl_UnityEngineVector3: %UnityEngineVector3,
+    null\r\n    __2_intnl_UnityEngineVector3: %UnityEngineVector3, null\r\n    __0_intnl_VRCSDKBaseVRCPlayerApi:
+    %VRCSDKBaseVRCPlayerApi, null\r\n\r\n.data_end\r\n\r\n        \r\n         # using
+    UdonSharp;\r\n        \r\n         # using UnityEngine;\r\n        \r\n         #
+    using VRC.SDKBase;\r\n        \r\n         # using VRC.Udon;\r\n        \r\n         #
+    public class OwnAndSortTiles : UdonSharpBehaviour\r\n.code_start\r\n        \r\n
+    \        # public Transform origin;\r\n        \r\n         # public Vector3 halfExtents;\r\n
     \       \r\n         # public LayerMask tileLayer;\r\n        \r\n         # public
     override void Interact()\r\n    .export _interact\r\n        \r\n    _interact:\r\n
     \       \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
@@ -98,7 +101,7 @@ MonoBehaviour:
     Sort(tiles);\r\n        PUSH, __1_tiles_ColliderArray\r\n        PUSH, __0_tiles_ColliderArray\r\n
     \       COPY\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n        PUSH, __0_intnl_oldReturnLoc_UInt32\r\n
     \       COPY\r\n        PUSH, __0_const_intnl_exitJumpLoc_UInt32\r\n        PUSH,
-    __0_intnl_returnTarget_UInt32\r\n        COPY\r\n        JUMP, 0x00000518\r\n
+    __0_intnl_returnTarget_UInt32\r\n        COPY\r\n        JUMP, 0x000005A4\r\n
     \       PUSH, __0_intnl_oldReturnLoc_UInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
     \       COPY\r\n        \r\n         # float z = -7.5f;\r\n        PUSH, __0_const_intnl_SystemSingle\r\n
     \       PUSH, __0_intnl_SystemSingle\r\n        EXTERN, \"SystemSingle.__op_UnaryMinus__SystemSingle__SystemSingle\"\r\n
@@ -108,7 +111,7 @@ MonoBehaviour:
     \       PUSH, __3_intnl_SystemInt32\r\n        EXTERN, \"UnityEngineColliderArray.__get_Length__SystemInt32\"\r\n
     \       PUSH, __2_intnl_SystemInt32\r\n        PUSH, __3_intnl_SystemInt32\r\n
     \       PUSH, __0_intnl_SystemBoolean\r\n        EXTERN, \"SystemInt32.__op_LessThan__SystemInt32_SystemInt32__SystemBoolean\"\r\n
-    \       PUSH, __0_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x000004FC\r\n
+    \       PUSH, __0_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x00000588\r\n
     \       PUSH, __1_tiles_ColliderArray\r\n        PUSH, __2_intnl_SystemInt32\r\n
     \       PUSH, __0_intnl_UnityEngineCollider\r\n        EXTERN, \"UnityEngineColliderArray.__Get__SystemInt32__UnityEngineCollider\"\r\n
     \       PUSH, __0_intnl_UnityEngineCollider\r\n        PUSH, __0_t_Collider\r\n
@@ -160,6 +163,19 @@ MonoBehaviour:
     \       EXTERN, \"UnityEngineGameObject.__get_transform__UnityEngineTransform\"\r\n
     \       PUSH, __2_intnl_UnityEngineTransform\r\n        PUSH, __1_intnl_UnityEngineQuaternion\r\n
     \       EXTERN, \"UnityEngineTransform.__set_localRotation__UnityEngineQuaternion__SystemVoid\"\r\n
+    \       \r\n         # var r = obj.GetComponent<Rigidbody>();\r\n        PUSH,
+    __0_obj_GameObject\r\n        PUSH, __3_intnl_UnityEngineTransform\r\n        EXTERN,
+    \"UnityEngineGameObject.__get_transform__UnityEngineTransform\"\r\n        PUSH,
+    __3_intnl_UnityEngineTransform\r\n        PUSH, __0_const_intnl_SystemType\r\n
+    \       PUSH, __0_intnl_UnityEngineRigidbody\r\n        EXTERN, \"UnityEngineRigidbody.__GetComponent__T\"\r\n
+    \       PUSH, __0_intnl_UnityEngineRigidbody\r\n        PUSH, __0_r_Rigidbody\r\n
+    \       COPY\r\n        \r\n         # r.isKinematic = false; // allow movement\r\n
+    \       PUSH, __0_r_Rigidbody\r\n        PUSH, __0_const_intnl_SystemBoolean\r\n
+    \       EXTERN, \"UnityEngineRigidbody.__set_isKinematic__SystemBoolean__SystemVoid\"\r\n
+    \       \r\n         # r.velocity = Vector3.zero; // dunno if this actually works,
+    try to prevent explode\r\n        PUSH, __2_intnl_UnityEngineVector3\r\n        EXTERN,
+    \"UnityEngineVector3.__get_zero__UnityEngineVector3\"\r\n        PUSH, __0_r_Rigidbody\r\n
+    \       PUSH, __2_intnl_UnityEngineVector3\r\n        EXTERN, \"UnityEngineRigidbody.__set_velocity__UnityEngineVector3__SystemVoid\"\r\n
     \       \r\n         # z += 1f;\r\n        PUSH, __0_z_Single\r\n        PUSH,
     __2_const_intnl_SystemSingle\r\n        PUSH, __8_intnl_SystemSingle\r\n        EXTERN,
     \"SystemSingle.__op_Addition__SystemSingle_SystemSingle__SystemSingle\"\r\n        PUSH,
@@ -175,20 +191,19 @@ MonoBehaviour:
     \       PUSH, __0_sorted_Boolean\r\n        COPY\r\n        \r\n         # while
     (!sorted)\r\n        PUSH, __0_sorted_Boolean\r\n        PUSH, __1_intnl_SystemBoolean\r\n
     \       EXTERN, \"SystemBoolean.__op_UnaryNegation__SystemBoolean__SystemBoolean\"\r\n
-    \       PUSH, __1_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x000008C0\r\n
+    \       PUSH, __1_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x00000938\r\n
     \       \r\n         # {\r\n        \r\n         # sorted = true;\r\n        PUSH,
     __1_const_intnl_SystemBoolean\r\n        PUSH, __0_sorted_Boolean\r\n        COPY\r\n
     \       \r\n         # for (int i = 0; i < tiles.Length - 1; ++i)\r\n        PUSH,
     __0_const_intnl_SystemInt32\r\n        PUSH, __0_i_Int32\r\n        COPY\r\n        PUSH,
     __0_i_Int32\r\n        PUSH, __5_intnl_SystemInt32\r\n        COPY\r\n        PUSH,
-    __0_tiles_ColliderArray\r\n        PUSH, __7_intnl_SystemInt32\r\n        EXTERN,
-    \"UnityEngineColliderArray.__get_Length__SystemInt32\"\r\n        PUSH, __7_intnl_SystemInt32\r\n
-    \       PUSH, __6_intnl_SystemInt32\r\n        COPY\r\n        PUSH, __6_intnl_SystemInt32\r\n
-    \       PUSH, __2_const_intnl_SystemInt32\r\n        PUSH, __8_intnl_SystemInt32\r\n
+    __0_tiles_ColliderArray\r\n        PUSH, __6_intnl_SystemInt32\r\n        EXTERN,
+    \"UnityEngineColliderArray.__get_Length__SystemInt32\"\r\n        PUSH, __6_intnl_SystemInt32\r\n
+    \       PUSH, __2_const_intnl_SystemInt32\r\n        PUSH, __7_intnl_SystemInt32\r\n
     \       EXTERN, \"SystemInt32.__op_Subtraction__SystemInt32_SystemInt32__SystemInt32\"\r\n
-    \       PUSH, __5_intnl_SystemInt32\r\n        PUSH, __8_intnl_SystemInt32\r\n
+    \       PUSH, __5_intnl_SystemInt32\r\n        PUSH, __7_intnl_SystemInt32\r\n
     \       PUSH, __2_intnl_SystemBoolean\r\n        EXTERN, \"SystemInt32.__op_LessThan__SystemInt32_SystemInt32__SystemBoolean\"\r\n
-    \       PUSH, __2_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x000008B8\r\n
+    \       PUSH, __2_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x00000930\r\n
     \       \r\n         # {\r\n        \r\n         # string tile1 = tiles[i].gameObject.name;\r\n
     \       PUSH, __0_tiles_ColliderArray\r\n        PUSH, __0_i_Int32\r\n        PUSH,
     __1_intnl_UnityEngineCollider\r\n        EXTERN, \"UnityEngineColliderArray.__Get__SystemInt32__UnityEngineCollider\"\r\n
@@ -198,10 +213,10 @@ MonoBehaviour:
     \       EXTERN, \"UnityEngineGameObject.__get_name__SystemString\"\r\n        PUSH,
     __4_intnl_SystemString\r\n        PUSH, __0_tile1_String\r\n        COPY\r\n        \r\n
     \        # string tile2 = tiles[i+1].gameObject.name;\r\n        PUSH, __0_i_Int32\r\n
-    \       PUSH, __9_intnl_SystemInt32\r\n        COPY\r\n        PUSH, __9_intnl_SystemInt32\r\n
-    \       PUSH, __2_const_intnl_SystemInt32\r\n        PUSH, __10_intnl_SystemInt32\r\n
+    \       PUSH, __8_intnl_SystemInt32\r\n        COPY\r\n        PUSH, __8_intnl_SystemInt32\r\n
+    \       PUSH, __2_const_intnl_SystemInt32\r\n        PUSH, __9_intnl_SystemInt32\r\n
     \       EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n
-    \       PUSH, __0_tiles_ColliderArray\r\n        PUSH, __10_intnl_SystemInt32\r\n
+    \       PUSH, __0_tiles_ColliderArray\r\n        PUSH, __9_intnl_SystemInt32\r\n
     \       PUSH, __2_intnl_UnityEngineCollider\r\n        EXTERN, \"UnityEngineColliderArray.__Get__SystemInt32__UnityEngineCollider\"\r\n
     \       PUSH, __2_intnl_UnityEngineCollider\r\n        PUSH, __2_intnl_UnityEngineGameObject\r\n
     \       EXTERN, \"UnityEngineCollider.__get_gameObject__UnityEngineGameObject\"\r\n
@@ -209,36 +224,36 @@ MonoBehaviour:
     \       EXTERN, \"UnityEngineGameObject.__get_name__SystemString\"\r\n        PUSH,
     __5_intnl_SystemString\r\n        PUSH, __0_tile2_String\r\n        COPY\r\n        \r\n
     \        # if (tile1.CompareTo(tile2) > 0)\r\n        PUSH, __0_tile1_String\r\n
-    \       PUSH, __0_tile2_String\r\n        PUSH, __11_intnl_SystemInt32\r\n        EXTERN,
-    \"SystemString.__CompareTo__SystemString__SystemInt32\"\r\n        PUSH, __11_intnl_SystemInt32\r\n
-    \       PUSH, __12_intnl_SystemInt32\r\n        COPY\r\n        PUSH, __12_intnl_SystemInt32\r\n
+    \       PUSH, __0_tile2_String\r\n        PUSH, __10_intnl_SystemInt32\r\n        EXTERN,
+    \"SystemString.__CompareTo__SystemString__SystemInt32\"\r\n        PUSH, __10_intnl_SystemInt32\r\n
+    \       PUSH, __11_intnl_SystemInt32\r\n        COPY\r\n        PUSH, __11_intnl_SystemInt32\r\n
     \       PUSH, __0_const_intnl_SystemInt32\r\n        PUSH, __3_intnl_SystemBoolean\r\n
     \       EXTERN, \"SystemInt32.__op_GreaterThan__SystemInt32_SystemInt32__SystemBoolean\"\r\n
-    \       PUSH, __3_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x0000087C\r\n
+    \       PUSH, __3_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x000008F4\r\n
     \       \r\n         # {\r\n        \r\n         # swap = tiles[i];\r\n        PUSH,
     __0_tiles_ColliderArray\r\n        PUSH, __0_i_Int32\r\n        PUSH, __3_intnl_UnityEngineCollider\r\n
     \       EXTERN, \"UnityEngineColliderArray.__Get__SystemInt32__UnityEngineCollider\"\r\n
     \       PUSH, __3_intnl_UnityEngineCollider\r\n        PUSH, __0_swap_Collider\r\n
     \       COPY\r\n        \r\n         # tiles[i] = tiles[i+1];\r\n        PUSH,
-    __0_i_Int32\r\n        PUSH, __13_intnl_SystemInt32\r\n        COPY\r\n        PUSH,
-    __13_intnl_SystemInt32\r\n        PUSH, __2_const_intnl_SystemInt32\r\n        PUSH,
-    __14_intnl_SystemInt32\r\n        EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n
-    \       PUSH, __0_tiles_ColliderArray\r\n        PUSH, __14_intnl_SystemInt32\r\n
+    __0_i_Int32\r\n        PUSH, __12_intnl_SystemInt32\r\n        COPY\r\n        PUSH,
+    __12_intnl_SystemInt32\r\n        PUSH, __2_const_intnl_SystemInt32\r\n        PUSH,
+    __13_intnl_SystemInt32\r\n        EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n
+    \       PUSH, __0_tiles_ColliderArray\r\n        PUSH, __13_intnl_SystemInt32\r\n
     \       PUSH, __4_intnl_UnityEngineCollider\r\n        EXTERN, \"UnityEngineColliderArray.__Get__SystemInt32__UnityEngineCollider\"\r\n
     \       PUSH, __0_tiles_ColliderArray\r\n        PUSH, __0_i_Int32\r\n        PUSH,
     __4_intnl_UnityEngineCollider\r\n        EXTERN, \"UnityEngineColliderArray.__Set__SystemInt32_UnityEngineCollider__SystemVoid\"\r\n
     \       \r\n         # tiles[i+1] = swap;\r\n        PUSH, __0_i_Int32\r\n        PUSH,
-    __15_intnl_SystemInt32\r\n        COPY\r\n        PUSH, __15_intnl_SystemInt32\r\n
-    \       PUSH, __2_const_intnl_SystemInt32\r\n        PUSH, __16_intnl_SystemInt32\r\n
+    __14_intnl_SystemInt32\r\n        COPY\r\n        PUSH, __14_intnl_SystemInt32\r\n
+    \       PUSH, __2_const_intnl_SystemInt32\r\n        PUSH, __15_intnl_SystemInt32\r\n
     \       EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n
-    \       PUSH, __0_tiles_ColliderArray\r\n        PUSH, __16_intnl_SystemInt32\r\n
+    \       PUSH, __0_tiles_ColliderArray\r\n        PUSH, __15_intnl_SystemInt32\r\n
     \       PUSH, __0_swap_Collider\r\n        EXTERN, \"UnityEngineColliderArray.__Set__SystemInt32_UnityEngineCollider__SystemVoid\"\r\n
     \       \r\n         # sorted = false;\r\n        PUSH, __0_const_intnl_SystemBoolean\r\n
     \       PUSH, __0_sorted_Boolean\r\n        COPY\r\n        PUSH, __0_i_Int32\r\n
-    \       PUSH, __2_const_intnl_SystemInt32\r\n        PUSH, __9_intnl_SystemInt32\r\n
+    \       PUSH, __2_const_intnl_SystemInt32\r\n        PUSH, __8_intnl_SystemInt32\r\n
     \       EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n
-    \       PUSH, __9_intnl_SystemInt32\r\n        PUSH, __0_i_Int32\r\n        COPY\r\n
-    \       JUMP, 0x0000057C\r\n        JUMP, 0x0000052C\r\n        JUMP_INDIRECT,
+    \       PUSH, __8_intnl_SystemInt32\r\n        PUSH, __0_i_Int32\r\n        COPY\r\n
+    \       JUMP, 0x00000608\r\n        JUMP, 0x000005B8\r\n        JUMP_INDIRECT,
     __0_intnl_returnTarget_UInt32\r\n        \r\n.code_end\r\n"
   assemblyError: 
   sourceCsScript: {fileID: 11500000, guid: 6971a93cc8c178444814ddb3a2f178dd, type: 3}
@@ -984,642 +999,769 @@ MonoBehaviour:
     - startInstruction: 1004
       endInstruction: 1163
       startSourceChar: 846
-      endSourceChar: 865
+      endSourceChar: 863
       line: 25
       lineChar: 66
-      spanCodeSection: "0);\r\n\r\n            "
+      spanCodeSection: "0);\r\n            "
     - startInstruction: 1164
       endInstruction: 1163
-      startSourceChar: 865
-      endSourceChar: 865
-      line: 27
+      startSourceChar: 863
+      endSourceChar: 863
+      line: 26
       lineChar: 12
       spanCodeSection: 
     - startInstruction: 1164
       endInstruction: 1163
-      startSourceChar: 865
-      endSourceChar: 870
+      startSourceChar: 863
+      endSourceChar: 863
+      line: 26
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 1164
+      endInstruction: 1163
+      startSourceChar: 863
+      endSourceChar: 869
+      line: 26
+      lineChar: 12
+      spanCodeSection: 'var r '
+    - startInstruction: 1164
+      endInstruction: 1163
+      startSourceChar: 869
+      endSourceChar: 871
+      line: 26
+      lineChar: 18
+      spanCodeSection: '= '
+    - startInstruction: 1164
+      endInstruction: 1163
+      startSourceChar: 871
+      endSourceChar: 871
+      line: 26
+      lineChar: 20
+      spanCodeSection: 
+    - startInstruction: 1164
+      endInstruction: 1163
+      startSourceChar: 871
+      endSourceChar: 871
+      line: 26
+      lineChar: 20
+      spanCodeSection: 
+    - startInstruction: 1164
+      endInstruction: 1163
+      startSourceChar: 871
+      endSourceChar: 875
+      line: 26
+      lineChar: 20
+      spanCodeSection: obj.
+    - startInstruction: 1164
+      endInstruction: 1163
+      startSourceChar: 875
+      endSourceChar: 887
+      line: 26
+      lineChar: 24
+      spanCodeSection: GetComponent
+    - startInstruction: 1164
+      endInstruction: 1163
+      startSourceChar: 887
+      endSourceChar: 888
+      line: 26
+      lineChar: 36
+      spanCodeSection: <
+    - startInstruction: 1164
+      endInstruction: 1239
+      startSourceChar: 888
+      endSourceChar: 915
+      line: 26
+      lineChar: 37
+      spanCodeSection: "Rigidbody>();\r\n            "
+    - startInstruction: 1240
+      endInstruction: 1239
+      startSourceChar: 915
+      endSourceChar: 915
       line: 27
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 1240
+      endInstruction: 1239
+      startSourceChar: 915
+      endSourceChar: 931
+      line: 27
+      lineChar: 12
+      spanCodeSection: 'r.isKinematic = '
+    - startInstruction: 1240
+      endInstruction: 1263
+      startSourceChar: 931
+      endSourceChar: 969
+      line: 27
+      lineChar: 28
+      spanCodeSection: "false; // allow movement\r\n            "
+    - startInstruction: 1264
+      endInstruction: 1263
+      startSourceChar: 969
+      endSourceChar: 969
+      line: 28
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 1264
+      endInstruction: 1263
+      startSourceChar: 969
+      endSourceChar: 982
+      line: 28
+      lineChar: 12
+      spanCodeSection: 'r.velocity = '
+    - startInstruction: 1264
+      endInstruction: 1263
+      startSourceChar: 982
+      endSourceChar: 982
+      line: 28
+      lineChar: 25
+      spanCodeSection: 
+    - startInstruction: 1264
+      endInstruction: 1263
+      startSourceChar: 982
+      endSourceChar: 990
+      line: 28
+      lineChar: 25
+      spanCodeSection: Vector3.
+    - startInstruction: 1264
+      endInstruction: 1303
+      startSourceChar: 990
+      endSourceChar: 1067
+      line: 28
+      lineChar: 33
+      spanCodeSection: "zero; // dunno if this actually works, try to prevent explode\r\n\r\n
+        \           "
+    - startInstruction: 1304
+      endInstruction: 1303
+      startSourceChar: 1067
+      endSourceChar: 1067
+      line: 30
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 1304
+      endInstruction: 1303
+      startSourceChar: 1067
+      endSourceChar: 1072
+      line: 30
       lineChar: 12
       spanCodeSection: 'z += '
-    - startInstruction: 1164
-      endInstruction: 1283
-      startSourceChar: 870
-      endSourceChar: 899
-      line: 27
+    - startInstruction: 1304
+      endInstruction: 1423
+      startSourceChar: 1072
+      endSourceChar: 1101
+      line: 30
       lineChar: 17
       spanCodeSection: "1f;\r\n        }\r\n    }\r\n\r\n    "
-    - startInstruction: 1284
-      endInstruction: 1303
-      startSourceChar: 899
-      endSourceChar: 940
-      line: 31
+    - startInstruction: 1424
+      endInstruction: 1443
+      startSourceChar: 1101
+      endSourceChar: 1142
+      line: 34
       lineChar: 4
       spanCodeSection: "private void Sort(Collider[] tiles)\r\n    "
-    - startInstruction: 1304
-      endInstruction: 1303
-      startSourceChar: 940
-      endSourceChar: 951
-      line: 32
+    - startInstruction: 1444
+      endInstruction: 1443
+      startSourceChar: 1142
+      endSourceChar: 1153
+      line: 35
       lineChar: 4
       spanCodeSection: "{\r\n        "
-    - startInstruction: 1304
-      endInstruction: 1303
-      startSourceChar: 951
-      endSourceChar: 951
-      line: 33
+    - startInstruction: 1444
+      endInstruction: 1443
+      startSourceChar: 1153
+      endSourceChar: 1153
+      line: 36
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 1304
-      endInstruction: 1303
-      startSourceChar: 951
-      endSourceChar: 951
-      line: 33
+    - startInstruction: 1444
+      endInstruction: 1443
+      startSourceChar: 1153
+      endSourceChar: 1153
+      line: 36
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 1304
-      endInstruction: 1303
-      startSourceChar: 951
-      endSourceChar: 951
-      line: 33
+    - startInstruction: 1444
+      endInstruction: 1443
+      startSourceChar: 1153
+      endSourceChar: 1153
+      line: 36
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 1304
-      endInstruction: 1303
-      startSourceChar: 951
-      endSourceChar: 1037
-      line: 33
+    - startInstruction: 1444
+      endInstruction: 1443
+      startSourceChar: 1153
+      endSourceChar: 1239
+      line: 36
       lineChar: 8
       spanCodeSection: "Collider swap;\r\n        // finally those Art of Programming
         books have value\r\n        "
-    - startInstruction: 1304
-      endInstruction: 1303
-      startSourceChar: 1037
-      endSourceChar: 1037
-      line: 35
+    - startInstruction: 1444
+      endInstruction: 1443
+      startSourceChar: 1239
+      endSourceChar: 1239
+      line: 38
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 1304
-      endInstruction: 1303
-      startSourceChar: 1037
-      endSourceChar: 1037
-      line: 35
+    - startInstruction: 1444
+      endInstruction: 1443
+      startSourceChar: 1239
+      endSourceChar: 1239
+      line: 38
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 1304
-      endInstruction: 1303
-      startSourceChar: 1037
-      endSourceChar: 1037
-      line: 35
+    - startInstruction: 1444
+      endInstruction: 1443
+      startSourceChar: 1239
+      endSourceChar: 1239
+      line: 38
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 1304
-      endInstruction: 1303
-      startSourceChar: 1037
-      endSourceChar: 1049
-      line: 35
+    - startInstruction: 1444
+      endInstruction: 1443
+      startSourceChar: 1239
+      endSourceChar: 1251
+      line: 38
       lineChar: 8
       spanCodeSection: 'bool sorted '
-    - startInstruction: 1304
-      endInstruction: 1303
-      startSourceChar: 1049
-      endSourceChar: 1051
-      line: 35
+    - startInstruction: 1444
+      endInstruction: 1443
+      startSourceChar: 1251
+      endSourceChar: 1253
+      line: 38
       lineChar: 20
       spanCodeSection: '= '
-    - startInstruction: 1304
-      endInstruction: 1323
-      startSourceChar: 1051
-      endSourceChar: 1067
-      line: 35
+    - startInstruction: 1444
+      endInstruction: 1463
+      startSourceChar: 1253
+      endSourceChar: 1269
+      line: 38
       lineChar: 22
       spanCodeSection: "false;\r\n        "
-    - startInstruction: 1324
-      endInstruction: 1323
-      startSourceChar: 1067
-      endSourceChar: 1074
-      line: 36
+    - startInstruction: 1464
+      endInstruction: 1463
+      startSourceChar: 1269
+      endSourceChar: 1276
+      line: 39
       lineChar: 8
       spanCodeSection: while (
-    - startInstruction: 1324
-      endInstruction: 1323
-      startSourceChar: 1074
-      endSourceChar: 1075
-      line: 36
+    - startInstruction: 1464
+      endInstruction: 1463
+      startSourceChar: 1276
+      endSourceChar: 1277
+      line: 39
       lineChar: 15
       spanCodeSection: '!'
-    - startInstruction: 1324
-      endInstruction: 1363
-      startSourceChar: 1075
-      endSourceChar: 1092
-      line: 36
+    - startInstruction: 1464
+      endInstruction: 1503
+      startSourceChar: 1277
+      endSourceChar: 1294
+      line: 39
       lineChar: 16
       spanCodeSection: "sorted)\r\n        "
-    - startInstruction: 1364
-      endInstruction: 1363
-      startSourceChar: 1092
-      endSourceChar: 1107
-      line: 37
+    - startInstruction: 1504
+      endInstruction: 1503
+      startSourceChar: 1294
+      endSourceChar: 1309
+      line: 40
       lineChar: 8
       spanCodeSection: "{\r\n            "
-    - startInstruction: 1364
-      endInstruction: 1363
-      startSourceChar: 1107
-      endSourceChar: 1107
-      line: 38
+    - startInstruction: 1504
+      endInstruction: 1503
+      startSourceChar: 1309
+      endSourceChar: 1309
+      line: 41
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 1364
-      endInstruction: 1363
-      startSourceChar: 1107
-      endSourceChar: 1116
-      line: 38
+    - startInstruction: 1504
+      endInstruction: 1503
+      startSourceChar: 1309
+      endSourceChar: 1318
+      line: 41
       lineChar: 12
       spanCodeSection: 'sorted = '
-    - startInstruction: 1364
-      endInstruction: 1383
-      startSourceChar: 1116
-      endSourceChar: 1135
-      line: 38
+    - startInstruction: 1504
+      endInstruction: 1523
+      startSourceChar: 1318
+      endSourceChar: 1337
+      line: 41
       lineChar: 21
       spanCodeSection: "true;\r\n            "
-    - startInstruction: 1384
-      endInstruction: 1383
-      startSourceChar: 1135
-      endSourceChar: 1140
-      line: 39
+    - startInstruction: 1524
+      endInstruction: 1523
+      startSourceChar: 1337
+      endSourceChar: 1342
+      line: 42
       lineChar: 12
       spanCodeSection: for (
-    - startInstruction: 1384
-      endInstruction: 1383
-      startSourceChar: 1140
-      endSourceChar: 1140
-      line: 39
+    - startInstruction: 1524
+      endInstruction: 1523
+      startSourceChar: 1342
+      endSourceChar: 1342
+      line: 42
       lineChar: 17
       spanCodeSection: 
-    - startInstruction: 1384
-      endInstruction: 1383
-      startSourceChar: 1140
-      endSourceChar: 1140
-      line: 39
+    - startInstruction: 1524
+      endInstruction: 1523
+      startSourceChar: 1342
+      endSourceChar: 1342
+      line: 42
       lineChar: 17
       spanCodeSection: 
-    - startInstruction: 1384
-      endInstruction: 1383
-      startSourceChar: 1140
-      endSourceChar: 1146
-      line: 39
+    - startInstruction: 1524
+      endInstruction: 1523
+      startSourceChar: 1342
+      endSourceChar: 1348
+      line: 42
       lineChar: 17
       spanCodeSection: 'int i '
-    - startInstruction: 1384
-      endInstruction: 1383
-      startSourceChar: 1146
-      endSourceChar: 1148
-      line: 39
+    - startInstruction: 1524
+      endInstruction: 1523
+      startSourceChar: 1348
+      endSourceChar: 1350
+      line: 42
       lineChar: 23
       spanCodeSection: '= '
-    - startInstruction: 1384
-      endInstruction: 1403
-      startSourceChar: 1148
-      endSourceChar: 1151
-      line: 39
+    - startInstruction: 1524
+      endInstruction: 1543
+      startSourceChar: 1350
+      endSourceChar: 1353
+      line: 42
       lineChar: 25
       spanCodeSection: '0; '
-    - startInstruction: 1404
-      endInstruction: 1403
-      startSourceChar: 1151
-      endSourceChar: 1151
-      line: 39
+    - startInstruction: 1544
+      endInstruction: 1543
+      startSourceChar: 1353
+      endSourceChar: 1353
+      line: 42
       lineChar: 28
       spanCodeSection: 
-    - startInstruction: 1404
-      endInstruction: 1423
-      startSourceChar: 1151
-      endSourceChar: 1155
-      line: 39
+    - startInstruction: 1544
+      endInstruction: 1563
+      startSourceChar: 1353
+      endSourceChar: 1357
+      line: 42
       lineChar: 28
       spanCodeSection: 'i < '
-    - startInstruction: 1424
-      endInstruction: 1423
-      startSourceChar: 1155
-      endSourceChar: 1155
-      line: 39
+    - startInstruction: 1564
+      endInstruction: 1563
+      startSourceChar: 1357
+      endSourceChar: 1357
+      line: 42
       lineChar: 32
       spanCodeSection: 
-    - startInstruction: 1424
-      endInstruction: 1423
-      startSourceChar: 1155
-      endSourceChar: 1155
-      line: 39
+    - startInstruction: 1564
+      endInstruction: 1563
+      startSourceChar: 1357
+      endSourceChar: 1357
+      line: 42
       lineChar: 32
       spanCodeSection: 
-    - startInstruction: 1424
-      endInstruction: 1423
-      startSourceChar: 1155
-      endSourceChar: 1161
-      line: 39
+    - startInstruction: 1564
+      endInstruction: 1563
+      startSourceChar: 1357
+      endSourceChar: 1363
+      line: 42
       lineChar: 32
       spanCodeSection: tiles.
-    - startInstruction: 1424
-      endInstruction: 1467
-      startSourceChar: 1161
-      endSourceChar: 1170
-      line: 39
+    - startInstruction: 1564
+      endInstruction: 1587
+      startSourceChar: 1363
+      endSourceChar: 1372
+      line: 42
       lineChar: 38
       spanCodeSection: 'Length - '
-    - startInstruction: 1468
-      endInstruction: 1547
-      startSourceChar: 1170
-      endSourceChar: 1191
-      line: 39
+    - startInstruction: 1588
+      endInstruction: 1667
+      startSourceChar: 1372
+      endSourceChar: 1393
+      line: 42
       lineChar: 47
       spanCodeSection: "1; ++i)\r\n            "
-    - startInstruction: 1548
-      endInstruction: 1547
-      startSourceChar: 1191
-      endSourceChar: 1411
-      line: 40
+    - startInstruction: 1668
+      endInstruction: 1667
+      startSourceChar: 1393
+      endSourceChar: 1613
+      line: 43
       lineChar: 12
       spanCodeSection: "{\r\n                // gameobject names are sorted by tile
         value and suit\r\n                // since that's more convenient than trying
         to read values out\r\n                // of some custom udon component\r\n
         \               "
-    - startInstruction: 1548
-      endInstruction: 1547
-      startSourceChar: 1411
-      endSourceChar: 1411
-      line: 44
-      lineChar: 16
-      spanCodeSection: 
-    - startInstruction: 1548
-      endInstruction: 1547
-      startSourceChar: 1411
-      endSourceChar: 1411
-      line: 44
-      lineChar: 16
-      spanCodeSection: 
-    - startInstruction: 1548
-      endInstruction: 1547
-      startSourceChar: 1411
-      endSourceChar: 1411
-      line: 44
-      lineChar: 16
-      spanCodeSection: 
-    - startInstruction: 1548
-      endInstruction: 1547
-      startSourceChar: 1411
-      endSourceChar: 1424
-      line: 44
-      lineChar: 16
-      spanCodeSection: 'string tile1 '
-    - startInstruction: 1548
-      endInstruction: 1547
-      startSourceChar: 1424
-      endSourceChar: 1426
-      line: 44
-      lineChar: 29
-      spanCodeSection: '= '
-    - startInstruction: 1548
-      endInstruction: 1547
-      startSourceChar: 1426
-      endSourceChar: 1426
-      line: 44
-      lineChar: 31
-      spanCodeSection: 
-    - startInstruction: 1548
-      endInstruction: 1547
-      startSourceChar: 1426
-      endSourceChar: 1426
-      line: 44
-      lineChar: 31
-      spanCodeSection: 
-    - startInstruction: 1548
-      endInstruction: 1547
-      startSourceChar: 1426
-      endSourceChar: 1426
-      line: 44
-      lineChar: 31
-      spanCodeSection: 
-    - startInstruction: 1548
-      endInstruction: 1547
-      startSourceChar: 1426
-      endSourceChar: 1432
-      line: 44
-      lineChar: 31
-      spanCodeSection: tiles[
-    - startInstruction: 1548
-      endInstruction: 1547
-      startSourceChar: 1432
-      endSourceChar: 1432
-      line: 44
-      lineChar: 37
-      spanCodeSection: 
-    - startInstruction: 1548
-      endInstruction: 1547
-      startSourceChar: 1432
-      endSourceChar: 1435
-      line: 44
-      lineChar: 37
-      spanCodeSection: i].
-    - startInstruction: 1548
-      endInstruction: 1579
-      startSourceChar: 1435
-      endSourceChar: 1446
-      line: 44
-      lineChar: 40
-      spanCodeSection: gameObject.
-    - startInstruction: 1580
-      endInstruction: 1647
-      startSourceChar: 1446
-      endSourceChar: 1469
-      line: 44
-      lineChar: 51
-      spanCodeSection: "name;\r\n                "
-    - startInstruction: 1648
-      endInstruction: 1647
-      startSourceChar: 1469
-      endSourceChar: 1469
-      line: 45
-      lineChar: 16
-      spanCodeSection: 
-    - startInstruction: 1648
-      endInstruction: 1647
-      startSourceChar: 1469
-      endSourceChar: 1469
-      line: 45
-      lineChar: 16
-      spanCodeSection: 
-    - startInstruction: 1648
-      endInstruction: 1647
-      startSourceChar: 1469
-      endSourceChar: 1469
-      line: 45
-      lineChar: 16
-      spanCodeSection: 
-    - startInstruction: 1648
-      endInstruction: 1647
-      startSourceChar: 1469
-      endSourceChar: 1482
-      line: 45
-      lineChar: 16
-      spanCodeSection: 'string tile2 '
-    - startInstruction: 1648
-      endInstruction: 1647
-      startSourceChar: 1482
-      endSourceChar: 1484
-      line: 45
-      lineChar: 29
-      spanCodeSection: '= '
-    - startInstruction: 1648
-      endInstruction: 1647
-      startSourceChar: 1484
-      endSourceChar: 1484
-      line: 45
-      lineChar: 31
-      spanCodeSection: 
-    - startInstruction: 1648
-      endInstruction: 1647
-      startSourceChar: 1484
-      endSourceChar: 1484
-      line: 45
-      lineChar: 31
-      spanCodeSection: 
-    - startInstruction: 1648
-      endInstruction: 1647
-      startSourceChar: 1484
-      endSourceChar: 1484
-      line: 45
-      lineChar: 31
-      spanCodeSection: 
-    - startInstruction: 1648
-      endInstruction: 1647
-      startSourceChar: 1484
-      endSourceChar: 1490
-      line: 45
-      lineChar: 31
-      spanCodeSection: tiles[
-    - startInstruction: 1648
-      endInstruction: 1647
-      startSourceChar: 1490
-      endSourceChar: 1490
-      line: 45
-      lineChar: 37
-      spanCodeSection: 
-    - startInstruction: 1648
-      endInstruction: 1647
-      startSourceChar: 1490
-      endSourceChar: 1490
-      line: 45
-      lineChar: 37
-      spanCodeSection: 
-    - startInstruction: 1648
-      endInstruction: 1667
-      startSourceChar: 1490
-      endSourceChar: 1492
-      line: 45
-      lineChar: 37
-      spanCodeSection: i+
     - startInstruction: 1668
-      endInstruction: 1699
-      startSourceChar: 1492
-      endSourceChar: 1495
-      line: 45
-      lineChar: 39
-      spanCodeSection: 1].
-    - startInstruction: 1700
-      endInstruction: 1731
-      startSourceChar: 1495
-      endSourceChar: 1506
-      line: 45
-      lineChar: 42
-      spanCodeSection: gameObject.
-    - startInstruction: 1732
-      endInstruction: 1799
-      startSourceChar: 1506
-      endSourceChar: 1529
-      line: 45
-      lineChar: 53
-      spanCodeSection: "name;\r\n                "
-    - startInstruction: 1800
-      endInstruction: 1799
-      startSourceChar: 1529
-      endSourceChar: 1533
-      line: 46
-      lineChar: 16
-      spanCodeSection: if (
-    - startInstruction: 1800
-      endInstruction: 1799
-      startSourceChar: 1533
-      endSourceChar: 1533
-      line: 46
-      lineChar: 20
-      spanCodeSection: 
-    - startInstruction: 1800
-      endInstruction: 1799
-      startSourceChar: 1533
-      endSourceChar: 1549
-      line: 46
-      lineChar: 20
-      spanCodeSection: tile1.CompareTo(
-    - startInstruction: 1800
-      endInstruction: 1851
-      startSourceChar: 1549
-      endSourceChar: 1558
-      line: 46
-      lineChar: 36
-      spanCodeSection: 'tile2) > '
-    - startInstruction: 1852
-      endInstruction: 1899
-      startSourceChar: 1558
-      endSourceChar: 1578
-      line: 46
-      lineChar: 45
-      spanCodeSection: "0)\r\n                "
-    - startInstruction: 1900
-      endInstruction: 1899
-      startSourceChar: 1578
-      endSourceChar: 1601
+      endInstruction: 1667
+      startSourceChar: 1613
+      endSourceChar: 1613
       line: 47
       lineChar: 16
-      spanCodeSection: "{\r\n                    "
-    - startInstruction: 1900
-      endInstruction: 1899
-      startSourceChar: 1601
-      endSourceChar: 1601
-      line: 48
-      lineChar: 20
       spanCodeSection: 
-    - startInstruction: 1900
-      endInstruction: 1899
-      startSourceChar: 1601
-      endSourceChar: 1608
-      line: 48
-      lineChar: 20
-      spanCodeSection: 'swap = '
-    - startInstruction: 1900
-      endInstruction: 1899
-      startSourceChar: 1608
-      endSourceChar: 1608
-      line: 48
-      lineChar: 27
+    - startInstruction: 1668
+      endInstruction: 1667
+      startSourceChar: 1613
+      endSourceChar: 1613
+      line: 47
+      lineChar: 16
       spanCodeSection: 
-    - startInstruction: 1900
-      endInstruction: 1899
-      startSourceChar: 1608
-      endSourceChar: 1614
-      line: 48
-      lineChar: 27
-      spanCodeSection: tiles[
-    - startInstruction: 1900
-      endInstruction: 1899
-      startSourceChar: 1614
-      endSourceChar: 1614
-      line: 48
-      lineChar: 33
+    - startInstruction: 1668
+      endInstruction: 1667
+      startSourceChar: 1613
+      endSourceChar: 1613
+      line: 47
+      lineChar: 16
       spanCodeSection: 
-    - startInstruction: 1900
-      endInstruction: 1951
-      startSourceChar: 1614
-      endSourceChar: 1639
-      line: 48
-      lineChar: 33
-      spanCodeSection: "i];\r\n                    "
-    - startInstruction: 1952
-      endInstruction: 1951
-      startSourceChar: 1639
-      endSourceChar: 1639
-      line: 49
-      lineChar: 20
-      spanCodeSection: 
-    - startInstruction: 1952
-      endInstruction: 1951
-      startSourceChar: 1639
-      endSourceChar: 1650
-      line: 49
-      lineChar: 20
-      spanCodeSection: 'tiles[i] = '
-    - startInstruction: 1952
-      endInstruction: 1951
-      startSourceChar: 1650
-      endSourceChar: 1650
-      line: 49
+    - startInstruction: 1668
+      endInstruction: 1667
+      startSourceChar: 1613
+      endSourceChar: 1626
+      line: 47
+      lineChar: 16
+      spanCodeSection: 'string tile1 '
+    - startInstruction: 1668
+      endInstruction: 1667
+      startSourceChar: 1626
+      endSourceChar: 1628
+      line: 47
+      lineChar: 29
+      spanCodeSection: '= '
+    - startInstruction: 1668
+      endInstruction: 1667
+      startSourceChar: 1628
+      endSourceChar: 1628
+      line: 47
       lineChar: 31
       spanCodeSection: 
-    - startInstruction: 1952
-      endInstruction: 1951
-      startSourceChar: 1650
-      endSourceChar: 1656
-      line: 49
+    - startInstruction: 1668
+      endInstruction: 1667
+      startSourceChar: 1628
+      endSourceChar: 1628
+      line: 47
+      lineChar: 31
+      spanCodeSection: 
+    - startInstruction: 1668
+      endInstruction: 1667
+      startSourceChar: 1628
+      endSourceChar: 1628
+      line: 47
+      lineChar: 31
+      spanCodeSection: 
+    - startInstruction: 1668
+      endInstruction: 1667
+      startSourceChar: 1628
+      endSourceChar: 1634
+      line: 47
       lineChar: 31
       spanCodeSection: tiles[
-    - startInstruction: 1952
-      endInstruction: 1951
-      startSourceChar: 1656
-      endSourceChar: 1656
-      line: 49
+    - startInstruction: 1668
+      endInstruction: 1667
+      startSourceChar: 1634
+      endSourceChar: 1634
+      line: 47
       lineChar: 37
       spanCodeSection: 
-    - startInstruction: 1952
-      endInstruction: 1951
-      startSourceChar: 1656
-      endSourceChar: 1656
-      line: 49
+    - startInstruction: 1668
+      endInstruction: 1667
+      startSourceChar: 1634
+      endSourceChar: 1637
+      line: 47
+      lineChar: 37
+      spanCodeSection: i].
+    - startInstruction: 1668
+      endInstruction: 1699
+      startSourceChar: 1637
+      endSourceChar: 1648
+      line: 47
+      lineChar: 40
+      spanCodeSection: gameObject.
+    - startInstruction: 1700
+      endInstruction: 1767
+      startSourceChar: 1648
+      endSourceChar: 1671
+      line: 47
+      lineChar: 51
+      spanCodeSection: "name;\r\n                "
+    - startInstruction: 1768
+      endInstruction: 1767
+      startSourceChar: 1671
+      endSourceChar: 1671
+      line: 48
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 1768
+      endInstruction: 1767
+      startSourceChar: 1671
+      endSourceChar: 1671
+      line: 48
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 1768
+      endInstruction: 1767
+      startSourceChar: 1671
+      endSourceChar: 1671
+      line: 48
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 1768
+      endInstruction: 1767
+      startSourceChar: 1671
+      endSourceChar: 1684
+      line: 48
+      lineChar: 16
+      spanCodeSection: 'string tile2 '
+    - startInstruction: 1768
+      endInstruction: 1767
+      startSourceChar: 1684
+      endSourceChar: 1686
+      line: 48
+      lineChar: 29
+      spanCodeSection: '= '
+    - startInstruction: 1768
+      endInstruction: 1767
+      startSourceChar: 1686
+      endSourceChar: 1686
+      line: 48
+      lineChar: 31
+      spanCodeSection: 
+    - startInstruction: 1768
+      endInstruction: 1767
+      startSourceChar: 1686
+      endSourceChar: 1686
+      line: 48
+      lineChar: 31
+      spanCodeSection: 
+    - startInstruction: 1768
+      endInstruction: 1767
+      startSourceChar: 1686
+      endSourceChar: 1686
+      line: 48
+      lineChar: 31
+      spanCodeSection: 
+    - startInstruction: 1768
+      endInstruction: 1767
+      startSourceChar: 1686
+      endSourceChar: 1692
+      line: 48
+      lineChar: 31
+      spanCodeSection: tiles[
+    - startInstruction: 1768
+      endInstruction: 1767
+      startSourceChar: 1692
+      endSourceChar: 1692
+      line: 48
       lineChar: 37
       spanCodeSection: 
-    - startInstruction: 1952
-      endInstruction: 1971
-      startSourceChar: 1656
-      endSourceChar: 1658
-      line: 49
+    - startInstruction: 1768
+      endInstruction: 1767
+      startSourceChar: 1692
+      endSourceChar: 1692
+      line: 48
+      lineChar: 37
+      spanCodeSection: 
+    - startInstruction: 1768
+      endInstruction: 1787
+      startSourceChar: 1692
+      endSourceChar: 1694
+      line: 48
       lineChar: 37
       spanCodeSection: i+
-    - startInstruction: 1972
-      endInstruction: 2067
-      startSourceChar: 1658
-      endSourceChar: 1683
+    - startInstruction: 1788
+      endInstruction: 1819
+      startSourceChar: 1694
+      endSourceChar: 1697
+      line: 48
+      lineChar: 39
+      spanCodeSection: 1].
+    - startInstruction: 1820
+      endInstruction: 1851
+      startSourceChar: 1697
+      endSourceChar: 1708
+      line: 48
+      lineChar: 42
+      spanCodeSection: gameObject.
+    - startInstruction: 1852
+      endInstruction: 1919
+      startSourceChar: 1708
+      endSourceChar: 1731
+      line: 48
+      lineChar: 53
+      spanCodeSection: "name;\r\n                "
+    - startInstruction: 1920
+      endInstruction: 1919
+      startSourceChar: 1731
+      endSourceChar: 1735
       line: 49
+      lineChar: 16
+      spanCodeSection: if (
+    - startInstruction: 1920
+      endInstruction: 1919
+      startSourceChar: 1735
+      endSourceChar: 1735
+      line: 49
+      lineChar: 20
+      spanCodeSection: 
+    - startInstruction: 1920
+      endInstruction: 1919
+      startSourceChar: 1735
+      endSourceChar: 1751
+      line: 49
+      lineChar: 20
+      spanCodeSection: tile1.CompareTo(
+    - startInstruction: 1920
+      endInstruction: 1971
+      startSourceChar: 1751
+      endSourceChar: 1760
+      line: 49
+      lineChar: 36
+      spanCodeSection: 'tile2) > '
+    - startInstruction: 1972
+      endInstruction: 2019
+      startSourceChar: 1760
+      endSourceChar: 1780
+      line: 49
+      lineChar: 45
+      spanCodeSection: "0)\r\n                "
+    - startInstruction: 2020
+      endInstruction: 2019
+      startSourceChar: 1780
+      endSourceChar: 1803
+      line: 50
+      lineChar: 16
+      spanCodeSection: "{\r\n                    "
+    - startInstruction: 2020
+      endInstruction: 2019
+      startSourceChar: 1803
+      endSourceChar: 1803
+      line: 51
+      lineChar: 20
+      spanCodeSection: 
+    - startInstruction: 2020
+      endInstruction: 2019
+      startSourceChar: 1803
+      endSourceChar: 1810
+      line: 51
+      lineChar: 20
+      spanCodeSection: 'swap = '
+    - startInstruction: 2020
+      endInstruction: 2019
+      startSourceChar: 1810
+      endSourceChar: 1810
+      line: 51
+      lineChar: 27
+      spanCodeSection: 
+    - startInstruction: 2020
+      endInstruction: 2019
+      startSourceChar: 1810
+      endSourceChar: 1816
+      line: 51
+      lineChar: 27
+      spanCodeSection: tiles[
+    - startInstruction: 2020
+      endInstruction: 2019
+      startSourceChar: 1816
+      endSourceChar: 1816
+      line: 51
+      lineChar: 33
+      spanCodeSection: 
+    - startInstruction: 2020
+      endInstruction: 2071
+      startSourceChar: 1816
+      endSourceChar: 1841
+      line: 51
+      lineChar: 33
+      spanCodeSection: "i];\r\n                    "
+    - startInstruction: 2072
+      endInstruction: 2071
+      startSourceChar: 1841
+      endSourceChar: 1841
+      line: 52
+      lineChar: 20
+      spanCodeSection: 
+    - startInstruction: 2072
+      endInstruction: 2071
+      startSourceChar: 1841
+      endSourceChar: 1852
+      line: 52
+      lineChar: 20
+      spanCodeSection: 'tiles[i] = '
+    - startInstruction: 2072
+      endInstruction: 2071
+      startSourceChar: 1852
+      endSourceChar: 1852
+      line: 52
+      lineChar: 31
+      spanCodeSection: 
+    - startInstruction: 2072
+      endInstruction: 2071
+      startSourceChar: 1852
+      endSourceChar: 1858
+      line: 52
+      lineChar: 31
+      spanCodeSection: tiles[
+    - startInstruction: 2072
+      endInstruction: 2071
+      startSourceChar: 1858
+      endSourceChar: 1858
+      line: 52
+      lineChar: 37
+      spanCodeSection: 
+    - startInstruction: 2072
+      endInstruction: 2071
+      startSourceChar: 1858
+      endSourceChar: 1858
+      line: 52
+      lineChar: 37
+      spanCodeSection: 
+    - startInstruction: 2072
+      endInstruction: 2091
+      startSourceChar: 1858
+      endSourceChar: 1860
+      line: 52
+      lineChar: 37
+      spanCodeSection: i+
+    - startInstruction: 2092
+      endInstruction: 2187
+      startSourceChar: 1860
+      endSourceChar: 1885
+      line: 52
       lineChar: 39
       spanCodeSection: "1];\r\n                    "
-    - startInstruction: 2068
-      endInstruction: 2067
-      startSourceChar: 1683
-      endSourceChar: 1683
-      line: 50
+    - startInstruction: 2188
+      endInstruction: 2187
+      startSourceChar: 1885
+      endSourceChar: 1885
+      line: 53
       lineChar: 20
       spanCodeSection: 
-    - startInstruction: 2068
-      endInstruction: 2067
-      startSourceChar: 1683
-      endSourceChar: 1696
-      line: 50
+    - startInstruction: 2188
+      endInstruction: 2187
+      startSourceChar: 1885
+      endSourceChar: 1898
+      line: 53
       lineChar: 20
       spanCodeSection: 'tiles[i+1] = '
-    - startInstruction: 2068
-      endInstruction: 2151
-      startSourceChar: 1696
-      endSourceChar: 1723
-      line: 50
+    - startInstruction: 2188
+      endInstruction: 2271
+      startSourceChar: 1898
+      endSourceChar: 1925
+      line: 53
       lineChar: 33
       spanCodeSection: "swap;\r\n                    "
-    - startInstruction: 2152
-      endInstruction: 2151
-      startSourceChar: 1723
-      endSourceChar: 1723
-      line: 51
+    - startInstruction: 2272
+      endInstruction: 2271
+      startSourceChar: 1925
+      endSourceChar: 1925
+      line: 54
       lineChar: 20
       spanCodeSection: 
-    - startInstruction: 2152
-      endInstruction: 2151
-      startSourceChar: 1723
-      endSourceChar: 1732
-      line: 51
+    - startInstruction: 2272
+      endInstruction: 2271
+      startSourceChar: 1925
+      endSourceChar: 1934
+      line: 54
       lineChar: 20
       spanCodeSection: 'sorted = '
-    - startInstruction: 2152
-      endInstruction: 2152
-      startSourceChar: 1732
-      endSourceChar: 1732
-      line: 51
+    - startInstruction: 2272
+      endInstruction: 2272
+      startSourceChar: 1934
+      endSourceChar: 1934
+      line: 54
       lineChar: 29
       spanCodeSection: 
   hasInteractEvent: 1

@@ -54,7 +54,12 @@ public class GenTiles : MonoBehaviour
         int m = 0;
         float y = 0;
         var tilePrefab = AssetDatabase.LoadAssetAtPath("Assets/Riichi/tileprefab.prefab", typeof(Object));
-        var tileMat = (Material)AssetDatabase.LoadAssetAtPath($"Assets/Riichi/Tiles/TileMat.mat", typeof(Material));
+        var tileMesh = (Mesh)AssetDatabase.LoadAssetAtPath("Assets/Riichi/tileFbx.fbx/Tile", typeof(Mesh));
+        Debug.Log($"tileMesh: {tileMesh}");
+        var tileFbx = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Riichi/tileFbx.fbx", typeof(GameObject));
+        Debug.Log($"tileFbx: {tileFbx}");
+        var tileMat = (Material)AssetDatabase.LoadAssetAtPath("Assets/Riichi/TileMat", typeof(Material));
+        var tileScriptPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Riichi/tileScriptPrefab.prefab", typeof(Object));
 
         MaterialPropertyBlock props = new MaterialPropertyBlock();
         foreach (string tile in tiles)
@@ -63,17 +68,37 @@ public class GenTiles : MonoBehaviour
             for (int i = 1; i <= times; ++i)
             {
                 var t = tile.Trim();
-                GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(tilePrefab, tileParent);
-                obj.name = $"{n:D2}.{i}";
-                Debug.Log($"t: {t}");
-                obj.GetComponent<MeshRenderer>().material = tileMat;
-                // doesn't work, doesn't save after play mode apparently
-                obj.GetComponent<MeshRenderer>().GetPropertyBlock(props);
-                props.SetFloat("_Tile", n);
-                obj.GetComponent<MeshRenderer>().SetPropertyBlock(props);
-                obj.GetComponent<UdonBehaviour>().SetProgramVariable("tile", n);
-                obj.GetComponent<UdonBehaviour>().SetProgramVariable("Tile", n);
+                // i think there's something weird about prefabs that break udon;
+                // an identical script (TileScript) on a non-prefab works fine toggling isKinematic,
+                // but the prefab ones are all fucked
+                //GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(tilePrefab, tileParent);
+                GameObject obj = new GameObject();
+                obj.transform.parent = tileParent;
+                obj.AddComponent<Rigidbody>();
+                var f = obj.AddComponent<MeshFilter>();
+                f.sharedMesh = tileFbx.GetComponent<MeshFilter>().sharedMesh;
+                var r = obj.AddComponent<MeshRenderer>();
+                r.sharedMaterial = tileFbx.GetComponent<MeshRenderer>().sharedMaterial;
+                obj.AddComponent<BoxCollider>();
+                var u = obj.AddComponent<UdonBehaviour>();;
+                // ok?
+                EditorUtility.CopySerialized(tileScriptPrefab.GetComponent<UdonBehaviour>(), u);
+                u.SynchronizePosition = true;
+                u.AllowCollisionOwnershipTransfer = false;
+                var p = obj.AddComponent<VRC.SDK3.Components.VRCPickup>();
+                EditorUtility.CopySerialized(tileScriptPrefab.GetComponent<VRC.SDK3.Components.VRCPickup>(), p);
 
+                // total hack: since udon sync position and rigidbodies don't play nicely together and you can't
+                // toggle gravity or kinematic on and off reliably, you can instead counteract gravity with a toggleabl
+                // constant force.
+                var c = obj.AddComponent<ConstantForce>();
+                c.force = new Vector3(0, 9.8101f, 0);
+                c.enabled = false;
+
+                obj.layer = 23; // riichitiles
+
+                obj.name = $"{n:D2}.{i}";
+                //Debug.Log($"t: {t}");
                 obj.transform.localPosition = new Vector3((m++) * 0.04f, 0.0f, y);
                 if (m > 17)
                 {
