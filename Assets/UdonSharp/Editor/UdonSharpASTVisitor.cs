@@ -747,7 +747,7 @@ namespace UdonSharp
 
             List<System.Attribute> fieldAttributes = GetFieldAttributes(node);
 
-            bool isPublic = node.Modifiers.HasModifier("public") || fieldAttributes.Find(e => e is SerializeField) != null;
+            bool isPublic = (node.Modifiers.HasModifier("public") || fieldAttributes.Find(e => e is SerializeField) != null) && fieldAttributes.Find(e => e is System.NonSerializedAttribute) == null;
 
             List<SymbolDefinition> fieldSymbols = HandleVariableDeclaration(node.Declaration, isPublic ? SymbolDeclTypeFlags.Public : SymbolDeclTypeFlags.Private, fieldSyncMode);
             foreach (SymbolDefinition fieldSymbol in fieldSymbols)
@@ -1218,6 +1218,13 @@ namespace UdonSharp
             }
         }
 
+        public override void VisitArrowExpressionClause(ArrowExpressionClauseSyntax node)
+        {
+            UpdateSyntaxNode(node);
+
+            Visit(node.Expression);
+        }
+
         public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
         {
             UpdateSyntaxNode(node);
@@ -1291,7 +1298,33 @@ namespace UdonSharp
 
             visitorContext.PushTable(functionSymbolTable);
 
-            Visit(node.Body);
+            if (node.Body != null && node.ExpressionBody != null)
+                throw new System.Exception("Block bodies and expression bodies cannot both be provided.");
+
+            if (node.Body != null)
+            {
+                Visit(node.Body);
+            }
+            else if (node.ExpressionBody != null)
+            {
+                using (ExpressionCaptureScope expressionBodyCapture = new ExpressionCaptureScope(visitorContext, null))
+                {
+                    Visit(node.ExpressionBody);
+
+                    if (visitorContext.returnSymbol != null)
+                    {
+                        using (ExpressionCaptureScope returnSetterScope = new ExpressionCaptureScope(visitorContext, null))
+                        {
+                            returnSetterScope.SetToLocalSymbol(visitorContext.returnSymbol);
+                            returnSetterScope.ExecuteSetDirect(expressionBodyCapture);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                throw new System.Exception($"Method {functionName} must declare a body");
+            }
 
             visitorContext.topTable.FlattenTableCountersToGlobal();
             visitorContext.PopTable();
@@ -1553,6 +1586,12 @@ namespace UdonSharp
         {
             UpdateSyntaxNode(node);
 
+            if (node.Kind() == SyntaxKind.IsExpression)
+                throw new System.NotSupportedException("The `is` keyword is not yet supported by UdonSharp since Udon does not expose what is necessary (https://vrchat.canny.io/vrchat-udon-closed-alpha-feedback/p/expose-systemtypeissubclassof-isinstanceoftype-issubclassof-and-basetype)");
+
+            if (node.Kind() == SyntaxKind.AsExpression)
+                throw new System.NotSupportedException("The `as` keyword is not yet supported by UdonSharp since Udon does not expose what is necessary (https://vrchat.canny.io/vrchat-udon-closed-alpha-feedback/p/expose-systemtypeissubclassof-isinstanceoftype-issubclassof-and-basetype)");
+
             if (node.Kind() == SyntaxKind.LogicalAndExpression || node.Kind() == SyntaxKind.LogicalOrExpression)
             {
                 HandleBinaryShortCircuitConditional(node);
@@ -1574,15 +1613,22 @@ namespace UdonSharp
             {
                 Visit(node.Left);
 
-                // This needs to be copied because someone can do an in place assignment operator on the rhs that changes the lhs value
-                SymbolDefinition lhsCopy = visitorContext.topTable.CreateUnnamedSymbol(lhsCapture.GetReturnType(true), SymbolDeclTypeFlags.Internal);
-                using (ExpressionCaptureScope lhsCopySetter = new ExpressionCaptureScope(visitorContext, null))
+                if (lhsCapture.DoesReturnIntermediateSymbol() || lhsCapture.IsConstExpression())
                 {
-                    lhsCopySetter.SetToLocalSymbol(lhsCopy);
-                    lhsCopySetter.ExecuteSetDirect(lhsCapture);
+                    lhsValue = lhsCapture.ExecuteGet();
                 }
+                else
+                {
+                    // This needs to be copied because someone can do an in place assignment operator on the rhs that changes the lhs value
+                    SymbolDefinition lhsCopy = visitorContext.topTable.CreateUnnamedSymbol(lhsCapture.GetReturnType(true), SymbolDeclTypeFlags.Internal);
+                    using (ExpressionCaptureScope lhsCopySetter = new ExpressionCaptureScope(visitorContext, null))
+                    {
+                        lhsCopySetter.SetToLocalSymbol(lhsCopy);
+                        lhsCopySetter.ExecuteSetDirect(lhsCapture);
+                    }
 
-                lhsValue = lhsCopy;
+                    lhsValue = lhsCopy;
+                }
 
                 using (ExpressionCaptureScope rhsCapture = new ExpressionCaptureScope(visitorContext, null))
                 {
@@ -2192,6 +2238,16 @@ namespace UdonSharp
                     SwitchLabelSyntax switchLabel = switchSection.Labels[j];
                     SymbolDefinition switchLabelValue = null;
 
+                    if (switchLabel is DefaultSwitchLabelSyntax)
+                    {
+                        UpdateSyntaxNode(switchLabel);
+                        defaultJump = sectionJump;
+                        continue;
+                    }
+
+                    visitorContext.uasmBuilder.AddJumpLabel(nextLabelJump);
+                    nextLabelJump = visitorContext.labelTable.GetNewJumpLabel("nextSwitchLabelJump");
+
                     using (ExpressionCaptureScope conditionValueCapture = new ExpressionCaptureScope(visitorContext, null))
                     {
                         Visit(switchLabel);
@@ -2199,15 +2255,6 @@ namespace UdonSharp
                         if (!conditionValueCapture.IsUnknownArchetype())
                             switchLabelValue = conditionValueCapture.ExecuteGet();
                     }
-
-                    if (switchLabelValue == null)
-                    {
-                        defaultJump = sectionJump;
-                        continue;
-                    }
-
-                    visitorContext.uasmBuilder.AddJumpLabel(nextLabelJump);
-                    nextLabelJump = visitorContext.labelTable.GetNewJumpLabel("nextSwitchLabelJump");
 
                     SymbolDefinition conditionEqualitySymbol = null;
                     using (ExpressionCaptureScope equalityCheckScope = new ExpressionCaptureScope(visitorContext, null))
@@ -2244,12 +2291,6 @@ namespace UdonSharp
 
             visitorContext.uasmBuilder.AddJumpLabel(switchExitLabel);
             visitorContext.breakLabelStack.Pop();
-        }
-
-        public override void VisitDefaultSwitchLabel(DefaultSwitchLabelSyntax node)
-        {
-            // Just do nothing here so the outer scope is unknown type
-            UpdateSyntaxNode(node);
         }
 
         public override void VisitCaseSwitchLabel(CaseSwitchLabelSyntax node)
