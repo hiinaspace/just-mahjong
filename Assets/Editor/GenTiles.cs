@@ -89,19 +89,12 @@ public class GenTiles : MonoBehaviour
                 var p = obj.AddComponent<VRC.SDK3.Components.VRCPickup>();
                 EditorUtility.CopySerialized(tilePrefab.GetComponent<VRC.SDK3.Components.VRCPickup>(), p);
 
-                // total hack: since udon sync position and rigidbodies don't play nicely together and you can't
-                // toggle gravity or kinematic on and off reliably, you can instead counteract gravity with a toggleabl
-                // constant force.
-                var c = obj.AddComponent<ConstantForce>();
-                c.force = new Vector3(0, 9.8101f, 0);
-                c.enabled = false;
-
                 obj.layer = 23; // riichitiles
 
                 obj.name = $"{n:D2}.{i}";
                 //Debug.Log($"t: {t}");
                 obj.transform.localPosition = new Vector3((m++) * 0.04f, 0.0f, y);
-                if (m > 17)
+                if (m == 17)
                 {
                     m = 0;
                     y += 0.06f;
