@@ -53,13 +53,12 @@ public class GenTiles : MonoBehaviour
         var n = 0;
         int m = 0;
         float y = 0;
-        var tilePrefab = AssetDatabase.LoadAssetAtPath("Assets/Riichi/tileprefab.prefab", typeof(Object));
+        var tilePrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Riichi/tileprefab.prefab", typeof(Object));
         var tileMesh = (Mesh)AssetDatabase.LoadAssetAtPath("Assets/Riichi/tileFbx.fbx/Tile", typeof(Mesh));
         Debug.Log($"tileMesh: {tileMesh}");
         var tileFbx = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Riichi/tileFbx.fbx", typeof(GameObject));
         Debug.Log($"tileFbx: {tileFbx}");
         var tileMat = (Material)AssetDatabase.LoadAssetAtPath("Assets/Riichi/TileMat", typeof(Material));
-        var tileScriptPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Riichi/tileScriptPrefab.prefab", typeof(Object));
 
         MaterialPropertyBlock props = new MaterialPropertyBlock();
         foreach (string tile in tiles)
@@ -82,11 +81,13 @@ public class GenTiles : MonoBehaviour
                 obj.AddComponent<BoxCollider>();
                 var u = obj.AddComponent<UdonBehaviour>();;
                 // ok?
-                EditorUtility.CopySerialized(tileScriptPrefab.GetComponent<UdonBehaviour>(), u);
-                u.SynchronizePosition = true;
+                EditorUtility.CopySerialized(tilePrefab.GetComponent<UdonBehaviour>(), u);
+                // bad
+                u.SynchronizePosition = false;
+
                 u.AllowCollisionOwnershipTransfer = false;
                 var p = obj.AddComponent<VRC.SDK3.Components.VRCPickup>();
-                EditorUtility.CopySerialized(tileScriptPrefab.GetComponent<VRC.SDK3.Components.VRCPickup>(), p);
+                EditorUtility.CopySerialized(tilePrefab.GetComponent<VRC.SDK3.Components.VRCPickup>(), p);
 
                 // total hack: since udon sync position and rigidbodies don't play nicely together and you can't
                 // toggle gravity or kinematic on and off reliably, you can instead counteract gravity with a toggleabl
