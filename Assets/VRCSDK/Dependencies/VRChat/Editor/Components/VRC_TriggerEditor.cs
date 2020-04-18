@@ -962,6 +962,7 @@ namespace VRCSDK2
                     {
                         RenderTargetGameObjectList(parameterObjectsProperty, triggerIdx);
                         RenderPropertyEditor(shadowProperty, parameterBoolOpProperty, new GUIContent("Align Room To Destination"), true);
+                        parameterIntProperty.intValue = EditorGUILayout.Toggle("Lerp On Remote Clients", (parameterIntProperty.intValue != 0)) ? 1 : 0;
                         break;
                     }
                 case VRCSDK2.VRC_EventHandler.VrcEventType.SetWebPanelURI:
@@ -1251,6 +1252,11 @@ namespace VRCSDK2
                 return;
 
             ParameterInfo[] paramInfo = info.GetParameters();
+
+            // Editor-only
+            foreach (var p in paramInfo)
+                if (p.ParameterType.Namespace.StartsWith("VRCSDK2"))
+                    VRC.SDKBase.VRC_Serialization.RegisterType(p.ParameterType);
 
             object[] parameters = null;
             if (rpcByteCache.ContainsKey(eventProperty.propertyPath))

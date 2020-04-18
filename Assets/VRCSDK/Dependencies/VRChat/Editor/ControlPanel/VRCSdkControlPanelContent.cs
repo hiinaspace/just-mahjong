@@ -178,7 +178,12 @@ public partial class VRCSdkControlPanel : EditorWindow
         if (avatars == null || uploadedAvatars == null )
             return;
 
-        avatars.RemoveAll(a => a == null || a.name == null || uploadedAvatars.Any(a2 => a2.id == a.id));
+        avatars.RemoveAll(a => a == null || uploadedAvatars.Any(a2 => a2.id == a.id));
+        foreach(var avatar in avatars)
+        {
+            if (string.IsNullOrEmpty(avatar.name))
+                avatar.name = "(unnamed)";
+        }
 
         if (avatars.Count > 0)
         {
@@ -189,6 +194,8 @@ public partial class VRCSdkControlPanel : EditorWindow
 
     static void DownloadImage(string id, string url)
     {
+        if (string.IsNullOrEmpty(url))
+            return;
         if (ImageCache.ContainsKey(id) && ImageCache[id] != null)
             return;
 

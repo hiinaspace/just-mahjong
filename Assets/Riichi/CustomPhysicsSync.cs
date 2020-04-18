@@ -71,20 +71,122 @@ public class CustomPhysicsSync : UdonSharpBehaviour
     public void DoSync()
     {
         // 1 char idx into tiles array, 2 chars position, 2 chars rotation = 6 chars each tile;
-        // total of 136 * 6 = 816 chars of state.
+        // total of 136 * 6 = 816 chars of state, naively. Can rotate that in about 1.6 seconds.
+
+        // better: exploit the state of the game
+        // 32 bits isn't enough for shuffling. so need full 136 byte shuffle state, in separate object (shuffler)
+        // then sentinel for all tiles being in initial position from shuffle (rerun shuffle from seed)
+        // when tiles get drawn, can have a brief period where player is actually picking them up
+        // (full 4 bytes of transform), then when it gets sorted into the hand, have the hand positions
+        // as a sentinel
+        // 8 bits for switch of state style, then 5 bytes for each "free" tile
+        // for hand tiles, sentinel, 4bit no tiles in hand, up to 16 bytes for tile indices in hand;
+        // locally, just put their positions to the hand in that order.
+        // for discards, can have a max of 18 in discard;. all will be flat on the table; can map 
+        // the y euler rotation into maybe 9 bits, then 11 bits for x pos and 11 for z pos;
+        // could quantize to an actual discard grid, but seems too restricting and could get weird
+        // with the misalignment from riichi indicator.
+        // really, all "flat, faceup on table" can get by with 5 bytes each; 1 index, bit for
+        // face up or down, 31 bits for y rotation and x,z. 5 * 18 = 90 bytes. + 16 for hand,
+        // that comfortably fits in a packet, with 34 bytes leftover for full tiles. at 9 bytes each,
+        // that's 3 extra full tiles before spill, a few bytes leftover.
+
+        // or, instead of all those full bytes for indices, have a bitmap of "tiles in state".
+        // 136 bits = 17 bytes for bitmap, then write tiles in order.
+        // 1 byte for "in original deal placement". have to look up shuffle state (expanded from random)
+        // 1 byte for "in hand at pos X" 
+        // 5 bytes for "in discard or on table". can expand out the precision into the remaining bits.
+        // or, if you drop y euler to 8 bits (256, so 2deg precision), then save the leading 1 bit for
+        // "is a discard", then that's 4 bytes.
+        // or 9 bytes for full state; can use the extra 5 or so bits in the first byte for more precision
+        // or a greater range of positions
+        // worst case it's 1124 bytes if the player owns all the tiles and moves them into arbitrary places.
+        // that's 6 fragment, or 1.2 seconds sync time. Not bad still honestly, and very much an edge case.
+
+        // [1] [1 bit up or down] [8 bits euler y] [11 bits x] [11 bits z] = 4 bytes, on table
+        // [0] [1] [13 bits x] [12 bits y] [13 bits z] [2 bits largest component] [30 bits components] = 9 bytes
+        // [0] [0] [1] [5 bytes hand pos] = 1 byte, in hand
+        // then for full initial or deal position it's 46 bytes (run length 3)
+
+        // so shuffle behavior has 136 bytes of shuffle state, then 4 bytes for other stuff (in shorts)
+        // it's always owned by master. assuming master is not one of the 4 players, then you could still
+        // pack (in ascii) an extra 17 byte bitmap of tiles still owned by master because a player hasn't
+        // touched them.
+        // then client iterates through that for all shuffle/initial tiles, then checks the 4
+        // player-owned behaviors for the ~118 bytes of hand/discards/arbitrary.
+
+        // what if a non-player grabs a tile? the OnPickup will run, assign ownership to the non-player.
+        // the 4 player states will run, remove that tile from any of the bitmaps, then it'll be left to
+        // whoever owned it last (master, or player).
+        // instead, the Tile behavior could check that the OnPickup player is one of the 4 players, and
+        // skip taking ownership if the local player is not one. Then it'll snap back into place after the player
+        // lets go.
+
+        // hmm, don't actually need bitmap since each Tile UdonBehavior can check whether it's owned by the same
+        // owner as the syncing UdonBehavior. Always in initial tile gameobject order. that saves bytes.
+        // except for if master is playing, becomes difficult. Need at least one bitmap to check whether
+        // owner == master means it hasn't been dealt, or that the master is a player.
+
+        // so, need
+        // Shuffler behavior, has shuffle() with master check, packs shuffle state into sync, with bitmap
+        //  and takes ownership of all tiles (so playerSyncs will drain)
+        //  on master update(), check ownership of each tile, and turn off bit if moved from deal position
+        //  on non-master fixedUpdate(), check bit of each tile, move into deal position, else skip.
+
+        // 4 playerSyncs
+        // OnInteract, take ownership and move sort tiles in hand
+        // On owner update(), iterate through tiles in order; if owned, check
+        //   transform against localState, and update syncedState to match
+        // on non-owner update(), check seqNo for update. if so, iterate through tiles in order, if owner == playerSync owner, 
+        //   advance to next packed state and unpack and set local tile transform.
+
+        // what if state gets fragmented for a given player?
+        // basically have the full state stored locally and the defragmentation happen separately from deserialization, which only
+        // happens if the full unfragmented state is there. This means the update rate will slow down by number of fragments, instead of
+        // partial updates. but that should still be an edge case.
+        // need max of 9 fragments (all tiles owned, 9 bytes each). that's 4 bits, leaving a 4 bit seqNo. that works.
+
+        // that's 5 gameobjects with the full synced state, per table. Might be possible to fit two tables.
+        // actually 10 gamebojects does have some death run packet loss. not consistently though; it'd still be a stretch i think.
+        // it might be that if not all the gameobjects update every 200ms though (actual simultaneous games), it could work okay.
+        // do one table for now.
+
+
+        // average case, I'd expect
+        // 1 byte seqNo
+        // 17 byte bitmap
+        // 13 byte hand
+        // 12 * 5 byte discards/calls = 60
+        // 3 * 9 arbitrary = 27
+        // 118 bytes, comfortably in 1 fragment, even in shorts.
+
+        // TODO are both strings atomic, or can you have one fragment update before the other?
+        // I think they're atomic considering they seem to share a serialization.
+
+        // TODO for extra effort, could lerp/slerp the tiles into place in Update(), but would require some
+        // engineering for efficiency since udon is slow. Maybe better to do the movements in FixedUpdate()
+        // since the rigidbody apparently offers some interpolation in inbetween frames if you turn it on.
+
+        // I think that's good enough that trying to do RLE to improve 9 bytes for full state case isn't worth it.
+        // could probably only pack down to like 1/2 anyway, so still like a half a second of sync state.
+
+        // TODO for the initial state, it'd count as "all arbitrary" since the're not face up. would want to either
+        // start off in shuffled positions (use Start() to move, and change GenTiles()), or have another special
+        // "display in order" case, which would be fine too.
+
 
         // testing the parameters of how many synced strings and the data you put in them
         // and how many bytes you can fit until udon chokes.
 
         // type   num strings    max str len    max bytes   
-        // short     1           42                 84 (seems possible at 43 chars, but only half the time)
-        // byte      1           126                126
-        // short     2           35                 140
-        // byte      2           105                210
-        // short     3           19                 108
-        // byte      3           55                 165
-        // short     4           12                 96
-        // byte      4           33                 132
+        // short      1           42                 84 (seems possible at 43 chars, but only half the time)
+        // ascii      1           126                110.25
+        // short      2           35                 140
+        // ascii      2           105                183.75
+        // short      3           19                 108
+        // ascii      3           55                 144.375
+        // short      4           12                 96
+        // ascii      4           33                 115.5
 
         // got interesting error 'Caught InsufficientMemoryException while serializing,
         // encoded size is very large 238 >= 238'. So that's an interesting limit.

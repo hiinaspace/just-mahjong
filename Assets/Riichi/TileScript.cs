@@ -6,9 +6,6 @@ using VRC.Udon;
 
 public class TileScript : UdonSharpBehaviour
 {
-    //[UdonSynced] private Vector3 pos;
-    //[UdonSynced] private Quaternion rot;
-
     private Rigidbody r;
 
     void Start()

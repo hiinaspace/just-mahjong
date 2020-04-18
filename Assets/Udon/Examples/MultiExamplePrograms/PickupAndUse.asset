@@ -12,27 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f11136daadff0b44ac2278a314682ab, type: 3}
   m_Name: PickupAndUse
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 57495e14f9b7b864eb5c8a45b4af669e,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: f50551b17925fab43a49148bd1ca563b,
     type: 2}
-  udonAssembly: ".data_start\r\n\r\n    .export newfloatVariable\r\n    .sync newfloatVariable,
-    none\r\n    \r\n    instance_0: %UnityEngineMaterial, null\r\n    value_0: %UnityEngineColor,
-    null\r\n    Type_0: %SystemType, null\r\n    instance_3: %UnityEngineMaterial,
-    null\r\n    value_1: %UnityEngineColor, null\r\n    instance_1: %UnityEngineMeshRenderer,
-    null\r\n    instance_2: %UnityEngineGameObject, this\r\n    type_0: %SystemType,
-    null\r\n    Type_1: %SystemType, null\r\n    newfloatVariable: %SystemSingle,
-    null\r\n\r\n.data_end\r\n\r\n.code_start\r\n\r\n    .export _onPickupUseDown\r\n
-    \   \r\n    _onPickupUseDown:\r\n    \r\n        PUSH, Type_0\r\n        PUSH,
-    type_0\r\n        COPY\r\n        PUSH, instance_2\r\n        PUSH, type_0\r\n
-    \       PUSH, instance_1\r\n        EXTERN, \"UnityEngineGameObject.__GetComponent__SystemType__UnityEngineComponent\"\r\n
-    \       PUSH, instance_1\r\n        PUSH, instance_0\r\n        EXTERN, \"UnityEngineMeshRenderer.__get_material__UnityEngineMaterial\"\r\n
-    \       PUSH, instance_0\r\n        PUSH, value_0\r\n        EXTERN, \"UnityEngineMaterial.__set_color__UnityEngineColor__SystemVoid\"\r\n
-    \       JUMP, 0xFFFFFFFC\r\n    \r\n    .export _onPickupUseUp\r\n    \r\n    _onPickupUseUp:\r\n
-    \   \r\n        PUSH, Type_1\r\n        PUSH, type_0\r\n        COPY\r\n        PUSH,
-    instance_2\r\n        PUSH, type_0\r\n        PUSH, instance_1\r\n        EXTERN,
-    \"UnityEngineGameObject.__GetComponent__SystemType__UnityEngineComponent\"\r\n
-    \       PUSH, instance_1\r\n        PUSH, instance_3\r\n        EXTERN, \"UnityEngineMeshRenderer.__get_material__UnityEngineMaterial\"\r\n
-    \       PUSH, instance_0\r\n        PUSH, value_1\r\n        EXTERN, \"UnityEngineMaterial.__set_color__UnityEngineColor__SystemVoid\"\r\n
-    \       JUMP, 0xFFFFFFFC\r\n    \r\n\r\n.code_end\r\n"
+  udonAssembly: ".data_start\n\n    \n    instance_0: %UnityEngineMaterial, null\n
+    \   value_0: %UnityEngineColor, null\n    Type_0: %SystemType, null\n    instance_3:
+    %UnityEngineMaterial, null\n    value_1: %UnityEngineColor, null\n    instance_1:
+    %UnityEngineMeshRenderer, null\n    instance_2: %UnityEngineGameObject, this\n
+    \   type_0: %SystemType, null\n    Type_1: %SystemType, null\n\n.data_end\n\n.code_start\n\n
+    \   .export _onPickupUseDown\n    \n    _onPickupUseDown:\n    \n        PUSH,
+    Type_0\n        PUSH, type_0\n        COPY\n        PUSH, instance_2\n        PUSH,
+    type_0\n        PUSH, instance_1\n        EXTERN, \"UnityEngineGameObject.__GetComponent__SystemType__UnityEngineComponent\"\n
+    \       PUSH, instance_1\n        PUSH, instance_0\n        EXTERN, \"UnityEngineMeshRenderer.__get_material__UnityEngineMaterial\"\n
+    \       PUSH, instance_0\n        PUSH, value_0\n        EXTERN, \"UnityEngineMaterial.__set_color__UnityEngineColor__SystemVoid\"\n
+    \       JUMP, 0xFFFFFFFC\n    \n    .export _onPickupUseUp\n    \n    _onPickupUseUp:\n
+    \   \n        PUSH, Type_1\n        PUSH, type_0\n        COPY\n        PUSH,
+    instance_2\n        PUSH, type_0\n        PUSH, instance_1\n        EXTERN, \"UnityEngineGameObject.__GetComponent__SystemType__UnityEngineComponent\"\n
+    \       PUSH, instance_1\n        PUSH, instance_3\n        EXTERN, \"UnityEngineMeshRenderer.__get_material__UnityEngineMaterial\"\n
+    \       PUSH, instance_3\n        PUSH, value_1\n        EXTERN, \"UnityEngineMaterial.__set_color__UnityEngineColor__SystemVoid\"\n
+    \       JUMP, 0xFFFFFFFC\n    \n\n.code_end\n"
   assemblyError: 
   graphData:
     name: 
@@ -72,7 +69,7 @@ MonoBehaviour:
       nodeValues: []
     - fullName: UnityEngineMeshRenderer.__get_material__UnityEngineMaterial
       uid: 22a5bc58-c202-4b10-a0b7-f0eb94b2df4e
-      position: {x: 468, y: -480}
+      position: {x: 420, y: -276}
       nodeUIDs:
       - ca0aaf1d-7bbf-4642-b9e7-6263a5b1a4f5|0
       flowUIDs: []
@@ -107,25 +104,4 @@ MonoBehaviour:
       - unityObjectValue: {fileID: 0}
         stringValue: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null|{"r":0.6698113083839417,"g":0.6698113083839417,"b":0.6698113083839417,"a":1.0}
-    - fullName: Variable_SystemSingle
-      uid: 7ab603fc-fdf8-426c-a839-af63752af4e9
-      position: {x: -120, y: -552}
-      nodeUIDs:
-      - 
-      - 
-      - 
-      - 
-      - 
-      flowUIDs: []
-      nodeValues:
-      - unityObjectValue: {fileID: 0}
-        stringValue: 
-      - unityObjectValue: {fileID: 0}
-        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|newfloatVariable
-      - unityObjectValue: {fileID: 0}
-        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|True
-      - unityObjectValue: {fileID: 0}
-        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|True
-      - unityObjectValue: {fileID: 0}
-        stringValue: 
   showAssembly: 0

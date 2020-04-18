@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f11136daadff0b44ac2278a314682ab, type: 3}
   m_Name: ButtonSyncAnyone
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 85369051c34294e40a305293dc7c6dff,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 236c2dabc5181734dac12c8fbffbd2a0,
     type: 2}
   udonAssembly: ".data_start\r\n\r\n    .export uiText\r\n    .sync clickCount, none\r\n
     \   \r\n    player_0: %VRCSDKBaseVRCPlayerApi, null\r\n    obj_0: %UnityEngineGameObject,

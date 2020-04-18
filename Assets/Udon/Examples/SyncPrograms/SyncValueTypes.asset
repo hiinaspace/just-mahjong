@@ -12,98 +12,98 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f11136daadff0b44ac2278a314682ab, type: 3}
   m_Name: SyncValueTypes
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 4e3112aa7762e7145ab159e087062fda,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: f1aea7457f3433e4886d478351b2cb12,
     type: 2}
-  udonAssembly: ".data_start\r\n\r\n    .export uiText\r\n    .sync boolValue, none\r\n
-    \   .sync intValue, none\r\n    .sync floatValue, none\r\n    .sync stringValue,
-    none\r\n    .sync colorValue, none\r\n    .sync vector3Value, none\r\n    .sync
-    quaternionValue, none\r\n    \r\n    Boolean_0: %SystemBoolean, null\r\n    Boolean_1:
-    %SystemBoolean, null\r\n    Boolean_2: %SystemBoolean, null\r\n    key_0: %UnityEngineKeyCode,
-    null\r\n    Single_0: %SystemSingle, null\r\n    Single_1: %SystemSingle, null\r\n
-    \   min_0: %SystemInt32, null\r\n    max_0: %SystemInt32, null\r\n    min_1: %SystemSingle,
-    null\r\n    max_1: %SystemSingle, null\r\n    instance_0: %SystemInt32, null\r\n
-    \   min_2: %SystemInt32, null\r\n    max_2: %SystemInt32, null\r\n    hueMin_0:
-    %SystemSingle, null\r\n    hueMax_0: %SystemSingle, null\r\n    saturationMin_0:
-    %SystemSingle, null\r\n    saturationMax_0: %SystemSingle, null\r\n    valueMin_0:
-    %SystemSingle, null\r\n    valueMax_0: %SystemSingle, null\r\n    instance_1:
-    %UnityEngineUIText, null\r\n    value_0: %SystemString, null\r\n    str0_0: %SystemString,
-    null\r\n    str1_0: %SystemString, null\r\n    str2_0: %SystemString, null\r\n
-    \   str3_0: %SystemString, null\r\n    str0_1: %SystemString, null\r\n    str1_1:
-    %SystemString, null\r\n    str2_1: %SystemString, null\r\n    str3_1: %SystemString,
-    null\r\n    format_0: %SystemString, null\r\n    arg0_0: %SystemObject, null\r\n
-    \   format_1: %SystemString, null\r\n    arg0_1: %SystemObject, null\r\n    format_2:
-    %SystemString, null\r\n    arg0_2: %SystemObject, null\r\n    format_3: %SystemString,
-    null\r\n    arg0_3: %SystemObject, null\r\n    format_4: %SystemString, null\r\n
-    \   arg0_4: %SystemObject, null\r\n    format_5: %SystemString, null\r\n    arg0_5:
-    %SystemObject, null\r\n    format_6: %SystemString, null\r\n    arg0_6: %SystemObject,
-    null\r\n    arg1_0: %SystemObject, null\r\n    format_7: %SystemString, null\r\n
-    \   arg0_7: %SystemObject, null\r\n    arg1_1: %SystemObject, null\r\n    arg2_0:
-    %SystemObject, null\r\n    f_0: %SystemSingle, null\r\n    Single_2: %SystemSingle,
-    null\r\n    Single_3: %SystemSingle, null\r\n    Color_0: %UnityEngineColor, null\r\n
-    \   f_1: %SystemSingle, null\r\n    Single_4: %SystemSingle, null\r\n    Single_5:
-    %SystemSingle, null\r\n    Color_1: %UnityEngineColor, null\r\n    f_2: %SystemSingle,
-    null\r\n    Single_6: %SystemSingle, null\r\n    Single_7: %SystemSingle, null\r\n
-    \   Color_2: %UnityEngineColor, null\r\n    boolValue: %SystemBoolean, null\r\n
-    \   uiText: %UnityEngineUIText, null\r\n    intValue: %SystemInt32, null\r\n    floatValue:
-    %SystemSingle, null\r\n    stringValue: %SystemString, null\r\n    colorValue:
-    %UnityEngineColor, null\r\n    vector3Value: %UnityEngineVector3, null\r\n    quaternionValue:
-    %UnityEngineQuaternion, null\r\n\r\n.data_end\r\n\r\n.code_start\r\n\r\n    .export
-    _update\r\n    \r\n    _update:\r\n    \r\n        PUSH, Boolean_1\r\n        EXTERN,
-    \"VRCSDKBaseNetworking.__get_IsMaster__SystemBoolean\"\r\n        PUSH, key_0\r\n
-    \       PUSH, Boolean_2\r\n        EXTERN, \"UnityEngineInput.__GetKeyDown__UnityEngineKeyCode__SystemBoolean\"\r\n
-    \       PUSH, Boolean_1\r\n        PUSH, Boolean_2\r\n        PUSH, Boolean_0\r\n
-    \       EXTERN, \"SystemBoolean.__op_ConditionalAnd__SystemBoolean_SystemBoolean__SystemBoolean\"\r\n
-    \       PUSH, Boolean_0\r\n        JUMP_IF_FALSE, 0x000168\r\n        PUSH, Single_0\r\n
-    \       EXTERN, \"UnityEngineRandom.__get_value__SystemSingle\"\r\n        PUSH,
-    Single_0\r\n        PUSH, Single_1\r\n        PUSH, boolValue\r\n        EXTERN,
-    \"SystemSingle.__op_GreaterThan__SystemSingle_SystemSingle__SystemBoolean\"\r\n
-    \       PUSH, min_0\r\n        PUSH, max_0\r\n        PUSH, intValue\r\n        EXTERN,
-    \"UnityEngineRandom.__Range__SystemInt32_SystemInt32__SystemInt32\"\r\n        PUSH,
-    min_1\r\n        PUSH, max_1\r\n        PUSH, floatValue\r\n        EXTERN, \"UnityEngineRandom.__Range__SystemSingle_SystemSingle__SystemSingle\"\r\n
-    \       PUSH, min_2\r\n        PUSH, max_2\r\n        PUSH, instance_0\r\n        EXTERN,
-    \"UnityEngineRandom.__Range__SystemInt32_SystemInt32__SystemInt32\"\r\n        PUSH,
-    instance_0\r\n        PUSH, stringValue\r\n        EXTERN, \"SystemInt32.__ToString__SystemString\"\r\n
-    \       PUSH, vector3Value\r\n        EXTERN, \"UnityEngineRandom.__get_insideUnitSphere__UnityEngineVector3\"\r\n
-    \       PUSH, quaternionValue\r\n        EXTERN, \"UnityEngineRandom.__get_rotation__UnityEngineQuaternion\"\r\n
-    \       PUSH, hueMin_0\r\n        PUSH, hueMax_0\r\n        PUSH, saturationMin_0\r\n
-    \       PUSH, saturationMax_0\r\n        PUSH, valueMin_0\r\n        PUSH, valueMax_0\r\n
-    \       PUSH, colorValue\r\n        EXTERN, \"UnityEngineRandom.__ColorHSV__SystemSingle_SystemSingle_SystemSingle_SystemSingle_SystemSingle_SystemSingle__UnityEngineColor\"\r\n
-    \       JUMP, 0x000168\r\n        JUMP, 0xFFFFFFFC\r\n    \r\n    .export _lateUpdate\r\n
-    \   \r\n    _lateUpdate:\r\n    \r\n        PUSH, uiText\r\n        PUSH, instance_1\r\n
-    \       COPY\r\n        PUSH, format_0\r\n        PUSH, boolValue\r\n        PUSH,
-    str0_1\r\n        EXTERN, \"SystemString.__Format__SystemString_SystemObject__SystemString\"\r\n
-    \       PUSH, format_1\r\n        PUSH, intValue\r\n        PUSH, str1_1\r\n        EXTERN,
-    \"SystemString.__Format__SystemString_SystemObject__SystemString\"\r\n        PUSH,
-    format_2\r\n        PUSH, floatValue\r\n        PUSH, str2_1\r\n        EXTERN,
-    \"SystemString.__Format__SystemString_SystemObject__SystemString\"\r\n        PUSH,
-    stringValue\r\n        PUSH, arg0_3\r\n        COPY\r\n        PUSH, format_3\r\n
-    \       PUSH, arg0_3\r\n        PUSH, str3_1\r\n        EXTERN, \"SystemString.__Format__SystemString_SystemObject__SystemString\"\r\n
-    \       PUSH, str0_1\r\n        PUSH, str1_1\r\n        PUSH, str2_1\r\n        PUSH,
-    str3_1\r\n        PUSH, str0_0\r\n        EXTERN, \"SystemString.__Concat__SystemString_SystemString_SystemString_SystemString__SystemString\"\r\n
-    \       PUSH, format_4\r\n        PUSH, vector3Value\r\n        PUSH, str1_0\r\n
-    \       EXTERN, \"SystemString.__Format__SystemString_SystemObject__SystemString\"\r\n
-    \       PUSH, format_5\r\n        PUSH, quaternionValue\r\n        PUSH, str2_0\r\n
-    \       EXTERN, \"SystemString.__Format__SystemString_SystemObject__SystemString\"\r\n
-    \       PUSH, colorValue\r\n        PUSH, Single_2\r\n        EXTERN, \"UnityEngineColor.__get_r__SystemSingle\"\r\n
-    \       PUSH, Single_2\r\n        PUSH, Single_3\r\n        PUSH, f_0\r\n        EXTERN,
-    \"SystemSingle.__op_Multiplication__SystemSingle_SystemSingle__SystemSingle\"\r\n
-    \       PUSH, f_0\r\n        PUSH, arg0_7\r\n        EXTERN, \"UnityEngineMathf.__RoundToInt__SystemSingle__SystemInt32\"\r\n
-    \       PUSH, colorValue\r\n        PUSH, Single_4\r\n        EXTERN, \"UnityEngineColor.__get_g__SystemSingle\"\r\n
-    \       PUSH, Single_4\r\n        PUSH, Single_5\r\n        PUSH, f_1\r\n        EXTERN,
-    \"SystemSingle.__op_Multiplication__SystemSingle_SystemSingle__SystemSingle\"\r\n
-    \       PUSH, f_1\r\n        PUSH, arg1_1\r\n        EXTERN, \"UnityEngineMathf.__RoundToInt__SystemSingle__SystemInt32\"\r\n
-    \       PUSH, colorValue\r\n        PUSH, Single_6\r\n        EXTERN, \"UnityEngineColor.__get_b__SystemSingle\"\r\n
-    \       PUSH, Single_6\r\n        PUSH, Single_7\r\n        PUSH, f_2\r\n        EXTERN,
-    \"SystemSingle.__op_Multiplication__SystemSingle_SystemSingle__SystemSingle\"\r\n
-    \       PUSH, f_2\r\n        PUSH, arg2_0\r\n        EXTERN, \"UnityEngineMathf.__RoundToInt__SystemSingle__SystemInt32\"\r\n
-    \       PUSH, format_7\r\n        PUSH, arg0_7\r\n        PUSH, arg1_1\r\n        PUSH,
-    arg2_0\r\n        PUSH, arg0_6\r\n        EXTERN, \"SystemString.__Format__SystemString_SystemObject_SystemObject_SystemObject__SystemString\"\r\n
-    \       PUSH, format_6\r\n        PUSH, arg0_6\r\n        PUSH, colorValue\r\n
-    \       PUSH, str3_0\r\n        EXTERN, \"SystemString.__Format__SystemString_SystemObject_SystemObject__SystemString\"\r\n
-    \       PUSH, str0_0\r\n        PUSH, str1_0\r\n        PUSH, str2_0\r\n        PUSH,
-    str3_0\r\n        PUSH, value_0\r\n        EXTERN, \"SystemString.__Concat__SystemString_SystemString_SystemString_SystemString__SystemString\"\r\n
-    \       PUSH, instance_1\r\n        PUSH, value_0\r\n        EXTERN, \"UnityEngineUIText.__set_text__SystemString__SystemVoid\"\r\n
-    \       JUMP, 0xFFFFFFFC\r\n    \r\n\r\n.code_end\r\n"
+  udonAssembly: ".data_start\n\n    .export uiText\n    .sync boolValue, none\n    .sync
+    intValue, none\n    .sync floatValue, none\n    .sync stringValue, none\n    .sync
+    colorValue, none\n    .sync vector3Value, none\n    .sync quaternionValue, none\n
+    \   \n    Boolean_0: %SystemBoolean, null\n    Boolean_1: %SystemBoolean, null\n
+    \   Boolean_2: %SystemBoolean, null\n    key_0: %UnityEngineKeyCode, null\n    Single_0:
+    %SystemSingle, null\n    Single_1: %SystemSingle, null\n    min_0: %SystemInt32,
+    null\n    max_0: %SystemInt32, null\n    min_1: %SystemSingle, null\n    max_1:
+    %SystemSingle, null\n    instance_0: %SystemInt32, null\n    min_2: %SystemInt32,
+    null\n    max_2: %SystemInt32, null\n    hueMin_0: %SystemSingle, null\n    hueMax_0:
+    %SystemSingle, null\n    saturationMin_0: %SystemSingle, null\n    saturationMax_0:
+    %SystemSingle, null\n    valueMin_0: %SystemSingle, null\n    valueMax_0: %SystemSingle,
+    null\n    instance_1: %UnityEngineUIText, null\n    value_0: %SystemString, null\n
+    \   str0_0: %SystemString, null\n    str1_0: %SystemString, null\n    str2_0:
+    %SystemString, null\n    str3_0: %SystemString, null\n    str0_1: %SystemString,
+    null\n    str1_1: %SystemString, null\n    str2_1: %SystemString, null\n    str3_1:
+    %SystemString, null\n    format_0: %SystemString, null\n    arg0_0: %SystemObject,
+    null\n    format_1: %SystemString, null\n    arg0_1: %SystemObject, null\n    format_2:
+    %SystemString, null\n    arg0_2: %SystemObject, null\n    format_3: %SystemString,
+    null\n    arg0_3: %SystemObject, null\n    format_4: %SystemString, null\n    arg0_4:
+    %SystemObject, null\n    format_5: %SystemString, null\n    arg0_5: %SystemObject,
+    null\n    format_6: %SystemString, null\n    arg0_6: %SystemObject, null\n    arg1_0:
+    %SystemObject, null\n    format_7: %SystemString, null\n    arg0_7: %SystemObject,
+    null\n    arg1_1: %SystemObject, null\n    arg2_0: %SystemObject, null\n    f_0:
+    %SystemSingle, null\n    Single_2: %SystemSingle, null\n    Single_3: %SystemSingle,
+    null\n    Color_0: %UnityEngineColor, null\n    f_1: %SystemSingle, null\n    Single_4:
+    %SystemSingle, null\n    Single_5: %SystemSingle, null\n    Color_1: %UnityEngineColor,
+    null\n    f_2: %SystemSingle, null\n    Single_6: %SystemSingle, null\n    Single_7:
+    %SystemSingle, null\n    Color_2: %UnityEngineColor, null\n    boolValue: %SystemBoolean,
+    null\n    uiText: %UnityEngineUIText, null\n    intValue: %SystemInt32, null\n
+    \   floatValue: %SystemSingle, null\n    stringValue: %SystemString, null\n    colorValue:
+    %UnityEngineColor, null\n    vector3Value: %UnityEngineVector3, null\n    quaternionValue:
+    %UnityEngineQuaternion, null\n\n.data_end\n\n.code_start\n\n    .export _update\n
+    \   \n    _update:\n    \n        PUSH, Boolean_1\n        EXTERN, \"VRCSDKBaseNetworking.__get_IsMaster__SystemBoolean\"\n
+    \       PUSH, key_0\n        PUSH, Boolean_2\n        EXTERN, \"UnityEngineInput.__GetKeyDown__UnityEngineKeyCode__SystemBoolean\"\n
+    \       PUSH, Boolean_1\n        PUSH, Boolean_2\n        PUSH, Boolean_0\n        EXTERN,
+    \"SystemBoolean.__op_ConditionalAnd__SystemBoolean_SystemBoolean__SystemBoolean\"\n
+    \       PUSH, Boolean_0\n        JUMP_IF_FALSE, 0x000168\n        PUSH, Single_0\n
+    \       EXTERN, \"UnityEngineRandom.__get_value__SystemSingle\"\n        PUSH,
+    Single_0\n        PUSH, Single_1\n        PUSH, boolValue\n        EXTERN, \"SystemSingle.__op_GreaterThan__SystemSingle_SystemSingle__SystemBoolean\"\n
+    \       PUSH, min_0\n        PUSH, max_0\n        PUSH, intValue\n        EXTERN,
+    \"UnityEngineRandom.__Range__SystemInt32_SystemInt32__SystemInt32\"\n        PUSH,
+    min_1\n        PUSH, max_1\n        PUSH, floatValue\n        EXTERN, \"UnityEngineRandom.__Range__SystemSingle_SystemSingle__SystemSingle\"\n
+    \       PUSH, min_2\n        PUSH, max_2\n        PUSH, instance_0\n        EXTERN,
+    \"UnityEngineRandom.__Range__SystemInt32_SystemInt32__SystemInt32\"\n        PUSH,
+    instance_0\n        PUSH, stringValue\n        EXTERN, \"SystemInt32.__ToString__SystemString\"\n
+    \       PUSH, vector3Value\n        EXTERN, \"UnityEngineRandom.__get_insideUnitSphere__UnityEngineVector3\"\n
+    \       PUSH, quaternionValue\n        EXTERN, \"UnityEngineRandom.__get_rotation__UnityEngineQuaternion\"\n
+    \       PUSH, hueMin_0\n        PUSH, hueMax_0\n        PUSH, saturationMin_0\n
+    \       PUSH, saturationMax_0\n        PUSH, valueMin_0\n        PUSH, valueMax_0\n
+    \       PUSH, colorValue\n        EXTERN, \"UnityEngineRandom.__ColorHSV__SystemSingle_SystemSingle_SystemSingle_SystemSingle_SystemSingle_SystemSingle__UnityEngineColor\"\n
+    \       JUMP, 0x000168\n        JUMP, 0xFFFFFFFC\n    \n    .export _lateUpdate\n
+    \   \n    _lateUpdate:\n    \n        PUSH, uiText\n        PUSH, instance_1\n
+    \       COPY\n        PUSH, boolValue\n        PUSH, arg0_0\n        COPY\n        PUSH,
+    format_0\n        PUSH, arg0_0\n        PUSH, str0_1\n        EXTERN, \"SystemString.__Format__SystemString_SystemObject__SystemString\"\n
+    \       PUSH, intValue\n        PUSH, arg0_1\n        COPY\n        PUSH, format_1\n
+    \       PUSH, arg0_1\n        PUSH, str1_1\n        EXTERN, \"SystemString.__Format__SystemString_SystemObject__SystemString\"\n
+    \       PUSH, floatValue\n        PUSH, arg0_2\n        COPY\n        PUSH, format_2\n
+    \       PUSH, arg0_2\n        PUSH, str2_1\n        EXTERN, \"SystemString.__Format__SystemString_SystemObject__SystemString\"\n
+    \       PUSH, stringValue\n        PUSH, arg0_3\n        COPY\n        PUSH, format_3\n
+    \       PUSH, arg0_3\n        PUSH, str3_1\n        EXTERN, \"SystemString.__Format__SystemString_SystemObject__SystemString\"\n
+    \       PUSH, str0_1\n        PUSH, str1_1\n        PUSH, str2_1\n        PUSH,
+    str3_1\n        PUSH, str0_0\n        EXTERN, \"SystemString.__Concat__SystemString_SystemString_SystemString_SystemString__SystemString\"\n
+    \       PUSH, vector3Value\n        PUSH, arg0_4\n        COPY\n        PUSH,
+    format_4\n        PUSH, arg0_4\n        PUSH, str1_0\n        EXTERN, \"SystemString.__Format__SystemString_SystemObject__SystemString\"\n
+    \       PUSH, quaternionValue\n        PUSH, arg0_5\n        COPY\n        PUSH,
+    format_5\n        PUSH, arg0_5\n        PUSH, str2_0\n        EXTERN, \"SystemString.__Format__SystemString_SystemObject__SystemString\"\n
+    \       PUSH, colorValue\n        PUSH, Color_0\n        COPY\n        PUSH, Color_0\n
+    \       PUSH, Single_2\n        EXTERN, \"UnityEngineColor.__get_r__SystemSingle\"\n
+    \       PUSH, Single_2\n        PUSH, Single_3\n        PUSH, f_0\n        EXTERN,
+    \"SystemSingle.__op_Multiplication__SystemSingle_SystemSingle__SystemSingle\"\n
+    \       PUSH, f_0\n        PUSH, arg0_7\n        EXTERN, \"UnityEngineMathf.__RoundToInt__SystemSingle__SystemInt32\"\n
+    \       PUSH, colorValue\n        PUSH, Color_1\n        COPY\n        PUSH, Color_1\n
+    \       PUSH, Single_4\n        EXTERN, \"UnityEngineColor.__get_g__SystemSingle\"\n
+    \       PUSH, Single_4\n        PUSH, Single_5\n        PUSH, f_1\n        EXTERN,
+    \"SystemSingle.__op_Multiplication__SystemSingle_SystemSingle__SystemSingle\"\n
+    \       PUSH, f_1\n        PUSH, arg1_1\n        EXTERN, \"UnityEngineMathf.__RoundToInt__SystemSingle__SystemInt32\"\n
+    \       PUSH, colorValue\n        PUSH, Color_2\n        COPY\n        PUSH, Color_2\n
+    \       PUSH, Single_6\n        EXTERN, \"UnityEngineColor.__get_b__SystemSingle\"\n
+    \       PUSH, Single_6\n        PUSH, Single_7\n        PUSH, f_2\n        EXTERN,
+    \"SystemSingle.__op_Multiplication__SystemSingle_SystemSingle__SystemSingle\"\n
+    \       PUSH, f_2\n        PUSH, arg2_0\n        EXTERN, \"UnityEngineMathf.__RoundToInt__SystemSingle__SystemInt32\"\n
+    \       PUSH, format_7\n        PUSH, arg0_7\n        PUSH, arg1_1\n        PUSH,
+    arg2_0\n        PUSH, arg0_6\n        EXTERN, \"SystemString.__Format__SystemString_SystemObject_SystemObject_SystemObject__SystemString\"\n
+    \       PUSH, colorValue\n        PUSH, arg1_0\n        COPY\n        PUSH, format_6\n
+    \       PUSH, arg0_6\n        PUSH, arg1_0\n        PUSH, str3_0\n        EXTERN,
+    \"SystemString.__Format__SystemString_SystemObject_SystemObject__SystemString\"\n
+    \       PUSH, str0_0\n        PUSH, str1_0\n        PUSH, str2_0\n        PUSH,
+    str3_0\n        PUSH, value_0\n        EXTERN, \"SystemString.__Concat__SystemString_SystemString_SystemString_SystemString__SystemString\"\n
+    \       PUSH, instance_1\n        PUSH, value_0\n        EXTERN, \"UnityEngineUIText.__set_text__SystemString__SystemVoid\"\n
+    \       JUMP, 0xFFFFFFFC\n    \n\n.code_end\n"
   assemblyError: 
   graphData:
     name: 

@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f11136daadff0b44ac2278a314682ab, type: 3}
   m_Name: SendEventOnMouseDown
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 5d1eef6e8bd291049a0c585761de0514,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 52724ccd9ed1ac4419709926d96a66c5,
     type: 2}
-  udonAssembly: ".data_start\r\n\r\n    .export eventName\r\n    .export target\r\n
-    \   \r\n    instance_0: %VRCUdonUdonBehaviour, this\r\n    eventName_0: %SystemString,
-    null\r\n    eventName: %SystemString, null\r\n    target: %VRCUdonUdonBehaviour,
-    this\r\n\r\n.data_end\r\n\r\n.code_start\r\n\r\n    .export _onMouseDown\r\n    \r\n
-    \   _onMouseDown:\r\n    \r\n        PUSH, target\r\n        PUSH, instance_0\r\n
-    \       COPY\r\n        PUSH, eventName\r\n        PUSH, eventName_0\r\n        COPY\r\n
-    \       PUSH, instance_0\r\n        PUSH, eventName_0\r\n        EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEvent__SystemString__SystemVoid\"\r\n
-    \       JUMP, 0xFFFFFFFC\r\n    \r\n\r\n.code_end\r\n"
+  udonAssembly: ".data_start\n\n    .export eventName\n    .export target\n    \n
+    \   instance_0: %VRCUdonUdonBehaviour, this\n    eventName_0: %SystemString, null\n
+    \   eventName: %SystemString, null\n    target: %VRCUdonUdonBehaviour, this\n\n.data_end\n\n.code_start\n\n
+    \   .export _onMouseDown\n    \n    _onMouseDown:\n    \n        PUSH, target\n
+    \       PUSH, instance_0\n        COPY\n        PUSH, eventName\n        PUSH,
+    eventName_0\n        COPY\n        PUSH, instance_0\n        PUSH, eventName_0\n
+    \       EXTERN, \"VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEvent__SystemString__SystemVoid\"\n
+    \       JUMP, 0xFFFFFFFC\n    \n\n.code_end\n"
   assemblyError: 
   graphData:
     name: 

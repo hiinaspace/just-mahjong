@@ -199,305 +199,304 @@ MonoBehaviour:
     - startInstruction: 0
       endInstruction: -1
       startSourceChar: 105
-      endSourceChar: 219
+      endSourceChar: 132
       line: 6
       lineChar: 26
-      spanCodeSection: "UdonSharpBehaviour\r\n{\r\n    //[UdonSynced] private Vector3
-        pos;\r\n    //[UdonSynced] private Quaternion rot;\r\n\r\n    "
+      spanCodeSection: "UdonSharpBehaviour\r\n{\r\n    "
     - startInstruction: 0
       endInstruction: -1
-      startSourceChar: 219
-      endSourceChar: 227
-      line: 11
+      startSourceChar: 132
+      endSourceChar: 140
+      line: 8
       lineChar: 4
       spanCodeSection: 'private '
     - startInstruction: 0
       endInstruction: -1
-      startSourceChar: 227
-      endSourceChar: 227
-      line: 11
+      startSourceChar: 140
+      endSourceChar: 140
+      line: 8
       lineChar: 12
       spanCodeSection: 
     - startInstruction: 0
       endInstruction: -1
-      startSourceChar: 227
-      endSourceChar: 247
-      line: 11
+      startSourceChar: 140
+      endSourceChar: 160
+      line: 8
       lineChar: 12
       spanCodeSection: "Rigidbody r;\r\n\r\n    "
     - startInstruction: 0
       endInstruction: 19
-      startSourceChar: 247
-      endSourceChar: 265
-      line: 13
+      startSourceChar: 160
+      endSourceChar: 178
+      line: 10
       lineChar: 4
       spanCodeSection: "void Start()\r\n    "
     - startInstruction: 20
       endInstruction: 19
-      startSourceChar: 265
-      endSourceChar: 276
-      line: 14
+      startSourceChar: 178
+      endSourceChar: 189
+      line: 11
       lineChar: 4
       spanCodeSection: "{\r\n        "
     - startInstruction: 20
       endInstruction: 19
-      startSourceChar: 276
-      endSourceChar: 276
-      line: 15
+      startSourceChar: 189
+      endSourceChar: 189
+      line: 12
       lineChar: 8
       spanCodeSection: 
     - startInstruction: 20
       endInstruction: 19
-      startSourceChar: 276
-      endSourceChar: 276
-      line: 15
+      startSourceChar: 189
+      endSourceChar: 189
+      line: 12
       lineChar: 8
       spanCodeSection: 
     - startInstruction: 20
       endInstruction: 19
-      startSourceChar: 276
-      endSourceChar: 286
-      line: 15
+      startSourceChar: 189
+      endSourceChar: 199
+      line: 12
       lineChar: 8
       spanCodeSection: 'var props '
     - startInstruction: 20
       endInstruction: 19
-      startSourceChar: 286
-      endSourceChar: 288
-      line: 15
+      startSourceChar: 199
+      endSourceChar: 201
+      line: 12
       lineChar: 18
       spanCodeSection: '= '
     - startInstruction: 20
       endInstruction: 19
-      startSourceChar: 288
-      endSourceChar: 292
-      line: 15
+      startSourceChar: 201
+      endSourceChar: 205
+      line: 12
       lineChar: 20
       spanCodeSection: 'new '
     - startInstruction: 20
       endInstruction: 55
-      startSourceChar: 292
-      endSourceChar: 326
-      line: 15
+      startSourceChar: 205
+      endSourceChar: 239
+      line: 12
       lineChar: 24
       spanCodeSection: "MaterialPropertyBlock();\r\n        "
     - startInstruction: 56
       endInstruction: 55
-      startSourceChar: 326
-      endSourceChar: 326
-      line: 16
+      startSourceChar: 239
+      endSourceChar: 239
+      line: 13
       lineChar: 8
       spanCodeSection: 
     - startInstruction: 56
       endInstruction: 55
-      startSourceChar: 326
-      endSourceChar: 341
-      line: 16
+      startSourceChar: 239
+      endSourceChar: 254
+      line: 13
       lineChar: 8
       spanCodeSection: props.SetFloat(
     - startInstruction: 56
       endInstruction: 55
-      startSourceChar: 341
-      endSourceChar: 350
-      line: 16
+      startSourceChar: 254
+      endSourceChar: 263
+      line: 13
       lineChar: 23
       spanCodeSection: '"_Tile", '
     - startInstruction: 56
       endInstruction: 55
-      startSourceChar: 350
-      endSourceChar: 362
-      line: 16
+      startSourceChar: 263
+      endSourceChar: 275
+      line: 13
       lineChar: 32
       spanCodeSection: Mathf.Floor(
     - startInstruction: 56
       endInstruction: 55
-      startSourceChar: 362
-      endSourceChar: 374
-      line: 16
+      startSourceChar: 275
+      endSourceChar: 287
+      line: 13
       lineChar: 44
       spanCodeSection: float.Parse(
     - startInstruction: 56
       endInstruction: 159
-      startSourceChar: 374
-      endSourceChar: 392
-      line: 16
+      startSourceChar: 287
+      endSourceChar: 305
+      line: 13
       lineChar: 56
       spanCodeSection: "name)));\r\n        "
     - startInstruction: 160
       endInstruction: 159
-      startSourceChar: 392
-      endSourceChar: 392
-      line: 17
+      startSourceChar: 305
+      endSourceChar: 305
+      line: 14
       lineChar: 8
       spanCodeSection: 
     - startInstruction: 160
       endInstruction: 159
-      startSourceChar: 392
-      endSourceChar: 438
-      line: 17
+      startSourceChar: 305
+      endSourceChar: 351
+      line: 14
       lineChar: 8
       spanCodeSection: GetComponent<MeshRenderer>().SetPropertyBlock(
     - startInstruction: 160
       endInstruction: 215
-      startSourceChar: 438
-      endSourceChar: 497
-      line: 17
+      startSourceChar: 351
+      endSourceChar: 410
+      line: 14
       lineChar: 54
       spanCodeSection: "props);\r\n\r\n        // try to stop exploding tiles\r\n
         \       "
     - startInstruction: 216
       endInstruction: 215
-      startSourceChar: 497
-      endSourceChar: 497
-      line: 20
+      startSourceChar: 410
+      endSourceChar: 410
+      line: 17
       lineChar: 8
       spanCodeSection: 
     - startInstruction: 216
       endInstruction: 215
-      startSourceChar: 497
-      endSourceChar: 501
-      line: 20
+      startSourceChar: 410
+      endSourceChar: 414
+      line: 17
       lineChar: 8
       spanCodeSection: 'r = '
     - startInstruction: 216
       endInstruction: 215
-      startSourceChar: 501
-      endSourceChar: 501
-      line: 20
+      startSourceChar: 414
+      endSourceChar: 414
+      line: 17
       lineChar: 12
       spanCodeSection: 
     - startInstruction: 216
       endInstruction: 215
-      startSourceChar: 501
-      endSourceChar: 513
-      line: 20
+      startSourceChar: 414
+      endSourceChar: 426
+      line: 17
       lineChar: 12
       spanCodeSection: GetComponent
     - startInstruction: 216
       endInstruction: 215
-      startSourceChar: 513
-      endSourceChar: 514
-      line: 20
+      startSourceChar: 426
+      endSourceChar: 427
+      line: 17
       lineChar: 24
       spanCodeSection: <
     - startInstruction: 216
       endInstruction: 267
-      startSourceChar: 514
-      endSourceChar: 537
-      line: 20
+      startSourceChar: 427
+      endSourceChar: 450
+      line: 17
       lineChar: 25
       spanCodeSection: "Rigidbody>();\r\n        "
     - startInstruction: 268
       endInstruction: 267
-      startSourceChar: 537
-      endSourceChar: 537
-      line: 21
+      startSourceChar: 450
+      endSourceChar: 450
+      line: 18
       lineChar: 8
       spanCodeSection: 
     - startInstruction: 268
       endInstruction: 267
-      startSourceChar: 537
-      endSourceChar: 566
-      line: 21
+      startSourceChar: 450
+      endSourceChar: 479
+      line: 18
       lineChar: 8
       spanCodeSection: 'r.maxDepenetrationVelocity = '
     - startInstruction: 268
       endInstruction: 299
-      startSourceChar: 566
-      endSourceChar: 629
-      line: 21
+      startSourceChar: 479
+      endSourceChar: 542
+      line: 18
       lineChar: 37
       spanCodeSection: "0.1f;\r\n        //SendCustomEvent(\"DoTestEvent\");\r\n    }\r\n\r\n
         \   "
     - startInstruction: 300
       endInstruction: 319
-      startSourceChar: 629
-      endSourceChar: 650
-      line: 25
+      startSourceChar: 542
+      endSourceChar: 563
+      line: 22
       lineChar: 4
       spanCodeSection: "void OnPickup()\r\n    "
     - startInstruction: 320
       endInstruction: 319
-      startSourceChar: 650
-      endSourceChar: 661
-      line: 26
+      startSourceChar: 563
+      endSourceChar: 574
+      line: 23
       lineChar: 4
       spanCodeSection: "{\r\n        "
     - startInstruction: 320
       endInstruction: 319
-      startSourceChar: 661
-      endSourceChar: 661
-      line: 27
+      startSourceChar: 574
+      endSourceChar: 574
+      line: 24
       lineChar: 8
       spanCodeSection: 
     - startInstruction: 320
       endInstruction: 319
-      startSourceChar: 661
-      endSourceChar: 681
-      line: 27
+      startSourceChar: 574
+      endSourceChar: 594
+      line: 24
       lineChar: 8
       spanCodeSection: Networking.SetOwner(
     - startInstruction: 320
       endInstruction: 319
-      startSourceChar: 681
-      endSourceChar: 681
-      line: 27
+      startSourceChar: 594
+      endSourceChar: 594
+      line: 24
       lineChar: 28
       spanCodeSection: 
     - startInstruction: 320
       endInstruction: 319
-      startSourceChar: 681
-      endSourceChar: 692
-      line: 27
+      startSourceChar: 594
+      endSourceChar: 605
+      line: 24
       lineChar: 28
       spanCodeSection: Networking.
     - startInstruction: 320
       endInstruction: 335
-      startSourceChar: 692
-      endSourceChar: 705
-      line: 27
+      startSourceChar: 605
+      endSourceChar: 618
+      line: 24
       lineChar: 39
       spanCodeSection: 'LocalPlayer, '
     - startInstruction: 336
       endInstruction: 359
-      startSourceChar: 705
-      endSourceChar: 747
-      line: 27
+      startSourceChar: 618
+      endSourceChar: 660
+      line: 24
       lineChar: 52
       spanCodeSection: "gameObject); // already happens?\r\n        "
     - startInstruction: 360
       endInstruction: 359
-      startSourceChar: 747
-      endSourceChar: 747
-      line: 28
+      startSourceChar: 660
+      endSourceChar: 660
+      line: 25
       lineChar: 8
       spanCodeSection: 
     - startInstruction: 360
       endInstruction: 359
-      startSourceChar: 747
-      endSourceChar: 763
-      line: 28
+      startSourceChar: 660
+      endSourceChar: 676
+      line: 25
       lineChar: 8
       spanCodeSection: 'r.isKinematic = '
     - startInstruction: 360
       endInstruction: 391
-      startSourceChar: 763
-      endSourceChar: 784
-      line: 28
+      startSourceChar: 676
+      endSourceChar: 697
+      line: 25
       lineChar: 24
       spanCodeSection: "false;\r\n    }\r\n\r\n    "
     - startInstruction: 392
       endInstruction: 411
-      startSourceChar: 784
-      endSourceChar: 803
-      line: 31
+      startSourceChar: 697
+      endSourceChar: 716
+      line: 28
       lineChar: 4
       spanCodeSection: "void OnDrop()\r\n    "
     - startInstruction: 412
       endInstruction: 412
-      startSourceChar: 803
-      endSourceChar: 803
-      line: 32
+      startSourceChar: 716
+      endSourceChar: 716
+      line: 29
       lineChar: 4
       spanCodeSection: 
   hasInteractEvent: 0
