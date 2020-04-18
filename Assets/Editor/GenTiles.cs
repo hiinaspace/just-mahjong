@@ -107,7 +107,7 @@ public class GenTiles : MonoBehaviour
     [MenuItem("RiichiHelpers/Generate Placements")]
     static void makePlacements()
     {
-        var dims = new Vector3(0.040f, 0.036f, 0.054f);
+        var dims = new Vector3(0.040f, 0.032f, 0.054f);
         var parent = GameObject.Find("Placements").transform;
         var rot = Quaternion.Euler(90f, 0, 0);
 
@@ -148,16 +148,16 @@ public class GenTiles : MonoBehaviour
         // dead wall has 14 tiles
         for (int j = 0; j < 2; ++j)
         {
-            float z = dims.z * j + 0.6f;
+            float y = dims.y * j;
             for (int i = 0; i < 7; ++i)
             {
                 float x = i * dims.x - 0.5f;
                 var obj = new GameObject($"Dead-{j}-{i}-{n++}");
                 obj.transform.parent = parent;
-                obj.transform.localPosition = new Vector3(x, 0, z);
+                obj.transform.localPosition = new Vector3(x, y, 0.6f);
                 obj.transform.rotation = rot;
                 // dora is flipped, very intelligent
-                if (j == 0 && i == 4)
+                if (j == 1 && i == 4)
                 {
                     obj.transform.rotation = Quaternion.Euler(-90, 0, 0);
                 }
@@ -176,13 +176,14 @@ public class GenTiles : MonoBehaviour
         {
             for (int k = 0; k < 2; ++k)
             {
+                float y = dims.y * k;
                 for (int i = 0; i < lens[j]; ++i)
                 {
-                    float x = (j % 2 == 1) ? (i - 8.5f) * dims.x : k * dims.z;
-                    float z = (j % 2 == 1) ? k * dims.z : (i - 8.5f) * dims.x;
+                    float x = (j % 2 == 1) ? (i - 8.5f) * dims.x : dims.z;
+                    float z = (j % 2 == 1) ? dims.z : (i - 8.5f) * dims.x;
                     var obj = new GameObject($"Wall-{j}-{i}-{n++}");
                     obj.transform.parent = parent;
-                    obj.transform.localPosition = new Vector3(walls[j].x + x, 0, walls[j].y + z);
+                    obj.transform.localPosition = new Vector3(walls[j].x + x, y, walls[j].y + z);
                     obj.transform.rotation = Quaternion.Euler(90, 0, (1 + j) * -90);
                 }
             }

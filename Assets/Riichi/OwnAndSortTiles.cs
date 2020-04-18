@@ -26,35 +26,20 @@ public class OwnAndSortTiles : UdonSharpBehaviour
     // so we can check in this canonical order whether we're the first and
     // canonical owner, in the case of multiple of these owned by the same player
     public GameObject[] allOwnAndSortTiles;
-
-    // XXX getting some really weird bug where an instance variable won't be updated
-    // until a couple seconds after it's set; really really strange. I suspect it might
-    // be because of the number of instance variables on here, so going to try to pack
-    // some ints into a mega array variable. Gross, but maybe will fix.
-    private int[] instanceInts = new int[32];
-    private const int SELF_IDX = 0;
-    //private int selfIdx;
-    private const int SYNC_STATE_SIZE = 1;
-    //private int syncStateSize = 0;
-    private const int SEQ_NO = 2;
-    //private int seqNo = 0;
-    private const int NEXT_FRAG_TO_SEND = 3;
-    //private int nextFragToSend;
-    private const int LAST_SEQ_READ = 4;
-    //private int lastSeqRead;
-    private const int SEND_BUFFER_SIZE = 5;
-    //private int[] sendBufferSize = new int[1]; // XXX testing
+    private int selfIdx;
 
     private float lastWrite;
-    private const float updateSpeed = 1f;// 0.2f;
+    private const float updateSpeed = 0.2f;
 
     // oversize buffer for largest possible variable-length state
     private byte[] syncState = new byte[2048];
+    private int syncStateSize = 0;
 
-    private const int maxSyncedStringLen = 10;//105;
+    private const int maxSyncedStringLen = 105;
     // max ascii chars in the two strings - 5 for the header
     private const int maxFragSizeAscii = maxSyncedStringLen * 2 - 5;
 
+    private int seqNo = 0;
     [UdonSynced] string syncState0 = "";
     [UdonSynced] string syncState1 = "";
 
@@ -68,9 +53,19 @@ public class OwnAndSortTiles : UdonSharpBehaviour
     private Vector3[] inHandPositions;
 
     private char[] sendBuffer = new char[2048];
+    private int nextFragToSend;
+    private int currentFragCnt;
+    private int currentFragmentedSeq;
+    private int lastSeqFullyRead;
+    private int sendBufferSize;
 
     private char[] fragBuffer = new char[2048];
     private bool[] fragState = new bool[1];
+
+    // work avoidance
+    Vector3[] lastKnownTilePos = new Vector3[136];
+    Quaternion[] lastKnownTileRot = new Quaternion[136];
+    int[] lastKnownTileStateSize = new int[136];
 
     // XXX might be udonsharp bug, but variables not declared before all methods seem to turn into local vars
 
@@ -81,15 +76,17 @@ public class OwnAndSortTiles : UdonSharpBehaviour
         for (int i = 0; i < 136; ++i)
         {
             tiles[i] = tileParent.GetChild(i);
+            lastKnownTilePos[i] = Vector3.zero;
+            lastKnownTileRot[i] = Quaternion.identity;
         }
         
         // kind of silly, dunno better way yet
-        instanceInts[SELF_IDX] = -1;
+        selfIdx = -1;
         for (int i = 0; i < 4; ++i)
         {
             if (allOwnAndSortTiles[i] == gameObject)
             {
-                instanceInts[SELF_IDX] = i;
+                selfIdx = i;
             }
         }
         //Debug.Log($"{gameObject} is at idx {selfIdx} = {allOwnAndSortTiles[selfIdx]}");
@@ -105,14 +102,11 @@ public class OwnAndSortTiles : UdonSharpBehaviour
             //Debug.Log($"{gameObject.name} handPos[{i}] = {inHandPositions[i]}");
             z += 1;
         }
-        // wat
-        instanceInts[SEND_BUFFER_SIZE] = -1;
-        instanceInts[NEXT_FRAG_TO_SEND] = -1;
     }
 
     bool floatEq(float a, float b)
     {
-        return Mathf.Abs(a - b) < 0.005; // close enough
+        return Mathf.Abs(a - b) < 0.001; // close enough
     }
 
     void Update()
@@ -124,27 +118,20 @@ public class OwnAndSortTiles : UdonSharpBehaviour
             {
                 lastWrite = 0;
                 bool updated = UpdateTileState();
-                Debug.Log("in new update() loop");
 
-                Debug.Log($"in update() loop, on frag {instanceInts[NEXT_FRAG_TO_SEND]}, sendBufsize {instanceInts[SEND_BUFFER_SIZE]}");
                 // if we need to cycle through our fragments
                 // or update any part if packet header + syncstate
                 // exceeds packet size
-                // TODO updated is always true for now anyway
-                //if ((1 + syncStateSize) > maxFragSize || updated)
-                //{
-                //}
-                Debug.Log("begin Serialize");
-                Serialize(updated);
-                Debug.Log("end Serialize");
-                // testing
-                Debug.Log("begin Deseralize");
-                if (Deserialize())
+                if (currentFragCnt > 1 || updated)
                 {
-                    Debug.Log("end Deseralize, do UpdateLocalTiles");
-                    UpdateLocalTiles();
+                    Serialize(updated);
                 }
-                Debug.Log($"end update() loop, on frag {instanceInts[NEXT_FRAG_TO_SEND]}, sendBufsize {instanceInts[SEND_BUFFER_SIZE]}");
+
+                //// testing
+                //if (Deserialize())
+                //{
+                //    UpdateLocalTiles();
+                //}
             }
         } else
         {
@@ -196,6 +183,16 @@ public class OwnAndSortTiles : UdonSharpBehaviour
         return -1;
     }
 
+    bool positionsEqual(Vector3 a, Vector3 b)
+    {
+        return Vector3.Distance(a, b) < 0.01f;
+    }
+
+    bool rotsEqual(Quaternion a, Quaternion b)
+    {
+        return Mathf.Abs(Quaternion.Dot(a, b)) > 0.999f;
+    }
+
     // returns if state was modified
     bool UpdateTileState()
     {
@@ -205,41 +202,67 @@ public class OwnAndSortTiles : UdonSharpBehaviour
         // prevents the case where 1) all the OwnAndSortTiles are owned by master initially
         // or 2) a player goes and interacts with all of them.
         if (!isFirstOwner()) return false;
-        bool changed = true; // TODO actually check for last state of tile. for now assume changed.
-        int n = 0;
+
+        bool changed = false;
+
+        // keep track of tiles that are in the state as a bitmap
+        // could have individual indices instead, but on average, a player will own
+        // 13 tile hand + 12 discards, so that's 25 bytes that could instead be 17.
+        bool[] tileInState = new bool[136];
+
+        int n = 17;
         for (int i = 0; i < 136; ++i)
         {
             var t = tiles[i];
-            if (Networking.IsOwner(t.gameObject))
+            tileInState[i] = false;
+            // if we're owner of the tile, we should sync it;
+            // except: if we're also master, and the tile is still in the Shuffle bitmap.
+            // this is tricky; we don't need to duplicate the Shuffle state here. 
+            // if we're owner and we're _not_ master, then it's safe to proceed
+            // if we're owner and also master, then
+            //   if this tile isn't in Shuffle.bitmap,
+            //      this tile is safe to proceed
+            //   otherwise, it's still controlled by the shuffler, so skip it.
+            // when we (the master) move the tile locally, by either hitting the button to 
+            // sort tiles or grabbing it, the Shuffler will (locally) remove it from the bitmap,
+            // and this function will pick up that change, and start adding it to this state.
+            // XXX checking shuffler.isDealt avoiding the initial positin of all the tiles from being packed.
+            // need a better initial position.
+            if (Networking.IsOwner(t.gameObject) && !(Networking.IsMaster && (!shuffler.isDealt || shuffler.dealtTiles[i])))
             {
-                // if we're owner of the tile, we should sync it;
-                // except: if we're also master, and the tile is still in the Shuffle bitmap.
-                // this is tricky; we don't need to duplicate the Shuffle state here. 
-                // if we're owner and we're _not_ master, then it's safe to proceed
-                // if we're owner and also master, then
-                //   if this tile isn't in Shuffle.bitmap,
-                //      this tile is safe to proceed
-                //   otherwise, it's still controlled by the shuffler, so skip it.
-                // when we (the master) move the tile locally, by either hitting the button to 
-                // sort tiles or grabbing it, the Shuffler will (locally) remove it from the bitmap,
-                // and this function will pick up that change, and start adding it to this state.
-                if (Networking.IsMaster && shuffler.dealtTiles[i])
+                // if nothing changed before and this tile is the same
+                if (!changed && positionsEqual(lastKnownTilePos[i], t.position) && rotsEqual(lastKnownTileRot[i], t.rotation))
                 {
+                    // skip past our bytes, syncState is already valid for it;
+                    //Debug.Log($"tile {t.gameObject.name} unchanged, skippin {lastKnownTileStateSize[i]} bytes for it");
+                    tileInState[i] = true;
+                    n += lastKnownTileStateSize[i];
                     continue;
                 }
+                if (!changed) // if some previous tile isn't just bumping us
+                {
+                    Debug.Log($"tile {t.gameObject.name} changed at {t.position}, last seen at {lastKnownTilePos[i]}");
+                }
+                // else we're changed if not already; this and all tiles ahead need to be reserialized
+                changed = true;
+                lastKnownTilePos[i] = t.position;
+                lastKnownTileRot[i] = t.rotation;
+
+                tileInState[i] = true;
 
                 // if tile is in hand position from sorting
                 int inHandPos = isInHand(t);
                 if (inHandPos >= 0)
                 {
-
                     // [0] [0] [1] [5 bytes hand pos] = 1 byte, in hand
                     syncState[n++] = (byte)((0b001 << 5) + inHandPos);
-                    //Debug.Log($"{t.gameObject.name} is owned by {gameObject.name}, in hand at {inHandPos}");
+                    Debug.Log($"{t.gameObject.name} is owned by {gameObject.name}, in hand at {inHandPos}");
+                    lastKnownTileStateSize[i] = 1;
 
                 } else if (isFlatOnTable(t))
                 {
                     // [1] [1 bit up or down] [8 bits euler y] [11 bits x] [11 bits z] = 4 bytes, on table
+                    // TODO would be nice to pack other "on the table" positions too including hand (standing up) and sideways
 
                     var r = t.rotation;
                     var y = r.eulerAngles.y;
@@ -263,8 +286,9 @@ public class OwnAndSortTiles : UdonSharpBehaviour
                     syncState[n++] = (byte)((pack >> 16) & 255);
                     syncState[n++] = (byte)((pack >> 8)  & 255);
                     syncState[n++] = (byte)(pack         & 255);
-                    //Debug.Log($"{t.gameObject.name} is owned by {gameObject.name}, flat on table at {t.position}");
+                    Debug.Log($"{t.gameObject.name} is owned by {gameObject.name}, flat on table at {t.position}");
                     //DebugTablePack(syncState, n - 4);
+                    lastKnownTileStateSize[i] = 4;
                 } else
                 {
                     // [[0] [1] [13 bits x] [12 bits y] [13 bits z]] [[2 bits largest component] [30 bits components]] = 9 bytes
@@ -284,12 +308,45 @@ public class OwnAndSortTiles : UdonSharpBehaviour
 
                     packQuaternion(t.rotation, syncState, n);
                     n += 4;
-                    //Debug.Log($"{t.gameObject.name} is owned by {gameObject.name}, arbitrary at {t.position} {t.rotation}");
-                    //DebugFullPack(syncState, n - 9);
+                    Debug.Log($"{t.gameObject.name} is owned by {gameObject.name}, arbitrary at {t.position.x}, {t.position.y}, {t.position.z}, {t.rotation}");
+                    //DebugFullPack("seralized full pack: ", syncState, n - 9);
+                    lastKnownTileStateSize[i] = 9;
+                }
+            } else
+            {
+                // not owned; check if we owned it last update though since that's a change, and future tiles
+                // need to be reserialized
+                if (lastKnownTilePos[i] != Vector3.zero)
+                {
+                    changed = true;
+                    lastKnownTilePos[i] = Vector3.zero;
+                    lastKnownTileRot[i] = Quaternion.identity;
+                    lastKnownTileStateSize[0] = 0;
                 }
             }
         }
-        instanceInts[SYNC_STATE_SIZE] = n;
+
+        // avoid serializing bitmap if nothing changed
+        if (!changed) return false;
+
+        // serialize bitmap
+        for (int i = 0; i < 17; ++i)
+        {
+            var j = i * 8;
+            syncState[i] = (byte)(
+                (tileInState[j+0] ? 128 : 0) +
+                (tileInState[j+1] ? 64 : 0) +
+                (tileInState[j+2] ? 32 : 0) +
+                (tileInState[j+3] ? 16 : 0) +
+                (tileInState[j+4] ? 8 : 0) +
+                (tileInState[j+5] ? 4 : 0) +
+                (tileInState[j+6] ? 2 : 0) +
+                (tileInState[j+7] ? 1 : 0));
+        }
+
+        syncStateSize = n;
+        //Debug.Log($"actual update tile state with {syncStateSize} bytes");
+        DebugBytes("UpdateTileState, wrote ", syncState, syncStateSize);
         return changed;
     }
 
@@ -299,8 +356,7 @@ public class OwnAndSortTiles : UdonSharpBehaviour
         return c.PadLeft(8, '0');
     }
 
-    /*
-    void DebugFullPack(byte[] bytes, int i)
+    void DebugFullPack(string s, byte[] bytes, int i)
     {
         var c = toBin(bytes[i]);
         c += "|" + toBin(bytes[i + 1]);
@@ -311,7 +367,7 @@ public class OwnAndSortTiles : UdonSharpBehaviour
         c += "|" + toBin(bytes[i + 6]);
         c += "|" + toBin(bytes[i + 7]);
         c += "|" + toBin(bytes[i + 8]);
-        Debug.Log($"full pack: {c}");
+        Debug.Log($"{s}{c}");
     }
     void DebugTablePack(byte[] bytes, int i)
     {
@@ -321,7 +377,7 @@ public class OwnAndSortTiles : UdonSharpBehaviour
         c += "|" + toBin(bytes[i + 3]);
         Debug.Log($"table pack: {c}");
     }
-    */
+   
     uint PackYRot(float f)
     {
         // [0, 360] to [0, 255]
@@ -447,7 +503,7 @@ public class OwnAndSortTiles : UdonSharpBehaviour
         // prevents the case where 1) all the OwnAndSortTiles are owned by master initially
         // or 2) a player goes and interacts with all of them.
         var owner = Networking.GetOwner(gameObject);
-        for (int i = 0; i < instanceInts[SELF_IDX]; ++i)
+        for (int i = 0; i < selfIdx; ++i)
         {
             var o = Networking.GetOwner(allOwnAndSortTiles[i]);
             if (o == owner) return false;
@@ -458,24 +514,30 @@ public class OwnAndSortTiles : UdonSharpBehaviour
     void UpdateLocalTiles()
     {
         if (!isFirstOwner()) return;
-        var owner = Networking.GetOwner(gameObject); // owner of this OwnAndSortTiles thing
-        int n = 0;
+
+        DebugBytes("updateLocalTiles, reading ", syncState, syncStateSize);
+        bool[] tilesInState = new bool[136];
+        // probably more efficient ways to read this.
+        for (int i = 0; i < 17; ++i)
+        {
+            uint map = syncState[i];
+            var j = i * 8;
+            tilesInState[j+0] = (map & 128) > 0;
+            tilesInState[j+1] = (map & 64) > 0;
+            tilesInState[j+2] = (map & 32) > 0;
+            tilesInState[j+3] = (map & 16) > 0;
+            tilesInState[j+4] = (map & 8) > 0;
+            tilesInState[j+5] = (map & 4) > 0;
+            tilesInState[j+6] = (map & 2) > 0;
+            tilesInState[j+7] = (map & 1) > 0;
+        }
+
+        int n = 17; // skip bitmap room
         for (int i = 0; i < 136; ++i)
         {
             var t = tiles[i];
-            // if the tile is owned (and thus controlled) by this syncState
-            // TODO but what if GetOwner sync diverges from the state? could have misindexed tiles.
-            // might need 17 bytes of a bitmap after all.
-            if (Networking.GetOwner(t.gameObject) == owner)
+            if (tilesInState[i])
             {
-                // except: if the tile is still in the Shuffle bitmap
-                // it'll still be owned by master in that case, who could also own this
-                // confusing to think about.
-                if (shuffler.dealtTiles[i])
-                {
-                    continue;
-                }
-
                 var isTable = ((syncState[n] >> 7) & 1) == 1;
                 var isFull = ((syncState[n] >> 6) & 1) == 1;
                 if (isTable)
@@ -503,10 +565,11 @@ public class OwnAndSortTiles : UdonSharpBehaviour
                     t.position = new Vector3(xPos, onTableY, zPos);
                     t.rotation = Quaternion.Euler(isUp ? 270 : 90, yRot, 0);
 
-                    //Debug.Log($"found {t.gameObject.name} , on table at {xPos} {zPos}, yrot {yRot}, isUp {isUp}");
+                    Debug.Log($"found {t.gameObject.name} , on table at {xPos} {zPos}, yrot {yRot}, isUp {isUp}");
                     n += 4;
                 } else if (isFull)
                 {
+                    //DebugFullPack("deseralized full pack: ", syncState, n);
                     // [0] [1] [13 bits x] [12 bits y] [13 bits z] [2 bits largest component] [30 bits components] = 9 bytes
                     // 01 [6 bits x] | [7 bits x] [1 bit y] | [8 bits y] | [3 bits y] | [5 bits z] | [8 bits z] // quaternion stuff;
                     uint px = (uint)(syncState[n] & 63);
@@ -534,7 +597,7 @@ public class OwnAndSortTiles : UdonSharpBehaviour
                     var q = unpackQuaternion(syncState, n + 5);
                     t.rotation = q;
 
-                    //Debug.Log($"found {t.gameObject.name} , full position {x} {y} {z}");
+                    Debug.Log($"found {t.gameObject.name} , full position {x} {y} {z}, rot {q}");
                     n += 9;
                 } else
                 {
@@ -542,11 +605,11 @@ public class OwnAndSortTiles : UdonSharpBehaviour
                     var p = inHandPositions[syncState[n] & 31];
                     t.position = p;
                     // I think this is right for local?
-                    t.rotation = Quaternion.Inverse(origin.rotation) * Quaternion.Euler(0, 90, 0);
+                    t.rotation = origin.rotation * Quaternion.Euler(0, 90, 0);
 
+                    Debug.Log($"found {t.gameObject.name} , hand position {p}");
                     n += 1;
                 }
-
             }
         }
     }
@@ -561,27 +624,19 @@ public class OwnAndSortTiles : UdonSharpBehaviour
     // `actuallyUpdated` if syncState changed since last seqNo
     void Serialize(bool actuallyUpdated)
     {
-        // if we have fragmentation currently, finish the current cycle
+        // if we have fragmentation currently, at least finish the current cycle
         // before restting again; since the actuallyUpdated is always true for now;
         // otherwise it totally starves the receiving end
-        // TODO make actuallyUpdated work
-        // XXX currentFragCnt keeps getting reset somehow, as does nextfragto send
-        var currentFragCnt = instanceInts[SEND_BUFFER_SIZE]/ maxFragSizeAscii + 1;
-        Debug.Log($"currentFragCnt {currentFragCnt}, on frag {instanceInts[NEXT_FRAG_TO_SEND]}, sendBufferSize: {instanceInts[SEND_BUFFER_SIZE]}");
-        if (currentFragCnt > 1 && instanceInts[NEXT_FRAG_TO_SEND] != 0)
-        {
-            // need to send next frag, don't update 
-            Debug.Log($"Still sending {instanceInts[SEQ_NO]}, on frag {instanceInts[NEXT_FRAG_TO_SEND]}");
-        } else
+        if (actuallyUpdated && !(currentFragCnt > 1 && nextFragToSend != 0))
         {
             // need to cycle
-            instanceInts[SEQ_NO] = (instanceInts[SEQ_NO] + 1) % 127;
+            seqNo = (seqNo + 1) % 127;
             // and reset frags
-            instanceInts[NEXT_FRAG_TO_SEND] = 0;
+            nextFragToSend = 0;
 
             // actually dump the entire state into the buffer
             int n = 0;
-            for (int i = 0; i < instanceInts[SYNC_STATE_SIZE];)
+            for (int i = 0; i < syncStateSize;)
             {
                 // pack 7 bytes into 56 bits;
                 ulong pack =         syncState[i++];
@@ -606,40 +661,47 @@ public class OwnAndSortTiles : UdonSharpBehaviour
                 sendBuffer[n++] = (char)(pack         & (ulong)127);
                 //DebugChars("chars: ", sendBuffer, n - 8);
             }
-            instanceInts[SEND_BUFFER_SIZE] = n;
+            sendBufferSize = n;
+            //DebugChars("serialize wrote chars: ", sendBuffer, sendBufferSize);
 
-            currentFragCnt = instanceInts[SEND_BUFFER_SIZE] / maxFragSizeAscii + 1;
+            currentFragCnt = sendBufferSize / maxFragSizeAscii + 1;
 
-            Debug.Log($"actually updated, dumped state for seq {instanceInts[SEQ_NO]} in {currentFragCnt} frags, {instanceInts[SYNC_STATE_SIZE]} bytes, {n} chars");
+            Debug.Log($"actually updated, dumped state for seq {seqNo} in {currentFragCnt} frags, {syncStateSize} bytes, {n} chars");
         }
+
+        // skip next packet if there's nothing new
+        // note that if frag count is more than 1, we'll continuously
+        // cycle the fragment of the sendBuffer so late joiners can pick it up;
+        if (currentFragCnt == 1 && !actuallyUpdated) return;
 
         char[] chars = new char[maxFragSizeAscii + 5];
 
         // header
-        chars[0] = Convert.ToChar(instanceInts[SEQ_NO]);
-        chars[1] = Convert.ToChar(instanceInts[NEXT_FRAG_TO_SEND]);
+        chars[0] = Convert.ToChar(seqNo);
+        chars[1] = Convert.ToChar(nextFragToSend);
         chars[2] = Convert.ToChar(currentFragCnt);
-        chars[3] = Convert.ToChar((instanceInts[SYNC_STATE_SIZE] >> 7) & 127);
-        chars[4] = Convert.ToChar(instanceInts[SYNC_STATE_SIZE] & 127);
+        chars[3] = Convert.ToChar((syncStateSize >> 7) & 127);
+        chars[4] = Convert.ToChar(syncStateSize & 127);
 
         // XXX not in udon
         //Array.Copy(sendBuffer, lastFragSent * maxFragSize, chars, 5, maxFragSize);
-        int m = instanceInts[NEXT_FRAG_TO_SEND] * maxFragSizeAscii; // start offset
+        int m = nextFragToSend * maxFragSizeAscii; // start offset
         for (int i = 5; i < chars.Length; ++i)
         {
             chars[i] = sendBuffer[m++];
         }
+        //DebugChars("fragmented chars sent: ", chars, chars.Length);
 
         // always do max length strings
         var s = new string(chars);
         syncState0 = s.Substring(0, maxSyncedStringLen);
         syncState1 = s.Substring(maxSyncedStringLen, maxSyncedStringLen);
 
-        Debug.Log($"write frag {instanceInts[NEXT_FRAG_TO_SEND]} of {currentFragCnt}, total {instanceInts[SYNC_STATE_SIZE]} bytes to syncState0,1");
+        //Debug.Log($"write frag {nextFragToSend} of {currentFragCnt}, total {syncStateSize} bytes to syncState0,1");
 
         // increment, so we'll cycle through them next time
-        instanceInts[NEXT_FRAG_TO_SEND] = (instanceInts[NEXT_FRAG_TO_SEND] + 1) % currentFragCnt;
-        Debug.Log($"next frag to send is {instanceInts[NEXT_FRAG_TO_SEND]}, currentFragCnt is {currentFragCnt}");
+        nextFragToSend = (nextFragToSend + 1) % currentFragCnt;
+        //Debug.Log($"next frag to send is {nextFragToSend}, currentFragCnt is {currentFragCnt}");
     }
     bool Deserialize()
     {
@@ -666,24 +728,21 @@ public class OwnAndSortTiles : UdonSharpBehaviour
         var len = Convert.ToInt32(header[3]);
         len = (len << 7) + Convert.ToInt32(header[4]);
 
-        Debug.Log($"read seq {seq} frag {frag} fragcnt {fragCnt} len {len}");
-
         var offset = 0;
         if (fragCnt > 1)
         {
             // reading a fragmented packet.
-            if (seq != instanceInts[LAST_SEQ_READ])
+            if (seq != currentFragmentedSeq)
             {
                 // whole new packet
-                // TODO could starve clients if never receive full packet before actuallyUpdated triggers
-                instanceInts[LAST_SEQ_READ] = seq;
-                Debug.Log($"whole new packet, resetting fragState");
+                currentFragmentedSeq = seq;
+                //Debug.Log($"whole new packet, resetting fragState");
                 fragState = new bool[fragCnt];
             }
 
             // we now have this fragment
             fragState[frag] = true;
-            Debug.Log($"got frag {frag} of seq {seq}");
+            //Debug.Log($"got frag {frag} of seq {seq}");
 
             // skip forward in array
             offset += maxFragSizeAscii * frag;
@@ -691,29 +750,31 @@ public class OwnAndSortTiles : UdonSharpBehaviour
             // copy into buffer
             // XXX skip header with substring
             syncState0.Substring(5).ToCharArray().CopyTo(fragBuffer, offset);
-            syncState1.ToCharArray().CopyTo(fragBuffer, offset + 100);
+            syncState1.ToCharArray().CopyTo(fragBuffer, offset + syncState0.Length - 5);
+            //DebugChars($"updated frag {frag} of {fragCnt}, seq {seq} into fragBuffer, {len} bytes total ", fragBuffer, fragCnt * maxFragSizeAscii);
 
             // wait until all fragments are in
             for (int i = 0; i < fragCnt; ++i)
             {
-                Debug.Log($"fragState[{i}] = {fragState[i]}");
                 if (!fragState[i]) return false;
             }
         } else
         {
-            if (seq == instanceInts[LAST_SEQ_READ])
-            {
-                // we already saw this
-                return false;
-            }
-
-            instanceInts[LAST_SEQ_READ] = seq;
-            Debug.Log($"have only {fragCnt} frag, copying directly");
+            //Debug.Log($"have only {fragCnt} frag, copying directly");
             syncState0.Substring(5).ToCharArray().CopyTo(fragBuffer, offset);
             syncState1.ToCharArray().CopyTo(fragBuffer, offset + 100);
         }
 
-        Debug.Log($"reading whole fragBuffer in, {len} bytes");
+        if (lastSeqFullyRead == seq)
+        {
+            // already read it
+            return false;
+        }
+        lastSeqFullyRead = seq;
+
+        Debug.Log($"read seq {seq} frag {frag} fragcnt {fragCnt} len {len}");
+
+        //DebugChars($"unpacking whole fragBuffer in, {len} bytes ", fragBuffer, fragCnt * maxFragSizeAscii);
         // okay, now fragBuffer is complete, (either full packet, or all fragments in)
         // has no header prepended.
         int n = 0; 
@@ -742,7 +803,7 @@ public class OwnAndSortTiles : UdonSharpBehaviour
             syncState[i++] = (byte)((pack >> 8)  & (ulong)255);
             syncState[i++] = (byte)((pack >> 0)  & (ulong)255);
         }
-        //DebugBytes("after: ", syncState, len);
+        //DebugBytes("unpacked bytes read: ", syncState, len);
 
         return true;
     }
@@ -760,14 +821,14 @@ public class OwnAndSortTiles : UdonSharpBehaviour
         foreach (Collider t in tiles)
         {
             var obj = t.gameObject;
-            Debug.Log($"tile {obj.name}");
+            //Debug.Log($"tile {obj.name}");
             Networking.SetOwner(Networking.LocalPlayer, obj);
 
             obj.transform.position = inHandPositions[n++];
             obj.transform.rotation = origin.rotation * Quaternion.Euler(0, 90, 0);
 
             var r = obj.GetComponent<Rigidbody>();
-            //r.isKinematic = false; // allow movement locally
+            r.isKinematic = false; // allow movement locally
 
             z += 1f;
             if (n >= inHandLimit) break;
@@ -800,16 +861,11 @@ public class OwnAndSortTiles : UdonSharpBehaviour
         }
     }
     
-    /*
     void DebugChars(string s, char[] chars, int n)
     {
-        for (int i = n; i < (n + 8); ++i)
+        for (int i = 0; i < n; ++i)
         {
-            var c = Convert.ToString((byte)chars[i], 2);
-            while (c.Length < 7)
-            {
-                c = "0" + c;
-            }
+            var c = Convert.ToString((byte)chars[i], 16).PadLeft(2, '0');
             s += $"{c}|";
         }
         Debug.Log(s);
@@ -841,10 +897,9 @@ public class OwnAndSortTiles : UdonSharpBehaviour
     {
         for (int i = 0; i < len; ++i)
         {
-            s += $"{Convert.ToInt32(bytes[i]):D3}|";
+            s += $"{Convert.ToString(bytes[i], 16).PadLeft(2,'0')}|";
         }
         Debug.Log(s);
     }
-    */
 
 }

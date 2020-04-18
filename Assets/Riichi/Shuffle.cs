@@ -25,15 +25,19 @@ public class Shuffle : UdonSharpBehaviour
     public bool[] dealtTiles;
 
     int seqNo;
-    bool isDealt = false;
+    int lastReadSeq;
+    public bool isDealt = false;
 
     // 7 bits: [4 bits seqNo] [1 bit for "is dealt"]
     // 153 bytes for the rest of the shuffleState
-    [UdonSynced] string shuffleState0;
-    [UdonSynced] string shuffleState1;
+    [UdonSynced] string shuffleState0 = "";
+    [UdonSynced] string shuffleState1 = "";
 
     private float lastWrite;
-    private const float updateSpeed = 0.2f;
+    // shuffle and tilebitmap change doesn't happen that often
+    private const float updateSpeed = 0.5f;
+    private float lastRead;
+    private const float readUpdateSpeed = 0.4f;
 
     void Start()
     {
@@ -47,7 +51,7 @@ public class Shuffle : UdonSharpBehaviour
             dealtTiles[i] = false;
         }
         shuffleState = new byte[shuffleStateSize];
-        DoShuffle();
+        //DoShuffle();
     }
 
     void Interact()
@@ -72,10 +76,15 @@ public class Shuffle : UdonSharpBehaviour
             }
         } else
         {
-            // on client, try deserialize
-            if (Deserialize())
+            lastRead += Time.deltaTime;
+            if (lastRead > readUpdateSpeed)
             {
-                UpdateLocalTiles();
+                lastRead = 0;
+                // on client, try deserialize
+                if (Deserialize())
+                {
+                    UpdateLocalTiles();
+                }
             }
         }
     }
@@ -196,7 +205,7 @@ public class Shuffle : UdonSharpBehaviour
                     //Debug.Log($"tile {k} moved, expected in {shuffleState[k]} position {Convert.ToString((int)map, 2)}");
                 }
             }
-            changed |= (oldMap != map);
+            changed = changed || (oldMap != map);
             bitmap[i] = map;
         }
         //DebugBitmap("old bitmap: ", shuffleState, 136);
@@ -256,7 +265,7 @@ public class Shuffle : UdonSharpBehaviour
             //DebugChars("chars: ", chars, n - 8);
         }
         // drop into the synced variables
-        //DebugBytes("before: ", shuffleState);
+        DebugBytes($"wrote new shuffle {seqNo}, isDealt {isDealt} ", shuffleState);
         var s = new string(chars);
         shuffleState0 = s.Substring(0, 88);
         shuffleState1 = s.Substring(88, 89);
@@ -302,7 +311,7 @@ public class Shuffle : UdonSharpBehaviour
     {
         for (int i = 0; i < bytes.Length; ++i)
         {
-            s += $"{Convert.ToInt32(bytes[i]):D3}|";
+            s += $"{Convert.ToString(bytes[i], 16).PadLeft(2, '0')}|";
         }
         Debug.Log(s);
     }
@@ -311,14 +320,22 @@ public class Shuffle : UdonSharpBehaviour
     bool Deserialize()
     {
         // nothing happened yet
-        if (shuffleState0.Length == 0) return false;
+        if (shuffleState0.Length == 0) {
+            //Debug.Log("empty shuffle state, not reading");
+            return false;
+        }
         // XXX udon can't do string[idx] 
         var first = (int)shuffleState0.Substring(0, 1).ToCharArray()[0];
 
         var seq = (first >> 4) & 15;
         // skip rest if we've already seen this packet
         // TODO skip for debugging
-        // if (seq == seqNo) return false;
+        if (seq == lastReadSeq)
+        {
+            //Debug.Log($"already saw seqNo {seq}, skipping");
+            return false;
+        }
+        lastReadSeq = seq;
 
         isDealt = (first & 1) == 0; // last bit is isDealt
 
@@ -351,7 +368,7 @@ public class Shuffle : UdonSharpBehaviour
             shuffleState[i++] = (byte)((pack >> 8)  & (ulong)255);
             shuffleState[i++] = (byte)((pack >> 0)  & (ulong)255);
         }
-        //DebugBytes("after: ", shuffleState);
+        DebugBytes($"read shuffle state {seq}: isDealt {isDealt}, ", shuffleState);
 
         return true;
     }

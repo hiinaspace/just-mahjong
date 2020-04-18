@@ -14,30 +14,76 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serializedUdonProgramAsset: {fileID: 11400000, guid: f18ab135f90e2b3479b01eb7f713f210,
     type: 2}
-  udonAssembly: ".data_start\r\n\r\n\r\n    __refl_const_intnl_udonTypeID: %SystemInt64,
-    null\r\n    __refl_const_intnl_udonTypeName: %SystemString, null\r\n    __0_this_intnl_UnityEngineTransform:
+  udonAssembly: ".data_start\r\n\r\n    .sync rot, none\r\n\r\n    __refl_const_intnl_udonTypeID:
+    %SystemInt64, null\r\n    __refl_const_intnl_udonTypeName: %SystemString, null\r\n
+    \   rot: %UnityEngineQuaternion, null\r\n    lastUpdate: %SystemSingle, null\r\n
+    \   __0_this_intnl_UnityEngineGameObject: %UnityEngineGameObject, this\r\n    __0_this_intnl_UnityEngineTransform:
     %UnityEngineTransform, this\r\n    __0_const_intnl_SystemInt32: %SystemInt32,
-    null\r\n    __1_const_intnl_SystemInt32: %SystemInt32, null\r\n    __0_const_intnl_SystemUInt32:
-    %SystemUInt32, null\r\n    __0_intnl_SystemSingle: %SystemSingle, null\r\n    __1_intnl_SystemSingle:
-    %SystemSingle, null\r\n    __2_intnl_SystemSingle: %SystemSingle, null\r\n    __0_intnl_returnTarget_UInt32:
-    %SystemUInt32, null\r\n    __0_intnl_UnityEngineVector3: %UnityEngineVector3,
-    null\r\n\r\n.data_end\r\n\r\n        \r\n         # using UdonSharp;\r\n        \r\n
-    \        # using UnityEngine;\r\n        \r\n         # using VRC.SDKBase;\r\n
-    \       \r\n         # using VRC.Udon;\r\n        \r\n         # public class
-    WindIndicator : UdonSharpBehaviour\r\n.code_start\r\n        \r\n         # void
-    Interact()\r\n    .export _interact\r\n        \r\n    _interact:\r\n        \r\n
+    null\r\n    __1_const_intnl_SystemInt32: %SystemInt32, null\r\n    __2_const_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __0_const_intnl_SystemUInt32: %SystemUInt32, null\r\n
+    \   __0_intnl_SystemBoolean: %SystemBoolean, null\r\n    __0_intnl_UnityEngineQuaternion:
+    %UnityEngineQuaternion, null\r\n    __1_intnl_UnityEngineQuaternion: %UnityEngineQuaternion,
+    null\r\n    __0_intnl_SystemSingle: %SystemSingle, null\r\n    __1_intnl_SystemSingle:
+    %SystemSingle, null\r\n    __2_intnl_SystemSingle: %SystemSingle, null\r\n    __3_intnl_SystemSingle:
+    %SystemSingle, null\r\n    __4_intnl_SystemSingle: %SystemSingle, null\r\n    __5_intnl_SystemSingle:
+    %SystemSingle, null\r\n    __6_intnl_SystemSingle: %SystemSingle, null\r\n    __7_intnl_SystemSingle:
+    %SystemSingle, null\r\n    __0_intnl_returnTarget_UInt32: %SystemUInt32, null\r\n
+    \   __0_intnl_UnityEngineVector3: %UnityEngineVector3, null\r\n    __0_intnl_VRCSDKBaseVRCPlayerApi:
+    %VRCSDKBaseVRCPlayerApi, null\r\n\r\n.data_end\r\n\r\n        \r\n         # using
+    UdonSharp;\r\n        \r\n         # using UnityEngine;\r\n        \r\n         #
+    using VRC.SDKBase;\r\n        \r\n         # using VRC.Udon;\r\n        \r\n         #
+    public class WindIndicator : UdonSharpBehaviour\r\n.code_start\r\n        \r\n
+    \        # [UdonSynced] Quaternion rot = Quaternion.identity;\r\n        \r\n
+    \        # void Start()\r\n    .export _start\r\n        \r\n    _start:\r\n        \r\n
     \       PUSH, __0_const_intnl_SystemUInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
-    \       COPY\r\n        \r\n         # {\r\n        \r\n         # transform.Rotate(new
-    Vector3(0, 90, 0));\r\n        PUSH, __0_const_intnl_SystemInt32\r\n        PUSH,
-    __0_intnl_SystemSingle\r\n        EXTERN, \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n
-    \       PUSH, __1_const_intnl_SystemInt32\r\n        PUSH, __1_intnl_SystemSingle\r\n
+    \       COPY\r\n        \r\n         # {\r\n        \r\n         # rot = transform.rotation;\r\n
+    \       PUSH, __0_this_intnl_UnityEngineTransform\r\n        PUSH, __0_intnl_UnityEngineQuaternion\r\n
+    \       EXTERN, \"UnityEngineTransform.__get_rotation__UnityEngineQuaternion\"\r\n
+    \       PUSH, __0_intnl_UnityEngineQuaternion\r\n        PUSH, rot\r\n        COPY\r\n
+    \       JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n        \r\n
+    \        # void Interact()\r\n    .export _interact\r\n        \r\n    _interact:\r\n
+    \       \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
+    \       COPY\r\n        \r\n         # {\r\n        \r\n         # Networking.SetOwner(Networking.LocalPlayer,
+    gameObject);\r\n        PUSH, __0_intnl_VRCSDKBaseVRCPlayerApi\r\n        EXTERN,
+    \"VRCSDKBaseNetworking.__get_LocalPlayer__VRCSDKBaseVRCPlayerApi\"\r\n        PUSH,
+    __0_intnl_VRCSDKBaseVRCPlayerApi\r\n        PUSH, __0_this_intnl_UnityEngineGameObject\r\n
+    \       EXTERN, \"VRCSDKBaseNetworking.__SetOwner__VRCSDKBaseVRCPlayerApi_UnityEngineGameObject__SystemVoid\"\r\n
+    \       \r\n         # transform.Rotate(new Vector3(0, 90, 0));\r\n        PUSH,
+    __0_const_intnl_SystemInt32\r\n        PUSH, __0_intnl_SystemSingle\r\n        EXTERN,
+    \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n        PUSH, __1_const_intnl_SystemInt32\r\n
+    \       PUSH, __1_intnl_SystemSingle\r\n        EXTERN, \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n
+    \       PUSH, __0_const_intnl_SystemInt32\r\n        PUSH, __2_intnl_SystemSingle\r\n
     \       EXTERN, \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n        PUSH,
-    __0_const_intnl_SystemInt32\r\n        PUSH, __2_intnl_SystemSingle\r\n        EXTERN,
-    \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n        PUSH, __0_intnl_SystemSingle\r\n
-    \       PUSH, __1_intnl_SystemSingle\r\n        PUSH, __2_intnl_SystemSingle\r\n
-    \       PUSH, __0_intnl_UnityEngineVector3\r\n        EXTERN, \"UnityEngineVector3.__ctor__SystemSingle_SystemSingle_SystemSingle__UnityEngineVector3\"\r\n
+    __0_intnl_SystemSingle\r\n        PUSH, __1_intnl_SystemSingle\r\n        PUSH,
+    __2_intnl_SystemSingle\r\n        PUSH, __0_intnl_UnityEngineVector3\r\n        EXTERN,
+    \"UnityEngineVector3.__ctor__SystemSingle_SystemSingle_SystemSingle__UnityEngineVector3\"\r\n
     \       PUSH, __0_this_intnl_UnityEngineTransform\r\n        PUSH, __0_intnl_UnityEngineVector3\r\n
     \       EXTERN, \"UnityEngineTransform.__Rotate__UnityEngineVector3__SystemVoid\"\r\n
+    \       \r\n         # rot = transform.rotation;\r\n        PUSH, __0_this_intnl_UnityEngineTransform\r\n
+    \       PUSH, __1_intnl_UnityEngineQuaternion\r\n        EXTERN, \"UnityEngineTransform.__get_rotation__UnityEngineQuaternion\"\r\n
+    \       PUSH, __1_intnl_UnityEngineQuaternion\r\n        PUSH, rot\r\n        COPY\r\n
+    \       JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n        \r\n
+    \        # float lastUpdate = 0;\r\n        \r\n         # void FixedUpdate()\r\n
+    \   .export _fixedUpdate\r\n        \r\n    _fixedUpdate:\r\n        \r\n        PUSH,
+    __0_const_intnl_SystemUInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
+    \       COPY\r\n        \r\n         # {\r\n        \r\n         # lastUpdate
+    += Time.deltaTime;\r\n        PUSH, __3_intnl_SystemSingle\r\n        EXTERN,
+    \"UnityEngineTime.__get_deltaTime__SystemSingle\"\r\n        PUSH, lastUpdate\r\n
+    \       PUSH, __3_intnl_SystemSingle\r\n        PUSH, __4_intnl_SystemSingle\r\n
+    \       EXTERN, \"SystemSingle.__op_Addition__SystemSingle_SystemSingle__SystemSingle\"\r\n
+    \       PUSH, __4_intnl_SystemSingle\r\n        PUSH, lastUpdate\r\n        COPY\r\n
+    \       \r\n         # if (lastUpdate > 1)\r\n        PUSH, lastUpdate\r\n        PUSH,
+    __5_intnl_SystemSingle\r\n        COPY\r\n        PUSH, __2_const_intnl_SystemInt32\r\n
+    \       PUSH, __6_intnl_SystemSingle\r\n        EXTERN, \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n
+    \       PUSH, __5_intnl_SystemSingle\r\n        PUSH, __6_intnl_SystemSingle\r\n
+    \       PUSH, __0_intnl_SystemBoolean\r\n        EXTERN, \"SystemSingle.__op_GreaterThan__SystemSingle_SystemSingle__SystemBoolean\"\r\n
+    \       PUSH, __0_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x00000238\r\n
+    \       \r\n         # {\r\n        \r\n         # lastUpdate = 0;\r\n        PUSH,
+    __0_const_intnl_SystemInt32\r\n        PUSH, __7_intnl_SystemSingle\r\n        EXTERN,
+    \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n        PUSH, __7_intnl_SystemSingle\r\n
+    \       PUSH, lastUpdate\r\n        COPY\r\n        \r\n         # transform.rotation
+    = rot;\r\n        PUSH, __0_this_intnl_UnityEngineTransform\r\n        PUSH, rot\r\n
+    \       EXTERN, \"UnityEngineTransform.__set_rotation__UnityEngineQuaternion__SystemVoid\"\r\n
     \       JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n.code_end\r\n"
   assemblyError: 
   sourceCsScript: {fileID: 11500000, guid: 8110a9bc2e7e29b4d82dc413603e0638, type: 3}
@@ -167,93 +213,403 @@ MonoBehaviour:
     - startInstruction: 0
       endInstruction: -1
       startSourceChar: 108
-      endSourceChar: 135
+      endSourceChar: 284
       line: 6
       lineChar: 29
-      spanCodeSection: "UdonSharpBehaviour\r\n{\r\n    "
+      spanCodeSection: "UdonSharpBehaviour\r\n{\r\n    // XXX udon's synced position
+        is awful at updating in any timely manner\r\n    // probably getting starved
+        by the other synced variables i guess.\r\n    "
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 284
+      endSourceChar: 285
+      line: 10
+      lineChar: 4
+      spanCodeSection: '['
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 285
+      endSourceChar: 285
+      line: 10
+      lineChar: 5
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 285
+      endSourceChar: 297
+      line: 10
+      lineChar: 5
+      spanCodeSection: 'UdonSynced] '
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 297
+      endSourceChar: 297
+      line: 10
+      lineChar: 17
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 297
+      endSourceChar: 342
+      line: 10
+      lineChar: 17
+      spanCodeSection: "Quaternion rot = Quaternion.identity;\r\n\r\n    "
     - startInstruction: 0
       endInstruction: 19
-      startSourceChar: 135
-      endSourceChar: 156
-      line: 8
+      startSourceChar: 342
+      endSourceChar: 360
+      line: 12
       lineChar: 4
-      spanCodeSection: "void Interact()\r\n    "
+      spanCodeSection: "void Start()\r\n    "
     - startInstruction: 20
       endInstruction: 19
-      startSourceChar: 156
-      endSourceChar: 167
-      line: 9
+      startSourceChar: 360
+      endSourceChar: 371
+      line: 13
       lineChar: 4
       spanCodeSection: "{\r\n        "
     - startInstruction: 20
       endInstruction: 19
-      startSourceChar: 167
-      endSourceChar: 167
-      line: 10
+      startSourceChar: 371
+      endSourceChar: 371
+      line: 14
       lineChar: 8
       spanCodeSection: 
     - startInstruction: 20
       endInstruction: 19
-      startSourceChar: 167
-      endSourceChar: 184
-      line: 10
+      startSourceChar: 371
+      endSourceChar: 377
+      line: 14
+      lineChar: 8
+      spanCodeSection: 'rot = '
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 377
+      endSourceChar: 377
+      line: 14
+      lineChar: 14
+      spanCodeSection: 
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 377
+      endSourceChar: 387
+      line: 14
+      lineChar: 14
+      spanCodeSection: transform.
+    - startInstruction: 20
+      endInstruction: 71
+      startSourceChar: 387
+      endSourceChar: 411
+      line: 14
+      lineChar: 24
+      spanCodeSection: "rotation;\r\n    }\r\n\r\n    "
+    - startInstruction: 72
+      endInstruction: 91
+      startSourceChar: 411
+      endSourceChar: 432
+      line: 17
+      lineChar: 4
+      spanCodeSection: "void Interact()\r\n    "
+    - startInstruction: 92
+      endInstruction: 91
+      startSourceChar: 432
+      endSourceChar: 443
+      line: 18
+      lineChar: 4
+      spanCodeSection: "{\r\n        "
+    - startInstruction: 92
+      endInstruction: 91
+      startSourceChar: 443
+      endSourceChar: 443
+      line: 19
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 92
+      endInstruction: 91
+      startSourceChar: 443
+      endSourceChar: 463
+      line: 19
+      lineChar: 8
+      spanCodeSection: Networking.SetOwner(
+    - startInstruction: 92
+      endInstruction: 91
+      startSourceChar: 463
+      endSourceChar: 463
+      line: 19
+      lineChar: 28
+      spanCodeSection: 
+    - startInstruction: 92
+      endInstruction: 91
+      startSourceChar: 463
+      endSourceChar: 474
+      line: 19
+      lineChar: 28
+      spanCodeSection: Networking.
+    - startInstruction: 92
+      endInstruction: 107
+      startSourceChar: 474
+      endSourceChar: 487
+      line: 19
+      lineChar: 39
+      spanCodeSection: 'LocalPlayer, '
+    - startInstruction: 108
+      endInstruction: 131
+      startSourceChar: 487
+      endSourceChar: 509
+      line: 19
+      lineChar: 52
+      spanCodeSection: "gameObject);\r\n        "
+    - startInstruction: 132
+      endInstruction: 131
+      startSourceChar: 509
+      endSourceChar: 509
+      line: 20
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 132
+      endInstruction: 131
+      startSourceChar: 509
+      endSourceChar: 526
+      line: 20
       lineChar: 8
       spanCodeSection: transform.Rotate(
-    - startInstruction: 20
-      endInstruction: 19
-      startSourceChar: 184
-      endSourceChar: 188
-      line: 10
+    - startInstruction: 132
+      endInstruction: 131
+      startSourceChar: 526
+      endSourceChar: 530
+      line: 20
       lineChar: 25
       spanCodeSection: 'new '
-    - startInstruction: 20
-      endInstruction: 19
-      startSourceChar: 188
-      endSourceChar: 196
-      line: 10
+    - startInstruction: 132
+      endInstruction: 131
+      startSourceChar: 530
+      endSourceChar: 538
+      line: 20
       lineChar: 29
       spanCodeSection: Vector3(
-    - startInstruction: 20
-      endInstruction: 19
-      startSourceChar: 196
-      endSourceChar: 196
-      line: 10
+    - startInstruction: 132
+      endInstruction: 131
+      startSourceChar: 538
+      endSourceChar: 538
+      line: 20
       lineChar: 37
       spanCodeSection: 
-    - startInstruction: 20
-      endInstruction: 19
-      startSourceChar: 196
-      endSourceChar: 199
-      line: 10
+    - startInstruction: 132
+      endInstruction: 131
+      startSourceChar: 538
+      endSourceChar: 541
+      line: 20
       lineChar: 37
       spanCodeSection: '0, '
-    - startInstruction: 20
-      endInstruction: 19
-      startSourceChar: 199
-      endSourceChar: 199
-      line: 10
+    - startInstruction: 132
+      endInstruction: 131
+      startSourceChar: 541
+      endSourceChar: 541
+      line: 20
       lineChar: 40
       spanCodeSection: 
-    - startInstruction: 20
-      endInstruction: 19
-      startSourceChar: 199
-      endSourceChar: 203
-      line: 10
+    - startInstruction: 132
+      endInstruction: 131
+      startSourceChar: 541
+      endSourceChar: 545
+      line: 20
       lineChar: 40
       spanCodeSection: '90, '
-    - startInstruction: 20
-      endInstruction: 19
-      startSourceChar: 203
-      endSourceChar: 203
-      line: 10
+    - startInstruction: 132
+      endInstruction: 131
+      startSourceChar: 545
+      endSourceChar: 545
+      line: 20
       lineChar: 44
       spanCodeSection: 
-    - startInstruction: 20
-      endInstruction: 20
-      startSourceChar: 203
-      endSourceChar: 203
-      line: 10
+    - startInstruction: 132
+      endInstruction: 267
+      startSourceChar: 545
+      endSourceChar: 559
+      line: 20
       lineChar: 44
+      spanCodeSection: "0));\r\n        "
+    - startInstruction: 268
+      endInstruction: 267
+      startSourceChar: 559
+      endSourceChar: 559
+      line: 21
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 268
+      endInstruction: 267
+      startSourceChar: 559
+      endSourceChar: 565
+      line: 21
+      lineChar: 8
+      spanCodeSection: 'rot = '
+    - startInstruction: 268
+      endInstruction: 267
+      startSourceChar: 565
+      endSourceChar: 565
+      line: 21
+      lineChar: 14
+      spanCodeSection: 
+    - startInstruction: 268
+      endInstruction: 267
+      startSourceChar: 565
+      endSourceChar: 575
+      line: 21
+      lineChar: 14
+      spanCodeSection: transform.
+    - startInstruction: 268
+      endInstruction: 319
+      startSourceChar: 575
+      endSourceChar: 599
+      line: 21
+      lineChar: 24
+      spanCodeSection: "rotation;\r\n    }\r\n\r\n    "
+    - startInstruction: 320
+      endInstruction: 319
+      startSourceChar: 599
+      endSourceChar: 599
+      line: 24
+      lineChar: 4
+      spanCodeSection: 
+    - startInstruction: 320
+      endInstruction: 319
+      startSourceChar: 599
+      endSourceChar: 599
+      line: 24
+      lineChar: 4
+      spanCodeSection: 
+    - startInstruction: 320
+      endInstruction: 319
+      startSourceChar: 599
+      endSourceChar: 628
+      line: 24
+      lineChar: 4
+      spanCodeSection: "float lastUpdate = 0;\r\n\r\n    "
+    - startInstruction: 320
+      endInstruction: 339
+      startSourceChar: 628
+      endSourceChar: 652
+      line: 26
+      lineChar: 4
+      spanCodeSection: "void FixedUpdate()\r\n    "
+    - startInstruction: 340
+      endInstruction: 339
+      startSourceChar: 652
+      endSourceChar: 663
+      line: 27
+      lineChar: 4
+      spanCodeSection: "{\r\n        "
+    - startInstruction: 340
+      endInstruction: 339
+      startSourceChar: 663
+      endSourceChar: 663
+      line: 28
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 340
+      endInstruction: 339
+      startSourceChar: 663
+      endSourceChar: 677
+      line: 28
+      lineChar: 8
+      spanCodeSection: 'lastUpdate += '
+    - startInstruction: 340
+      endInstruction: 339
+      startSourceChar: 677
+      endSourceChar: 677
+      line: 28
+      lineChar: 22
+      spanCodeSection: 
+    - startInstruction: 340
+      endInstruction: 339
+      startSourceChar: 677
+      endSourceChar: 682
+      line: 28
+      lineChar: 22
+      spanCodeSection: Time.
+    - startInstruction: 340
+      endInstruction: 407
+      startSourceChar: 682
+      endSourceChar: 702
+      line: 28
+      lineChar: 27
+      spanCodeSection: "deltaTime;\r\n        "
+    - startInstruction: 408
+      endInstruction: 407
+      startSourceChar: 702
+      endSourceChar: 706
+      line: 29
+      lineChar: 8
+      spanCodeSection: if (
+    - startInstruction: 408
+      endInstruction: 407
+      startSourceChar: 706
+      endSourceChar: 706
+      line: 29
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 408
+      endInstruction: 427
+      startSourceChar: 706
+      endSourceChar: 719
+      line: 29
+      lineChar: 12
+      spanCodeSection: 'lastUpdate > '
+    - startInstruction: 428
+      endInstruction: 499
+      startSourceChar: 719
+      endSourceChar: 731
+      line: 29
+      lineChar: 25
+      spanCodeSection: "1)\r\n        "
+    - startInstruction: 500
+      endInstruction: 499
+      startSourceChar: 731
+      endSourceChar: 746
+      line: 30
+      lineChar: 8
+      spanCodeSection: "{\r\n            "
+    - startInstruction: 500
+      endInstruction: 499
+      startSourceChar: 746
+      endSourceChar: 746
+      line: 31
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 500
+      endInstruction: 499
+      startSourceChar: 746
+      endSourceChar: 759
+      line: 31
+      lineChar: 12
+      spanCodeSection: 'lastUpdate = '
+    - startInstruction: 500
+      endInstruction: 543
+      startSourceChar: 759
+      endSourceChar: 775
+      line: 31
+      lineChar: 25
+      spanCodeSection: "0;\r\n            "
+    - startInstruction: 544
+      endInstruction: 543
+      startSourceChar: 775
+      endSourceChar: 775
+      line: 32
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 544
+      endInstruction: 543
+      startSourceChar: 775
+      endSourceChar: 796
+      line: 32
+      lineChar: 12
+      spanCodeSection: 'transform.rotation = '
+    - startInstruction: 544
+      endInstruction: 544
+      startSourceChar: 796
+      endSourceChar: 796
+      line: 32
+      lineChar: 33
       spanCodeSection: 
   hasInteractEvent: 1
   serializationData:
@@ -278,7 +634,139 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: rot
+    - Name: $v
+      Entry: 7
+      Data: 2|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 3|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 7
+      Data: 4|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: UnityEngine.Quaternion, UnityEngine.CoreModule
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declarationType
+      Entry: 3
+      Data: 2
+    - Name: syncMode
+      Entry: 3
+      Data: 1
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: UnityEngineQuaternion
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: rot
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: rot
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 5|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 6|UdonSharp.UdonSyncedAttribute, UdonSharp.Runtime
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: lastUpdate
+    - Name: $v
+      Entry: 7
+      Data: 7|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 8|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 7
+      Data: 9|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Single, mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declarationType
+      Entry: 3
+      Data: 2
+    - Name: syncMode
+      Entry: 3
       Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: SystemSingle
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: lastUpdate
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: lastUpdate
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 10|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
