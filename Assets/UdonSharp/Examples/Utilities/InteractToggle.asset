@@ -278,10 +278,31 @@ MonoBehaviour:
     - startInstruction: 164
       endInstruction: 163
       startSourceChar: 689
-      endSourceChar: 712
+      endSourceChar: 689
       line: 20
       lineChar: 16
-      spanCodeSection: toggleObject.SetActive(
+      spanCodeSection: 
+    - startInstruction: 164
+      endInstruction: 163
+      startSourceChar: 689
+      endSourceChar: 689
+      line: 20
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 164
+      endInstruction: 163
+      startSourceChar: 689
+      endSourceChar: 702
+      line: 20
+      lineChar: 16
+      spanCodeSection: toggleObject.
+    - startInstruction: 164
+      endInstruction: 163
+      startSourceChar: 702
+      endSourceChar: 712
+      line: 20
+      lineChar: 29
+      spanCodeSection: SetActive(
     - startInstruction: 164
       endInstruction: 163
       startSourceChar: 712

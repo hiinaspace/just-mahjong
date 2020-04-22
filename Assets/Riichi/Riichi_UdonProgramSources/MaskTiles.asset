@@ -652,10 +652,31 @@ MonoBehaviour:
     - startInstruction: 172
       endInstruction: 171
       startSourceChar: 553
-      endSourceChar: 573
+      endSourceChar: 553
       line: 24
       lineChar: 23
-      spanCodeSection: tileParent.GetChild(
+      spanCodeSection: 
+    - startInstruction: 172
+      endInstruction: 171
+      startSourceChar: 553
+      endSourceChar: 553
+      line: 24
+      lineChar: 23
+      spanCodeSection: 
+    - startInstruction: 172
+      endInstruction: 171
+      startSourceChar: 553
+      endSourceChar: 564
+      line: 24
+      lineChar: 23
+      spanCodeSection: tileParent.
+    - startInstruction: 172
+      endInstruction: 171
+      startSourceChar: 564
+      endSourceChar: 573
+      line: 24
+      lineChar: 34
+      spanCodeSection: GetChild(
     - startInstruction: 172
       endInstruction: 203
       startSourceChar: 573
@@ -864,10 +885,31 @@ MonoBehaviour:
     - startInstruction: 680
       endInstruction: 679
       startSourceChar: 1018
-      endSourceChar: 1028
+      endSourceChar: 1018
       line: 47
       lineChar: 8
-      spanCodeSection: Debug.Log(
+      spanCodeSection: 
+    - startInstruction: 680
+      endInstruction: 679
+      startSourceChar: 1018
+      endSourceChar: 1018
+      line: 47
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 680
+      endInstruction: 679
+      startSourceChar: 1018
+      endSourceChar: 1024
+      line: 47
+      lineChar: 8
+      spanCodeSection: Debug.
+    - startInstruction: 680
+      endInstruction: 679
+      startSourceChar: 1024
+      endSourceChar: 1028
+      line: 47
+      lineChar: 14
+      spanCodeSection: Log(
     - startInstruction: 680
       endInstruction: 695
       startSourceChar: 1028
@@ -969,10 +1011,31 @@ MonoBehaviour:
     - startInstruction: 832
       endInstruction: 831
       startSourceChar: 1176
-      endSourceChar: 1186
+      endSourceChar: 1176
       line: 54
       lineChar: 8
-      spanCodeSection: Debug.Log(
+      spanCodeSection: 
+    - startInstruction: 832
+      endInstruction: 831
+      startSourceChar: 1176
+      endSourceChar: 1176
+      line: 54
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 832
+      endInstruction: 831
+      startSourceChar: 1176
+      endSourceChar: 1182
+      line: 54
+      lineChar: 8
+      spanCodeSection: Debug.
+    - startInstruction: 832
+      endInstruction: 831
+      startSourceChar: 1182
+      endSourceChar: 1186
+      line: 54
+      lineChar: 14
+      spanCodeSection: Log(
     - startInstruction: 832
       endInstruction: 847
       startSourceChar: 1186
@@ -1053,10 +1116,31 @@ MonoBehaviour:
     - startInstruction: 940
       endInstruction: 939
       startSourceChar: 1328
-      endSourceChar: 1341
+      endSourceChar: 1328
       line: 57
       lineChar: 8
-      spanCodeSection: mpb.SetFloat(
+      spanCodeSection: 
+    - startInstruction: 940
+      endInstruction: 939
+      startSourceChar: 1328
+      endSourceChar: 1328
+      line: 57
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 940
+      endInstruction: 939
+      startSourceChar: 1328
+      endSourceChar: 1332
+      line: 57
+      lineChar: 8
+      spanCodeSection: mpb.
+    - startInstruction: 940
+      endInstruction: 939
+      startSourceChar: 1332
+      endSourceChar: 1341
+      line: 57
+      lineChar: 12
+      spanCodeSection: SetFloat(
     - startInstruction: 940
       endInstruction: 939
       startSourceChar: 1341
@@ -1109,10 +1193,31 @@ MonoBehaviour:
     - startInstruction: 1140
       endInstruction: 1139
       startSourceChar: 1450
-      endSourceChar: 1469
+      endSourceChar: 1450
       line: 60
       lineChar: 12
-      spanCodeSection: e.SetPropertyBlock(
+      spanCodeSection: 
+    - startInstruction: 1140
+      endInstruction: 1139
+      startSourceChar: 1450
+      endSourceChar: 1450
+      line: 60
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 1140
+      endInstruction: 1139
+      startSourceChar: 1450
+      endSourceChar: 1452
+      line: 60
+      lineChar: 12
+      spanCodeSection: e.
+    - startInstruction: 1140
+      endInstruction: 1139
+      startSourceChar: 1452
+      endSourceChar: 1469
+      line: 60
+      lineChar: 14
+      spanCodeSection: SetPropertyBlock(
     - startInstruction: 1140
       endInstruction: 1231
       startSourceChar: 1469
@@ -1144,10 +1249,31 @@ MonoBehaviour:
     - startInstruction: 1252
       endInstruction: 1251
       startSourceChar: 1530
-      endSourceChar: 1540
+      endSourceChar: 1530
       line: 65
       lineChar: 8
-      spanCodeSection: Debug.Log(
+      spanCodeSection: 
+    - startInstruction: 1252
+      endInstruction: 1251
+      startSourceChar: 1530
+      endSourceChar: 1530
+      line: 65
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1252
+      endInstruction: 1251
+      startSourceChar: 1530
+      endSourceChar: 1536
+      line: 65
+      lineChar: 8
+      spanCodeSection: Debug.
+    - startInstruction: 1252
+      endInstruction: 1251
+      startSourceChar: 1536
+      endSourceChar: 1540
+      line: 65
+      lineChar: 14
+      spanCodeSection: Log(
     - startInstruction: 1252
       endInstruction: 1267
       startSourceChar: 1540
@@ -1256,10 +1382,31 @@ MonoBehaviour:
     - startInstruction: 1504
       endInstruction: 1503
       startSourceChar: 1763
-      endSourceChar: 1776
+      endSourceChar: 1763
       line: 71
       lineChar: 12
-      spanCodeSection: mpb.SetFloat(
+      spanCodeSection: 
+    - startInstruction: 1504
+      endInstruction: 1503
+      startSourceChar: 1763
+      endSourceChar: 1763
+      line: 71
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 1504
+      endInstruction: 1503
+      startSourceChar: 1763
+      endSourceChar: 1767
+      line: 71
+      lineChar: 12
+      spanCodeSection: mpb.
+    - startInstruction: 1504
+      endInstruction: 1503
+      startSourceChar: 1767
+      endSourceChar: 1776
+      line: 71
+      lineChar: 16
+      spanCodeSection: SetFloat(
     - startInstruction: 1504
       endInstruction: 1503
       startSourceChar: 1776
@@ -1270,17 +1417,59 @@ MonoBehaviour:
     - startInstruction: 1504
       endInstruction: 1503
       startSourceChar: 1785
-      endSourceChar: 1797
+      endSourceChar: 1785
       line: 71
       lineChar: 34
-      spanCodeSection: Mathf.Floor(
+      spanCodeSection: 
+    - startInstruction: 1504
+      endInstruction: 1503
+      startSourceChar: 1785
+      endSourceChar: 1785
+      line: 71
+      lineChar: 34
+      spanCodeSection: 
+    - startInstruction: 1504
+      endInstruction: 1503
+      startSourceChar: 1785
+      endSourceChar: 1791
+      line: 71
+      lineChar: 34
+      spanCodeSection: Mathf.
+    - startInstruction: 1504
+      endInstruction: 1503
+      startSourceChar: 1791
+      endSourceChar: 1797
+      line: 71
+      lineChar: 40
+      spanCodeSection: Floor(
     - startInstruction: 1504
       endInstruction: 1503
       startSourceChar: 1797
-      endSourceChar: 1809
+      endSourceChar: 1797
       line: 71
       lineChar: 46
-      spanCodeSection: float.Parse(
+      spanCodeSection: 
+    - startInstruction: 1504
+      endInstruction: 1503
+      startSourceChar: 1797
+      endSourceChar: 1797
+      line: 71
+      lineChar: 46
+      spanCodeSection: 
+    - startInstruction: 1504
+      endInstruction: 1503
+      startSourceChar: 1797
+      endSourceChar: 1803
+      line: 71
+      lineChar: 46
+      spanCodeSection: float.
+    - startInstruction: 1504
+      endInstruction: 1503
+      startSourceChar: 1803
+      endSourceChar: 1809
+      line: 71
+      lineChar: 52
+      spanCodeSection: Parse(
     - startInstruction: 1504
       endInstruction: 1503
       startSourceChar: 1809
@@ -1326,10 +1515,31 @@ MonoBehaviour:
     - startInstruction: 1632
       endInstruction: 1631
       startSourceChar: 1844
-      endSourceChar: 1863
+      endSourceChar: 1844
       line: 72
       lineChar: 12
-      spanCodeSection: e.SetPropertyBlock(
+      spanCodeSection: 
+    - startInstruction: 1632
+      endInstruction: 1631
+      startSourceChar: 1844
+      endSourceChar: 1844
+      line: 72
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 1632
+      endInstruction: 1631
+      startSourceChar: 1844
+      endSourceChar: 1846
+      line: 72
+      lineChar: 12
+      spanCodeSection: e.
+    - startInstruction: 1632
+      endInstruction: 1631
+      startSourceChar: 1846
+      endSourceChar: 1863
+      line: 72
+      lineChar: 14
+      spanCodeSection: SetPropertyBlock(
     - startInstruction: 1632
       endInstruction: 1632
       startSourceChar: 1863

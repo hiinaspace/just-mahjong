@@ -746,10 +746,31 @@ MonoBehaviour:
     - startInstruction: 172
       endInstruction: 171
       startSourceChar: 485
-      endSourceChar: 505
+      endSourceChar: 485
       line: 22
       lineChar: 23
-      spanCodeSection: tileParent.GetChild(
+      spanCodeSection: 
+    - startInstruction: 172
+      endInstruction: 171
+      startSourceChar: 485
+      endSourceChar: 485
+      line: 22
+      lineChar: 23
+      spanCodeSection: 
+    - startInstruction: 172
+      endInstruction: 171
+      startSourceChar: 485
+      endSourceChar: 496
+      line: 22
+      lineChar: 23
+      spanCodeSection: tileParent.
+    - startInstruction: 172
+      endInstruction: 171
+      startSourceChar: 496
+      endSourceChar: 505
+      line: 22
+      lineChar: 34
+      spanCodeSection: GetChild(
     - startInstruction: 172
       endInstruction: 303
       startSourceChar: 505
@@ -970,10 +991,31 @@ MonoBehaviour:
     - startInstruction: 628
       endInstruction: 627
       startSourceChar: 915
-      endSourceChar: 925
+      endSourceChar: 915
       line: 47
       lineChar: 12
-      spanCodeSection: Debug.Log(
+      spanCodeSection: 
+    - startInstruction: 628
+      endInstruction: 627
+      startSourceChar: 915
+      endSourceChar: 915
+      line: 47
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 628
+      endInstruction: 627
+      startSourceChar: 915
+      endSourceChar: 921
+      line: 47
+      lineChar: 12
+      spanCodeSection: Debug.
+    - startInstruction: 628
+      endInstruction: 627
+      startSourceChar: 921
+      endSourceChar: 925
+      line: 47
+      lineChar: 18
+      spanCodeSection: Log(
     - startInstruction: 628
       endInstruction: 643
       startSourceChar: 925
@@ -1019,10 +1061,31 @@ MonoBehaviour:
     - startInstruction: 788
       endInstruction: 787
       startSourceChar: 1051
-      endSourceChar: 1061
+      endSourceChar: 1051
       line: 50
       lineChar: 16
-      spanCodeSection: Debug.Log(
+      spanCodeSection: 
+    - startInstruction: 788
+      endInstruction: 787
+      startSourceChar: 1051
+      endSourceChar: 1051
+      line: 50
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 788
+      endInstruction: 787
+      startSourceChar: 1051
+      endSourceChar: 1057
+      line: 50
+      lineChar: 16
+      spanCodeSection: Debug.
+    - startInstruction: 788
+      endInstruction: 787
+      startSourceChar: 1057
+      endSourceChar: 1061
+      line: 50
+      lineChar: 22
+      spanCodeSection: Log(
     - startInstruction: 788
       endInstruction: 787
       startSourceChar: 1061
@@ -1239,10 +1302,31 @@ MonoBehaviour:
     - startInstruction: 1200
       endInstruction: 1199
       startSourceChar: 1571
-      endSourceChar: 1581
+      endSourceChar: 1571
       line: 59
       lineChar: 16
-      spanCodeSection: Debug.Log(
+      spanCodeSection: 
+    - startInstruction: 1200
+      endInstruction: 1199
+      startSourceChar: 1571
+      endSourceChar: 1571
+      line: 59
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 1200
+      endInstruction: 1199
+      startSourceChar: 1571
+      endSourceChar: 1577
+      line: 59
+      lineChar: 16
+      spanCodeSection: Debug.
+    - startInstruction: 1200
+      endInstruction: 1199
+      startSourceChar: 1577
+      endSourceChar: 1581
+      line: 59
+      lineChar: 22
+      spanCodeSection: Log(
     - startInstruction: 1200
       endInstruction: 1199
       startSourceChar: 1581
@@ -1435,10 +1519,31 @@ MonoBehaviour:
     - startInstruction: 1916
       endInstruction: 1915
       startSourceChar: 1819
-      endSourceChar: 1829
+      endSourceChar: 1819
       line: 64
       lineChar: 12
-      spanCodeSection: Debug.Log(
+      spanCodeSection: 
+    - startInstruction: 1916
+      endInstruction: 1915
+      startSourceChar: 1819
+      endSourceChar: 1819
+      line: 64
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 1916
+      endInstruction: 1915
+      startSourceChar: 1819
+      endSourceChar: 1825
+      line: 64
+      lineChar: 12
+      spanCodeSection: Debug.
+    - startInstruction: 1916
+      endInstruction: 1915
+      startSourceChar: 1825
+      endSourceChar: 1829
+      line: 64
+      lineChar: 18
+      spanCodeSection: Log(
     - startInstruction: 1916
       endInstruction: 1931
       startSourceChar: 1829
@@ -1484,10 +1589,31 @@ MonoBehaviour:
     - startInstruction: 2076
       endInstruction: 2075
       startSourceChar: 1951
-      endSourceChar: 1961
+      endSourceChar: 1951
       line: 67
       lineChar: 16
-      spanCodeSection: Debug.Log(
+      spanCodeSection: 
+    - startInstruction: 2076
+      endInstruction: 2075
+      startSourceChar: 1951
+      endSourceChar: 1951
+      line: 67
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 2076
+      endInstruction: 2075
+      startSourceChar: 1951
+      endSourceChar: 1957
+      line: 67
+      lineChar: 16
+      spanCodeSection: Debug.
+    - startInstruction: 2076
+      endInstruction: 2075
+      startSourceChar: 1957
+      endSourceChar: 1961
+      line: 67
+      lineChar: 22
+      spanCodeSection: Log(
     - startInstruction: 2076
       endInstruction: 2075
       startSourceChar: 1961
@@ -1703,10 +1829,31 @@ MonoBehaviour:
     - startInstruction: 2488
       endInstruction: 2487
       startSourceChar: 2389
-      endSourceChar: 2399
+      endSourceChar: 2389
       line: 75
       lineChar: 16
-      spanCodeSection: Debug.Log(
+      spanCodeSection: 
+    - startInstruction: 2488
+      endInstruction: 2487
+      startSourceChar: 2389
+      endSourceChar: 2389
+      line: 75
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 2488
+      endInstruction: 2487
+      startSourceChar: 2389
+      endSourceChar: 2395
+      line: 75
+      lineChar: 16
+      spanCodeSection: Debug.
+    - startInstruction: 2488
+      endInstruction: 2487
+      startSourceChar: 2395
+      endSourceChar: 2399
+      line: 75
+      lineChar: 22
+      spanCodeSection: Log(
     - startInstruction: 2488
       endInstruction: 2487
       startSourceChar: 2399

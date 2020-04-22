@@ -57,7 +57,7 @@ namespace UdonSharp
 
             AssemblyReloadEvents.beforeAssemblyReload += CleanupWatchers;
 
-            string[] directories = Directory.GetDirectories("Assets/", "*", SearchOption.AllDirectories);
+            string[] directories = Directory.GetDirectories("Assets/", "*", SearchOption.AllDirectories).Append("Assets/").ToArray();
 
             List<string> sourceDirectories = new List<string>();
 
@@ -96,6 +96,9 @@ namespace UdonSharp
                     }
                 }
             }
+
+            EditorApplication.update -= OnEditorUpdate;
+            AssemblyReloadEvents.beforeAssemblyReload -= CleanupWatchers;
         }
 
         static void HandleScriptModifications()
@@ -186,7 +189,7 @@ namespace UdonSharp
                 {
                     EditorApplication.isPlaying = false;
 
-                    typeof(SceneView).GetMethod("ShowNotification", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static).Invoke(null, new object[] { "All U# compiler errors have to be fixed before you can enter playmode!" });
+                    typeof(SceneView).GetMethod("ShowNotification", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static).Invoke(null, new object[] { "All U# compile errors have to be fixed before you can enter playmode!" });
                 }
             }
             

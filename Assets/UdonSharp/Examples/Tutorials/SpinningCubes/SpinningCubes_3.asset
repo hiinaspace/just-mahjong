@@ -331,10 +331,31 @@ MonoBehaviour:
     - startInstruction: 136
       endInstruction: 135
       startSourceChar: 808
-      endSourceChar: 828
+      endSourceChar: 808
       line: 25
       lineChar: 12
-      spanCodeSection: cubeToRotate.Rotate(
+      spanCodeSection: 
+    - startInstruction: 136
+      endInstruction: 135
+      startSourceChar: 808
+      endSourceChar: 808
+      line: 25
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 136
+      endInstruction: 135
+      startSourceChar: 808
+      endSourceChar: 821
+      line: 25
+      lineChar: 12
+      spanCodeSection: cubeToRotate.
+    - startInstruction: 136
+      endInstruction: 135
+      startSourceChar: 821
+      endSourceChar: 828
+      line: 25
+      lineChar: 25
+      spanCodeSection: Rotate(
     - startInstruction: 136
       endInstruction: 135
       startSourceChar: 828

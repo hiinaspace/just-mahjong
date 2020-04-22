@@ -419,17 +419,59 @@ MonoBehaviour:
     - startInstruction: 180
       endInstruction: 179
       startSourceChar: 713
-      endSourceChar: 746
+      endSourceChar: 713
       line: 30
       lineChar: 12
-      spanCodeSection: transform.SetPositionAndRotation(
+      spanCodeSection: 
+    - startInstruction: 180
+      endInstruction: 179
+      startSourceChar: 713
+      endSourceChar: 713
+      line: 30
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 180
+      endInstruction: 179
+      startSourceChar: 713
+      endSourceChar: 723
+      line: 30
+      lineChar: 12
+      spanCodeSection: transform.
+    - startInstruction: 180
+      endInstruction: 179
+      startSourceChar: 723
+      endSourceChar: 746
+      line: 30
+      lineChar: 22
+      spanCodeSection: SetPositionAndRotation(
     - startInstruction: 180
       endInstruction: 179
       startSourceChar: 746
-      endSourceChar: 772
+      endSourceChar: 746
       line: 30
       lineChar: 45
-      spanCodeSection: playerApi.GetBonePosition(
+      spanCodeSection: 
+    - startInstruction: 180
+      endInstruction: 179
+      startSourceChar: 746
+      endSourceChar: 746
+      line: 30
+      lineChar: 45
+      spanCodeSection: 
+    - startInstruction: 180
+      endInstruction: 179
+      startSourceChar: 746
+      endSourceChar: 756
+      line: 30
+      lineChar: 45
+      spanCodeSection: playerApi.
+    - startInstruction: 180
+      endInstruction: 179
+      startSourceChar: 756
+      endSourceChar: 772
+      line: 30
+      lineChar: 55
+      spanCodeSection: GetBonePosition(
     - startInstruction: 180
       endInstruction: 211
       startSourceChar: 772
@@ -440,10 +482,31 @@ MonoBehaviour:
     - startInstruction: 212
       endInstruction: 211
       startSourceChar: 786
-      endSourceChar: 812
+      endSourceChar: 786
       line: 30
       lineChar: 85
-      spanCodeSection: playerApi.GetBoneRotation(
+      spanCodeSection: 
+    - startInstruction: 212
+      endInstruction: 211
+      startSourceChar: 786
+      endSourceChar: 786
+      line: 30
+      lineChar: 85
+      spanCodeSection: 
+    - startInstruction: 212
+      endInstruction: 211
+      startSourceChar: 786
+      endSourceChar: 796
+      line: 30
+      lineChar: 85
+      spanCodeSection: playerApi.
+    - startInstruction: 212
+      endInstruction: 211
+      startSourceChar: 796
+      endSourceChar: 812
+      line: 30
+      lineChar: 95
+      spanCodeSection: GetBoneRotation(
     - startInstruction: 212
       endInstruction: 212
       startSourceChar: 812

@@ -18,8 +18,13 @@ public class TileScript : UdonSharpBehaviour
         r = GetComponent<Rigidbody>();
         r.maxDepenetrationVelocity = 0.1f;
         //SendCustomEvent("DoTestEvent");
-    }
 
+        // disable pickup by default; when you hit a sort tile button you can
+        // grab them. Prevents non-players from messing with tiles.
+        //var pickup = (VRC_Pickup)(GetComponent(typeof(VRC_Pickup)));
+        // XXX doesn't work pickup.enabled = false;
+        GetComponent<BoxCollider>().enabled = false;
+    }
     void OnPickup()
     {
         Networking.SetOwner(Networking.LocalPlayer, gameObject); // already happens?
@@ -29,25 +34,4 @@ public class TileScript : UdonSharpBehaviour
     void OnDrop()
     {
     }
-//
-//    public void DoCustomPhysicsSync()
-//    {
-//        if (Networking.IsOwner(gameObject))
-//        {
-//            Debug.Log($"I'm the owner of {gameObject.name}, syncing my position");
-//            // then update our position for the network
-//            pos = transform.position;
-//            rot = transform.rotation.normalized; 
-//        } else
-//        {
-//            Debug.Log($"not {gameObject.name} owner, getting position");
-//            // if we're not the tile owner, just keep it kinematic
-//            r.isKinematic = true;
-//            r.velocity = Vector3.zero;
-//            r.angularVelocity = Vector3.zero;
-//            // set it from the variables
-//            r.MovePosition(pos);
-//            r.MoveRotation(rot.normalized); // weird
-//        }
-//    }
 }

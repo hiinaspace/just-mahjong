@@ -11,7 +11,11 @@
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+		// the RiichiTile tag for the wacky ReplacementShader system in unity
+        Tags {
+            "RenderType"="Opaque"
+            "RiichiTile"="Yes" 
+        }
         LOD 200
 
         CGPROGRAM

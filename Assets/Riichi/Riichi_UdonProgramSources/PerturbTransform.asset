@@ -466,10 +466,31 @@ MonoBehaviour:
     - startInstruction: 172
       endInstruction: 171
       startSourceChar: 331
-      endSourceChar: 351
+      endSourceChar: 331
       line: 17
       lineChar: 23
-      spanCodeSection: tileParent.GetChild(
+      spanCodeSection: 
+    - startInstruction: 172
+      endInstruction: 171
+      startSourceChar: 331
+      endSourceChar: 331
+      line: 17
+      lineChar: 23
+      spanCodeSection: 
+    - startInstruction: 172
+      endInstruction: 171
+      startSourceChar: 331
+      endSourceChar: 342
+      line: 17
+      lineChar: 23
+      spanCodeSection: tileParent.
+    - startInstruction: 172
+      endInstruction: 171
+      startSourceChar: 342
+      endSourceChar: 351
+      line: 17
+      lineChar: 34
+      spanCodeSection: GetChild(
     - startInstruction: 172
       endInstruction: 303
       startSourceChar: 351
@@ -554,6 +575,13 @@ MonoBehaviour:
       line: 24
       lineChar: 34
       spanCodeSection: "return;\r\n        "
+    - startInstruction: 456
+      endInstruction: 455
+      startSourceChar: 475
+      endSourceChar: 475
+      line: 25
+      lineChar: 8
+      spanCodeSection: 
     - startInstruction: 456
       endInstruction: 455
       startSourceChar: 475
@@ -760,10 +788,31 @@ MonoBehaviour:
     - startInstruction: 624
       endInstruction: 623
       startSourceChar: 656
-      endSourceChar: 666
+      endSourceChar: 656
       line: 31
       lineChar: 8
-      spanCodeSection: Debug.Log(
+      spanCodeSection: 
+    - startInstruction: 624
+      endInstruction: 623
+      startSourceChar: 656
+      endSourceChar: 656
+      line: 31
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 624
+      endInstruction: 623
+      startSourceChar: 656
+      endSourceChar: 662
+      line: 31
+      lineChar: 8
+      spanCodeSection: Debug.
+    - startInstruction: 624
+      endInstruction: 623
+      startSourceChar: 662
+      endSourceChar: 666
+      line: 31
+      lineChar: 14
+      spanCodeSection: Log(
     - startInstruction: 624
       endInstruction: 639
       startSourceChar: 666
@@ -893,10 +942,31 @@ MonoBehaviour:
     - startInstruction: 884
       endInstruction: 883
       startSourceChar: 822
-      endSourceChar: 837
+      endSourceChar: 822
       line: 35
       lineChar: 12
-      spanCodeSection: r.MovePosition(
+      spanCodeSection: 
+    - startInstruction: 884
+      endInstruction: 883
+      startSourceChar: 822
+      endSourceChar: 822
+      line: 35
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 884
+      endInstruction: 883
+      startSourceChar: 822
+      endSourceChar: 824
+      line: 35
+      lineChar: 12
+      spanCodeSection: r.
+    - startInstruction: 884
+      endInstruction: 883
+      startSourceChar: 824
+      endSourceChar: 837
+      line: 35
+      lineChar: 14
+      spanCodeSection: MovePosition(
     - startInstruction: 884
       endInstruction: 883
       startSourceChar: 837
@@ -942,10 +1012,31 @@ MonoBehaviour:
     - startInstruction: 964
       endInstruction: 963
       startSourceChar: 874
-      endSourceChar: 885
+      endSourceChar: 874
       line: 36
       lineChar: 12
-      spanCodeSection: r.AddForce(
+      spanCodeSection: 
+    - startInstruction: 964
+      endInstruction: 963
+      startSourceChar: 874
+      endSourceChar: 874
+      line: 36
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 964
+      endInstruction: 963
+      startSourceChar: 874
+      endSourceChar: 876
+      line: 36
+      lineChar: 12
+      spanCodeSection: r.
+    - startInstruction: 964
+      endInstruction: 963
+      startSourceChar: 876
+      endSourceChar: 885
+      line: 36
+      lineChar: 14
+      spanCodeSection: AddForce(
     - startInstruction: 964
       endInstruction: 963
       startSourceChar: 885

@@ -26,4 +26,16 @@ MonoBehaviour:
       nodeUIDs: []
       flowUIDs: []
       nodeValues: []
+    - fullName: VRCSDKBaseInputManager.__GetLastUsedInputMethod__VRCSDKBaseVRCInputMethod
+      uid: 5356235a-5f22-4566-943c-1e77ef1f5a7d
+      position: {x: 95.5, y: -18}
+      nodeUIDs: []
+      flowUIDs: []
+      nodeValues: []
+    - fullName: VRCSDKBaseNetworking.__GetEventDispatcher__VRCSDKBaseVRC_EventDispatcher
+      uid: 9f399913-b9fc-415b-91e6-ffbd2f87a535
+      position: {x: 348, y: -168}
+      nodeUIDs: []
+      flowUIDs: []
+      nodeValues: []
   showAssembly: 0

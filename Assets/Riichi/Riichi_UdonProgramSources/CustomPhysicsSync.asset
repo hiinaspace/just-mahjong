@@ -161,9 +161,6 @@ MonoBehaviour:
     %SystemInt64, null\r\n    __8_intnl_SystemInt64: %SystemInt64, null\r\n    __9_intnl_SystemInt64:
     %SystemInt64, null\r\n    __0_intnl_returnValSymbol_Quaternion: %UnityEngineQuaternion,
     null\r\n    __0_intnl_UnityEngineQuaternion: %UnityEngineQuaternion, null\r\n
-    \   __1_intnl_UnityEngineQuaternion: %UnityEngineQuaternion, null\r\n    __2_intnl_UnityEngineQuaternion:
-    %UnityEngineQuaternion, null\r\n    __3_intnl_UnityEngineQuaternion: %UnityEngineQuaternion,
-    null\r\n    __4_intnl_UnityEngineQuaternion: %UnityEngineQuaternion, null\r\n
     \   __0_intnl_returnValSymbol_Single: %SystemSingle, null\r\n    __0_intnl_SystemSingle:
     %SystemSingle, null\r\n    __1_intnl_returnValSymbol_Single: %SystemSingle, null\r\n
     \   __1_intnl_SystemSingle: %SystemSingle, null\r\n    __10_intnl_SystemSingle:
@@ -1141,20 +1138,20 @@ MonoBehaviour:
     \       PUSH, __0_intnl_UnityEngineQuaternion\r\n        PUSH, __1_q_Quaternion\r\n
     \       COPY\r\n        JUMP, 0x00003088\r\n        PUSH, __0_a_Single\r\n        PUSH,
     __1_const_intnl_SystemSingle\r\n        PUSH, __0_b_Single\r\n        PUSH, __0_c_Single\r\n
-    \       PUSH, __1_intnl_UnityEngineQuaternion\r\n        EXTERN, \"UnityEngineQuaternion.__ctor__SystemSingle_SystemSingle_SystemSingle_SystemSingle__UnityEngineQuaternion\"\r\n
-    \       PUSH, __1_intnl_UnityEngineQuaternion\r\n        PUSH, __1_q_Quaternion\r\n
+    \       PUSH, __0_intnl_UnityEngineQuaternion\r\n        EXTERN, \"UnityEngineQuaternion.__ctor__SystemSingle_SystemSingle_SystemSingle_SystemSingle__UnityEngineQuaternion\"\r\n
+    \       PUSH, __0_intnl_UnityEngineQuaternion\r\n        PUSH, __1_q_Quaternion\r\n
     \       COPY\r\n        JUMP, 0x00003088\r\n        PUSH, __0_a_Single\r\n        PUSH,
     __0_b_Single\r\n        PUSH, __1_const_intnl_SystemSingle\r\n        PUSH, __0_c_Single\r\n
-    \       PUSH, __2_intnl_UnityEngineQuaternion\r\n        EXTERN, \"UnityEngineQuaternion.__ctor__SystemSingle_SystemSingle_SystemSingle_SystemSingle__UnityEngineQuaternion\"\r\n
-    \       PUSH, __2_intnl_UnityEngineQuaternion\r\n        PUSH, __1_q_Quaternion\r\n
+    \       PUSH, __0_intnl_UnityEngineQuaternion\r\n        EXTERN, \"UnityEngineQuaternion.__ctor__SystemSingle_SystemSingle_SystemSingle_SystemSingle__UnityEngineQuaternion\"\r\n
+    \       PUSH, __0_intnl_UnityEngineQuaternion\r\n        PUSH, __1_q_Quaternion\r\n
     \       COPY\r\n        JUMP, 0x00003088\r\n        PUSH, __0_a_Single\r\n        PUSH,
     __0_b_Single\r\n        PUSH, __0_c_Single\r\n        PUSH, __1_const_intnl_SystemSingle\r\n
-    \       PUSH, __3_intnl_UnityEngineQuaternion\r\n        EXTERN, \"UnityEngineQuaternion.__ctor__SystemSingle_SystemSingle_SystemSingle_SystemSingle__UnityEngineQuaternion\"\r\n
-    \       PUSH, __3_intnl_UnityEngineQuaternion\r\n        PUSH, __1_q_Quaternion\r\n
+    \       PUSH, __0_intnl_UnityEngineQuaternion\r\n        EXTERN, \"UnityEngineQuaternion.__ctor__SystemSingle_SystemSingle_SystemSingle_SystemSingle__UnityEngineQuaternion\"\r\n
+    \       PUSH, __0_intnl_UnityEngineQuaternion\r\n        PUSH, __1_q_Quaternion\r\n
     \       COPY\r\n        JUMP, 0x00003088\r\n        \r\n         # return q.normalized;\r\n
-    \       PUSH, __1_q_Quaternion\r\n        PUSH, __4_intnl_UnityEngineQuaternion\r\n
+    \       PUSH, __1_q_Quaternion\r\n        PUSH, __0_intnl_UnityEngineQuaternion\r\n
     \       EXTERN, \"UnityEngineQuaternion.__get_normalized__UnityEngineQuaternion\"\r\n
-    \       PUSH, __4_intnl_UnityEngineQuaternion\r\n        PUSH, __0_intnl_returnValSymbol_Quaternion\r\n
+    \       PUSH, __0_intnl_UnityEngineQuaternion\r\n        PUSH, __0_intnl_returnValSymbol_Quaternion\r\n
     \       COPY\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        JUMP_INDIRECT,
     __0_intnl_returnTarget_UInt32\r\n        \r\n        \r\n         # uint PackQuatComponent(float
     f)\r\n    PackQuatComponent:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n
@@ -2272,10 +2269,31 @@ MonoBehaviour:
     - startInstruction: 916
       endInstruction: 915
       startSourceChar: 12481
-      endSourceChar: 12491
+      endSourceChar: 12481
       line: 217
       lineChar: 7
-      spanCodeSection: Debug.Log(
+      spanCodeSection: 
+    - startInstruction: 916
+      endInstruction: 915
+      startSourceChar: 12481
+      endSourceChar: 12481
+      line: 217
+      lineChar: 7
+      spanCodeSection: 
+    - startInstruction: 916
+      endInstruction: 915
+      startSourceChar: 12481
+      endSourceChar: 12487
+      line: 217
+      lineChar: 7
+      spanCodeSection: Debug.
+    - startInstruction: 916
+      endInstruction: 915
+      startSourceChar: 12487
+      endSourceChar: 12491
+      line: 217
+      lineChar: 13
+      spanCodeSection: Log(
     - startInstruction: 916
       endInstruction: 915
       startSourceChar: 12491
@@ -2573,10 +2591,31 @@ MonoBehaviour:
     - startInstruction: 1544
       endInstruction: 1543
       startSourceChar: 12830
-      endSourceChar: 12845
+      endSourceChar: 12830
       line: 226
       lineChar: 18
-      spanCodeSection: Convert.ToChar(
+      spanCodeSection: 
+    - startInstruction: 1544
+      endInstruction: 1543
+      startSourceChar: 12830
+      endSourceChar: 12830
+      line: 226
+      lineChar: 18
+      spanCodeSection: 
+    - startInstruction: 1544
+      endInstruction: 1543
+      startSourceChar: 12830
+      endSourceChar: 12838
+      line: 226
+      lineChar: 18
+      spanCodeSection: Convert.
+    - startInstruction: 1544
+      endInstruction: 1543
+      startSourceChar: 12838
+      endSourceChar: 12845
+      line: 226
+      lineChar: 26
+      spanCodeSection: ToChar(
     - startInstruction: 1544
       endInstruction: 1599
       startSourceChar: 12845
@@ -2741,10 +2780,45 @@ MonoBehaviour:
     - startInstruction: 1748
       endInstruction: 1747
       startSourceChar: 13076
-      endSourceChar: 13101
+      endSourceChar: 13076
       line: 233
       lineChar: 24
-      spanCodeSection: UnityEngine.Random.Range(
+      spanCodeSection: 
+    - startInstruction: 1748
+      endInstruction: 1747
+      startSourceChar: 13076
+      endSourceChar: 13076
+      line: 233
+      lineChar: 24
+      spanCodeSection: 
+    - startInstruction: 1748
+      endInstruction: 1747
+      startSourceChar: 13076
+      endSourceChar: 13076
+      line: 233
+      lineChar: 24
+      spanCodeSection: 
+    - startInstruction: 1748
+      endInstruction: 1747
+      startSourceChar: 13076
+      endSourceChar: 13088
+      line: 233
+      lineChar: 24
+      spanCodeSection: UnityEngine.
+    - startInstruction: 1748
+      endInstruction: 1747
+      startSourceChar: 13088
+      endSourceChar: 13095
+      line: 233
+      lineChar: 36
+      spanCodeSection: Random.
+    - startInstruction: 1748
+      endInstruction: 1747
+      startSourceChar: 13095
+      endSourceChar: 13101
+      line: 233
+      lineChar: 43
+      spanCodeSection: Range(
     - startInstruction: 1748
       endInstruction: 1747
       startSourceChar: 13101
@@ -2776,10 +2850,31 @@ MonoBehaviour:
     - startInstruction: 1800
       endInstruction: 1799
       startSourceChar: 13141
-      endSourceChar: 13156
+      endSourceChar: 13141
       line: 234
       lineChar: 28
-      spanCodeSection: Convert.ToChar(
+      spanCodeSection: 
+    - startInstruction: 1800
+      endInstruction: 1799
+      startSourceChar: 13141
+      endSourceChar: 13141
+      line: 234
+      lineChar: 28
+      spanCodeSection: 
+    - startInstruction: 1800
+      endInstruction: 1799
+      startSourceChar: 13141
+      endSourceChar: 13149
+      line: 234
+      lineChar: 28
+      spanCodeSection: Convert.
+    - startInstruction: 1800
+      endInstruction: 1799
+      startSourceChar: 13149
+      endSourceChar: 13156
+      line: 234
+      lineChar: 36
+      spanCodeSection: ToChar(
     - startInstruction: 1800
       endInstruction: 1943
       startSourceChar: 13156
@@ -2860,10 +2955,45 @@ MonoBehaviour:
     - startInstruction: 2012
       endInstruction: 2011
       startSourceChar: 13291
-      endSourceChar: 13316
+      endSourceChar: 13291
       line: 240
       lineChar: 34
-      spanCodeSection: UnityEngine.Random.Range(
+      spanCodeSection: 
+    - startInstruction: 2012
+      endInstruction: 2011
+      startSourceChar: 13291
+      endSourceChar: 13291
+      line: 240
+      lineChar: 34
+      spanCodeSection: 
+    - startInstruction: 2012
+      endInstruction: 2011
+      startSourceChar: 13291
+      endSourceChar: 13291
+      line: 240
+      lineChar: 34
+      spanCodeSection: 
+    - startInstruction: 2012
+      endInstruction: 2011
+      startSourceChar: 13291
+      endSourceChar: 13303
+      line: 240
+      lineChar: 34
+      spanCodeSection: UnityEngine.
+    - startInstruction: 2012
+      endInstruction: 2011
+      startSourceChar: 13303
+      endSourceChar: 13310
+      line: 240
+      lineChar: 46
+      spanCodeSection: Random.
+    - startInstruction: 2012
+      endInstruction: 2011
+      startSourceChar: 13310
+      endSourceChar: 13316
+      line: 240
+      lineChar: 53
+      spanCodeSection: Range(
     - startInstruction: 2012
       endInstruction: 2011
       startSourceChar: 13316
@@ -2921,6 +3051,13 @@ MonoBehaviour:
     - startInstruction: 2256
       endInstruction: 2255
       startSourceChar: 13809
+      endSourceChar: 13809
+      line: 260
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 2256
+      endInstruction: 2255
+      startSourceChar: 13809
       endSourceChar: 13820
       line: 260
       lineChar: 8
@@ -2932,6 +3069,13 @@ MonoBehaviour:
       line: 260
       lineChar: 19
       spanCodeSection: "a);\r\n       "
+    - startInstruction: 2344
+      endInstruction: 2343
+      startSourceChar: 13832
+      endSourceChar: 13832
+      line: 261
+      lineChar: 7
+      spanCodeSection: 
     - startInstruction: 2344
       endInstruction: 2343
       startSourceChar: 13832
@@ -3201,10 +3345,31 @@ MonoBehaviour:
     - startInstruction: 2748
       endInstruction: 2747
       startSourceChar: 14082
-      endSourceChar: 14092
+      endSourceChar: 14082
       line: 271
       lineChar: 12
-      spanCodeSection: Debug.Log(
+      spanCodeSection: 
+    - startInstruction: 2748
+      endInstruction: 2747
+      startSourceChar: 14082
+      endSourceChar: 14082
+      line: 271
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 2748
+      endInstruction: 2747
+      startSourceChar: 14082
+      endSourceChar: 14088
+      line: 271
+      lineChar: 12
+      spanCodeSection: Debug.
+    - startInstruction: 2748
+      endInstruction: 2747
+      startSourceChar: 14088
+      endSourceChar: 14092
+      line: 271
+      lineChar: 18
+      spanCodeSection: Log(
     - startInstruction: 2748
       endInstruction: 2747
       startSourceChar: 14092
@@ -3371,6 +3536,13 @@ MonoBehaviour:
     - startInstruction: 3164
       endInstruction: 3163
       startSourceChar: 14925
+      endSourceChar: 14925
+      line: 292
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 3164
+      endInstruction: 3163
+      startSourceChar: 14925
       endSourceChar: 14942
       line: 292
       lineChar: 16
@@ -3427,6 +3599,13 @@ MonoBehaviour:
     - startInstruction: 3316
       endInstruction: 3315
       startSourceChar: 14965
+      endSourceChar: 14965
+      line: 293
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 3316
+      endInstruction: 3315
+      startSourceChar: 14965
       endSourceChar: 14980
       line: 293
       lineChar: 16
@@ -3480,6 +3659,13 @@ MonoBehaviour:
       line: 294
       lineChar: 14
       spanCodeSection: '= '
+    - startInstruction: 3468
+      endInstruction: 3467
+      startSourceChar: 15003
+      endSourceChar: 15003
+      line: 294
+      lineChar: 16
+      spanCodeSection: 
     - startInstruction: 3468
       endInstruction: 3467
       startSourceChar: 15003
@@ -3680,10 +3866,31 @@ MonoBehaviour:
     - startInstruction: 3888
       endInstruction: 3887
       startSourceChar: 15226
-      endSourceChar: 15241
+      endSourceChar: 15226
       line: 302
       lineChar: 21
-      spanCodeSection: Convert.ToChar(
+      spanCodeSection: 
+    - startInstruction: 3888
+      endInstruction: 3887
+      startSourceChar: 15226
+      endSourceChar: 15226
+      line: 302
+      lineChar: 21
+      spanCodeSection: 
+    - startInstruction: 3888
+      endInstruction: 3887
+      startSourceChar: 15226
+      endSourceChar: 15234
+      line: 302
+      lineChar: 21
+      spanCodeSection: Convert.
+    - startInstruction: 3888
+      endInstruction: 3887
+      startSourceChar: 15234
+      endSourceChar: 15241
+      line: 302
+      lineChar: 29
+      spanCodeSection: ToChar(
     - startInstruction: 3888
       endInstruction: 3887
       startSourceChar: 15241
@@ -3722,10 +3929,31 @@ MonoBehaviour:
     - startInstruction: 3996
       endInstruction: 3995
       startSourceChar: 15278
-      endSourceChar: 15293
+      endSourceChar: 15278
       line: 303
       lineChar: 23
-      spanCodeSection: Convert.ToChar(
+      spanCodeSection: 
+    - startInstruction: 3996
+      endInstruction: 3995
+      startSourceChar: 15278
+      endSourceChar: 15278
+      line: 303
+      lineChar: 23
+      spanCodeSection: 
+    - startInstruction: 3996
+      endInstruction: 3995
+      startSourceChar: 15278
+      endSourceChar: 15286
+      line: 303
+      lineChar: 23
+      spanCodeSection: Convert.
+    - startInstruction: 3996
+      endInstruction: 3995
+      startSourceChar: 15286
+      endSourceChar: 15293
+      line: 303
+      lineChar: 31
+      spanCodeSection: ToChar(
     - startInstruction: 3996
       endInstruction: 3995
       startSourceChar: 15293
@@ -3799,10 +4027,31 @@ MonoBehaviour:
     - startInstruction: 4232
       endInstruction: 4231
       startSourceChar: 15389
-      endSourceChar: 15406
+      endSourceChar: 15389
       line: 307
       lineChar: 20
-      spanCodeSection: Convert.ToUInt32(
+      spanCodeSection: 
+    - startInstruction: 4232
+      endInstruction: 4231
+      startSourceChar: 15389
+      endSourceChar: 15389
+      line: 307
+      lineChar: 20
+      spanCodeSection: 
+    - startInstruction: 4232
+      endInstruction: 4231
+      startSourceChar: 15389
+      endSourceChar: 15397
+      line: 307
+      lineChar: 20
+      spanCodeSection: Convert.
+    - startInstruction: 4232
+      endInstruction: 4231
+      startSourceChar: 15397
+      endSourceChar: 15406
+      line: 307
+      lineChar: 28
+      spanCodeSection: ToUInt32(
     - startInstruction: 4232
       endInstruction: 4231
       startSourceChar: 15406
@@ -3883,10 +4132,31 @@ MonoBehaviour:
     - startInstruction: 4380
       endInstruction: 4379
       startSourceChar: 15450
-      endSourceChar: 15467
+      endSourceChar: 15450
       line: 308
       lineChar: 30
-      spanCodeSection: Convert.ToUInt32(
+      spanCodeSection: 
+    - startInstruction: 4380
+      endInstruction: 4379
+      startSourceChar: 15450
+      endSourceChar: 15450
+      line: 308
+      lineChar: 30
+      spanCodeSection: 
+    - startInstruction: 4380
+      endInstruction: 4379
+      startSourceChar: 15450
+      endSourceChar: 15458
+      line: 308
+      lineChar: 30
+      spanCodeSection: Convert.
+    - startInstruction: 4380
+      endInstruction: 4379
+      startSourceChar: 15458
+      endSourceChar: 15467
+      line: 308
+      lineChar: 38
+      spanCodeSection: ToUInt32(
     - startInstruction: 4380
       endInstruction: 4379
       startSourceChar: 15467
@@ -4212,6 +4482,13 @@ MonoBehaviour:
     - startInstruction: 5136
       endInstruction: 5135
       startSourceChar: 15636
+      endSourceChar: 15636
+      line: 314
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 5136
+      endInstruction: 5135
+      startSourceChar: 15636
       endSourceChar: 15655
       line: 314
       lineChar: 16
@@ -4254,6 +4531,13 @@ MonoBehaviour:
     - startInstruction: 5288
       endInstruction: 5287
       startSourceChar: 15676
+      endSourceChar: 15676
+      line: 315
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 5288
+      endInstruction: 5287
+      startSourceChar: 15676
       endSourceChar: 15695
       line: 315
       lineChar: 16
@@ -4293,6 +4577,13 @@ MonoBehaviour:
       line: 316
       lineChar: 14
       spanCodeSection: '= '
+    - startInstruction: 5440
+      endInstruction: 5439
+      startSourceChar: 15716
+      endSourceChar: 15716
+      line: 316
+      lineChar: 16
+      spanCodeSection: 
     - startInstruction: 5440
       endInstruction: 5439
       startSourceChar: 15716
@@ -4654,17 +4945,59 @@ MonoBehaviour:
     - startInstruction: 6244
       endInstruction: 6243
       startSourceChar: 16084
-      endSourceChar: 16101
+      endSourceChar: 16084
       line: 329
       lineChar: 16
-      spanCodeSection: Convert.ToUInt32(
+      spanCodeSection: 
+    - startInstruction: 6244
+      endInstruction: 6243
+      startSourceChar: 16084
+      endSourceChar: 16084
+      line: 329
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 6244
+      endInstruction: 6243
+      startSourceChar: 16084
+      endSourceChar: 16092
+      line: 329
+      lineChar: 16
+      spanCodeSection: Convert.
+    - startInstruction: 6244
+      endInstruction: 6243
+      startSourceChar: 16092
+      endSourceChar: 16101
+      line: 329
+      lineChar: 24
+      spanCodeSection: ToUInt32(
     - startInstruction: 6244
       endInstruction: 6243
       startSourceChar: 16101
-      endSourceChar: 16113
+      endSourceChar: 16101
       line: 329
       lineChar: 33
-      spanCodeSection: Mathf.Floor(
+      spanCodeSection: 
+    - startInstruction: 6244
+      endInstruction: 6243
+      startSourceChar: 16101
+      endSourceChar: 16101
+      line: 329
+      lineChar: 33
+      spanCodeSection: 
+    - startInstruction: 6244
+      endInstruction: 6243
+      startSourceChar: 16101
+      endSourceChar: 16107
+      line: 329
+      lineChar: 33
+      spanCodeSection: Mathf.
+    - startInstruction: 6244
+      endInstruction: 6243
+      startSourceChar: 16107
+      endSourceChar: 16113
+      line: 329
+      lineChar: 39
+      spanCodeSection: Floor(
     - startInstruction: 6244
       endInstruction: 6243
       startSourceChar: 16113
@@ -4934,17 +5267,59 @@ MonoBehaviour:
     - startInstruction: 6928
       endInstruction: 6927
       startSourceChar: 16415
-      endSourceChar: 16432
+      endSourceChar: 16415
       line: 342
       lineChar: 16
-      spanCodeSection: Convert.ToUInt32(
+      spanCodeSection: 
+    - startInstruction: 6928
+      endInstruction: 6927
+      startSourceChar: 16415
+      endSourceChar: 16415
+      line: 342
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 6928
+      endInstruction: 6927
+      startSourceChar: 16415
+      endSourceChar: 16423
+      line: 342
+      lineChar: 16
+      spanCodeSection: Convert.
+    - startInstruction: 6928
+      endInstruction: 6927
+      startSourceChar: 16423
+      endSourceChar: 16432
+      line: 342
+      lineChar: 24
+      spanCodeSection: ToUInt32(
     - startInstruction: 6928
       endInstruction: 6927
       startSourceChar: 16432
-      endSourceChar: 16444
+      endSourceChar: 16432
       line: 342
       lineChar: 33
-      spanCodeSection: Mathf.Floor(
+      spanCodeSection: 
+    - startInstruction: 6928
+      endInstruction: 6927
+      startSourceChar: 16432
+      endSourceChar: 16432
+      line: 342
+      lineChar: 33
+      spanCodeSection: 
+    - startInstruction: 6928
+      endInstruction: 6927
+      startSourceChar: 16432
+      endSourceChar: 16438
+      line: 342
+      lineChar: 33
+      spanCodeSection: Mathf.
+    - startInstruction: 6928
+      endInstruction: 6927
+      startSourceChar: 16438
+      endSourceChar: 16444
+      line: 342
+      lineChar: 39
+      spanCodeSection: Floor(
     - startInstruction: 6928
       endInstruction: 6927
       startSourceChar: 16444
@@ -5244,10 +5619,31 @@ MonoBehaviour:
     - startInstruction: 7676
       endInstruction: 7675
       startSourceChar: 16818
-      endSourceChar: 16828
+      endSourceChar: 16818
       line: 355
       lineChar: 12
-      spanCodeSection: Mathf.Abs(
+      spanCodeSection: 
+    - startInstruction: 7676
+      endInstruction: 7675
+      startSourceChar: 16818
+      endSourceChar: 16818
+      line: 355
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 7676
+      endInstruction: 7675
+      startSourceChar: 16818
+      endSourceChar: 16824
+      line: 355
+      lineChar: 12
+      spanCodeSection: Mathf.
+    - startInstruction: 7676
+      endInstruction: 7675
+      startSourceChar: 16824
+      endSourceChar: 16828
+      line: 355
+      lineChar: 18
+      spanCodeSection: Abs(
     - startInstruction: 7676
       endInstruction: 7675
       startSourceChar: 16828
@@ -5272,10 +5668,31 @@ MonoBehaviour:
     - startInstruction: 7744
       endInstruction: 7743
       startSourceChar: 16835
-      endSourceChar: 16845
+      endSourceChar: 16835
       line: 355
       lineChar: 29
-      spanCodeSection: Mathf.Abs(
+      spanCodeSection: 
+    - startInstruction: 7744
+      endInstruction: 7743
+      startSourceChar: 16835
+      endSourceChar: 16835
+      line: 355
+      lineChar: 29
+      spanCodeSection: 
+    - startInstruction: 7744
+      endInstruction: 7743
+      startSourceChar: 16835
+      endSourceChar: 16841
+      line: 355
+      lineChar: 29
+      spanCodeSection: Mathf.
+    - startInstruction: 7744
+      endInstruction: 7743
+      startSourceChar: 16841
+      endSourceChar: 16845
+      line: 355
+      lineChar: 35
+      spanCodeSection: Abs(
     - startInstruction: 7744
       endInstruction: 7815
       startSourceChar: 16845
@@ -5363,10 +5780,31 @@ MonoBehaviour:
     - startInstruction: 7904
       endInstruction: 7903
       startSourceChar: 16948
-      endSourceChar: 16958
+      endSourceChar: 16948
       line: 360
       lineChar: 12
-      spanCodeSection: Mathf.Abs(
+      spanCodeSection: 
+    - startInstruction: 7904
+      endInstruction: 7903
+      startSourceChar: 16948
+      endSourceChar: 16948
+      line: 360
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 7904
+      endInstruction: 7903
+      startSourceChar: 16948
+      endSourceChar: 16954
+      line: 360
+      lineChar: 12
+      spanCodeSection: Mathf.
+    - startInstruction: 7904
+      endInstruction: 7903
+      startSourceChar: 16954
+      endSourceChar: 16958
+      line: 360
+      lineChar: 18
+      spanCodeSection: Abs(
     - startInstruction: 7904
       endInstruction: 7903
       startSourceChar: 16958
@@ -5391,10 +5829,31 @@ MonoBehaviour:
     - startInstruction: 7972
       endInstruction: 7971
       startSourceChar: 16965
-      endSourceChar: 16975
+      endSourceChar: 16965
       line: 360
       lineChar: 29
-      spanCodeSection: Mathf.Abs(
+      spanCodeSection: 
+    - startInstruction: 7972
+      endInstruction: 7971
+      startSourceChar: 16965
+      endSourceChar: 16965
+      line: 360
+      lineChar: 29
+      spanCodeSection: 
+    - startInstruction: 7972
+      endInstruction: 7971
+      startSourceChar: 16965
+      endSourceChar: 16971
+      line: 360
+      lineChar: 29
+      spanCodeSection: Mathf.
+    - startInstruction: 7972
+      endInstruction: 7971
+      startSourceChar: 16971
+      endSourceChar: 16975
+      line: 360
+      lineChar: 35
+      spanCodeSection: Abs(
     - startInstruction: 7972
       endInstruction: 8043
       startSourceChar: 16975
@@ -5482,10 +5941,31 @@ MonoBehaviour:
     - startInstruction: 8132
       endInstruction: 8131
       startSourceChar: 17078
-      endSourceChar: 17088
+      endSourceChar: 17078
       line: 365
       lineChar: 12
-      spanCodeSection: Mathf.Abs(
+      spanCodeSection: 
+    - startInstruction: 8132
+      endInstruction: 8131
+      startSourceChar: 17078
+      endSourceChar: 17078
+      line: 365
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 8132
+      endInstruction: 8131
+      startSourceChar: 17078
+      endSourceChar: 17084
+      line: 365
+      lineChar: 12
+      spanCodeSection: Mathf.
+    - startInstruction: 8132
+      endInstruction: 8131
+      startSourceChar: 17084
+      endSourceChar: 17088
+      line: 365
+      lineChar: 18
+      spanCodeSection: Abs(
     - startInstruction: 8132
       endInstruction: 8131
       startSourceChar: 17088
@@ -5510,10 +5990,31 @@ MonoBehaviour:
     - startInstruction: 8200
       endInstruction: 8199
       startSourceChar: 17095
-      endSourceChar: 17105
+      endSourceChar: 17095
       line: 365
       lineChar: 29
-      spanCodeSection: Mathf.Abs(
+      spanCodeSection: 
+    - startInstruction: 8200
+      endInstruction: 8199
+      startSourceChar: 17095
+      endSourceChar: 17095
+      line: 365
+      lineChar: 29
+      spanCodeSection: 
+    - startInstruction: 8200
+      endInstruction: 8199
+      startSourceChar: 17095
+      endSourceChar: 17101
+      line: 365
+      lineChar: 29
+      spanCodeSection: Mathf.
+    - startInstruction: 8200
+      endInstruction: 8199
+      startSourceChar: 17101
+      endSourceChar: 17105
+      line: 365
+      lineChar: 35
+      spanCodeSection: Abs(
     - startInstruction: 8200
       endInstruction: 8271
       startSourceChar: 17105
@@ -5622,6 +6123,13 @@ MonoBehaviour:
     - startInstruction: 8360
       endInstruction: 8359
       startSourceChar: 17215
+      endSourceChar: 17215
+      line: 371
+      lineChar: 17
+      spanCodeSection: 
+    - startInstruction: 8360
+      endInstruction: 8359
+      startSourceChar: 17215
       endSourceChar: 17233
       line: 371
       lineChar: 17
@@ -5696,6 +6204,13 @@ MonoBehaviour:
       line: 372
       lineChar: 15
       spanCodeSection: '= '
+    - startInstruction: 8544
+      endInstruction: 8543
+      startSourceChar: 17267
+      endSourceChar: 17267
+      line: 372
+      lineChar: 17
+      spanCodeSection: 
     - startInstruction: 8544
       endInstruction: 8543
       startSourceChar: 17267
@@ -5776,6 +6291,13 @@ MonoBehaviour:
     - startInstruction: 8728
       endInstruction: 8727
       startSourceChar: 17319
+      endSourceChar: 17319
+      line: 373
+      lineChar: 17
+      spanCodeSection: 
+    - startInstruction: 8728
+      endInstruction: 8727
+      startSourceChar: 17319
       endSourceChar: 17337
       line: 373
       lineChar: 17
@@ -5850,6 +6372,13 @@ MonoBehaviour:
       line: 374
       lineChar: 15
       spanCodeSection: '= '
+    - startInstruction: 8912
+      endInstruction: 8911
+      startSourceChar: 17371
+      endSourceChar: 17371
+      line: 374
+      lineChar: 17
+      spanCodeSection: 
     - startInstruction: 8912
       endInstruction: 8911
       startSourceChar: 17371
@@ -6343,10 +6872,31 @@ MonoBehaviour:
     - startInstruction: 10156
       endInstruction: 10155
       startSourceChar: 17721
-      endSourceChar: 17736
+      endSourceChar: 17721
       line: 382
       lineChar: 21
-      spanCodeSection: Convert.ToChar(
+      spanCodeSection: 
+    - startInstruction: 10156
+      endInstruction: 10155
+      startSourceChar: 17721
+      endSourceChar: 17721
+      line: 382
+      lineChar: 21
+      spanCodeSection: 
+    - startInstruction: 10156
+      endInstruction: 10155
+      startSourceChar: 17721
+      endSourceChar: 17729
+      line: 382
+      lineChar: 21
+      spanCodeSection: Convert.
+    - startInstruction: 10156
+      endInstruction: 10155
+      startSourceChar: 17729
+      endSourceChar: 17736
+      line: 382
+      lineChar: 29
+      spanCodeSection: ToChar(
     - startInstruction: 10156
       endInstruction: 10155
       startSourceChar: 17736
@@ -6385,10 +6935,31 @@ MonoBehaviour:
     - startInstruction: 10264
       endInstruction: 10263
       startSourceChar: 17773
-      endSourceChar: 17788
+      endSourceChar: 17773
       line: 383
       lineChar: 23
-      spanCodeSection: Convert.ToChar(
+      spanCodeSection: 
+    - startInstruction: 10264
+      endInstruction: 10263
+      startSourceChar: 17773
+      endSourceChar: 17773
+      line: 383
+      lineChar: 23
+      spanCodeSection: 
+    - startInstruction: 10264
+      endInstruction: 10263
+      startSourceChar: 17773
+      endSourceChar: 17781
+      line: 383
+      lineChar: 23
+      spanCodeSection: Convert.
+    - startInstruction: 10264
+      endInstruction: 10263
+      startSourceChar: 17781
+      endSourceChar: 17788
+      line: 383
+      lineChar: 31
+      spanCodeSection: ToChar(
     - startInstruction: 10264
       endInstruction: 10263
       startSourceChar: 17788
@@ -6462,10 +7033,31 @@ MonoBehaviour:
     - startInstruction: 10500
       endInstruction: 10499
       startSourceChar: 17894
-      endSourceChar: 17911
+      endSourceChar: 17894
       line: 387
       lineChar: 20
-      spanCodeSection: Convert.ToUInt32(
+      spanCodeSection: 
+    - startInstruction: 10500
+      endInstruction: 10499
+      startSourceChar: 17894
+      endSourceChar: 17894
+      line: 387
+      lineChar: 20
+      spanCodeSection: 
+    - startInstruction: 10500
+      endInstruction: 10499
+      startSourceChar: 17894
+      endSourceChar: 17902
+      line: 387
+      lineChar: 20
+      spanCodeSection: Convert.
+    - startInstruction: 10500
+      endInstruction: 10499
+      startSourceChar: 17902
+      endSourceChar: 17911
+      line: 387
+      lineChar: 28
+      spanCodeSection: ToUInt32(
     - startInstruction: 10500
       endInstruction: 10499
       startSourceChar: 17911
@@ -6546,10 +7138,31 @@ MonoBehaviour:
     - startInstruction: 10648
       endInstruction: 10647
       startSourceChar: 17955
-      endSourceChar: 17972
+      endSourceChar: 17955
       line: 388
       lineChar: 30
-      spanCodeSection: Convert.ToUInt32(
+      spanCodeSection: 
+    - startInstruction: 10648
+      endInstruction: 10647
+      startSourceChar: 17955
+      endSourceChar: 17955
+      line: 388
+      lineChar: 30
+      spanCodeSection: 
+    - startInstruction: 10648
+      endInstruction: 10647
+      startSourceChar: 17955
+      endSourceChar: 17963
+      line: 388
+      lineChar: 30
+      spanCodeSection: Convert.
+    - startInstruction: 10648
+      endInstruction: 10647
+      startSourceChar: 17963
+      endSourceChar: 17972
+      line: 388
+      lineChar: 38
+      spanCodeSection: ToUInt32(
     - startInstruction: 10648
       endInstruction: 10647
       startSourceChar: 17972
@@ -6686,6 +7299,13 @@ MonoBehaviour:
     - startInstruction: 10880
       endInstruction: 10879
       startSourceChar: 18048
+      endSourceChar: 18048
+      line: 391
+      lineChar: 18
+      spanCodeSection: 
+    - startInstruction: 10880
+      endInstruction: 10879
+      startSourceChar: 18048
       endSourceChar: 18068
       line: 391
       lineChar: 18
@@ -6784,6 +7404,13 @@ MonoBehaviour:
     - startInstruction: 11204
       endInstruction: 11203
       startSourceChar: 18117
+      endSourceChar: 18117
+      line: 392
+      lineChar: 18
+      spanCodeSection: 
+    - startInstruction: 11204
+      endInstruction: 11203
+      startSourceChar: 18117
       endSourceChar: 18137
       line: 392
       lineChar: 18
@@ -6879,6 +7506,13 @@ MonoBehaviour:
       line: 393
       lineChar: 16
       spanCodeSection: '= '
+    - startInstruction: 11528
+      endInstruction: 11527
+      startSourceChar: 18186
+      endSourceChar: 18186
+      line: 393
+      lineChar: 18
+      spanCodeSection: 
     - startInstruction: 11528
       endInstruction: 11527
       startSourceChar: 18186
@@ -7155,17 +7789,59 @@ MonoBehaviour:
     - startInstruction: 12504
       endInstruction: 12503
       startSourceChar: 18687
-      endSourceChar: 18704
+      endSourceChar: 18687
       line: 408
       lineChar: 15
-      spanCodeSection: Convert.ToUInt32(
+      spanCodeSection: 
+    - startInstruction: 12504
+      endInstruction: 12503
+      startSourceChar: 18687
+      endSourceChar: 18687
+      line: 408
+      lineChar: 15
+      spanCodeSection: 
+    - startInstruction: 12504
+      endInstruction: 12503
+      startSourceChar: 18687
+      endSourceChar: 18695
+      line: 408
+      lineChar: 15
+      spanCodeSection: Convert.
+    - startInstruction: 12504
+      endInstruction: 12503
+      startSourceChar: 18695
+      endSourceChar: 18704
+      line: 408
+      lineChar: 23
+      spanCodeSection: ToUInt32(
     - startInstruction: 12504
       endInstruction: 12503
       startSourceChar: 18704
-      endSourceChar: 18716
+      endSourceChar: 18704
       line: 408
       lineChar: 32
-      spanCodeSection: Mathf.Floor(
+      spanCodeSection: 
+    - startInstruction: 12504
+      endInstruction: 12503
+      startSourceChar: 18704
+      endSourceChar: 18704
+      line: 408
+      lineChar: 32
+      spanCodeSection: 
+    - startInstruction: 12504
+      endInstruction: 12503
+      startSourceChar: 18704
+      endSourceChar: 18710
+      line: 408
+      lineChar: 32
+      spanCodeSection: Mathf.
+    - startInstruction: 12504
+      endInstruction: 12503
+      startSourceChar: 18710
+      endSourceChar: 18716
+      line: 408
+      lineChar: 38
+      spanCodeSection: Floor(
     - startInstruction: 12504
       endInstruction: 12503
       startSourceChar: 18716

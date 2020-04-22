@@ -339,10 +339,31 @@ MonoBehaviour:
     - startInstruction: 20
       endInstruction: 19
       startSourceChar: 633
-      endSourceChar: 659
+      endSourceChar: 633
       line: 21
       lineChar: 46
-      spanCodeSection: cubeToRotate.GetComponent(
+      spanCodeSection: 
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 633
+      endSourceChar: 633
+      line: 21
+      lineChar: 46
+      spanCodeSection: 
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 633
+      endSourceChar: 646
+      line: 21
+      lineChar: 46
+      spanCodeSection: cubeToRotate.
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 646
+      endSourceChar: 659
+      line: 21
+      lineChar: 59
+      spanCodeSection: GetComponent(
     - startInstruction: 20
       endInstruction: 19
       startSourceChar: 659
@@ -381,10 +402,31 @@ MonoBehaviour:
     - startInstruction: 120
       endInstruction: 119
       startSourceChar: 756
-      endSourceChar: 789
+      endSourceChar: 756
       line: 26
       lineChar: 12
-      spanCodeSection: udonRotateTarget.SendCustomEvent(
+      spanCodeSection: 
+    - startInstruction: 120
+      endInstruction: 119
+      startSourceChar: 756
+      endSourceChar: 756
+      line: 26
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 120
+      endInstruction: 119
+      startSourceChar: 756
+      endSourceChar: 773
+      line: 26
+      lineChar: 12
+      spanCodeSection: udonRotateTarget.
+    - startInstruction: 120
+      endInstruction: 119
+      startSourceChar: 773
+      endSourceChar: 789
+      line: 26
+      lineChar: 29
+      spanCodeSection: SendCustomEvent(
     - startInstruction: 120
       endInstruction: 151
       startSourceChar: 789
@@ -472,10 +514,31 @@ MonoBehaviour:
     - startInstruction: 260
       endInstruction: 259
       startSourceChar: 998
-      endSourceChar: 1015
+      endSourceChar: 998
       line: 37
       lineChar: 16
-      spanCodeSection: transform.Rotate(
+      spanCodeSection: 
+    - startInstruction: 260
+      endInstruction: 259
+      startSourceChar: 998
+      endSourceChar: 998
+      line: 37
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 260
+      endInstruction: 259
+      startSourceChar: 998
+      endSourceChar: 1008
+      line: 37
+      lineChar: 16
+      spanCodeSection: transform.
+    - startInstruction: 260
+      endInstruction: 259
+      startSourceChar: 1008
+      endSourceChar: 1015
+      line: 37
+      lineChar: 26
+      spanCodeSection: Rotate(
     - startInstruction: 260
       endInstruction: 259
       startSourceChar: 1015

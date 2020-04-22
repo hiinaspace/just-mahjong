@@ -810,15 +810,65 @@ public class OwnAndSortTiles : UdonSharpBehaviour
 
     public override void Interact()
     {
-        // own this
-        Networking.SetOwner(Networking.LocalPlayer, gameObject);
+        // don't bother if not dealt yet.
+        // XXX pretty hacky boolean
+        if (!shuffler.isDealt) return;
 
-        var tiles = Physics.OverlapBox(origin.position, halfExtents, origin.rotation, tileLayer);
+        // own this
+        if (Networking.GetOwner(gameObject) != Networking.LocalPlayer)
+        {
+            Debug.Log($"taking ownership of {gameObject.name} and its previous tiles");
+            Networking.SetOwner(Networking.LocalPlayer, gameObject);
+            // weird edge case when a new player interacts with this in the middle of a game:
+            // they'll take ownership of this behavior and the tiles in the hand zone, but
+            // other tiles will still be owned by the old player (e.g. discards); so unless you take
+            // ownership they'll drop out of the sync state next update. Those tiles will then be in 
+            // nobody's sync state, and not in the shuffle bitmap. I think this only means that late 
+            // joiners will see tiles in the initial position until the next game starts, but players who were 
+            // there before the ownership switched will be fine; if somebody does go to move the tiles, 
+            // they'll take ownership and the tile will go back into a sync state.
+
+            // note tilesInState is initialized to all zeros so this works at the start.
+            bool[] tilesInState = new bool[136];
+            // probably more efficient ways to read this.
+            for (int i = 0; i < 17; ++i)
+            {
+                uint map = syncState[i];
+                var j = i * 8;
+                tilesInState[j+0] = (map & 128) > 0;
+                tilesInState[j+1] = (map & 64) > 0;
+                tilesInState[j+2] = (map & 32) > 0;
+                tilesInState[j+3] = (map & 16) > 0;
+                tilesInState[j+4] = (map & 8) > 0;
+                tilesInState[j+5] = (map & 4) > 0;
+                tilesInState[j+6] = (map & 2) > 0;
+                tilesInState[j+7] = (map & 1) > 0;
+            }
+            for (int i = 0; i < 136; ++i)
+            {
+                if (tilesInState[i])
+                {
+                    Networking.SetOwner(Networking.LocalPlayer, tiles[i].gameObject);
+                }
+            }
+        }
+
+        // XXX by default pickups are disabled. so now that player is owner and can
+        // sync their local positions, allow grabbing.
+        Debug.Log($"enabling box colliders for all tiles");
+        for (int i = 0; i < 136;  ++i)
+        {
+            //var pickup = (VRC_Pickup)(tiles[i].gameObject.GetComponent(typeof(VRC_Pickup)));
+            //pickup.enabled = true;
+            tiles[i].GetComponent<BoxCollider>().enabled = true;
+        }
+
+        var collide = Physics.OverlapBox(origin.position, halfExtents, origin.rotation, tileLayer);
         //Debug.Log($"tiles: {tiles.Length}");
-        Sort(tiles);
+        Sort(collide);
         float z = -7.5f;
         int n = 0;
-        foreach (Collider t in tiles)
+        foreach (Collider t in collide)
         {
             var obj = t.gameObject;
             //Debug.Log($"tile {obj.name}");

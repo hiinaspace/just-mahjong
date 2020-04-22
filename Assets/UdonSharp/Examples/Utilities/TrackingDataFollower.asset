@@ -413,10 +413,31 @@ MonoBehaviour:
     - startInstruction: 180
       endInstruction: 179
       startSourceChar: 895
-      endSourceChar: 921
+      endSourceChar: 895
       line: 29
       lineChar: 53
-      spanCodeSection: playerApi.GetTrackingData(
+      spanCodeSection: 
+    - startInstruction: 180
+      endInstruction: 179
+      startSourceChar: 895
+      endSourceChar: 895
+      line: 29
+      lineChar: 53
+      spanCodeSection: 
+    - startInstruction: 180
+      endInstruction: 179
+      startSourceChar: 895
+      endSourceChar: 905
+      line: 29
+      lineChar: 53
+      spanCodeSection: playerApi.
+    - startInstruction: 180
+      endInstruction: 179
+      startSourceChar: 905
+      endSourceChar: 921
+      line: 29
+      lineChar: 63
+      spanCodeSection: GetTrackingData(
     - startInstruction: 180
       endInstruction: 231
       startSourceChar: 921
@@ -434,10 +455,31 @@ MonoBehaviour:
     - startInstruction: 232
       endInstruction: 231
       startSourceChar: 951
-      endSourceChar: 984
+      endSourceChar: 951
       line: 30
       lineChar: 12
-      spanCodeSection: transform.SetPositionAndRotation(
+      spanCodeSection: 
+    - startInstruction: 232
+      endInstruction: 231
+      startSourceChar: 951
+      endSourceChar: 951
+      line: 30
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 232
+      endInstruction: 231
+      startSourceChar: 951
+      endSourceChar: 961
+      line: 30
+      lineChar: 12
+      spanCodeSection: transform.
+    - startInstruction: 232
+      endInstruction: 231
+      startSourceChar: 961
+      endSourceChar: 984
+      line: 30
+      lineChar: 22
+      spanCodeSection: SetPositionAndRotation(
     - startInstruction: 232
       endInstruction: 231
       startSourceChar: 984

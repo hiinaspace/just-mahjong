@@ -18,7 +18,7 @@ public class WindIndicator : UdonSharpBehaviour
     void Interact()
     {
         Networking.SetOwner(Networking.LocalPlayer, gameObject);
-        transform.Rotate(new Vector3(0, 90, 0));
+        transform.Rotate(new Vector3(0, 0, 90));
         rot = transform.rotation;
     }
 

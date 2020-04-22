@@ -28,6 +28,12 @@ public class Shuffle : UdonSharpBehaviour
     int lastReadSeq;
     public bool isDealt = false;
 
+    // keep track of when the deal changes, as a poor mans way to
+    // detect when a game starts
+    int dealNo = 0;
+    int readDealNo = -1;
+    int lastReadDealNo = -1;
+
     // 7 bits: [4 bits seqNo] [1 bit for "is dealt"]
     // 153 bytes for the rest of the shuffleState
     [UdonSynced] string shuffleState0 = "";
@@ -97,6 +103,23 @@ public class Shuffle : UdonSharpBehaviour
             // TODO if you wanted to be able to return to initial undealt state, would need more code
             return;
         }
+        
+        // if the state is a new deal
+        if (lastReadDealNo != readDealNo)
+        {
+            Debug.Log($"new deal detected {readDealNo}, turning off box coliders/pickup for all tiles");
+            lastReadDealNo = readDealNo;
+            // disable vrcpickup for all tiles (locally) since player
+            // no longer has ownership of tiles or sync
+            for (int i = 0; i < 136; ++i)
+            {
+                //var pickup = (VRC_Pickup)(tiles[i].gameObject.GetComponent(typeof(VRC_Pickup)));
+                //pickup.enabled = false;
+                tiles[i].gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                tiles[i].gameObject.GetComponent<BoxCollider>().enabled = false;
+            }
+        }
+
         // copy bitmap out of shuffleState for ease of use
         var bitmap = new byte[17];
         for (int i = 0; i < 17; ++i)
@@ -123,6 +146,9 @@ public class Shuffle : UdonSharpBehaviour
     {
         if (!Networking.IsMaster) return;
 
+        // update dealno, so other clients know new deal happened.
+        dealNo = (dealNo + 1) % 127;
+
         byte swap;
         byte[] shufIdx = new byte[136];
         // take ownership of everything, and initialize shufIdx
@@ -132,7 +158,6 @@ public class Shuffle : UdonSharpBehaviour
             shufIdx[i] = (byte)i;
             // and update non-bitmap while we're at it
             dealtTiles[i] = true;
-
         }
 
         for (int i = 135; i >= 1; --i)
@@ -234,11 +259,12 @@ public class Shuffle : UdonSharpBehaviour
     {
         // pack shuffleState into the rest 7 bit ascii in synced variables
         int n = 0;
-        // 1 + (int)Mathf.Ceil(shuffleStateSize * 8f / 7f)
-        char[] chars = new char[177];
+        // 2 + (int)Mathf.Ceil(shuffleStateSize * 8f / 7f)
+        char[] chars = new char[178];
         // update seq no, in first ascii of packed state
         seqNo += 1;
         chars[n++] = (char)((seqNo << 4) + (isDealt ? 0 : 1));
+        chars[n++] = (char)dealNo;
         for (int i = 0; i < shuffleStateSize;)
         {
             // pack 7 bytes into 56 bits;
@@ -267,8 +293,8 @@ public class Shuffle : UdonSharpBehaviour
         // drop into the synced variables
         DebugBytes($"wrote new shuffle {seqNo}, isDealt {isDealt} ", shuffleState);
         var s = new string(chars);
-        shuffleState0 = s.Substring(0, 88);
-        shuffleState1 = s.Substring(88, 89);
+        shuffleState0 = s.Substring(0, 89);
+        shuffleState1 = s.Substring(89, 89);
     }
     
     void DebugChars(string s, char[] chars, int n)
@@ -339,10 +365,14 @@ public class Shuffle : UdonSharpBehaviour
 
         isDealt = (first & 1) == 0; // last bit is isDealt
 
-        var chars = new char[177];
+        // XXX layering violation, this should be in the actual game state
+        // and not in the 'header' of the packet
+        readDealNo = shuffleState0.Substring(1, 1).ToCharArray()[0];
+
+        var chars = new char[178];
         shuffleState0.ToCharArray().CopyTo(chars, 0);
-        shuffleState1.ToCharArray().CopyTo(chars, 88);
-        int n = 1; // skip first
+        shuffleState1.ToCharArray().CopyTo(chars, 89);
+        int n = 2; // skip header bytes
         for (int i = 0; i < shuffleStateSize;)
         {
             //DebugChars("deser: ", chars, n);
@@ -368,7 +398,7 @@ public class Shuffle : UdonSharpBehaviour
             shuffleState[i++] = (byte)((pack >> 8)  & (ulong)255);
             shuffleState[i++] = (byte)((pack >> 0)  & (ulong)255);
         }
-        DebugBytes($"read shuffle state {seq}: isDealt {isDealt}, ", shuffleState);
+        DebugBytes($"read shuffle state {seq}: isDealt {isDealt}, readDealNo {readDealNo} ", shuffleState);
 
         return true;
     }

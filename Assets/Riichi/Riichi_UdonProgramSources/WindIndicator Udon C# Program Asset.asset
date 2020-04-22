@@ -48,11 +48,11 @@ MonoBehaviour:
     \"VRCSDKBaseNetworking.__get_LocalPlayer__VRCSDKBaseVRCPlayerApi\"\r\n        PUSH,
     __0_intnl_VRCSDKBaseVRCPlayerApi\r\n        PUSH, __0_this_intnl_UnityEngineGameObject\r\n
     \       EXTERN, \"VRCSDKBaseNetworking.__SetOwner__VRCSDKBaseVRCPlayerApi_UnityEngineGameObject__SystemVoid\"\r\n
-    \       \r\n         # transform.Rotate(new Vector3(0, 90, 0));\r\n        PUSH,
+    \       \r\n         # transform.Rotate(new Vector3(0, 0, 90));\r\n        PUSH,
     __0_const_intnl_SystemInt32\r\n        PUSH, __0_intnl_SystemSingle\r\n        EXTERN,
-    \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n        PUSH, __1_const_intnl_SystemInt32\r\n
+    \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n        PUSH, __0_const_intnl_SystemInt32\r\n
     \       PUSH, __1_intnl_SystemSingle\r\n        EXTERN, \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n
-    \       PUSH, __0_const_intnl_SystemInt32\r\n        PUSH, __2_intnl_SystemSingle\r\n
+    \       PUSH, __1_const_intnl_SystemInt32\r\n        PUSH, __2_intnl_SystemSingle\r\n
     \       EXTERN, \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n        PUSH,
     __0_intnl_SystemSingle\r\n        PUSH, __1_intnl_SystemSingle\r\n        PUSH,
     __2_intnl_SystemSingle\r\n        PUSH, __0_intnl_UnityEngineVector3\r\n        EXTERN,
@@ -327,10 +327,31 @@ MonoBehaviour:
     - startInstruction: 92
       endInstruction: 91
       startSourceChar: 443
-      endSourceChar: 463
+      endSourceChar: 443
       line: 19
       lineChar: 8
-      spanCodeSection: Networking.SetOwner(
+      spanCodeSection: 
+    - startInstruction: 92
+      endInstruction: 91
+      startSourceChar: 443
+      endSourceChar: 443
+      line: 19
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 92
+      endInstruction: 91
+      startSourceChar: 443
+      endSourceChar: 454
+      line: 19
+      lineChar: 8
+      spanCodeSection: Networking.
+    - startInstruction: 92
+      endInstruction: 91
+      startSourceChar: 454
+      endSourceChar: 463
+      line: 19
+      lineChar: 19
+      spanCodeSection: SetOwner(
     - startInstruction: 92
       endInstruction: 91
       startSourceChar: 463
@@ -369,10 +390,31 @@ MonoBehaviour:
     - startInstruction: 132
       endInstruction: 131
       startSourceChar: 509
-      endSourceChar: 526
+      endSourceChar: 509
       line: 20
       lineChar: 8
-      spanCodeSection: transform.Rotate(
+      spanCodeSection: 
+    - startInstruction: 132
+      endInstruction: 131
+      startSourceChar: 509
+      endSourceChar: 509
+      line: 20
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 132
+      endInstruction: 131
+      startSourceChar: 509
+      endSourceChar: 519
+      line: 20
+      lineChar: 8
+      spanCodeSection: transform.
+    - startInstruction: 132
+      endInstruction: 131
+      startSourceChar: 519
+      endSourceChar: 526
+      line: 20
+      lineChar: 18
+      spanCodeSection: Rotate(
     - startInstruction: 132
       endInstruction: 131
       startSourceChar: 526
@@ -411,24 +453,24 @@ MonoBehaviour:
     - startInstruction: 132
       endInstruction: 131
       startSourceChar: 541
-      endSourceChar: 545
+      endSourceChar: 544
       line: 20
       lineChar: 40
-      spanCodeSection: '90, '
+      spanCodeSection: '0, '
     - startInstruction: 132
       endInstruction: 131
-      startSourceChar: 545
-      endSourceChar: 545
+      startSourceChar: 544
+      endSourceChar: 544
       line: 20
-      lineChar: 44
+      lineChar: 43
       spanCodeSection: 
     - startInstruction: 132
       endInstruction: 267
-      startSourceChar: 545
+      startSourceChar: 544
       endSourceChar: 559
       line: 20
-      lineChar: 44
-      spanCodeSection: "0));\r\n        "
+      lineChar: 43
+      spanCodeSection: "90));\r\n        "
     - startInstruction: 268
       endInstruction: 267
       startSourceChar: 559

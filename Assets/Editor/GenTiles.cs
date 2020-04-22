@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -52,13 +53,13 @@ public class GenTiles : MonoBehaviour
         var tileParent = GameObject.Find("Tiles").transform;
         var n = 0;
         int m = 0;
-        float y = 0;
         var tilePrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Riichi/tileprefab.prefab", typeof(Object));
         var tileMesh = (Mesh)AssetDatabase.LoadAssetAtPath("Assets/Riichi/tileFbx.fbx/Tile", typeof(Mesh));
         Debug.Log($"tileMesh: {tileMesh}");
         var tileFbx = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Riichi/tileFbx.fbx", typeof(GameObject));
         Debug.Log($"tileFbx: {tileFbx}");
         var tileMat = (Material)AssetDatabase.LoadAssetAtPath("Assets/Riichi/TileMat", typeof(Material));
+
 
         MaterialPropertyBlock props = new MaterialPropertyBlock();
         foreach (string tile in tiles)
@@ -73,7 +74,8 @@ public class GenTiles : MonoBehaviour
                 //GameObject obj = (GameObject)PrefabUtility.InstantiatePrefab(tilePrefab, tileParent);
                 GameObject obj = new GameObject();
                 obj.transform.parent = tileParent;
-                obj.AddComponent<Rigidbody>();
+                var rb = obj.AddComponent<Rigidbody>();
+                rb.isKinematic = true;
                 var f = obj.AddComponent<MeshFilter>();
                 f.sharedMesh = tileFbx.GetComponent<MeshFilter>().sharedMesh;
                 var r = obj.AddComponent<MeshRenderer>();
@@ -92,13 +94,16 @@ public class GenTiles : MonoBehaviour
                 obj.layer = 23; // riichitiles
 
                 obj.name = $"{n:D2}.{i}";
-                //Debug.Log($"t: {t}");
-                obj.transform.localPosition = new Vector3((m++) * 0.04f, 0.0f, y);
-                if (m == 17)
-                {
-                    m = 0;
-                    y += 0.06f;
-                }
+
+                float rho = (m % 4) * 0.07f + 0.25f;
+                float theta = (int)(m / 4) / 34f * 360.0f;
+                Debug.Log($"m {m} r {rho} t {theta}");
+                var x = rho * Mathf.Cos(Mathf.Deg2Rad*theta);
+                var z = rho * Mathf.Sin(Mathf.Deg2Rad*theta);
+
+                obj.transform.localPosition = new Vector3(x, 0.0f, z);
+                obj.transform.localRotation = Quaternion.Euler(-90, 0, 90 - theta);
+                m++;
             }
             n++;
         }

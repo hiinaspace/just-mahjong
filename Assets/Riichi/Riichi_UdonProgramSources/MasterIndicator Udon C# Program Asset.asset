@@ -461,10 +461,31 @@ MonoBehaviour:
     - startInstruction: 320
       endInstruction: 319
       startSourceChar: 602
-      endSourceChar: 622
+      endSourceChar: 602
       line: 26
       lineChar: 18
-      spanCodeSection: Networking.GetOwner(
+      spanCodeSection: 
+    - startInstruction: 320
+      endInstruction: 319
+      startSourceChar: 602
+      endSourceChar: 602
+      line: 26
+      lineChar: 18
+      spanCodeSection: 
+    - startInstruction: 320
+      endInstruction: 319
+      startSourceChar: 602
+      endSourceChar: 613
+      line: 26
+      lineChar: 18
+      spanCodeSection: Networking.
+    - startInstruction: 320
+      endInstruction: 319
+      startSourceChar: 613
+      endSourceChar: 622
+      line: 26
+      lineChar: 29
+      spanCodeSection: GetOwner(
     - startInstruction: 320
       endInstruction: 363
       startSourceChar: 622

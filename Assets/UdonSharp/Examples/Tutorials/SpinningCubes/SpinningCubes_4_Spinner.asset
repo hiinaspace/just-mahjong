@@ -259,10 +259,31 @@ MonoBehaviour:
     - startInstruction: 20
       endInstruction: 19
       startSourceChar: 532
-      endSourceChar: 549
+      endSourceChar: 532
       line: 18
       lineChar: 12
-      spanCodeSection: transform.Rotate(
+      spanCodeSection: 
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 532
+      endSourceChar: 532
+      line: 18
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 532
+      endSourceChar: 542
+      line: 18
+      lineChar: 12
+      spanCodeSection: transform.
+    - startInstruction: 20
+      endInstruction: 19
+      startSourceChar: 542
+      endSourceChar: 549
+      line: 18
+      lineChar: 22
+      spanCodeSection: Rotate(
     - startInstruction: 20
       endInstruction: 19
       startSourceChar: 549
