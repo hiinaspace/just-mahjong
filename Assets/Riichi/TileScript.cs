@@ -11,7 +11,7 @@ public class TileScript : UdonSharpBehaviour
     void Start()
     {
         var props = new MaterialPropertyBlock();
-        props.SetFloat("_Tile", Mathf.Floor(float.Parse(name)));
+        props.SetFloat("_Tile", int.Parse(name.Substring(0,2)));
         GetComponent<MeshRenderer>().SetPropertyBlock(props);
 
         // try to stop exploding tiles

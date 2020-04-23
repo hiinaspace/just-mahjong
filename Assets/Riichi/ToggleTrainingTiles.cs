@@ -14,7 +14,7 @@ public class ToggleTrainingTiles : UdonSharpBehaviour
     public Texture regularTexture;
     public Transform tileRoot;
 
-    Boolean enableTrainingMode = false;
+    bool enableTrainingMode = false;
 
     void Start()
     {
@@ -50,7 +50,7 @@ public class ToggleTrainingTiles : UdonSharpBehaviour
         for (int i = 0; i < tileRoot.childCount; ++i)
         {
             var tile = tileRoot.GetChild(i);
-            props.SetFloat("_Tile", Mathf.Floor(float.Parse(tile.gameObject.name)));
+            props.SetFloat("_Tile", int.Parse(tile.gameObject.name.Substring(0,2)));
             tile.gameObject.GetComponent<MeshRenderer>().SetPropertyBlock(props);
         }
     }

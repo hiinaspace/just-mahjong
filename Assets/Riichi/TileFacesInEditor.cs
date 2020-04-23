@@ -10,7 +10,7 @@ public class TileFacesInEditor : MonoBehaviour
         var props = new MaterialPropertyBlock();
         foreach (Transform tile in transform)
         {
-            props.SetFloat("_Tile", Mathf.Floor(float.Parse(tile.gameObject.name)));
+            props.SetFloat("_Tile", int.Parse(tile.gameObject.name.Substring(0,2)));
             tile.gameObject.GetComponent<MeshRenderer>().SetPropertyBlock(props);
         }
     }
