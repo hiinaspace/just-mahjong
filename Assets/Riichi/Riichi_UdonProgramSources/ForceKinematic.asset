@@ -62,20 +62,19 @@ MonoBehaviour:
     %UnityEngineTransform, null\r\n    __3_intnl_UnityEngineTransform: %UnityEngineTransform,
     null\r\n    __0_intnl_UnityEngineTransformArray: %UnityEngineTransformArray, null\r\n
     \   __1_intnl_UnityEngineTransformArray: %UnityEngineTransformArray, null\r\n
-    \   __0_intnl_oldReturnLoc_UInt32: %SystemUInt32, null\r\n    __0_intnl_returnTarget_UInt32:
-    %SystemUInt32, null\r\n\r\n.data_end\r\n\r\n        \r\n         # using UdonSharp;\r\n
-    \       \r\n         # using UnityEngine;\r\n        \r\n         # using VRC.SDKBase;\r\n
-    \       \r\n         # using VRC.Udon;\r\n        \r\n         # public class
-    SyncPhysics : UdonSharpBehaviour\r\n.code_start\r\n        \r\n         # public
-    Transform tileParent;\r\n        \r\n         # Transform[] tiles;\r\n        \r\n
-    \        # public Material onMaterial;\r\n        \r\n         # public Material
-    offMaterial;\r\n        \r\n         # [UdonSynced] private bool physicsOn = true;\r\n
-    \       \r\n         # private bool localPhysicsOn = true;\r\n        \r\n         #
-    void Start()\r\n    .export _start\r\n        \r\n    _start:\r\n        \r\n
-    \       PUSH, __0_const_intnl_SystemUInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
-    \       COPY\r\n        \r\n         # {\r\n        \r\n         # tiles = new
-    Transform[136];\r\n        PUSH, __0_const_intnl_SystemInt32\r\n        PUSH,
-    __1_intnl_UnityEngineTransformArray\r\n        EXTERN, \"UnityEngineTransformArray.__ctor__SystemInt32__UnityEngineTransformArray\"\r\n
+    \   __0_intnl_returnTarget_UInt32: %SystemUInt32, null\r\n\r\n.data_end\r\n\r\n
+    \       \r\n         # using UdonSharp;\r\n        \r\n         # using UnityEngine;\r\n
+    \       \r\n         # using VRC.SDKBase;\r\n        \r\n         # using VRC.Udon;\r\n
+    \       \r\n         # public class SyncPhysics : UdonSharpBehaviour\r\n.code_start\r\n
+    \       \r\n         # public Transform tileParent;\r\n        \r\n         #
+    Transform[] tiles;\r\n        \r\n         # public Material onMaterial;\r\n        \r\n
+    \        # public Material offMaterial;\r\n        \r\n         # [UdonSynced]
+    private bool physicsOn = true;\r\n        \r\n         # private bool localPhysicsOn
+    = true;\r\n        \r\n         # void Start()\r\n    .export _start\r\n        \r\n
+    \   _start:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n        \r\n
+    \        # {\r\n        \r\n         # tiles = new Transform[136];\r\n        PUSH,
+    __0_const_intnl_SystemInt32\r\n        PUSH, __1_intnl_UnityEngineTransformArray\r\n
+    \       EXTERN, \"UnityEngineTransformArray.__ctor__SystemInt32__UnityEngineTransformArray\"\r\n
     \       PUSH, __1_intnl_UnityEngineTransformArray\r\n        PUSH, __0_intnl_UnityEngineTransformArray\r\n
     \       COPY\r\n        PUSH, __0_intnl_UnityEngineTransformArray\r\n        PUSH,
     tiles\r\n        COPY\r\n        \r\n         # for (int i = 0; i < 136; ++i)\r\n
@@ -83,7 +82,7 @@ MonoBehaviour:
     \       PUSH, __0_i_Int32\r\n        PUSH, __0_intnl_SystemInt32\r\n        COPY\r\n
     \       PUSH, __0_intnl_SystemInt32\r\n        PUSH, __0_const_intnl_SystemInt32\r\n
     \       PUSH, __0_intnl_SystemBoolean\r\n        EXTERN, \"SystemInt32.__op_LessThan__SystemInt32_SystemInt32__SystemBoolean\"\r\n
-    \       PUSH, __0_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x00000128\r\n
+    \       PUSH, __0_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x0000011C\r\n
     \       \r\n         # {\r\n        \r\n         # tiles[i] = tileParent.GetChild(i);\r\n
     \       PUSH, tileParent\r\n        PUSH, __0_i_Int32\r\n        PUSH, __0_intnl_UnityEngineTransform\r\n
     \       EXTERN, \"UnityEngineTransform.__GetChild__SystemInt32__UnityEngineTransform\"\r\n
@@ -92,43 +91,43 @@ MonoBehaviour:
     \       PUSH, __0_i_Int32\r\n        PUSH, __2_const_intnl_SystemInt32\r\n        PUSH,
     __1_intnl_SystemInt32\r\n        EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n
     \       PUSH, __1_intnl_SystemInt32\r\n        PUSH, __0_i_Int32\r\n        COPY\r\n
-    \       JUMP, 0x00000068\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n
+    \       JUMP, 0x0000005C\r\n        PUSH, __0_intnl_returnTarget_UInt32 #Function
+    epilogue\r\n        COPY\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n
     \       \r\n        \r\n         # void Interact()\r\n    .export _interact\r\n
     \       \r\n    _interact:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n
-    \       PUSH, __0_intnl_returnTarget_UInt32\r\n        COPY\r\n        \r\n         #
-    {\r\n        \r\n         # if (Networking.IsMaster)\r\n        PUSH, __1_intnl_SystemBoolean\r\n
-    \       EXTERN, \"VRCSDKBaseNetworking.__get_IsMaster__SystemBoolean\"\r\n        PUSH,
-    __1_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x00000190\r\n        \r\n         #
-    {\r\n        \r\n         # physicsOn = !physicsOn;\r\n        PUSH, physicsOn\r\n
-    \       PUSH, __2_intnl_SystemBoolean\r\n        EXTERN, \"SystemBoolean.__op_UnaryNegation__SystemBoolean__SystemBoolean\"\r\n
-    \       PUSH, __2_intnl_SystemBoolean\r\n        PUSH, physicsOn\r\n        COPY\r\n
-    \       JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n        \r\n
-    \        # void FixedUpdate()\r\n    .export _fixedUpdate\r\n        \r\n    _fixedUpdate:\r\n
-    \       \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
-    \       COPY\r\n        \r\n         # {\r\n        \r\n         # if (localPhysicsOn
-    != physicsOn)\r\n        PUSH, localPhysicsOn\r\n        PUSH, __3_intnl_SystemBoolean\r\n
-    \       COPY\r\n        PUSH, __3_intnl_SystemBoolean\r\n        PUSH, physicsOn\r\n
-    \       PUSH, __4_intnl_SystemBoolean\r\n        EXTERN, \"SystemBoolean.__op_Inequality__SystemBoolean_SystemBoolean__SystemBoolean\"\r\n
-    \       PUSH, __4_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x00000248\r\n
+    \       \r\n         # {\r\n        \r\n         # if (Networking.IsMaster)\r\n
+    \       PUSH, __1_intnl_SystemBoolean\r\n        EXTERN, \"VRCSDKBaseNetworking.__get_IsMaster__SystemBoolean\"\r\n
+    \       PUSH, __1_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x00000184\r\n
+    \       \r\n         # {\r\n        \r\n         # physicsOn = !physicsOn;\r\n
+    \       PUSH, physicsOn\r\n        PUSH, __2_intnl_SystemBoolean\r\n        EXTERN,
+    \"SystemBoolean.__op_UnaryNegation__SystemBoolean__SystemBoolean\"\r\n        PUSH,
+    __2_intnl_SystemBoolean\r\n        PUSH, physicsOn\r\n        COPY\r\n        PUSH,
+    __0_intnl_returnTarget_UInt32 #Function epilogue\r\n        COPY\r\n        JUMP_INDIRECT,
+    __0_intnl_returnTarget_UInt32\r\n        \r\n        \r\n         # void FixedUpdate()\r\n
+    \   .export _fixedUpdate\r\n        \r\n    _fixedUpdate:\r\n        \r\n        PUSH,
+    __0_const_intnl_SystemUInt32\r\n        \r\n         # {\r\n        \r\n         #
+    if (localPhysicsOn != physicsOn)\r\n        PUSH, localPhysicsOn\r\n        PUSH,
+    __3_intnl_SystemBoolean\r\n        COPY\r\n        PUSH, __3_intnl_SystemBoolean\r\n
+    \       PUSH, physicsOn\r\n        PUSH, __4_intnl_SystemBoolean\r\n        EXTERN,
+    \"SystemBoolean.__op_Inequality__SystemBoolean_SystemBoolean__SystemBoolean\"\r\n
+    \       PUSH, __4_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x00000208\r\n
     \       \r\n         # {\r\n        \r\n         # localPhysicsOn = physicsOn;\r\n
     \       PUSH, physicsOn\r\n        PUSH, localPhysicsOn\r\n        COPY\r\n        \r\n
-    \        # TogglePhysics();\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
-    \       PUSH, __0_intnl_oldReturnLoc_UInt32\r\n        COPY\r\n        PUSH, __0_const_intnl_exitJumpLoc_UInt32\r\n
-    \       PUSH, __0_intnl_returnTarget_UInt32\r\n        COPY\r\n        JUMP, 0x00000264\r\n
-    \       PUSH, __0_intnl_oldReturnLoc_UInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
-    \       COPY\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n
-    \       \r\n         # void TogglePhysics()\r\n    TogglePhysics:\r\n        \r\n
-    \       PUSH, __0_const_intnl_SystemUInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
-    \       COPY\r\n        \r\n         # {\r\n        \r\n         # if (physicsOn)\r\n
-    \       PUSH, physicsOn\r\n        JUMP_IF_FALSE, 0x0000077C\r\n        \r\n         #
-    {\r\n        \r\n         # Debug.Log(\"turning physics colliders and gravity
-    back on\");\r\n        PUSH, __0_const_intnl_SystemString\r\n        EXTERN, \"UnityEngineDebug.__Log__SystemObject__SystemVoid\"\r\n
-    \       \r\n         # foreach (Transform t in tiles)\r\n        PUSH, __1_const_intnl_SystemInt32\r\n
+    \        # TogglePhysics();\r\n        PUSH, __0_const_intnl_exitJumpLoc_UInt32\r\n
+    \       JUMP, 0x00000224\r\n        PUSH, __0_intnl_returnTarget_UInt32 #Function
+    epilogue\r\n        COPY\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n
+    \       \r\n        \r\n         # void TogglePhysics()\r\n    TogglePhysics:\r\n
+    \       \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n        \r\n         #
+    {\r\n        \r\n         # if (physicsOn)\r\n        PUSH, physicsOn\r\n        JUMP_IF_FALSE,
+    0x0000073C\r\n        \r\n         # {\r\n        \r\n         # Debug.Log(\"turning
+    physics colliders and gravity back on\");\r\n        PUSH, __0_const_intnl_SystemString\r\n
+    \       EXTERN, \"UnityEngineDebug.__Log__SystemObject__SystemVoid\"\r\n        \r\n
+    \        # foreach (Transform t in tiles)\r\n        PUSH, __1_const_intnl_SystemInt32\r\n
     \       PUSH, __2_intnl_SystemInt32\r\n        COPY\r\n        PUSH, tiles\r\n
     \       PUSH, __3_intnl_SystemInt32\r\n        EXTERN, \"UnityEngineTransformArray.__get_Length__SystemInt32\"\r\n
     \       PUSH, __2_intnl_SystemInt32\r\n        PUSH, __3_intnl_SystemInt32\r\n
     \       PUSH, __5_intnl_SystemBoolean\r\n        EXTERN, \"SystemInt32.__op_LessThan__SystemInt32_SystemInt32__SystemBoolean\"\r\n
-    \       PUSH, __5_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x0000073C\r\n
+    \       PUSH, __5_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x000006FC\r\n
     \       PUSH, tiles\r\n        PUSH, __2_intnl_SystemInt32\r\n        PUSH, __1_intnl_UnityEngineTransform\r\n
     \       EXTERN, \"UnityEngineTransformArray.__Get__SystemInt32__UnityEngineTransform\"\r\n
     \       PUSH, __1_intnl_UnityEngineTransform\r\n        PUSH, __0_t_Transform\r\n
@@ -213,12 +212,12 @@ MonoBehaviour:
     \       PUSH, __2_const_intnl_SystemInt32\r\n        PUSH, __4_intnl_SystemInt32\r\n
     \       EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n
     \       PUSH, __4_intnl_SystemInt32\r\n        PUSH, __2_intnl_SystemInt32\r\n
-    \       COPY\r\n        JUMP, 0x000002B0\r\n        \r\n         # GetComponent<MeshRenderer>().material
+    \       COPY\r\n        JUMP, 0x00000270\r\n        \r\n         # GetComponent<MeshRenderer>().material
     = onMaterial;\r\n        PUSH, __0_this_intnl_SyncPhysics\r\n        PUSH, __2_const_intnl_SystemType\r\n
     \       PUSH, __0_intnl_UnityEngineMeshRenderer\r\n        EXTERN, \"UnityEngineMeshRenderer.__GetComponent__T\"\r\n
     \       PUSH, __0_intnl_UnityEngineMeshRenderer\r\n        PUSH, onMaterial\r\n
     \       EXTERN, \"UnityEngineMeshRenderer.__set_material__UnityEngineMaterial__SystemVoid\"\r\n
-    \       JUMP, 0x00000C7C\r\n        \r\n         # } else\r\n        \r\n         #
+    \       JUMP, 0x00000C3C\r\n        \r\n         # } else\r\n        \r\n         #
     {\r\n        \r\n         # Debug.Log(\"turning physics colliders and gravity
     off\");\r\n        PUSH, __6_const_intnl_SystemString\r\n        EXTERN, \"UnityEngineDebug.__Log__SystemObject__SystemVoid\"\r\n
     \       \r\n         # foreach (Transform t in tiles)\r\n        PUSH, __1_const_intnl_SystemInt32\r\n
@@ -226,7 +225,7 @@ MonoBehaviour:
     \       PUSH, __3_intnl_SystemInt32\r\n        EXTERN, \"UnityEngineTransformArray.__get_Length__SystemInt32\"\r\n
     \       PUSH, __2_intnl_SystemInt32\r\n        PUSH, __3_intnl_SystemInt32\r\n
     \       PUSH, __5_intnl_SystemBoolean\r\n        EXTERN, \"SystemInt32.__op_LessThan__SystemInt32_SystemInt32__SystemBoolean\"\r\n
-    \       PUSH, __5_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x00000C44\r\n
+    \       PUSH, __5_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x00000C04\r\n
     \       PUSH, tiles\r\n        PUSH, __2_intnl_SystemInt32\r\n        PUSH, __1_intnl_UnityEngineTransform\r\n
     \       EXTERN, \"UnityEngineTransformArray.__Get__SystemInt32__UnityEngineTransform\"\r\n
     \       PUSH, __1_intnl_UnityEngineTransform\r\n        PUSH, __0_t_Transform\r\n
@@ -311,11 +310,12 @@ MonoBehaviour:
     \       PUSH, __2_const_intnl_SystemInt32\r\n        PUSH, __4_intnl_SystemInt32\r\n
     \       EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n
     \       PUSH, __4_intnl_SystemInt32\r\n        PUSH, __2_intnl_SystemInt32\r\n
-    \       COPY\r\n        JUMP, 0x000007B8\r\n        \r\n         # GetComponent<MeshRenderer>().material
+    \       COPY\r\n        JUMP, 0x00000778\r\n        \r\n         # GetComponent<MeshRenderer>().material
     = offMaterial;\r\n        PUSH, __0_this_intnl_SyncPhysics\r\n        PUSH, __2_const_intnl_SystemType\r\n
     \       PUSH, __0_intnl_UnityEngineMeshRenderer\r\n        EXTERN, \"UnityEngineMeshRenderer.__GetComponent__T\"\r\n
     \       PUSH, __0_intnl_UnityEngineMeshRenderer\r\n        PUSH, offMaterial\r\n
     \       EXTERN, \"UnityEngineMeshRenderer.__set_material__UnityEngineMaterial__SystemVoid\"\r\n
+    \       PUSH, __0_intnl_returnTarget_UInt32 #Function epilogue\r\n        COPY\r\n
     \       JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n.code_end\r\n"
   assemblyError: 
   sourceCsScript: {fileID: 11500000, guid: 219cbba01a0f86d4fba465e6cdd85191, type: 3}
@@ -597,181 +597,181 @@ MonoBehaviour:
       lineChar: 12
       spanCodeSection: "bool localPhysicsOn = true;\r\n\r\n    "
     - startInstruction: 0
-      endInstruction: 19
+      endInstruction: 7
       startSourceChar: 354
       endSourceChar: 372
       line: 17
       lineChar: 4
       spanCodeSection: "void Start()\r\n    "
-    - startInstruction: 20
-      endInstruction: 19
+    - startInstruction: 8
+      endInstruction: 7
       startSourceChar: 372
       endSourceChar: 383
       line: 18
       lineChar: 4
       spanCodeSection: "{\r\n        "
-    - startInstruction: 20
-      endInstruction: 19
+    - startInstruction: 8
+      endInstruction: 7
       startSourceChar: 383
       endSourceChar: 383
       line: 19
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 20
-      endInstruction: 19
+    - startInstruction: 8
+      endInstruction: 7
       startSourceChar: 383
       endSourceChar: 391
       line: 19
       lineChar: 8
       spanCodeSection: 'tiles = '
-    - startInstruction: 20
-      endInstruction: 19
+    - startInstruction: 8
+      endInstruction: 7
       startSourceChar: 391
       endSourceChar: 395
       line: 19
       lineChar: 16
       spanCodeSection: 'new '
-    - startInstruction: 20
-      endInstruction: 19
+    - startInstruction: 8
+      endInstruction: 7
       startSourceChar: 395
       endSourceChar: 395
       line: 19
       lineChar: 20
       spanCodeSection: 
-    - startInstruction: 20
-      endInstruction: 19
+    - startInstruction: 8
+      endInstruction: 7
       startSourceChar: 395
       endSourceChar: 404
       line: 19
       lineChar: 20
       spanCodeSection: Transform
-    - startInstruction: 20
-      endInstruction: 19
+    - startInstruction: 8
+      endInstruction: 7
       startSourceChar: 404
       endSourceChar: 405
       line: 19
       lineChar: 29
       spanCodeSection: '['
-    - startInstruction: 20
-      endInstruction: 83
+    - startInstruction: 8
+      endInstruction: 71
       startSourceChar: 405
       endSourceChar: 420
       line: 19
       lineChar: 30
       spanCodeSection: "136];\r\n        "
-    - startInstruction: 84
-      endInstruction: 83
+    - startInstruction: 72
+      endInstruction: 71
       startSourceChar: 420
       endSourceChar: 425
       line: 20
       lineChar: 8
       spanCodeSection: for (
-    - startInstruction: 84
-      endInstruction: 83
+    - startInstruction: 72
+      endInstruction: 71
       startSourceChar: 425
       endSourceChar: 425
       line: 20
       lineChar: 13
       spanCodeSection: 
-    - startInstruction: 84
-      endInstruction: 83
+    - startInstruction: 72
+      endInstruction: 71
       startSourceChar: 425
       endSourceChar: 425
       line: 20
       lineChar: 13
       spanCodeSection: 
-    - startInstruction: 84
-      endInstruction: 83
+    - startInstruction: 72
+      endInstruction: 71
       startSourceChar: 425
       endSourceChar: 431
       line: 20
       lineChar: 13
       spanCodeSection: 'int i '
-    - startInstruction: 84
-      endInstruction: 83
+    - startInstruction: 72
+      endInstruction: 71
       startSourceChar: 431
       endSourceChar: 433
       line: 20
       lineChar: 19
       spanCodeSection: '= '
-    - startInstruction: 84
-      endInstruction: 103
+    - startInstruction: 72
+      endInstruction: 91
       startSourceChar: 433
       endSourceChar: 436
       line: 20
       lineChar: 21
       spanCodeSection: '0; '
-    - startInstruction: 104
-      endInstruction: 103
+    - startInstruction: 92
+      endInstruction: 91
       startSourceChar: 436
       endSourceChar: 436
       line: 20
       lineChar: 24
       spanCodeSection: 
-    - startInstruction: 104
-      endInstruction: 123
+    - startInstruction: 92
+      endInstruction: 111
       startSourceChar: 436
       endSourceChar: 440
       line: 20
       lineChar: 24
       spanCodeSection: 'i < '
-    - startInstruction: 124
-      endInstruction: 171
+    - startInstruction: 112
+      endInstruction: 159
       startSourceChar: 440
       endSourceChar: 459
       line: 20
       lineChar: 28
       spanCodeSection: "136; ++i)\r\n        "
-    - startInstruction: 172
-      endInstruction: 171
+    - startInstruction: 160
+      endInstruction: 159
       startSourceChar: 459
       endSourceChar: 474
       line: 21
       lineChar: 8
       spanCodeSection: "{\r\n            "
-    - startInstruction: 172
-      endInstruction: 171
+    - startInstruction: 160
+      endInstruction: 159
       startSourceChar: 474
       endSourceChar: 474
       line: 22
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 172
-      endInstruction: 171
+    - startInstruction: 160
+      endInstruction: 159
       startSourceChar: 474
       endSourceChar: 485
       line: 22
       lineChar: 12
       spanCodeSection: 'tiles[i] = '
-    - startInstruction: 172
-      endInstruction: 171
+    - startInstruction: 160
+      endInstruction: 159
       startSourceChar: 485
       endSourceChar: 485
       line: 22
       lineChar: 23
       spanCodeSection: 
-    - startInstruction: 172
-      endInstruction: 171
+    - startInstruction: 160
+      endInstruction: 159
       startSourceChar: 485
       endSourceChar: 485
       line: 22
       lineChar: 23
       spanCodeSection: 
-    - startInstruction: 172
-      endInstruction: 171
+    - startInstruction: 160
+      endInstruction: 159
       startSourceChar: 485
       endSourceChar: 496
       line: 22
       lineChar: 23
       spanCodeSection: tileParent.
-    - startInstruction: 172
-      endInstruction: 171
+    - startInstruction: 160
+      endInstruction: 159
       startSourceChar: 496
       endSourceChar: 505
       line: 22
       lineChar: 34
       spanCodeSection: GetChild(
-    - startInstruction: 172
+    - startInstruction: 160
       endInstruction: 303
       startSourceChar: 505
       endSourceChar: 534
@@ -779,76 +779,76 @@ MonoBehaviour:
       lineChar: 43
       spanCodeSection: "i);\r\n        }\r\n    }\r\n\r\n    "
     - startInstruction: 304
-      endInstruction: 323
+      endInstruction: 311
       startSourceChar: 534
       endSourceChar: 555
       line: 26
       lineChar: 4
       spanCodeSection: "void Interact()\r\n    "
-    - startInstruction: 324
-      endInstruction: 323
+    - startInstruction: 312
+      endInstruction: 311
       startSourceChar: 555
       endSourceChar: 566
       line: 27
       lineChar: 4
       spanCodeSection: "{\r\n        "
-    - startInstruction: 324
-      endInstruction: 323
+    - startInstruction: 312
+      endInstruction: 311
       startSourceChar: 566
       endSourceChar: 570
       line: 28
       lineChar: 8
       spanCodeSection: if (
-    - startInstruction: 324
-      endInstruction: 323
+    - startInstruction: 312
+      endInstruction: 311
       startSourceChar: 570
       endSourceChar: 570
       line: 28
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 324
-      endInstruction: 323
+    - startInstruction: 312
+      endInstruction: 311
       startSourceChar: 570
       endSourceChar: 581
       line: 28
       lineChar: 12
       spanCodeSection: Networking.
-    - startInstruction: 324
-      endInstruction: 355
+    - startInstruction: 312
+      endInstruction: 343
       startSourceChar: 581
       endSourceChar: 600
       line: 28
       lineChar: 23
       spanCodeSection: "IsMaster)\r\n        "
-    - startInstruction: 356
-      endInstruction: 355
+    - startInstruction: 344
+      endInstruction: 343
       startSourceChar: 600
       endSourceChar: 615
       line: 29
       lineChar: 8
       spanCodeSection: "{\r\n            "
-    - startInstruction: 356
-      endInstruction: 355
+    - startInstruction: 344
+      endInstruction: 343
       startSourceChar: 615
       endSourceChar: 615
       line: 30
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 356
-      endInstruction: 355
+    - startInstruction: 344
+      endInstruction: 343
       startSourceChar: 615
       endSourceChar: 627
       line: 30
       lineChar: 12
       spanCodeSection: 'physicsOn = '
-    - startInstruction: 356
-      endInstruction: 355
+    - startInstruction: 344
+      endInstruction: 343
       startSourceChar: 627
       endSourceChar: 628
       line: 30
       lineChar: 24
       spanCodeSection: '!'
-    - startInstruction: 356
+    - startInstruction: 344
       endInstruction: 407
       startSourceChar: 628
       endSourceChar: 664
@@ -856,1167 +856,1167 @@ MonoBehaviour:
       lineChar: 25
       spanCodeSection: "physicsOn;\r\n        }\r\n    }\r\n\r\n    "
     - startInstruction: 408
-      endInstruction: 427
+      endInstruction: 415
       startSourceChar: 664
       endSourceChar: 688
       line: 34
       lineChar: 4
       spanCodeSection: "void FixedUpdate()\r\n    "
-    - startInstruction: 428
-      endInstruction: 427
+    - startInstruction: 416
+      endInstruction: 415
       startSourceChar: 688
       endSourceChar: 699
       line: 35
       lineChar: 4
       spanCodeSection: "{\r\n        "
-    - startInstruction: 428
-      endInstruction: 427
+    - startInstruction: 416
+      endInstruction: 415
       startSourceChar: 699
       endSourceChar: 703
       line: 36
       lineChar: 8
       spanCodeSection: if (
-    - startInstruction: 428
-      endInstruction: 427
+    - startInstruction: 416
+      endInstruction: 415
       startSourceChar: 703
       endSourceChar: 703
       line: 36
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 428
-      endInstruction: 447
+    - startInstruction: 416
+      endInstruction: 435
       startSourceChar: 703
       endSourceChar: 721
       line: 36
       lineChar: 12
       spanCodeSection: 'localPhysicsOn != '
-    - startInstruction: 448
-      endInstruction: 495
+    - startInstruction: 436
+      endInstruction: 483
       startSourceChar: 721
       endSourceChar: 741
       line: 36
       lineChar: 30
       spanCodeSection: "physicsOn)\r\n        "
-    - startInstruction: 496
-      endInstruction: 495
+    - startInstruction: 484
+      endInstruction: 483
       startSourceChar: 741
       endSourceChar: 756
       line: 37
       lineChar: 8
       spanCodeSection: "{\r\n            "
-    - startInstruction: 496
-      endInstruction: 495
+    - startInstruction: 484
+      endInstruction: 483
       startSourceChar: 756
       endSourceChar: 756
       line: 38
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 496
-      endInstruction: 495
+    - startInstruction: 484
+      endInstruction: 483
       startSourceChar: 756
       endSourceChar: 773
       line: 38
       lineChar: 12
       spanCodeSection: 'localPhysicsOn = '
-    - startInstruction: 496
-      endInstruction: 515
+    - startInstruction: 484
+      endInstruction: 503
       startSourceChar: 773
       endSourceChar: 797
       line: 38
       lineChar: 29
       spanCodeSection: "physicsOn;\r\n            "
-    - startInstruction: 516
-      endInstruction: 515
+    - startInstruction: 504
+      endInstruction: 503
       startSourceChar: 797
       endSourceChar: 797
       line: 39
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 516
-      endInstruction: 515
+    - startInstruction: 504
+      endInstruction: 503
       startSourceChar: 797
       endSourceChar: 797
       line: 39
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 516
-      endInstruction: 591
+    - startInstruction: 504
+      endInstruction: 539
       startSourceChar: 797
       endSourceChar: 839
       line: 39
       lineChar: 12
       spanCodeSection: "TogglePhysics();\r\n        }\r\n    }\r\n\r\n    "
-    - startInstruction: 592
-      endInstruction: 611
+    - startInstruction: 540
+      endInstruction: 547
       startSourceChar: 839
       endSourceChar: 865
       line: 43
       lineChar: 4
       spanCodeSection: "void TogglePhysics()\r\n    "
-    - startInstruction: 612
-      endInstruction: 611
+    - startInstruction: 548
+      endInstruction: 547
       startSourceChar: 865
       endSourceChar: 876
       line: 44
       lineChar: 4
       spanCodeSection: "{\r\n        "
-    - startInstruction: 612
-      endInstruction: 611
+    - startInstruction: 548
+      endInstruction: 547
       startSourceChar: 876
       endSourceChar: 880
       line: 45
       lineChar: 8
       spanCodeSection: if (
-    - startInstruction: 612
-      endInstruction: 627
+    - startInstruction: 548
+      endInstruction: 563
       startSourceChar: 880
       endSourceChar: 900
       line: 45
       lineChar: 12
       spanCodeSection: "physicsOn)\r\n        "
-    - startInstruction: 628
-      endInstruction: 627
+    - startInstruction: 564
+      endInstruction: 563
       startSourceChar: 900
       endSourceChar: 915
       line: 46
       lineChar: 8
       spanCodeSection: "{\r\n            "
-    - startInstruction: 628
-      endInstruction: 627
+    - startInstruction: 564
+      endInstruction: 563
       startSourceChar: 915
       endSourceChar: 915
       line: 47
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 628
-      endInstruction: 627
+    - startInstruction: 564
+      endInstruction: 563
       startSourceChar: 915
       endSourceChar: 915
       line: 47
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 628
-      endInstruction: 627
+    - startInstruction: 564
+      endInstruction: 563
       startSourceChar: 915
       endSourceChar: 915
       line: 47
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 628
-      endInstruction: 627
+    - startInstruction: 564
+      endInstruction: 563
       startSourceChar: 915
       endSourceChar: 921
       line: 47
       lineChar: 12
       spanCodeSection: Debug.
-    - startInstruction: 628
-      endInstruction: 627
+    - startInstruction: 564
+      endInstruction: 563
       startSourceChar: 921
       endSourceChar: 925
       line: 47
       lineChar: 18
       spanCodeSection: Log(
-    - startInstruction: 628
-      endInstruction: 643
+    - startInstruction: 564
+      endInstruction: 579
       startSourceChar: 925
       endSourceChar: 988
       line: 47
       lineChar: 22
       spanCodeSection: "\"turning physics colliders and gravity back on\");\r\n            "
-    - startInstruction: 644
-      endInstruction: 643
+    - startInstruction: 580
+      endInstruction: 579
       startSourceChar: 988
       endSourceChar: 997
       line: 48
       lineChar: 12
       spanCodeSection: foreach (
-    - startInstruction: 644
-      endInstruction: 643
+    - startInstruction: 580
+      endInstruction: 579
       startSourceChar: 997
       endSourceChar: 1012
       line: 48
       lineChar: 21
       spanCodeSection: 'Transform t in '
-    - startInstruction: 644
-      endInstruction: 787
+    - startInstruction: 580
+      endInstruction: 723
       startSourceChar: 1012
       endSourceChar: 1032
       line: 48
       lineChar: 36
       spanCodeSection: "tiles)\r\n            "
-    - startInstruction: 788
-      endInstruction: 787
+    - startInstruction: 724
+      endInstruction: 723
       startSourceChar: 1032
       endSourceChar: 1051
       line: 49
       lineChar: 12
       spanCodeSection: "{\r\n                "
-    - startInstruction: 788
-      endInstruction: 787
+    - startInstruction: 724
+      endInstruction: 723
       startSourceChar: 1051
       endSourceChar: 1051
       line: 50
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 788
-      endInstruction: 787
+    - startInstruction: 724
+      endInstruction: 723
       startSourceChar: 1051
       endSourceChar: 1051
       line: 50
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 788
-      endInstruction: 787
+    - startInstruction: 724
+      endInstruction: 723
       startSourceChar: 1051
       endSourceChar: 1051
       line: 50
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 788
-      endInstruction: 787
+    - startInstruction: 724
+      endInstruction: 723
       startSourceChar: 1051
       endSourceChar: 1057
       line: 50
       lineChar: 16
       spanCodeSection: Debug.
-    - startInstruction: 788
-      endInstruction: 787
+    - startInstruction: 724
+      endInstruction: 723
       startSourceChar: 1057
       endSourceChar: 1061
       line: 50
       lineChar: 22
       spanCodeSection: Log(
-    - startInstruction: 788
-      endInstruction: 787
+    - startInstruction: 724
+      endInstruction: 723
       startSourceChar: 1061
       endSourceChar: 1063
       line: 50
       lineChar: 26
       spanCodeSection: $"
-    - startInstruction: 788
-      endInstruction: 807
+    - startInstruction: 724
+      endInstruction: 743
       startSourceChar: 1063
       endSourceChar: 1068
       line: 50
       lineChar: 28
       spanCodeSection: 'tile '
-    - startInstruction: 808
-      endInstruction: 807
+    - startInstruction: 744
+      endInstruction: 743
       startSourceChar: 1068
       endSourceChar: 1069
       line: 50
       lineChar: 33
       spanCodeSection: '{'
-    - startInstruction: 808
-      endInstruction: 807
+    - startInstruction: 744
+      endInstruction: 743
       startSourceChar: 1069
       endSourceChar: 1069
       line: 50
       lineChar: 34
       spanCodeSection: 
-    - startInstruction: 808
-      endInstruction: 807
+    - startInstruction: 744
+      endInstruction: 743
       startSourceChar: 1069
       endSourceChar: 1069
       line: 50
       lineChar: 34
       spanCodeSection: 
-    - startInstruction: 808
-      endInstruction: 807
+    - startInstruction: 744
+      endInstruction: 743
       startSourceChar: 1069
       endSourceChar: 1071
       line: 50
       lineChar: 34
       spanCodeSection: t.
-    - startInstruction: 808
-      endInstruction: 807
+    - startInstruction: 744
+      endInstruction: 743
       startSourceChar: 1071
       endSourceChar: 1082
       line: 50
       lineChar: 36
       spanCodeSection: gameObject.
-    - startInstruction: 808
-      endInstruction: 923
+    - startInstruction: 744
+      endInstruction: 859
       startSourceChar: 1082
       endSourceChar: 1184
       line: 50
       lineChar: 47
       spanCodeSection: "name}\");\r\n                //t.gameObject.GetComponent<BoxCollider>().enabled
         = true;\r\n                "
-    - startInstruction: 924
-      endInstruction: 923
+    - startInstruction: 860
+      endInstruction: 859
       startSourceChar: 1184
       endSourceChar: 1184
       line: 52
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 924
-      endInstruction: 923
+    - startInstruction: 860
+      endInstruction: 859
       startSourceChar: 1184
       endSourceChar: 1184
       line: 52
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 924
-      endInstruction: 923
+    - startInstruction: 860
+      endInstruction: 859
       startSourceChar: 1184
       endSourceChar: 1190
       line: 52
       lineChar: 16
       spanCodeSection: 'var r '
-    - startInstruction: 924
-      endInstruction: 923
+    - startInstruction: 860
+      endInstruction: 859
       startSourceChar: 1190
       endSourceChar: 1192
       line: 52
       lineChar: 22
       spanCodeSection: '= '
-    - startInstruction: 924
-      endInstruction: 923
+    - startInstruction: 860
+      endInstruction: 859
       startSourceChar: 1192
       endSourceChar: 1192
       line: 52
       lineChar: 24
       spanCodeSection: 
-    - startInstruction: 924
-      endInstruction: 923
+    - startInstruction: 860
+      endInstruction: 859
       startSourceChar: 1192
       endSourceChar: 1192
       line: 52
       lineChar: 24
       spanCodeSection: 
-    - startInstruction: 924
-      endInstruction: 923
+    - startInstruction: 860
+      endInstruction: 859
       startSourceChar: 1192
       endSourceChar: 1192
       line: 52
       lineChar: 24
       spanCodeSection: 
-    - startInstruction: 924
-      endInstruction: 923
+    - startInstruction: 860
+      endInstruction: 859
       startSourceChar: 1192
       endSourceChar: 1194
       line: 52
       lineChar: 24
       spanCodeSection: t.
-    - startInstruction: 924
-      endInstruction: 923
+    - startInstruction: 860
+      endInstruction: 859
       startSourceChar: 1194
       endSourceChar: 1205
       line: 52
       lineChar: 26
       spanCodeSection: gameObject.
-    - startInstruction: 924
-      endInstruction: 947
+    - startInstruction: 860
+      endInstruction: 883
       startSourceChar: 1205
       endSourceChar: 1217
       line: 52
       lineChar: 37
       spanCodeSection: GetComponent
-    - startInstruction: 948
-      endInstruction: 947
+    - startInstruction: 884
+      endInstruction: 883
       startSourceChar: 1217
       endSourceChar: 1218
       line: 52
       lineChar: 49
       spanCodeSection: <
-    - startInstruction: 948
-      endInstruction: 1023
+    - startInstruction: 884
+      endInstruction: 959
       startSourceChar: 1218
       endSourceChar: 1333
       line: 52
       lineChar: 50
       spanCodeSection: "Rigidbody>();\r\n                // r.isKinematic = false;
         XXX doesn't work with udon sync position\r\n                "
-    - startInstruction: 1024
-      endInstruction: 1023
+    - startInstruction: 960
+      endInstruction: 959
       startSourceChar: 1333
       endSourceChar: 1333
       line: 54
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 1024
-      endInstruction: 1023
+    - startInstruction: 960
+      endInstruction: 959
       startSourceChar: 1333
       endSourceChar: 1354
       line: 54
       lineChar: 16
       spanCodeSection: 'r.detectCollisions = '
-    - startInstruction: 1024
-      endInstruction: 1047
+    - startInstruction: 960
+      endInstruction: 983
       startSourceChar: 1354
       endSourceChar: 1377
       line: 54
       lineChar: 37
       spanCodeSection: "true;\r\n                "
-    - startInstruction: 1048
-      endInstruction: 1047
+    - startInstruction: 984
+      endInstruction: 983
       startSourceChar: 1377
       endSourceChar: 1377
       line: 55
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 1048
-      endInstruction: 1047
+    - startInstruction: 984
+      endInstruction: 983
       startSourceChar: 1377
       endSourceChar: 1386
       line: 55
       lineChar: 16
       spanCodeSection: 'r.drag = '
-    - startInstruction: 1048
-      endInstruction: 1095
+    - startInstruction: 984
+      endInstruction: 1031
       startSourceChar: 1386
       endSourceChar: 1494
       line: 55
       lineChar: 25
       spanCodeSection: "10;\r\n                //r.useGravity = true; XXX also doesn't
         work\r\n                // but!\r\n                "
-    - startInstruction: 1096
-      endInstruction: 1095
+    - startInstruction: 1032
+      endInstruction: 1031
       startSourceChar: 1494
       endSourceChar: 1494
       line: 58
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 1096
-      endInstruction: 1095
+    - startInstruction: 1032
+      endInstruction: 1031
       startSourceChar: 1494
       endSourceChar: 1547
       line: 58
       lineChar: 16
       spanCodeSection: 't.gameObject.GetComponent<ConstantForce>().enabled = '
-    - startInstruction: 1096
-      endInstruction: 1199
+    - startInstruction: 1032
+      endInstruction: 1135
       startSourceChar: 1547
       endSourceChar: 1571
       line: 58
       lineChar: 69
       spanCodeSection: "false;\r\n                "
-    - startInstruction: 1200
-      endInstruction: 1199
+    - startInstruction: 1136
+      endInstruction: 1135
       startSourceChar: 1571
       endSourceChar: 1571
       line: 59
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 1200
-      endInstruction: 1199
+    - startInstruction: 1136
+      endInstruction: 1135
       startSourceChar: 1571
       endSourceChar: 1571
       line: 59
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 1200
-      endInstruction: 1199
+    - startInstruction: 1136
+      endInstruction: 1135
       startSourceChar: 1571
       endSourceChar: 1571
       line: 59
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 1200
-      endInstruction: 1199
+    - startInstruction: 1136
+      endInstruction: 1135
       startSourceChar: 1571
       endSourceChar: 1577
       line: 59
       lineChar: 16
       spanCodeSection: Debug.
-    - startInstruction: 1200
-      endInstruction: 1199
+    - startInstruction: 1136
+      endInstruction: 1135
       startSourceChar: 1577
       endSourceChar: 1581
       line: 59
       lineChar: 22
       spanCodeSection: Log(
-    - startInstruction: 1200
-      endInstruction: 1199
+    - startInstruction: 1136
+      endInstruction: 1135
       startSourceChar: 1581
       endSourceChar: 1583
       line: 59
       lineChar: 26
       spanCodeSection: $"
-    - startInstruction: 1200
-      endInstruction: 1219
+    - startInstruction: 1136
+      endInstruction: 1155
       startSourceChar: 1583
       endSourceChar: 1597
       line: 59
       lineChar: 28
       spanCodeSection: 'r.isKinematic '
-    - startInstruction: 1220
-      endInstruction: 1219
+    - startInstruction: 1156
+      endInstruction: 1155
       startSourceChar: 1597
       endSourceChar: 1598
       line: 59
       lineChar: 42
       spanCodeSection: '{'
-    - startInstruction: 1220
-      endInstruction: 1219
+    - startInstruction: 1156
+      endInstruction: 1155
       startSourceChar: 1598
       endSourceChar: 1598
       line: 59
       lineChar: 43
       spanCodeSection: 
-    - startInstruction: 1220
-      endInstruction: 1219
+    - startInstruction: 1156
+      endInstruction: 1155
       startSourceChar: 1598
       endSourceChar: 1600
       line: 59
       lineChar: 43
       spanCodeSection: r.
-    - startInstruction: 1220
-      endInstruction: 1319
+    - startInstruction: 1156
+      endInstruction: 1255
       startSourceChar: 1600
       endSourceChar: 1612
       line: 59
       lineChar: 45
       spanCodeSection: isKinematic}
-    - startInstruction: 1320
-      endInstruction: 1371
+    - startInstruction: 1256
+      endInstruction: 1307
       startSourceChar: 1612
       endSourceChar: 1626
       line: 59
       lineChar: 57
       spanCodeSection: ' r.useGravity '
-    - startInstruction: 1372
-      endInstruction: 1371
+    - startInstruction: 1308
+      endInstruction: 1307
       startSourceChar: 1626
       endSourceChar: 1627
       line: 59
       lineChar: 71
       spanCodeSection: '{'
-    - startInstruction: 1372
-      endInstruction: 1371
+    - startInstruction: 1308
+      endInstruction: 1307
       startSourceChar: 1627
       endSourceChar: 1627
       line: 59
       lineChar: 72
       spanCodeSection: 
-    - startInstruction: 1372
-      endInstruction: 1371
+    - startInstruction: 1308
+      endInstruction: 1307
       startSourceChar: 1627
       endSourceChar: 1629
       line: 59
       lineChar: 72
       spanCodeSection: r.
-    - startInstruction: 1372
-      endInstruction: 1471
+    - startInstruction: 1308
+      endInstruction: 1407
       startSourceChar: 1629
       endSourceChar: 1640
       line: 59
       lineChar: 74
       spanCodeSection: useGravity}
-    - startInstruction: 1472
-      endInstruction: 1523
+    - startInstruction: 1408
+      endInstruction: 1459
       startSourceChar: 1640
       endSourceChar: 1660
       line: 59
       lineChar: 85
       spanCodeSection: ', detectCollisions: '
-    - startInstruction: 1524
-      endInstruction: 1523
+    - startInstruction: 1460
+      endInstruction: 1459
       startSourceChar: 1660
       endSourceChar: 1661
       line: 59
       lineChar: 105
       spanCodeSection: '{'
-    - startInstruction: 1524
-      endInstruction: 1523
+    - startInstruction: 1460
+      endInstruction: 1459
       startSourceChar: 1661
       endSourceChar: 1661
       line: 59
       lineChar: 106
       spanCodeSection: 
-    - startInstruction: 1524
-      endInstruction: 1523
+    - startInstruction: 1460
+      endInstruction: 1459
       startSourceChar: 1661
       endSourceChar: 1663
       line: 59
       lineChar: 106
       spanCodeSection: r.
-    - startInstruction: 1524
-      endInstruction: 1623
+    - startInstruction: 1460
+      endInstruction: 1559
       startSourceChar: 1663
       endSourceChar: 1680
       line: 59
       lineChar: 108
       spanCodeSection: detectCollisions}
-    - startInstruction: 1624
-      endInstruction: 1675
+    - startInstruction: 1560
+      endInstruction: 1611
       startSourceChar: 1680
       endSourceChar: 1687
       line: 59
       lineChar: 125
       spanCodeSection: ', mass '
-    - startInstruction: 1676
-      endInstruction: 1675
+    - startInstruction: 1612
+      endInstruction: 1611
       startSourceChar: 1687
       endSourceChar: 1688
       line: 59
       lineChar: 132
       spanCodeSection: '{'
-    - startInstruction: 1676
-      endInstruction: 1675
+    - startInstruction: 1612
+      endInstruction: 1611
       startSourceChar: 1688
       endSourceChar: 1688
       line: 59
       lineChar: 133
       spanCodeSection: 
-    - startInstruction: 1676
-      endInstruction: 1675
+    - startInstruction: 1612
+      endInstruction: 1611
       startSourceChar: 1688
       endSourceChar: 1690
       line: 59
       lineChar: 133
       spanCodeSection: r.
-    - startInstruction: 1676
-      endInstruction: 1851
+    - startInstruction: 1612
+      endInstruction: 1787
       startSourceChar: 1690
       endSourceChar: 1727
       line: 59
       lineChar: 135
       spanCodeSection: "mass}\");\r\n            }\r\n            "
-    - startInstruction: 1852
-      endInstruction: 1851
+    - startInstruction: 1788
+      endInstruction: 1787
       startSourceChar: 1727
       endSourceChar: 1727
       line: 61
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 1852
-      endInstruction: 1851
+    - startInstruction: 1788
+      endInstruction: 1787
       startSourceChar: 1727
       endSourceChar: 1767
       line: 61
       lineChar: 12
       spanCodeSection: 'GetComponent<MeshRenderer>().material = '
-    - startInstruction: 1852
-      endInstruction: 1915
+    - startInstruction: 1788
+      endInstruction: 1851
       startSourceChar: 1767
       endSourceChar: 1790
       line: 61
       lineChar: 52
       spanCodeSection: "onMaterial;\r\n        } "
-    - startInstruction: 1916
-      endInstruction: 1915
+    - startInstruction: 1852
+      endInstruction: 1851
       startSourceChar: 1790
       endSourceChar: 1804
       line: 62
       lineChar: 10
       spanCodeSection: "else\r\n        "
-    - startInstruction: 1916
-      endInstruction: 1915
+    - startInstruction: 1852
+      endInstruction: 1851
       startSourceChar: 1804
       endSourceChar: 1819
       line: 63
       lineChar: 8
       spanCodeSection: "{\r\n            "
-    - startInstruction: 1916
-      endInstruction: 1915
+    - startInstruction: 1852
+      endInstruction: 1851
       startSourceChar: 1819
       endSourceChar: 1819
       line: 64
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 1916
-      endInstruction: 1915
+    - startInstruction: 1852
+      endInstruction: 1851
       startSourceChar: 1819
       endSourceChar: 1819
       line: 64
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 1916
-      endInstruction: 1915
+    - startInstruction: 1852
+      endInstruction: 1851
       startSourceChar: 1819
       endSourceChar: 1819
       line: 64
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 1916
-      endInstruction: 1915
+    - startInstruction: 1852
+      endInstruction: 1851
       startSourceChar: 1819
       endSourceChar: 1825
       line: 64
       lineChar: 12
       spanCodeSection: Debug.
-    - startInstruction: 1916
-      endInstruction: 1915
+    - startInstruction: 1852
+      endInstruction: 1851
       startSourceChar: 1825
       endSourceChar: 1829
       line: 64
       lineChar: 18
       spanCodeSection: Log(
-    - startInstruction: 1916
-      endInstruction: 1931
+    - startInstruction: 1852
+      endInstruction: 1867
       startSourceChar: 1829
       endSourceChar: 1888
       line: 64
       lineChar: 22
       spanCodeSection: "\"turning physics colliders and gravity off\");\r\n            "
-    - startInstruction: 1932
-      endInstruction: 1931
+    - startInstruction: 1868
+      endInstruction: 1867
       startSourceChar: 1888
       endSourceChar: 1897
       line: 65
       lineChar: 12
       spanCodeSection: foreach (
-    - startInstruction: 1932
-      endInstruction: 1931
+    - startInstruction: 1868
+      endInstruction: 1867
       startSourceChar: 1897
       endSourceChar: 1912
       line: 65
       lineChar: 21
       spanCodeSection: 'Transform t in '
-    - startInstruction: 1932
-      endInstruction: 2075
+    - startInstruction: 1868
+      endInstruction: 2011
       startSourceChar: 1912
       endSourceChar: 1932
       line: 65
       lineChar: 36
       spanCodeSection: "tiles)\r\n            "
-    - startInstruction: 2076
-      endInstruction: 2075
+    - startInstruction: 2012
+      endInstruction: 2011
       startSourceChar: 1932
       endSourceChar: 1951
       line: 66
       lineChar: 12
       spanCodeSection: "{\r\n                "
-    - startInstruction: 2076
-      endInstruction: 2075
+    - startInstruction: 2012
+      endInstruction: 2011
       startSourceChar: 1951
       endSourceChar: 1951
       line: 67
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 2076
-      endInstruction: 2075
+    - startInstruction: 2012
+      endInstruction: 2011
       startSourceChar: 1951
       endSourceChar: 1951
       line: 67
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 2076
-      endInstruction: 2075
+    - startInstruction: 2012
+      endInstruction: 2011
       startSourceChar: 1951
       endSourceChar: 1951
       line: 67
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 2076
-      endInstruction: 2075
+    - startInstruction: 2012
+      endInstruction: 2011
       startSourceChar: 1951
       endSourceChar: 1957
       line: 67
       lineChar: 16
       spanCodeSection: Debug.
-    - startInstruction: 2076
-      endInstruction: 2075
+    - startInstruction: 2012
+      endInstruction: 2011
       startSourceChar: 1957
       endSourceChar: 1961
       line: 67
       lineChar: 22
       spanCodeSection: Log(
-    - startInstruction: 2076
-      endInstruction: 2075
+    - startInstruction: 2012
+      endInstruction: 2011
       startSourceChar: 1961
       endSourceChar: 1963
       line: 67
       lineChar: 26
       spanCodeSection: $"
-    - startInstruction: 2076
-      endInstruction: 2095
+    - startInstruction: 2012
+      endInstruction: 2031
       startSourceChar: 1963
       endSourceChar: 1968
       line: 67
       lineChar: 28
       spanCodeSection: 'tile '
-    - startInstruction: 2096
-      endInstruction: 2095
+    - startInstruction: 2032
+      endInstruction: 2031
       startSourceChar: 1968
       endSourceChar: 1969
       line: 67
       lineChar: 33
       spanCodeSection: '{'
-    - startInstruction: 2096
-      endInstruction: 2095
+    - startInstruction: 2032
+      endInstruction: 2031
       startSourceChar: 1969
       endSourceChar: 1969
       line: 67
       lineChar: 34
       spanCodeSection: 
-    - startInstruction: 2096
-      endInstruction: 2095
+    - startInstruction: 2032
+      endInstruction: 2031
       startSourceChar: 1969
       endSourceChar: 1969
       line: 67
       lineChar: 34
       spanCodeSection: 
-    - startInstruction: 2096
-      endInstruction: 2095
+    - startInstruction: 2032
+      endInstruction: 2031
       startSourceChar: 1969
       endSourceChar: 1971
       line: 67
       lineChar: 34
       spanCodeSection: t.
-    - startInstruction: 2096
-      endInstruction: 2095
+    - startInstruction: 2032
+      endInstruction: 2031
       startSourceChar: 1971
       endSourceChar: 1982
       line: 67
       lineChar: 36
       spanCodeSection: gameObject.
-    - startInstruction: 2096
-      endInstruction: 2211
+    - startInstruction: 2032
+      endInstruction: 2147
       startSourceChar: 1982
       endSourceChar: 2085
       line: 67
       lineChar: 47
       spanCodeSection: "name}\");\r\n               // t.gameObject.GetComponent<BoxCollider>().enabled
         = false;\r\n                "
-    - startInstruction: 2212
-      endInstruction: 2211
+    - startInstruction: 2148
+      endInstruction: 2147
       startSourceChar: 2085
       endSourceChar: 2085
       line: 69
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 2212
-      endInstruction: 2211
+    - startInstruction: 2148
+      endInstruction: 2147
       startSourceChar: 2085
       endSourceChar: 2085
       line: 69
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 2212
-      endInstruction: 2211
+    - startInstruction: 2148
+      endInstruction: 2147
       startSourceChar: 2085
       endSourceChar: 2091
       line: 69
       lineChar: 16
       spanCodeSection: 'var r '
-    - startInstruction: 2212
-      endInstruction: 2211
+    - startInstruction: 2148
+      endInstruction: 2147
       startSourceChar: 2091
       endSourceChar: 2093
       line: 69
       lineChar: 22
       spanCodeSection: '= '
-    - startInstruction: 2212
-      endInstruction: 2211
+    - startInstruction: 2148
+      endInstruction: 2147
       startSourceChar: 2093
       endSourceChar: 2093
       line: 69
       lineChar: 24
       spanCodeSection: 
-    - startInstruction: 2212
-      endInstruction: 2211
+    - startInstruction: 2148
+      endInstruction: 2147
       startSourceChar: 2093
       endSourceChar: 2093
       line: 69
       lineChar: 24
       spanCodeSection: 
-    - startInstruction: 2212
-      endInstruction: 2211
+    - startInstruction: 2148
+      endInstruction: 2147
       startSourceChar: 2093
       endSourceChar: 2093
       line: 69
       lineChar: 24
       spanCodeSection: 
-    - startInstruction: 2212
-      endInstruction: 2211
+    - startInstruction: 2148
+      endInstruction: 2147
       startSourceChar: 2093
       endSourceChar: 2095
       line: 69
       lineChar: 24
       spanCodeSection: t.
-    - startInstruction: 2212
-      endInstruction: 2211
+    - startInstruction: 2148
+      endInstruction: 2147
       startSourceChar: 2095
       endSourceChar: 2106
       line: 69
       lineChar: 26
       spanCodeSection: gameObject.
-    - startInstruction: 2212
-      endInstruction: 2235
+    - startInstruction: 2148
+      endInstruction: 2171
       startSourceChar: 2106
       endSourceChar: 2118
       line: 69
       lineChar: 37
       spanCodeSection: GetComponent
-    - startInstruction: 2236
-      endInstruction: 2235
+    - startInstruction: 2172
+      endInstruction: 2171
       startSourceChar: 2118
       endSourceChar: 2119
       line: 69
       lineChar: 49
       spanCodeSection: <
-    - startInstruction: 2236
-      endInstruction: 2311
+    - startInstruction: 2172
+      endInstruction: 2247
       startSourceChar: 2119
       endSourceChar: 2150
       line: 69
       lineChar: 50
       spanCodeSection: "Rigidbody>();\r\n                "
-    - startInstruction: 2312
-      endInstruction: 2311
+    - startInstruction: 2248
+      endInstruction: 2247
       startSourceChar: 2150
       endSourceChar: 2150
       line: 70
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 2312
-      endInstruction: 2311
+    - startInstruction: 2248
+      endInstruction: 2247
       startSourceChar: 2150
       endSourceChar: 2171
       line: 70
       lineChar: 16
       spanCodeSection: 'r.detectCollisions = '
-    - startInstruction: 2312
-      endInstruction: 2335
+    - startInstruction: 2248
+      endInstruction: 2271
       startSourceChar: 2171
       endSourceChar: 2195
       line: 70
       lineChar: 37
       spanCodeSection: "false;\r\n                "
-    - startInstruction: 2336
-      endInstruction: 2335
+    - startInstruction: 2272
+      endInstruction: 2271
       startSourceChar: 2195
       endSourceChar: 2195
       line: 71
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 2336
-      endInstruction: 2335
+    - startInstruction: 2272
+      endInstruction: 2271
       startSourceChar: 2195
       endSourceChar: 2204
       line: 71
       lineChar: 16
       spanCodeSection: 'r.drag = '
-    - startInstruction: 2336
-      endInstruction: 2383
+    - startInstruction: 2272
+      endInstruction: 2319
       startSourceChar: 2204
       endSourceChar: 2313
       line: 71
       lineChar: 25
       spanCodeSection: "100;\r\n                //r.useGravity = false;\r\n                //
         poor man's toggle gravity\r\n                "
-    - startInstruction: 2384
-      endInstruction: 2383
+    - startInstruction: 2320
+      endInstruction: 2319
       startSourceChar: 2313
       endSourceChar: 2313
       line: 74
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 2384
-      endInstruction: 2383
+    - startInstruction: 2320
+      endInstruction: 2319
       startSourceChar: 2313
       endSourceChar: 2366
       line: 74
       lineChar: 16
       spanCodeSection: 't.gameObject.GetComponent<ConstantForce>().enabled = '
-    - startInstruction: 2384
-      endInstruction: 2487
+    - startInstruction: 2320
+      endInstruction: 2423
       startSourceChar: 2366
       endSourceChar: 2389
       line: 74
       lineChar: 69
       spanCodeSection: "true;\r\n                "
-    - startInstruction: 2488
-      endInstruction: 2487
+    - startInstruction: 2424
+      endInstruction: 2423
       startSourceChar: 2389
       endSourceChar: 2389
       line: 75
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 2488
-      endInstruction: 2487
+    - startInstruction: 2424
+      endInstruction: 2423
       startSourceChar: 2389
       endSourceChar: 2389
       line: 75
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 2488
-      endInstruction: 2487
+    - startInstruction: 2424
+      endInstruction: 2423
       startSourceChar: 2389
       endSourceChar: 2389
       line: 75
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 2488
-      endInstruction: 2487
+    - startInstruction: 2424
+      endInstruction: 2423
       startSourceChar: 2389
       endSourceChar: 2395
       line: 75
       lineChar: 16
       spanCodeSection: Debug.
-    - startInstruction: 2488
-      endInstruction: 2487
+    - startInstruction: 2424
+      endInstruction: 2423
       startSourceChar: 2395
       endSourceChar: 2399
       line: 75
       lineChar: 22
       spanCodeSection: Log(
-    - startInstruction: 2488
-      endInstruction: 2487
+    - startInstruction: 2424
+      endInstruction: 2423
       startSourceChar: 2399
       endSourceChar: 2401
       line: 75
       lineChar: 26
       spanCodeSection: $"
-    - startInstruction: 2488
-      endInstruction: 2507
+    - startInstruction: 2424
+      endInstruction: 2443
       startSourceChar: 2401
       endSourceChar: 2415
       line: 75
       lineChar: 28
       spanCodeSection: 'r.isKinematic '
-    - startInstruction: 2508
-      endInstruction: 2507
+    - startInstruction: 2444
+      endInstruction: 2443
       startSourceChar: 2415
       endSourceChar: 2416
       line: 75
       lineChar: 42
       spanCodeSection: '{'
-    - startInstruction: 2508
-      endInstruction: 2507
+    - startInstruction: 2444
+      endInstruction: 2443
       startSourceChar: 2416
       endSourceChar: 2416
       line: 75
       lineChar: 43
       spanCodeSection: 
-    - startInstruction: 2508
-      endInstruction: 2507
+    - startInstruction: 2444
+      endInstruction: 2443
       startSourceChar: 2416
       endSourceChar: 2418
       line: 75
       lineChar: 43
       spanCodeSection: r.
-    - startInstruction: 2508
-      endInstruction: 2607
+    - startInstruction: 2444
+      endInstruction: 2543
       startSourceChar: 2418
       endSourceChar: 2430
       line: 75
       lineChar: 45
       spanCodeSection: isKinematic}
-    - startInstruction: 2608
-      endInstruction: 2659
+    - startInstruction: 2544
+      endInstruction: 2595
       startSourceChar: 2430
       endSourceChar: 2445
       line: 75
       lineChar: 57
       spanCodeSection: ', r.useGravity '
-    - startInstruction: 2660
-      endInstruction: 2659
+    - startInstruction: 2596
+      endInstruction: 2595
       startSourceChar: 2445
       endSourceChar: 2446
       line: 75
       lineChar: 72
       spanCodeSection: '{'
-    - startInstruction: 2660
-      endInstruction: 2659
+    - startInstruction: 2596
+      endInstruction: 2595
       startSourceChar: 2446
       endSourceChar: 2446
       line: 75
       lineChar: 73
       spanCodeSection: 
-    - startInstruction: 2660
-      endInstruction: 2659
+    - startInstruction: 2596
+      endInstruction: 2595
       startSourceChar: 2446
       endSourceChar: 2448
       line: 75
       lineChar: 73
       spanCodeSection: r.
-    - startInstruction: 2660
-      endInstruction: 2759
+    - startInstruction: 2596
+      endInstruction: 2695
       startSourceChar: 2448
       endSourceChar: 2459
       line: 75
       lineChar: 75
       spanCodeSection: useGravity}
-    - startInstruction: 2760
-      endInstruction: 2811
+    - startInstruction: 2696
+      endInstruction: 2747
       startSourceChar: 2459
       endSourceChar: 2479
       line: 75
       lineChar: 86
       spanCodeSection: ', detectCollisions: '
-    - startInstruction: 2812
-      endInstruction: 2811
+    - startInstruction: 2748
+      endInstruction: 2747
       startSourceChar: 2479
       endSourceChar: 2480
       line: 75
       lineChar: 106
       spanCodeSection: '{'
-    - startInstruction: 2812
-      endInstruction: 2811
+    - startInstruction: 2748
+      endInstruction: 2747
       startSourceChar: 2480
       endSourceChar: 2480
       line: 75
       lineChar: 107
       spanCodeSection: 
-    - startInstruction: 2812
-      endInstruction: 2811
+    - startInstruction: 2748
+      endInstruction: 2747
       startSourceChar: 2480
       endSourceChar: 2482
       line: 75
       lineChar: 107
       spanCodeSection: r.
-    - startInstruction: 2812
-      endInstruction: 2911
+    - startInstruction: 2748
+      endInstruction: 2847
       startSourceChar: 2482
       endSourceChar: 2499
       line: 75
       lineChar: 109
       spanCodeSection: detectCollisions}
-    - startInstruction: 2912
-      endInstruction: 2963
+    - startInstruction: 2848
+      endInstruction: 2899
       startSourceChar: 2499
       endSourceChar: 2506
       line: 75
       lineChar: 126
       spanCodeSection: ', mass '
-    - startInstruction: 2964
-      endInstruction: 2963
+    - startInstruction: 2900
+      endInstruction: 2899
       startSourceChar: 2506
       endSourceChar: 2507
       line: 75
       lineChar: 133
       spanCodeSection: '{'
-    - startInstruction: 2964
-      endInstruction: 2963
+    - startInstruction: 2900
+      endInstruction: 2899
       startSourceChar: 2507
       endSourceChar: 2507
       line: 75
       lineChar: 134
       spanCodeSection: 
-    - startInstruction: 2964
-      endInstruction: 2963
+    - startInstruction: 2900
+      endInstruction: 2899
       startSourceChar: 2507
       endSourceChar: 2509
       line: 75
       lineChar: 134
       spanCodeSection: r.
-    - startInstruction: 2964
-      endInstruction: 3139
+    - startInstruction: 2900
+      endInstruction: 3075
       startSourceChar: 2509
       endSourceChar: 2546
       line: 75
       lineChar: 136
       spanCodeSection: "mass}\");\r\n            }\r\n            "
-    - startInstruction: 3140
-      endInstruction: 3139
+    - startInstruction: 3076
+      endInstruction: 3075
       startSourceChar: 2546
       endSourceChar: 2546
       line: 77
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 3140
-      endInstruction: 3139
+    - startInstruction: 3076
+      endInstruction: 3075
       startSourceChar: 2546
       endSourceChar: 2586
       line: 77
       lineChar: 12
       spanCodeSection: 'GetComponent<MeshRenderer>().material = '
-    - startInstruction: 3140
-      endInstruction: 3140
+    - startInstruction: 3076
+      endInstruction: 3076
       startSourceChar: 2586
       endSourceChar: 2586
       line: 77

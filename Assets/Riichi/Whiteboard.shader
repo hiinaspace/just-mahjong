@@ -31,7 +31,7 @@
 			   return _Color * tex2D(_CameraTex, IN.localTexcoord.xy);
 		   }
 		   ENDCG
-				   }
+	   }
 	}
 }
 

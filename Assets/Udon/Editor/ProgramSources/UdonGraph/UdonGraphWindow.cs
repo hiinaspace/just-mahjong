@@ -22,6 +22,8 @@ namespace VRC.Udon.Editor.ProgramSources
 
         private static GUIStyle _udonLogo;
 
+        public AbstractUdonProgramSource lastClickedProgramSource { private get; set; }
+
         [MenuItem("VRChat SDK/Udon Graph")]
         private static void Init()
         {
@@ -82,7 +84,22 @@ namespace VRC.Udon.Editor.ProgramSources
                 GameObject behaviourObject = Selection.gameObjects.FirstOrDefault(g => g.GetComponent<UdonBehaviour>());
                 if(behaviourObject != null)
                 {
-                    UdonBehaviour udonBehaviour = behaviourObject.GetComponent<UdonBehaviour>();
+                    UdonBehaviour udonBehaviour;
+                    var udonBehaviours = behaviourObject.GetComponents<UdonBehaviour>();
+                    if (udonBehaviours.Length == 1 || lastClickedProgramSource == null)
+                    {
+                        udonBehaviour = udonBehaviours[0];
+                    }
+                    else
+                    {
+                       udonBehaviour = udonBehaviours.FirstOrDefault(u => u.programSource == lastClickedProgramSource);
+                       if(udonBehaviour == null)
+                        {
+                            // the last clicked graph is not available on this object, reset it
+                            lastClickedProgramSource = null;
+                            udonBehaviour = udonBehaviours[0];
+                        }
+                    }
                     AbstractUdonProgramSource programSource = udonBehaviour.programSource;
                     if(programSource is IUdonGraphDataProvider asUdonGraphProgramAsset)
                     {

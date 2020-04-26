@@ -35,18 +35,17 @@ MonoBehaviour:
     public class WindIndicator : UdonSharpBehaviour\r\n.code_start\r\n        \r\n
     \        # [UdonSynced] Quaternion rot = Quaternion.identity;\r\n        \r\n
     \        # void Start()\r\n    .export _start\r\n        \r\n    _start:\r\n        \r\n
-    \       PUSH, __0_const_intnl_SystemUInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
-    \       COPY\r\n        \r\n         # {\r\n        \r\n         # rot = transform.rotation;\r\n
-    \       PUSH, __0_this_intnl_UnityEngineTransform\r\n        PUSH, __0_intnl_UnityEngineQuaternion\r\n
-    \       EXTERN, \"UnityEngineTransform.__get_rotation__UnityEngineQuaternion\"\r\n
+    \       PUSH, __0_const_intnl_SystemUInt32\r\n        \r\n         # {\r\n        \r\n
+    \        # rot = transform.rotation;\r\n        PUSH, __0_this_intnl_UnityEngineTransform\r\n
+    \       PUSH, __0_intnl_UnityEngineQuaternion\r\n        EXTERN, \"UnityEngineTransform.__get_rotation__UnityEngineQuaternion\"\r\n
     \       PUSH, __0_intnl_UnityEngineQuaternion\r\n        PUSH, rot\r\n        COPY\r\n
+    \       PUSH, __0_intnl_returnTarget_UInt32 #Function epilogue\r\n        COPY\r\n
     \       JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n        \r\n
     \        # void Interact()\r\n    .export _interact\r\n        \r\n    _interact:\r\n
-    \       \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
-    \       COPY\r\n        \r\n         # {\r\n        \r\n         # Networking.SetOwner(Networking.LocalPlayer,
-    gameObject);\r\n        PUSH, __0_intnl_VRCSDKBaseVRCPlayerApi\r\n        EXTERN,
-    \"VRCSDKBaseNetworking.__get_LocalPlayer__VRCSDKBaseVRCPlayerApi\"\r\n        PUSH,
-    __0_intnl_VRCSDKBaseVRCPlayerApi\r\n        PUSH, __0_this_intnl_UnityEngineGameObject\r\n
+    \       \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n        \r\n         #
+    {\r\n        \r\n         # Networking.SetOwner(Networking.LocalPlayer, gameObject);\r\n
+    \       PUSH, __0_intnl_VRCSDKBaseVRCPlayerApi\r\n        EXTERN, \"VRCSDKBaseNetworking.__get_LocalPlayer__VRCSDKBaseVRCPlayerApi\"\r\n
+    \       PUSH, __0_intnl_VRCSDKBaseVRCPlayerApi\r\n        PUSH, __0_this_intnl_UnityEngineGameObject\r\n
     \       EXTERN, \"VRCSDKBaseNetworking.__SetOwner__VRCSDKBaseVRCPlayerApi_UnityEngineGameObject__SystemVoid\"\r\n
     \       \r\n         # transform.Rotate(new Vector3(0, 0, 90));\r\n        PUSH,
     __0_const_intnl_SystemInt32\r\n        PUSH, __0_intnl_SystemSingle\r\n        EXTERN,
@@ -62,12 +61,12 @@ MonoBehaviour:
     \       \r\n         # rot = transform.rotation;\r\n        PUSH, __0_this_intnl_UnityEngineTransform\r\n
     \       PUSH, __1_intnl_UnityEngineQuaternion\r\n        EXTERN, \"UnityEngineTransform.__get_rotation__UnityEngineQuaternion\"\r\n
     \       PUSH, __1_intnl_UnityEngineQuaternion\r\n        PUSH, rot\r\n        COPY\r\n
+    \       PUSH, __0_intnl_returnTarget_UInt32 #Function epilogue\r\n        COPY\r\n
     \       JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n        \r\n
     \        # float lastUpdate = 0;\r\n        \r\n         # void FixedUpdate()\r\n
     \   .export _fixedUpdate\r\n        \r\n    _fixedUpdate:\r\n        \r\n        PUSH,
-    __0_const_intnl_SystemUInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
-    \       COPY\r\n        \r\n         # {\r\n        \r\n         # lastUpdate
-    += Time.deltaTime;\r\n        PUSH, __3_intnl_SystemSingle\r\n        EXTERN,
+    __0_const_intnl_SystemUInt32\r\n        \r\n         # {\r\n        \r\n         #
+    lastUpdate += Time.deltaTime;\r\n        PUSH, __3_intnl_SystemSingle\r\n        EXTERN,
     \"UnityEngineTime.__get_deltaTime__SystemSingle\"\r\n        PUSH, lastUpdate\r\n
     \       PUSH, __3_intnl_SystemSingle\r\n        PUSH, __4_intnl_SystemSingle\r\n
     \       EXTERN, \"SystemSingle.__op_Addition__SystemSingle_SystemSingle__SystemSingle\"\r\n
@@ -77,13 +76,14 @@ MonoBehaviour:
     \       PUSH, __6_intnl_SystemSingle\r\n        EXTERN, \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n
     \       PUSH, __5_intnl_SystemSingle\r\n        PUSH, __6_intnl_SystemSingle\r\n
     \       PUSH, __0_intnl_SystemBoolean\r\n        EXTERN, \"SystemSingle.__op_GreaterThan__SystemSingle_SystemSingle__SystemBoolean\"\r\n
-    \       PUSH, __0_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x00000238\r\n
+    \       PUSH, __0_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x0000022C\r\n
     \       \r\n         # {\r\n        \r\n         # lastUpdate = 0;\r\n        PUSH,
     __0_const_intnl_SystemInt32\r\n        PUSH, __7_intnl_SystemSingle\r\n        EXTERN,
     \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n        PUSH, __7_intnl_SystemSingle\r\n
     \       PUSH, lastUpdate\r\n        COPY\r\n        \r\n         # transform.rotation
     = rot;\r\n        PUSH, __0_this_intnl_UnityEngineTransform\r\n        PUSH, rot\r\n
     \       EXTERN, \"UnityEngineTransform.__set_rotation__UnityEngineQuaternion__SystemVoid\"\r\n
+    \       PUSH, __0_intnl_returnTarget_UInt32 #Function epilogue\r\n        COPY\r\n
     \       JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n.code_end\r\n"
   assemblyError: 
   sourceCsScript: {fileID: 11500000, guid: 8110a9bc2e7e29b4d82dc413603e0638, type: 3}
@@ -255,48 +255,48 @@ MonoBehaviour:
       lineChar: 17
       spanCodeSection: "Quaternion rot = Quaternion.identity;\r\n\r\n    "
     - startInstruction: 0
-      endInstruction: 19
+      endInstruction: 7
       startSourceChar: 342
       endSourceChar: 360
       line: 12
       lineChar: 4
       spanCodeSection: "void Start()\r\n    "
-    - startInstruction: 20
-      endInstruction: 19
+    - startInstruction: 8
+      endInstruction: 7
       startSourceChar: 360
       endSourceChar: 371
       line: 13
       lineChar: 4
       spanCodeSection: "{\r\n        "
-    - startInstruction: 20
-      endInstruction: 19
+    - startInstruction: 8
+      endInstruction: 7
       startSourceChar: 371
       endSourceChar: 371
       line: 14
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 20
-      endInstruction: 19
+    - startInstruction: 8
+      endInstruction: 7
       startSourceChar: 371
       endSourceChar: 377
       line: 14
       lineChar: 8
       spanCodeSection: 'rot = '
-    - startInstruction: 20
-      endInstruction: 19
+    - startInstruction: 8
+      endInstruction: 7
       startSourceChar: 377
       endSourceChar: 377
       line: 14
       lineChar: 14
       spanCodeSection: 
-    - startInstruction: 20
-      endInstruction: 19
+    - startInstruction: 8
+      endInstruction: 7
       startSourceChar: 377
       endSourceChar: 387
       line: 14
       lineChar: 14
       spanCodeSection: transform.
-    - startInstruction: 20
+    - startInstruction: 8
       endInstruction: 71
       startSourceChar: 387
       endSourceChar: 411
@@ -304,202 +304,202 @@ MonoBehaviour:
       lineChar: 24
       spanCodeSection: "rotation;\r\n    }\r\n\r\n    "
     - startInstruction: 72
-      endInstruction: 91
+      endInstruction: 79
       startSourceChar: 411
       endSourceChar: 432
       line: 17
       lineChar: 4
       spanCodeSection: "void Interact()\r\n    "
-    - startInstruction: 92
-      endInstruction: 91
+    - startInstruction: 80
+      endInstruction: 79
       startSourceChar: 432
       endSourceChar: 443
       line: 18
       lineChar: 4
       spanCodeSection: "{\r\n        "
-    - startInstruction: 92
-      endInstruction: 91
+    - startInstruction: 80
+      endInstruction: 79
       startSourceChar: 443
       endSourceChar: 443
       line: 19
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 92
-      endInstruction: 91
+    - startInstruction: 80
+      endInstruction: 79
       startSourceChar: 443
       endSourceChar: 443
       line: 19
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 92
-      endInstruction: 91
+    - startInstruction: 80
+      endInstruction: 79
       startSourceChar: 443
       endSourceChar: 443
       line: 19
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 92
-      endInstruction: 91
+    - startInstruction: 80
+      endInstruction: 79
       startSourceChar: 443
       endSourceChar: 454
       line: 19
       lineChar: 8
       spanCodeSection: Networking.
-    - startInstruction: 92
-      endInstruction: 91
+    - startInstruction: 80
+      endInstruction: 79
       startSourceChar: 454
       endSourceChar: 463
       line: 19
       lineChar: 19
       spanCodeSection: SetOwner(
-    - startInstruction: 92
-      endInstruction: 91
+    - startInstruction: 80
+      endInstruction: 79
       startSourceChar: 463
       endSourceChar: 463
       line: 19
       lineChar: 28
       spanCodeSection: 
-    - startInstruction: 92
-      endInstruction: 91
+    - startInstruction: 80
+      endInstruction: 79
       startSourceChar: 463
       endSourceChar: 474
       line: 19
       lineChar: 28
       spanCodeSection: Networking.
-    - startInstruction: 92
-      endInstruction: 107
+    - startInstruction: 80
+      endInstruction: 95
       startSourceChar: 474
       endSourceChar: 487
       line: 19
       lineChar: 39
       spanCodeSection: 'LocalPlayer, '
-    - startInstruction: 108
-      endInstruction: 131
+    - startInstruction: 96
+      endInstruction: 119
       startSourceChar: 487
       endSourceChar: 509
       line: 19
       lineChar: 52
       spanCodeSection: "gameObject);\r\n        "
-    - startInstruction: 132
-      endInstruction: 131
+    - startInstruction: 120
+      endInstruction: 119
       startSourceChar: 509
       endSourceChar: 509
       line: 20
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 132
-      endInstruction: 131
+    - startInstruction: 120
+      endInstruction: 119
       startSourceChar: 509
       endSourceChar: 509
       line: 20
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 132
-      endInstruction: 131
+    - startInstruction: 120
+      endInstruction: 119
       startSourceChar: 509
       endSourceChar: 509
       line: 20
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 132
-      endInstruction: 131
+    - startInstruction: 120
+      endInstruction: 119
       startSourceChar: 509
       endSourceChar: 519
       line: 20
       lineChar: 8
       spanCodeSection: transform.
-    - startInstruction: 132
-      endInstruction: 131
+    - startInstruction: 120
+      endInstruction: 119
       startSourceChar: 519
       endSourceChar: 526
       line: 20
       lineChar: 18
       spanCodeSection: Rotate(
-    - startInstruction: 132
-      endInstruction: 131
+    - startInstruction: 120
+      endInstruction: 119
       startSourceChar: 526
       endSourceChar: 530
       line: 20
       lineChar: 25
       spanCodeSection: 'new '
-    - startInstruction: 132
-      endInstruction: 131
+    - startInstruction: 120
+      endInstruction: 119
       startSourceChar: 530
       endSourceChar: 538
       line: 20
       lineChar: 29
       spanCodeSection: Vector3(
-    - startInstruction: 132
-      endInstruction: 131
+    - startInstruction: 120
+      endInstruction: 119
       startSourceChar: 538
       endSourceChar: 538
       line: 20
       lineChar: 37
       spanCodeSection: 
-    - startInstruction: 132
-      endInstruction: 131
+    - startInstruction: 120
+      endInstruction: 119
       startSourceChar: 538
       endSourceChar: 541
       line: 20
       lineChar: 37
       spanCodeSection: '0, '
-    - startInstruction: 132
-      endInstruction: 131
+    - startInstruction: 120
+      endInstruction: 119
       startSourceChar: 541
       endSourceChar: 541
       line: 20
       lineChar: 40
       spanCodeSection: 
-    - startInstruction: 132
-      endInstruction: 131
+    - startInstruction: 120
+      endInstruction: 119
       startSourceChar: 541
       endSourceChar: 544
       line: 20
       lineChar: 40
       spanCodeSection: '0, '
-    - startInstruction: 132
-      endInstruction: 131
+    - startInstruction: 120
+      endInstruction: 119
       startSourceChar: 544
       endSourceChar: 544
       line: 20
       lineChar: 43
       spanCodeSection: 
-    - startInstruction: 132
-      endInstruction: 267
+    - startInstruction: 120
+      endInstruction: 255
       startSourceChar: 544
       endSourceChar: 559
       line: 20
       lineChar: 43
       spanCodeSection: "90));\r\n        "
-    - startInstruction: 268
-      endInstruction: 267
+    - startInstruction: 256
+      endInstruction: 255
       startSourceChar: 559
       endSourceChar: 559
       line: 21
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 268
-      endInstruction: 267
+    - startInstruction: 256
+      endInstruction: 255
       startSourceChar: 559
       endSourceChar: 565
       line: 21
       lineChar: 8
       spanCodeSection: 'rot = '
-    - startInstruction: 268
-      endInstruction: 267
+    - startInstruction: 256
+      endInstruction: 255
       startSourceChar: 565
       endSourceChar: 565
       line: 21
       lineChar: 14
       spanCodeSection: 
-    - startInstruction: 268
-      endInstruction: 267
+    - startInstruction: 256
+      endInstruction: 255
       startSourceChar: 565
       endSourceChar: 575
       line: 21
       lineChar: 14
       spanCodeSection: transform.
-    - startInstruction: 268
+    - startInstruction: 256
       endInstruction: 319
       startSourceChar: 575
       endSourceChar: 599
@@ -528,126 +528,126 @@ MonoBehaviour:
       lineChar: 4
       spanCodeSection: "float lastUpdate = 0;\r\n\r\n    "
     - startInstruction: 320
-      endInstruction: 339
+      endInstruction: 327
       startSourceChar: 628
       endSourceChar: 652
       line: 26
       lineChar: 4
       spanCodeSection: "void FixedUpdate()\r\n    "
-    - startInstruction: 340
-      endInstruction: 339
+    - startInstruction: 328
+      endInstruction: 327
       startSourceChar: 652
       endSourceChar: 663
       line: 27
       lineChar: 4
       spanCodeSection: "{\r\n        "
-    - startInstruction: 340
-      endInstruction: 339
+    - startInstruction: 328
+      endInstruction: 327
       startSourceChar: 663
       endSourceChar: 663
       line: 28
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 340
-      endInstruction: 339
+    - startInstruction: 328
+      endInstruction: 327
       startSourceChar: 663
       endSourceChar: 677
       line: 28
       lineChar: 8
       spanCodeSection: 'lastUpdate += '
-    - startInstruction: 340
-      endInstruction: 339
+    - startInstruction: 328
+      endInstruction: 327
       startSourceChar: 677
       endSourceChar: 677
       line: 28
       lineChar: 22
       spanCodeSection: 
-    - startInstruction: 340
-      endInstruction: 339
+    - startInstruction: 328
+      endInstruction: 327
       startSourceChar: 677
       endSourceChar: 682
       line: 28
       lineChar: 22
       spanCodeSection: Time.
-    - startInstruction: 340
-      endInstruction: 407
+    - startInstruction: 328
+      endInstruction: 395
       startSourceChar: 682
       endSourceChar: 702
       line: 28
       lineChar: 27
       spanCodeSection: "deltaTime;\r\n        "
-    - startInstruction: 408
-      endInstruction: 407
+    - startInstruction: 396
+      endInstruction: 395
       startSourceChar: 702
       endSourceChar: 706
       line: 29
       lineChar: 8
       spanCodeSection: if (
-    - startInstruction: 408
-      endInstruction: 407
+    - startInstruction: 396
+      endInstruction: 395
       startSourceChar: 706
       endSourceChar: 706
       line: 29
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 408
-      endInstruction: 427
+    - startInstruction: 396
+      endInstruction: 415
       startSourceChar: 706
       endSourceChar: 719
       line: 29
       lineChar: 12
       spanCodeSection: 'lastUpdate > '
-    - startInstruction: 428
-      endInstruction: 499
+    - startInstruction: 416
+      endInstruction: 487
       startSourceChar: 719
       endSourceChar: 731
       line: 29
       lineChar: 25
       spanCodeSection: "1)\r\n        "
-    - startInstruction: 500
-      endInstruction: 499
+    - startInstruction: 488
+      endInstruction: 487
       startSourceChar: 731
       endSourceChar: 746
       line: 30
       lineChar: 8
       spanCodeSection: "{\r\n            "
-    - startInstruction: 500
-      endInstruction: 499
+    - startInstruction: 488
+      endInstruction: 487
       startSourceChar: 746
       endSourceChar: 746
       line: 31
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 500
-      endInstruction: 499
+    - startInstruction: 488
+      endInstruction: 487
       startSourceChar: 746
       endSourceChar: 759
       line: 31
       lineChar: 12
       spanCodeSection: 'lastUpdate = '
-    - startInstruction: 500
-      endInstruction: 543
+    - startInstruction: 488
+      endInstruction: 531
       startSourceChar: 759
       endSourceChar: 775
       line: 31
       lineChar: 25
       spanCodeSection: "0;\r\n            "
-    - startInstruction: 544
-      endInstruction: 543
+    - startInstruction: 532
+      endInstruction: 531
       startSourceChar: 775
       endSourceChar: 775
       line: 32
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 544
-      endInstruction: 543
+    - startInstruction: 532
+      endInstruction: 531
       startSourceChar: 775
       endSourceChar: 796
       line: 32
       lineChar: 12
       spanCodeSection: 'transform.rotation = '
-    - startInstruction: 544
-      endInstruction: 544
+    - startInstruction: 532
+      endInstruction: 532
       startSourceChar: 796
       endSourceChar: 796
       line: 32

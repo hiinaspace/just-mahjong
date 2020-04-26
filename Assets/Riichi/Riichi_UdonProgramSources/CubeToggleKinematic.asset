@@ -27,17 +27,18 @@ MonoBehaviour:
     \       \r\n         # public class CubeToggleKinematic : UdonSharpBehaviour\r\n.code_start\r\n
     \       \r\n         # public UdonBehaviour behavior;\r\n        \r\n         #
     void Interact()\r\n    .export _interact\r\n        \r\n    _interact:\r\n        \r\n
-    \       PUSH, __0_const_intnl_SystemUInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
-    \       COPY\r\n        \r\n         # {\r\n        \r\n         # var r = GetComponent<Rigidbody>();\r\n
-    \       PUSH, __0_this_intnl_CubeToggleKinematic\r\n        PUSH, __0_const_intnl_SystemType\r\n
-    \       PUSH, __0_intnl_UnityEngineRigidbody\r\n        EXTERN, \"UnityEngineRigidbody.__GetComponent__T\"\r\n
-    \       PUSH, __0_intnl_UnityEngineRigidbody\r\n        PUSH, __0_r_Rigidbody\r\n
-    \       COPY\r\n        \r\n         # r.isKinematic = !r.isKinematic;\r\n        PUSH,
-    __0_r_Rigidbody\r\n        PUSH, __0_intnl_SystemBoolean\r\n        EXTERN, \"UnityEngineRigidbody.__get_isKinematic__SystemBoolean\"\r\n
+    \       PUSH, __0_const_intnl_SystemUInt32\r\n        \r\n         # {\r\n        \r\n
+    \        # var r = GetComponent<Rigidbody>();\r\n        PUSH, __0_this_intnl_CubeToggleKinematic\r\n
+    \       PUSH, __0_const_intnl_SystemType\r\n        PUSH, __0_intnl_UnityEngineRigidbody\r\n
+    \       EXTERN, \"UnityEngineRigidbody.__GetComponent__T\"\r\n        PUSH, __0_intnl_UnityEngineRigidbody\r\n
+    \       PUSH, __0_r_Rigidbody\r\n        COPY\r\n        \r\n         # r.isKinematic
+    = !r.isKinematic;\r\n        PUSH, __0_r_Rigidbody\r\n        PUSH, __0_intnl_SystemBoolean\r\n
+    \       EXTERN, \"UnityEngineRigidbody.__get_isKinematic__SystemBoolean\"\r\n
     \       PUSH, __0_intnl_SystemBoolean\r\n        PUSH, __1_intnl_SystemBoolean\r\n
     \       EXTERN, \"SystemBoolean.__op_UnaryNegation__SystemBoolean__SystemBoolean\"\r\n
     \       PUSH, __0_r_Rigidbody\r\n        PUSH, __1_intnl_SystemBoolean\r\n        EXTERN,
-    \"UnityEngineRigidbody.__set_isKinematic__SystemBoolean__SystemVoid\"\r\n        JUMP_INDIRECT,
+    \"UnityEngineRigidbody.__set_isKinematic__SystemBoolean__SystemVoid\"\r\n        PUSH,
+    __0_intnl_returnTarget_UInt32 #Function epilogue\r\n        COPY\r\n        JUMP_INDIRECT,
     __0_intnl_returnTarget_UInt32\r\n        \r\n.code_end\r\n"
   assemblyError: 
   sourceCsScript: {fileID: 11500000, guid: 46c5e69b54e543845b1dd8f727cd08f8, type: 3}
@@ -193,112 +194,112 @@ MonoBehaviour:
       lineChar: 11
       spanCodeSection: "UdonBehaviour behavior;\r\n    "
     - startInstruction: 0
-      endInstruction: 19
+      endInstruction: 7
       startSourceChar: 177
       endSourceChar: 198
       line: 9
       lineChar: 4
       spanCodeSection: "void Interact()\r\n    "
-    - startInstruction: 20
-      endInstruction: 19
+    - startInstruction: 8
+      endInstruction: 7
       startSourceChar: 198
       endSourceChar: 209
       line: 10
       lineChar: 4
       spanCodeSection: "{\r\n        "
-    - startInstruction: 20
-      endInstruction: 19
+    - startInstruction: 8
+      endInstruction: 7
       startSourceChar: 209
       endSourceChar: 209
       line: 11
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 20
-      endInstruction: 19
+    - startInstruction: 8
+      endInstruction: 7
       startSourceChar: 209
       endSourceChar: 209
       line: 11
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 20
-      endInstruction: 19
+    - startInstruction: 8
+      endInstruction: 7
       startSourceChar: 209
       endSourceChar: 215
       line: 11
       lineChar: 8
       spanCodeSection: 'var r '
-    - startInstruction: 20
-      endInstruction: 19
+    - startInstruction: 8
+      endInstruction: 7
       startSourceChar: 215
       endSourceChar: 217
       line: 11
       lineChar: 14
       spanCodeSection: '= '
-    - startInstruction: 20
-      endInstruction: 19
+    - startInstruction: 8
+      endInstruction: 7
       startSourceChar: 217
       endSourceChar: 217
       line: 11
       lineChar: 16
       spanCodeSection: 
-    - startInstruction: 20
-      endInstruction: 19
+    - startInstruction: 8
+      endInstruction: 7
       startSourceChar: 217
       endSourceChar: 229
       line: 11
       lineChar: 16
       spanCodeSection: GetComponent
-    - startInstruction: 20
-      endInstruction: 19
+    - startInstruction: 8
+      endInstruction: 7
       startSourceChar: 229
       endSourceChar: 230
       line: 11
       lineChar: 28
       spanCodeSection: <
-    - startInstruction: 20
-      endInstruction: 71
+    - startInstruction: 8
+      endInstruction: 59
       startSourceChar: 230
       endSourceChar: 253
       line: 11
       lineChar: 29
       spanCodeSection: "Rigidbody>();\r\n        "
-    - startInstruction: 72
-      endInstruction: 71
+    - startInstruction: 60
+      endInstruction: 59
       startSourceChar: 253
       endSourceChar: 253
       line: 12
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 72
-      endInstruction: 71
+    - startInstruction: 60
+      endInstruction: 59
       startSourceChar: 253
       endSourceChar: 269
       line: 12
       lineChar: 8
       spanCodeSection: 'r.isKinematic = '
-    - startInstruction: 72
-      endInstruction: 71
+    - startInstruction: 60
+      endInstruction: 59
       startSourceChar: 269
       endSourceChar: 270
       line: 12
       lineChar: 24
       spanCodeSection: '!'
-    - startInstruction: 72
-      endInstruction: 71
+    - startInstruction: 60
+      endInstruction: 59
       startSourceChar: 270
       endSourceChar: 270
       line: 12
       lineChar: 25
       spanCodeSection: 
-    - startInstruction: 72
-      endInstruction: 71
+    - startInstruction: 60
+      endInstruction: 59
       startSourceChar: 270
       endSourceChar: 272
       line: 12
       lineChar: 25
       spanCodeSection: r.
-    - startInstruction: 72
-      endInstruction: 72
+    - startInstruction: 60
+      endInstruction: 60
       startSourceChar: 272
       endSourceChar: 272
       line: 12

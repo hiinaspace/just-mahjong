@@ -564,28 +564,50 @@ public class EnvConfig
         graphicsManager.ApplyModifiedProperties();
     }
 
-    public static void ForceEnableFog()
+    public static FogSettings GetFogSettings()
     {
-
         VRC.Core.Logger.Log("Force-enabling Fog", VRC.Core.DebugLevel.All);
 
-        const string GraphicsSettingsAssetPath = "ProjectSettings/GraphicsSettings.asset";
-        SerializedObject graphicsManager = new SerializedObject(UnityEditor.AssetDatabase.LoadAllAssetsAtPath(GraphicsSettingsAssetPath)[0]);
+        const string graphicsSettingsAssetPath = "ProjectSettings/GraphicsSettings.asset";
+        SerializedObject graphicsManager = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath(graphicsSettingsAssetPath)[0]);
+
+
+        SerializedProperty fogStrippingSerializedProperty = graphicsManager.FindProperty("m_FogStripping");
+        FogSettings.FogStrippingMode fogStripping = (FogSettings.FogStrippingMode)fogStrippingSerializedProperty.enumValueIndex;
+
+        SerializedProperty fogKeepLinearSerializedProperty = graphicsManager.FindProperty("m_FogKeepLinear");
+        bool keepLinear = fogKeepLinearSerializedProperty.boolValue;
+
+        SerializedProperty fogKeepExpSerializedProperty = graphicsManager.FindProperty("m_FogKeepExp");
+        bool keepExp = fogKeepExpSerializedProperty.boolValue;
+
+        SerializedProperty fogKeepExp2SerializedProperty = graphicsManager.FindProperty("m_FogKeepExp2");
+        bool keepExp2 = fogKeepExp2SerializedProperty.boolValue;
+
+        FogSettings fogSettings = new FogSettings(fogStripping, keepLinear, keepExp, keepExp2);
+        return fogSettings;
+    }
+    
+    public static void SetFogSettings(FogSettings fogSettings)
+    {
+        VRC.Core.Logger.Log("Force-enabling Fog", VRC.Core.DebugLevel.All);
+
+        const string graphicsSettingsAssetPath = "ProjectSettings/GraphicsSettings.asset";
+        SerializedObject graphicsManager = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath(graphicsSettingsAssetPath)[0]);
 
         SerializedProperty fogStripping = graphicsManager.FindProperty("m_FogStripping");
-        fogStripping.enumValueIndex = 1;
+        fogStripping.enumValueIndex = (int)fogSettings.fogStrippingMode;
 
         SerializedProperty fogKeepLinear = graphicsManager.FindProperty("m_FogKeepLinear");
-        fogKeepLinear.boolValue = true;
+        fogKeepLinear.boolValue = fogSettings.keepLinear;
 
         SerializedProperty fogKeepExp = graphicsManager.FindProperty("m_FogKeepExp");
-        fogKeepExp.boolValue = true;
+        fogKeepExp.boolValue = fogSettings.keepExp;
 
         SerializedProperty fogKeepExp2 = graphicsManager.FindProperty("m_FogKeepExp2");
-        fogKeepExp2.boolValue = true;
+        fogKeepExp2.boolValue = fogSettings.keepExp2;
 
         graphicsManager.ApplyModifiedProperties();
-
     }
 
     static void SetAudioSettings()
@@ -610,15 +632,15 @@ public class EnvConfig
     static void SetPlayerSettings()
     {
         // asset bundles MUST be built with settings that are compatible with VRC client
-#if VRC_OVERRIDE_COLORSPACE_GAMMA
-            PlayerSettings.colorSpace = ColorSpace.Gamma;
-#else
+        #if VRC_OVERRIDE_COLORSPACE_GAMMA
+        PlayerSettings.colorSpace = ColorSpace.Gamma;
+        #else
         PlayerSettings.colorSpace = ColorSpace.Linear;
-#endif
+        #endif
 
-#if !VRC_CLIENT // In client rely on platform-switcher
+        #if !VRC_CLIENT // In client rely on platform-switcher
         PlayerSettings.SetVirtualRealitySupported(EditorUserBuildSettings.selectedBuildTargetGroup, true);
-#endif
+        #endif
 
         PlayerSettings.graphicsJobs = false; // else we get occasional crashing
 
@@ -626,9 +648,30 @@ public class EnvConfig
 
         PlayerSettings.stereoRenderingPath = StereoRenderingPath.SinglePass;
 
-#if UNITY_2018_4_OR_NEWER
+        #if UNITY_2018_4_OR_NEWER
         PlayerSettings.scriptingRuntimeVersion = ScriptingRuntimeVersion.Latest;
-#endif
+        #endif
+
+        #if VRC_VR_OCULUS_QUEST
+        PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
+        #elif VRC_VR_FOCUS
+        PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARMv7;
+        #endif
+
+        #if UNITY_ANDROID
+        if(PlayerSettings.Android.targetArchitectures.HasFlag(AndroidArchitecture.ARM64))
+        {
+            // Since we need different IL2CPP args we can't build ARM64 with other Architectures.
+            PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
+            PlayerSettings.SetAdditionalIl2CppArgs("");
+        }
+        else
+        {
+            PlayerSettings.SetAdditionalIl2CppArgs("--linker-flags=\"-long-plt\"");
+        }
+        #else
+        PlayerSettings.SetAdditionalIl2CppArgs("");
+        #endif
 
         SetActiveSDKDefines();
 
@@ -700,5 +743,35 @@ public class EnvConfig
     private static void LoadEditorResources()
     {
         AvatarPerformanceStats.Initialize();
+    }
+
+    public struct FogSettings
+    {
+        public enum FogStrippingMode
+        {
+            Automatic,
+            Custom
+        }
+        
+        public readonly FogStrippingMode fogStrippingMode;
+        public readonly bool keepLinear;
+        public readonly bool keepExp;
+        public readonly bool keepExp2;
+        
+        public FogSettings(FogStrippingMode fogStrippingMode)
+        {
+            this.fogStrippingMode = fogStrippingMode;
+            keepLinear = true;
+            keepExp = true;
+            keepExp2 = true;
+        }
+
+        public FogSettings(FogStrippingMode fogStrippingMode, bool keepLinear, bool keepExp, bool keepExp2)
+        {
+            this.fogStrippingMode = fogStrippingMode;
+            this.keepLinear = keepLinear;
+            this.keepExp = keepExp;
+            this.keepExp2 = keepExp2;
+        }
     }
 }

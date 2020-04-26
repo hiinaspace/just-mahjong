@@ -12,24 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f11136daadff0b44ac2278a314682ab, type: 3}
   m_Name: PickupAndUse
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: f50551b17925fab43a49148bd1ca563b,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 7d0c962b97e3ef64993476e1aff9449c,
     type: 2}
-  udonAssembly: ".data_start\n\n    \n    instance_0: %UnityEngineMaterial, null\n
-    \   value_0: %UnityEngineColor, null\n    Type_0: %SystemType, null\n    instance_3:
-    %UnityEngineMaterial, null\n    value_1: %UnityEngineColor, null\n    instance_1:
-    %UnityEngineMeshRenderer, null\n    instance_2: %UnityEngineGameObject, this\n
-    \   type_0: %SystemType, null\n    Type_1: %SystemType, null\n\n.data_end\n\n.code_start\n\n
-    \   .export _onPickupUseDown\n    \n    _onPickupUseDown:\n    \n        PUSH,
-    Type_0\n        PUSH, type_0\n        COPY\n        PUSH, instance_2\n        PUSH,
-    type_0\n        PUSH, instance_1\n        EXTERN, \"UnityEngineGameObject.__GetComponent__SystemType__UnityEngineComponent\"\n
-    \       PUSH, instance_1\n        PUSH, instance_0\n        EXTERN, \"UnityEngineMeshRenderer.__get_material__UnityEngineMaterial\"\n
-    \       PUSH, instance_0\n        PUSH, value_0\n        EXTERN, \"UnityEngineMaterial.__set_color__UnityEngineColor__SystemVoid\"\n
-    \       JUMP, 0xFFFFFFFC\n    \n    .export _onPickupUseUp\n    \n    _onPickupUseUp:\n
-    \   \n        PUSH, Type_1\n        PUSH, type_0\n        COPY\n        PUSH,
-    instance_2\n        PUSH, type_0\n        PUSH, instance_1\n        EXTERN, \"UnityEngineGameObject.__GetComponent__SystemType__UnityEngineComponent\"\n
-    \       PUSH, instance_1\n        PUSH, instance_3\n        EXTERN, \"UnityEngineMeshRenderer.__get_material__UnityEngineMaterial\"\n
-    \       PUSH, instance_3\n        PUSH, value_1\n        EXTERN, \"UnityEngineMaterial.__set_color__UnityEngineColor__SystemVoid\"\n
-    \       JUMP, 0xFFFFFFFC\n    \n\n.code_end\n"
+  udonAssembly: ".data_start\r\n\r\n    \r\n    instance_0: %UnityEngineMaterial,
+    null\r\n    value_0: %UnityEngineColor, null\r\n    Type_0: %SystemType, null\r\n
+    \   instance_3: %UnityEngineMaterial, null\r\n    value_1: %UnityEngineColor,
+    null\r\n    Type_1: %SystemType, null\r\n    instance_1: %UnityEngineMeshRenderer,
+    null\r\n    instance_2: %UnityEngineGameObject, this\r\n    type_0: %SystemType,
+    null\r\n    Type_2: %SystemType, null\r\n    targetMaterial: %UnityEngineMaterial,
+    null\r\n\r\n.data_end\r\n\r\n.code_start\r\n\r\n    .export _onPickupUseDown\r\n
+    \   \r\n    _onPickupUseDown:\r\n    \r\n        PUSH, Type_0\r\n        PUSH,
+    type_0\r\n        COPY\r\n        PUSH, instance_2\r\n        PUSH, type_0\r\n
+    \       PUSH, instance_1\r\n        EXTERN, \"UnityEngineGameObject.__GetComponent__SystemType__UnityEngineComponent\"\r\n
+    \       PUSH, instance_1\r\n        PUSH, instance_0\r\n        EXTERN, \"UnityEngineMeshRenderer.__get_material__UnityEngineMaterial\"\r\n
+    \       PUSH, instance_0\r\n        PUSH, value_0\r\n        EXTERN, \"UnityEngineMaterial.__set_color__UnityEngineColor__SystemVoid\"\r\n
+    \       JUMP, 0xFFFFFFFC\r\n    \r\n    .export _onPickupUseUp\r\n    \r\n    _onPickupUseUp:\r\n
+    \   \r\n        PUSH, Type_1\r\n        PUSH, type_0\r\n        COPY\r\n        PUSH,
+    instance_2\r\n        PUSH, type_0\r\n        PUSH, instance_1\r\n        EXTERN,
+    \"UnityEngineGameObject.__GetComponent__SystemType__UnityEngineComponent\"\r\n
+    \       PUSH, instance_1\r\n        PUSH, instance_3\r\n        EXTERN, \"UnityEngineMeshRenderer.__get_material__UnityEngineMaterial\"\r\n
+    \       PUSH, instance_0\r\n        PUSH, value_1\r\n        EXTERN, \"UnityEngineMaterial.__set_color__UnityEngineColor__SystemVoid\"\r\n
+    \       JUMP, 0xFFFFFFFC\r\n    \r\n    .export _start\r\n    \r\n    _start:\r\n
+    \   \r\n        PUSH, Type_2\r\n        PUSH, type_0\r\n        COPY\r\n        PUSH,
+    instance_2\r\n        PUSH, type_0\r\n        PUSH, instance_1\r\n        EXTERN,
+    \"UnityEngineGameObject.__GetComponent__SystemType__UnityEngineComponent\"\r\n
+    \       PUSH, instance_1\r\n        PUSH, targetMaterial\r\n        EXTERN, \"UnityEngineMeshRenderer.__get_material__UnityEngineMaterial\"\r\n
+    \       JUMP, 0xFFFFFFFC\r\n    \r\n\r\n.code_end\r\n"
   assemblyError: 
   graphData:
     name: 
@@ -37,21 +45,21 @@ MonoBehaviour:
     nodes:
     - fullName: Event_OnPickupUseDown
       uid: e62030ae-1e98-421a-8d15-4ab14134fe22
-      position: {x: 600, y: -372}
+      position: {x: -24, y: -180}
       nodeUIDs: []
       flowUIDs:
       - 7b540459-4ba4-43b6-8b40-19820f012c57
       nodeValues: []
     - fullName: Event_OnPickupUseUp
       uid: 340494dc-14f7-43e5-95f7-56dadfb4c1d4
-      position: {x: 612, y: -180}
+      position: {x: -24, y: 12}
       nodeUIDs: []
       flowUIDs:
       - 00c99866-4e32-4730-b6c2-158bbb8700ff
       nodeValues: []
     - fullName: UnityEngineGameObject.__GetComponent__SystemType__UnityEngineComponent
       uid: ca0aaf1d-7bbf-4642-b9e7-6263a5b1a4f5
-      position: {x: 72, y: -276}
+      position: {x: -516, y: -384}
       nodeUIDs:
       - 
       - f41b88f5-90a8-4267-bea1-e70003a206a5|0
@@ -63,13 +71,13 @@ MonoBehaviour:
         stringValue: 
     - fullName: Type_UnityEngineMeshRenderer
       uid: f41b88f5-90a8-4267-bea1-e70003a206a5
-      position: {x: -108, y: -264}
+      position: {x: -684, y: -360}
       nodeUIDs: []
       flowUIDs: []
       nodeValues: []
     - fullName: UnityEngineMeshRenderer.__get_material__UnityEngineMaterial
       uid: 22a5bc58-c202-4b10-a0b7-f0eb94b2df4e
-      position: {x: 420, y: -276}
+      position: {x: -168, y: -384}
       nodeUIDs:
       - ca0aaf1d-7bbf-4642-b9e7-6263a5b1a4f5|0
       flowUIDs: []
@@ -78,9 +86,9 @@ MonoBehaviour:
         stringValue: 
     - fullName: UnityEngineMaterial.__set_color__UnityEngineColor__SystemVoid
       uid: 7b540459-4ba4-43b6-8b40-19820f012c57
-      position: {x: 840, y: -360}
+      position: {x: 216, y: -168}
       nodeUIDs:
-      - 22a5bc58-c202-4b10-a0b7-f0eb94b2df4e|0
+      - 72c8f3b2-4db4-4a55-a441-59032ce12f35|0
       - 
       flowUIDs:
       - 
@@ -92,9 +100,9 @@ MonoBehaviour:
           PublicKeyToken=null|{"r":0.31633853912353518,"g":1.0,"b":0.0,"a":1.0}
     - fullName: UnityEngineMaterial.__set_color__UnityEngineColor__SystemVoid
       uid: 00c99866-4e32-4730-b6c2-158bbb8700ff
-      position: {x: 840, y: -216}
+      position: {x: 216, y: -24}
       nodeUIDs:
-      - 22a5bc58-c202-4b10-a0b7-f0eb94b2df4e|0
+      - 72c8f3b2-4db4-4a55-a441-59032ce12f35|0
       - 
       flowUIDs:
       - 
@@ -104,4 +112,63 @@ MonoBehaviour:
       - unityObjectValue: {fileID: 0}
         stringValue: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null|{"r":0.6698113083839417,"g":0.6698113083839417,"b":0.6698113083839417,"a":1.0}
+    - fullName: Event_Start
+      uid: 9a743b31-5819-463b-a89a-a431146a3da0
+      position: {x: 84, y: -504}
+      nodeUIDs: []
+      flowUIDs:
+      - 668bf596-ab4d-4802-9dfa-8499474a6d16
+      nodeValues: []
+    - fullName: Set_Variable
+      uid: 668bf596-ab4d-4802-9dfa-8499474a6d16
+      position: {x: 204, y: -456}
+      nodeUIDs:
+      - 
+      - 22a5bc58-c202-4b10-a0b7-f0eb94b2df4e|0
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|f75153ec-462f-41df-835e-046a120001cf
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+    - fullName: Variable_UnityEngineMaterial
+      uid: f75153ec-462f-41df-835e-046a120001cf
+      position: {x: -696, y: -552}
+      nodeUIDs:
+      - 
+      - 
+      - 
+      - 
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: 
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|targetMaterial
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|False
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|none
+    - fullName: Get_Variable
+      uid: 72c8f3b2-4db4-4a55-a441-59032ce12f35
+      position: {x: -144, y: -84}
+      nodeUIDs:
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|f75153ec-462f-41df-835e-046a120001cf
+    - fullName: Comment
+      uid: d7dcd03d-7c37-4e3f-9e3e-ecf380fb4d49
+      position: {x: 204, y: -576}
+      nodeUIDs:
+      - 
+      flowUIDs: []
+      nodeValues:
+      - unityObjectValue: {fileID: 0}
+        stringValue: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Get
+          the material just once for better performance
   showAssembly: 0

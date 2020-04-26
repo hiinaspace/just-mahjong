@@ -39,37 +39,36 @@ MonoBehaviour:
     null\r\n    __0_intnl_SystemSingle: %SystemSingle, null\r\n    __0_intnl_SystemString:
     %SystemString, null\r\n    __1_intnl_SystemString: %SystemString, null\r\n    __0_intnl_UnityEngineTransform:
     %UnityEngineTransform, null\r\n    __1_intnl_UnityEngineTransform: %UnityEngineTransform,
-    null\r\n    __0_intnl_oldReturnLoc_UInt32: %SystemUInt32, null\r\n    __0_intnl_returnTarget_UInt32:
-    %SystemUInt32, null\r\n\r\n.data_end\r\n\r\n        \r\n         # using System;\r\n
-    \       \r\n         # using UdonSharp;\r\n        \r\n         # using UnityEngine;\r\n
-    \       \r\n         # using VRC.SDKBase;\r\n        \r\n         # using VRC.Udon;\r\n
-    \       \r\n         # public class ToggleTrainingTiles : UdonSharpBehaviour\r\n.code_start\r\n
-    \       \r\n         # public Material onMaterial;\r\n        \r\n         # public
-    Material offMaterial;\r\n        \r\n         # public Material tileMaterial;\r\n
-    \       \r\n         # public Texture trainingTexture;\r\n        \r\n         #
-    public Texture regularTexture;\r\n        \r\n         # public Transform tileRoot;\r\n
-    \       \r\n         # bool enableTrainingMode = false;\r\n        \r\n         #
-    void Start()\r\n    .export _start\r\n        \r\n    _start:\r\n        \r\n
-    \       PUSH, __0_const_intnl_SystemUInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
-    \       COPY\r\n        \r\n         # {\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n
+    null\r\n    __0_intnl_returnTarget_UInt32: %SystemUInt32, null\r\n\r\n.data_end\r\n\r\n
+    \       \r\n         # using System;\r\n        \r\n         # using UdonSharp;\r\n
+    \       \r\n         # using UnityEngine;\r\n        \r\n         # using VRC.SDKBase;\r\n
+    \       \r\n         # using VRC.Udon;\r\n        \r\n         # public class
+    ToggleTrainingTiles : UdonSharpBehaviour\r\n.code_start\r\n        \r\n         #
+    public Material onMaterial;\r\n        \r\n         # public Material offMaterial;\r\n
+    \       \r\n         # public Material tileMaterial;\r\n        \r\n         #
+    public Texture trainingTexture;\r\n        \r\n         # public Texture regularTexture;\r\n
+    \       \r\n         # public Transform tileRoot;\r\n        \r\n         # bool
+    enableTrainingMode = false;\r\n        \r\n         # void Start()\r\n    .export
+    _start\r\n        \r\n    _start:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n
+    \       \r\n         # {\r\n        PUSH, __0_intnl_returnTarget_UInt32 #Function
+    epilogue\r\n        COPY\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n
     \       \r\n        \r\n         # void Interact()\r\n    .export _interact\r\n
     \       \r\n    _interact:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n
-    \       PUSH, __0_intnl_returnTarget_UInt32\r\n        COPY\r\n        \r\n         #
-    {\r\n        \r\n         # enableTrainingMode = !enableTrainingMode;\r\n        PUSH,
-    enableTrainingMode\r\n        PUSH, __0_intnl_SystemBoolean\r\n        EXTERN,
-    \"SystemBoolean.__op_UnaryNegation__SystemBoolean__SystemBoolean\"\r\n        PUSH,
-    __0_intnl_SystemBoolean\r\n        PUSH, enableTrainingMode\r\n        COPY\r\n
-    \       \r\n         # if (enableTrainingMode)\r\n        PUSH, enableTrainingMode\r\n
-    \       JUMP_IF_FALSE, 0x000000CC\r\n        \r\n         # {\r\n        \r\n
-    \        # tileMaterial.SetTexture(\"_FaceTex\", trainingTexture);\r\n        PUSH,
-    tileMaterial\r\n        PUSH, __0_const_intnl_SystemString\r\n        PUSH, trainingTexture\r\n
-    \       EXTERN, \"UnityEngineMaterial.__SetTexture__SystemString_UnityEngineTexture__SystemVoid\"\r\n
+    \       \r\n         # {\r\n        \r\n         # enableTrainingMode = !enableTrainingMode;\r\n
+    \       PUSH, enableTrainingMode\r\n        PUSH, __0_intnl_SystemBoolean\r\n
+    \       EXTERN, \"SystemBoolean.__op_UnaryNegation__SystemBoolean__SystemBoolean\"\r\n
+    \       PUSH, __0_intnl_SystemBoolean\r\n        PUSH, enableTrainingMode\r\n
+    \       COPY\r\n        \r\n         # if (enableTrainingMode)\r\n        PUSH,
+    enableTrainingMode\r\n        JUMP_IF_FALSE, 0x000000C0\r\n        \r\n         #
+    {\r\n        \r\n         # tileMaterial.SetTexture(\"_FaceTex\", trainingTexture);\r\n
+    \       PUSH, tileMaterial\r\n        PUSH, __0_const_intnl_SystemString\r\n        PUSH,
+    trainingTexture\r\n        EXTERN, \"UnityEngineMaterial.__SetTexture__SystemString_UnityEngineTexture__SystemVoid\"\r\n
     \       \r\n         # GetComponent<MeshRenderer>().sharedMaterial = onMaterial;\r\n
     \       PUSH, __0_this_intnl_ToggleTrainingTiles\r\n        PUSH, __0_const_intnl_SystemType\r\n
     \       PUSH, __0_intnl_UnityEngineMeshRenderer\r\n        EXTERN, \"UnityEngineMeshRenderer.__GetComponent__T\"\r\n
     \       PUSH, __0_intnl_UnityEngineMeshRenderer\r\n        PUSH, onMaterial\r\n
     \       EXTERN, \"UnityEngineMeshRenderer.__set_sharedMaterial__UnityEngineMaterial__SystemVoid\"\r\n
-    \       JUMP, 0x00000124\r\n        \r\n         # } else\r\n        \r\n         #
+    \       JUMP, 0x00000118\r\n        \r\n         # } else\r\n        \r\n         #
     {\r\n        \r\n         # tileMaterial.SetTexture(\"_FaceTex\", regularTexture);\r\n
     \       PUSH, tileMaterial\r\n        PUSH, __0_const_intnl_SystemString\r\n        PUSH,
     regularTexture\r\n        EXTERN, \"UnityEngineMaterial.__SetTexture__SystemString_UnityEngineTexture__SystemVoid\"\r\n
@@ -78,16 +77,13 @@ MonoBehaviour:
     \       PUSH, __0_intnl_UnityEngineMeshRenderer\r\n        EXTERN, \"UnityEngineMeshRenderer.__GetComponent__T\"\r\n
     \       PUSH, __0_intnl_UnityEngineMeshRenderer\r\n        PUSH, offMaterial\r\n
     \       EXTERN, \"UnityEngineMeshRenderer.__set_sharedMaterial__UnityEngineMaterial__SystemVoid\"\r\n
-    \       \r\n         # ResetMaterialPropertyBlock();\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
-    \       PUSH, __0_intnl_oldReturnLoc_UInt32\r\n        COPY\r\n        PUSH, __0_const_intnl_exitJumpLoc_UInt32\r\n
-    \       PUSH, __0_intnl_returnTarget_UInt32\r\n        COPY\r\n        JUMP, 0x00000184\r\n
-    \       PUSH, __0_intnl_oldReturnLoc_UInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
-    \       COPY\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n
-    \       \r\n         # void ResetMaterialPropertyBlock()\r\n    ResetMaterialPropertyBlock:\r\n
-    \       \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n        PUSH, __0_intnl_returnTarget_UInt32\r\n
-    \       COPY\r\n        \r\n         # {\r\n        \r\n         # var props =
-    new MaterialPropertyBlock();\r\n        PUSH, __0_intnl_UnityEngineMaterialPropertyBlock\r\n
-    \       EXTERN, \"UnityEngineMaterialPropertyBlock.__ctor____UnityEngineMaterialPropertyBlock\"\r\n
+    \       \r\n         # ResetMaterialPropertyBlock();\r\n        PUSH, __0_const_intnl_exitJumpLoc_UInt32\r\n
+    \       JUMP, 0x00000144\r\n        PUSH, __0_intnl_returnTarget_UInt32 #Function
+    epilogue\r\n        COPY\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n
+    \       \r\n        \r\n         # void ResetMaterialPropertyBlock()\r\n    ResetMaterialPropertyBlock:\r\n
+    \       \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n        \r\n         #
+    {\r\n        \r\n         # var props = new MaterialPropertyBlock();\r\n        PUSH,
+    __0_intnl_UnityEngineMaterialPropertyBlock\r\n        EXTERN, \"UnityEngineMaterialPropertyBlock.__ctor____UnityEngineMaterialPropertyBlock\"\r\n
     \       PUSH, __0_intnl_UnityEngineMaterialPropertyBlock\r\n        PUSH, __0_props_MaterialPropertyBlock\r\n
     \       COPY\r\n        \r\n         # for (int i = 0; i < tileRoot.childCount;
     ++i)\r\n        PUSH, __0_const_intnl_SystemInt32\r\n        PUSH, __0_i_Int32\r\n
@@ -96,7 +92,7 @@ MonoBehaviour:
     \       EXTERN, \"UnityEngineTransform.__get_childCount__SystemInt32\"\r\n        PUSH,
     __0_intnl_SystemInt32\r\n        PUSH, __1_intnl_SystemInt32\r\n        PUSH,
     __1_intnl_SystemBoolean\r\n        EXTERN, \"SystemInt32.__op_LessThan__SystemInt32_SystemInt32__SystemBoolean\"\r\n
-    \       PUSH, __1_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x00000398\r\n
+    \       PUSH, __1_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x00000358\r\n
     \       \r\n         # {\r\n        \r\n         # var tile = tileRoot.GetChild(i);\r\n
     \       PUSH, tileRoot\r\n        PUSH, __0_i_Int32\r\n        PUSH, __0_intnl_UnityEngineTransform\r\n
     \       EXTERN, \"UnityEngineTransform.__GetChild__SystemInt32__UnityEngineTransform\"\r\n
@@ -126,7 +122,8 @@ MonoBehaviour:
     \       PUSH, __0_i_Int32\r\n        PUSH, __2_const_intnl_SystemInt32\r\n        PUSH,
     __2_intnl_SystemInt32\r\n        EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n
     \       PUSH, __2_intnl_SystemInt32\r\n        PUSH, __0_i_Int32\r\n        COPY\r\n
-    \       JUMP, 0x000001BC\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n
+    \       JUMP, 0x0000017C\r\n        PUSH, __0_intnl_returnTarget_UInt32 #Function
+    epilogue\r\n        COPY\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n
     \       \r\n.code_end\r\n"
   assemblyError: 
   sourceCsScript: {fileID: 11500000, guid: 33165eb0a6c73dd428c7bdd417340084, type: 3}
@@ -422,13 +419,13 @@ MonoBehaviour:
       lineChar: 4
       spanCodeSection: "bool enableTrainingMode = false;\r\n\r\n    "
     - startInstruction: 0
-      endInstruction: 19
+      endInstruction: 7
       startSourceChar: 405
       endSourceChar: 423
       line: 18
       lineChar: 4
       spanCodeSection: "void Start()\r\n    "
-    - startInstruction: 20
+    - startInstruction: 8
       endInstruction: 27
       startSourceChar: 423
       endSourceChar: 614
@@ -438,217 +435,217 @@ MonoBehaviour:
         \       //foreach(var name in names)\r\n        //{\r\n        //    Debug.Log($\"tex
         naem {name}\");\r\n        //}\r\n    }\r\n\r\n    "
     - startInstruction: 28
-      endInstruction: 47
+      endInstruction: 35
       startSourceChar: 614
       endSourceChar: 635
       line: 28
       lineChar: 4
       spanCodeSection: "void Interact()\r\n    "
-    - startInstruction: 48
-      endInstruction: 47
+    - startInstruction: 36
+      endInstruction: 35
       startSourceChar: 635
       endSourceChar: 646
       line: 29
       lineChar: 4
       spanCodeSection: "{\r\n        "
-    - startInstruction: 48
-      endInstruction: 47
+    - startInstruction: 36
+      endInstruction: 35
       startSourceChar: 646
       endSourceChar: 646
       line: 30
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 48
-      endInstruction: 47
+    - startInstruction: 36
+      endInstruction: 35
       startSourceChar: 646
       endSourceChar: 667
       line: 30
       lineChar: 8
       spanCodeSection: 'enableTrainingMode = '
-    - startInstruction: 48
-      endInstruction: 47
+    - startInstruction: 36
+      endInstruction: 35
       startSourceChar: 667
       endSourceChar: 668
       line: 30
       lineChar: 29
       spanCodeSection: '!'
-    - startInstruction: 48
-      endInstruction: 91
+    - startInstruction: 36
+      endInstruction: 79
       startSourceChar: 668
       endSourceChar: 697
       line: 30
       lineChar: 30
       spanCodeSection: "enableTrainingMode;\r\n        "
-    - startInstruction: 92
-      endInstruction: 91
+    - startInstruction: 80
+      endInstruction: 79
       startSourceChar: 697
       endSourceChar: 701
       line: 31
       lineChar: 8
       spanCodeSection: if (
-    - startInstruction: 92
-      endInstruction: 107
+    - startInstruction: 80
+      endInstruction: 95
       startSourceChar: 701
       endSourceChar: 730
       line: 31
       lineChar: 12
       spanCodeSection: "enableTrainingMode)\r\n        "
-    - startInstruction: 108
-      endInstruction: 107
+    - startInstruction: 96
+      endInstruction: 95
       startSourceChar: 730
       endSourceChar: 745
       line: 32
       lineChar: 8
       spanCodeSection: "{\r\n            "
-    - startInstruction: 108
-      endInstruction: 107
+    - startInstruction: 96
+      endInstruction: 95
       startSourceChar: 745
       endSourceChar: 745
       line: 33
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 108
-      endInstruction: 107
+    - startInstruction: 96
+      endInstruction: 95
       startSourceChar: 745
       endSourceChar: 745
       line: 33
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 108
-      endInstruction: 107
+    - startInstruction: 96
+      endInstruction: 95
       startSourceChar: 745
       endSourceChar: 745
       line: 33
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 108
-      endInstruction: 107
+    - startInstruction: 96
+      endInstruction: 95
       startSourceChar: 745
       endSourceChar: 758
       line: 33
       lineChar: 12
       spanCodeSection: tileMaterial.
-    - startInstruction: 108
-      endInstruction: 107
+    - startInstruction: 96
+      endInstruction: 95
       startSourceChar: 758
       endSourceChar: 769
       line: 33
       lineChar: 25
       spanCodeSection: SetTexture(
-    - startInstruction: 108
-      endInstruction: 107
+    - startInstruction: 96
+      endInstruction: 95
       startSourceChar: 769
       endSourceChar: 781
       line: 33
       lineChar: 36
       spanCodeSection: '"_FaceTex", '
-    - startInstruction: 108
-      endInstruction: 139
+    - startInstruction: 96
+      endInstruction: 127
       startSourceChar: 781
       endSourceChar: 812
       line: 33
       lineChar: 48
       spanCodeSection: "trainingTexture);\r\n            "
-    - startInstruction: 140
-      endInstruction: 139
+    - startInstruction: 128
+      endInstruction: 127
       startSourceChar: 812
       endSourceChar: 812
       line: 34
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 140
-      endInstruction: 139
+    - startInstruction: 128
+      endInstruction: 127
       startSourceChar: 812
       endSourceChar: 858
       line: 34
       lineChar: 12
       spanCodeSection: 'GetComponent<MeshRenderer>().sharedMaterial = '
-    - startInstruction: 140
-      endInstruction: 203
+    - startInstruction: 128
+      endInstruction: 191
       startSourceChar: 858
       endSourceChar: 881
       line: 34
       lineChar: 58
       spanCodeSection: "onMaterial;\r\n        } "
-    - startInstruction: 204
-      endInstruction: 203
+    - startInstruction: 192
+      endInstruction: 191
       startSourceChar: 881
       endSourceChar: 895
       line: 35
       lineChar: 10
       spanCodeSection: "else\r\n        "
-    - startInstruction: 204
-      endInstruction: 203
+    - startInstruction: 192
+      endInstruction: 191
       startSourceChar: 895
       endSourceChar: 910
       line: 36
       lineChar: 8
       spanCodeSection: "{\r\n            "
-    - startInstruction: 204
-      endInstruction: 203
+    - startInstruction: 192
+      endInstruction: 191
       startSourceChar: 910
       endSourceChar: 910
       line: 37
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 204
-      endInstruction: 203
+    - startInstruction: 192
+      endInstruction: 191
       startSourceChar: 910
       endSourceChar: 910
       line: 37
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 204
-      endInstruction: 203
+    - startInstruction: 192
+      endInstruction: 191
       startSourceChar: 910
       endSourceChar: 910
       line: 37
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 204
-      endInstruction: 203
+    - startInstruction: 192
+      endInstruction: 191
       startSourceChar: 910
       endSourceChar: 923
       line: 37
       lineChar: 12
       spanCodeSection: tileMaterial.
-    - startInstruction: 204
-      endInstruction: 203
+    - startInstruction: 192
+      endInstruction: 191
       startSourceChar: 923
       endSourceChar: 934
       line: 37
       lineChar: 25
       spanCodeSection: SetTexture(
-    - startInstruction: 204
-      endInstruction: 203
+    - startInstruction: 192
+      endInstruction: 191
       startSourceChar: 934
       endSourceChar: 946
       line: 37
       lineChar: 36
       spanCodeSection: '"_FaceTex", '
-    - startInstruction: 204
-      endInstruction: 235
+    - startInstruction: 192
+      endInstruction: 223
       startSourceChar: 946
       endSourceChar: 976
       line: 37
       lineChar: 48
       spanCodeSection: "regularTexture);\r\n            "
-    - startInstruction: 236
-      endInstruction: 235
+    - startInstruction: 224
+      endInstruction: 223
       startSourceChar: 976
       endSourceChar: 976
       line: 38
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 236
-      endInstruction: 235
+    - startInstruction: 224
+      endInstruction: 223
       startSourceChar: 976
       endSourceChar: 1022
       line: 38
       lineChar: 12
       spanCodeSection: 'GetComponent<MeshRenderer>().sharedMaterial = '
-    - startInstruction: 236
-      endInstruction: 291
+    - startInstruction: 224
+      endInstruction: 279
       startSourceChar: 1022
       endSourceChar: 1209
       line: 38
@@ -656,456 +653,456 @@ MonoBehaviour:
       spanCodeSection: "offMaterial;\r\n        }\r\n\r\n        // at least one person
         reported that all the tiles were stuck on 1-pei\r\n        // which is the
         default. Weird, not sure why that would occur.\r\n        "
-    - startInstruction: 292
-      endInstruction: 291
+    - startInstruction: 280
+      endInstruction: 279
       startSourceChar: 1209
       endSourceChar: 1209
       line: 43
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 292
-      endInstruction: 291
+    - startInstruction: 280
+      endInstruction: 279
       startSourceChar: 1209
       endSourceChar: 1209
       line: 43
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 292
-      endInstruction: 367
+    - startInstruction: 280
+      endInstruction: 315
       startSourceChar: 1209
       endSourceChar: 1253
       line: 43
       lineChar: 8
       spanCodeSection: "ResetMaterialPropertyBlock();\r\n    }\r\n\r\n    "
-    - startInstruction: 368
-      endInstruction: 387
+    - startInstruction: 316
+      endInstruction: 323
       startSourceChar: 1253
       endSourceChar: 1292
       line: 46
       lineChar: 4
       spanCodeSection: "void ResetMaterialPropertyBlock()\r\n    "
-    - startInstruction: 388
-      endInstruction: 387
+    - startInstruction: 324
+      endInstruction: 323
       startSourceChar: 1292
       endSourceChar: 1303
       line: 47
       lineChar: 4
       spanCodeSection: "{\r\n        "
-    - startInstruction: 388
-      endInstruction: 387
+    - startInstruction: 324
+      endInstruction: 323
       startSourceChar: 1303
       endSourceChar: 1303
       line: 48
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 388
-      endInstruction: 387
+    - startInstruction: 324
+      endInstruction: 323
       startSourceChar: 1303
       endSourceChar: 1303
       line: 48
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 388
-      endInstruction: 387
+    - startInstruction: 324
+      endInstruction: 323
       startSourceChar: 1303
       endSourceChar: 1313
       line: 48
       lineChar: 8
       spanCodeSection: 'var props '
-    - startInstruction: 388
-      endInstruction: 387
+    - startInstruction: 324
+      endInstruction: 323
       startSourceChar: 1313
       endSourceChar: 1315
       line: 48
       lineChar: 18
       spanCodeSection: '= '
-    - startInstruction: 388
-      endInstruction: 387
+    - startInstruction: 324
+      endInstruction: 323
       startSourceChar: 1315
       endSourceChar: 1319
       line: 48
       lineChar: 20
       spanCodeSection: 'new '
-    - startInstruction: 388
-      endInstruction: 423
+    - startInstruction: 324
+      endInstruction: 359
       startSourceChar: 1319
       endSourceChar: 1353
       line: 48
       lineChar: 24
       spanCodeSection: "MaterialPropertyBlock();\r\n        "
-    - startInstruction: 424
-      endInstruction: 423
+    - startInstruction: 360
+      endInstruction: 359
       startSourceChar: 1353
       endSourceChar: 1358
       line: 49
       lineChar: 8
       spanCodeSection: for (
-    - startInstruction: 424
-      endInstruction: 423
+    - startInstruction: 360
+      endInstruction: 359
       startSourceChar: 1358
       endSourceChar: 1358
       line: 49
       lineChar: 13
       spanCodeSection: 
-    - startInstruction: 424
-      endInstruction: 423
+    - startInstruction: 360
+      endInstruction: 359
       startSourceChar: 1358
       endSourceChar: 1358
       line: 49
       lineChar: 13
       spanCodeSection: 
-    - startInstruction: 424
-      endInstruction: 423
+    - startInstruction: 360
+      endInstruction: 359
       startSourceChar: 1358
       endSourceChar: 1364
       line: 49
       lineChar: 13
       spanCodeSection: 'int i '
-    - startInstruction: 424
-      endInstruction: 423
+    - startInstruction: 360
+      endInstruction: 359
       startSourceChar: 1364
       endSourceChar: 1366
       line: 49
       lineChar: 19
       spanCodeSection: '= '
-    - startInstruction: 424
-      endInstruction: 443
+    - startInstruction: 360
+      endInstruction: 379
       startSourceChar: 1366
       endSourceChar: 1369
       line: 49
       lineChar: 21
       spanCodeSection: '0; '
-    - startInstruction: 444
-      endInstruction: 443
+    - startInstruction: 380
+      endInstruction: 379
       startSourceChar: 1369
       endSourceChar: 1369
       line: 49
       lineChar: 24
       spanCodeSection: 
-    - startInstruction: 444
-      endInstruction: 463
+    - startInstruction: 380
+      endInstruction: 399
       startSourceChar: 1369
       endSourceChar: 1373
       line: 49
       lineChar: 24
       spanCodeSection: 'i < '
-    - startInstruction: 464
-      endInstruction: 463
+    - startInstruction: 400
+      endInstruction: 399
       startSourceChar: 1373
       endSourceChar: 1373
       line: 49
       lineChar: 28
       spanCodeSection: 
-    - startInstruction: 464
-      endInstruction: 463
+    - startInstruction: 400
+      endInstruction: 399
       startSourceChar: 1373
       endSourceChar: 1382
       line: 49
       lineChar: 28
       spanCodeSection: tileRoot.
-    - startInstruction: 464
-      endInstruction: 535
+    - startInstruction: 400
+      endInstruction: 471
       startSourceChar: 1382
       endSourceChar: 1408
       line: 49
       lineChar: 37
       spanCodeSection: "childCount; ++i)\r\n        "
-    - startInstruction: 536
-      endInstruction: 535
+    - startInstruction: 472
+      endInstruction: 471
       startSourceChar: 1408
       endSourceChar: 1423
       line: 50
       lineChar: 8
       spanCodeSection: "{\r\n            "
-    - startInstruction: 536
-      endInstruction: 535
+    - startInstruction: 472
+      endInstruction: 471
       startSourceChar: 1423
       endSourceChar: 1423
       line: 51
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 536
-      endInstruction: 535
+    - startInstruction: 472
+      endInstruction: 471
       startSourceChar: 1423
       endSourceChar: 1423
       line: 51
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 536
-      endInstruction: 535
+    - startInstruction: 472
+      endInstruction: 471
       startSourceChar: 1423
       endSourceChar: 1432
       line: 51
       lineChar: 12
       spanCodeSection: 'var tile '
-    - startInstruction: 536
-      endInstruction: 535
+    - startInstruction: 472
+      endInstruction: 471
       startSourceChar: 1432
       endSourceChar: 1434
       line: 51
       lineChar: 21
       spanCodeSection: '= '
-    - startInstruction: 536
-      endInstruction: 535
+    - startInstruction: 472
+      endInstruction: 471
       startSourceChar: 1434
       endSourceChar: 1434
       line: 51
       lineChar: 23
       spanCodeSection: 
-    - startInstruction: 536
-      endInstruction: 535
+    - startInstruction: 472
+      endInstruction: 471
       startSourceChar: 1434
       endSourceChar: 1434
       line: 51
       lineChar: 23
       spanCodeSection: 
-    - startInstruction: 536
-      endInstruction: 535
+    - startInstruction: 472
+      endInstruction: 471
       startSourceChar: 1434
       endSourceChar: 1443
       line: 51
       lineChar: 23
       spanCodeSection: tileRoot.
-    - startInstruction: 536
-      endInstruction: 535
+    - startInstruction: 472
+      endInstruction: 471
       startSourceChar: 1443
       endSourceChar: 1452
       line: 51
       lineChar: 32
       spanCodeSection: GetChild(
-    - startInstruction: 536
-      endInstruction: 587
+    - startInstruction: 472
+      endInstruction: 523
       startSourceChar: 1452
       endSourceChar: 1469
       line: 51
       lineChar: 41
       spanCodeSection: "i);\r\n            "
-    - startInstruction: 588
-      endInstruction: 587
+    - startInstruction: 524
+      endInstruction: 523
       startSourceChar: 1469
       endSourceChar: 1469
       line: 52
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 588
-      endInstruction: 587
+    - startInstruction: 524
+      endInstruction: 523
       startSourceChar: 1469
       endSourceChar: 1469
       line: 52
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 588
-      endInstruction: 587
+    - startInstruction: 524
+      endInstruction: 523
       startSourceChar: 1469
       endSourceChar: 1469
       line: 52
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 588
-      endInstruction: 587
+    - startInstruction: 524
+      endInstruction: 523
       startSourceChar: 1469
       endSourceChar: 1475
       line: 52
       lineChar: 12
       spanCodeSection: props.
-    - startInstruction: 588
-      endInstruction: 587
+    - startInstruction: 524
+      endInstruction: 523
       startSourceChar: 1475
       endSourceChar: 1484
       line: 52
       lineChar: 18
       spanCodeSection: SetFloat(
-    - startInstruction: 588
-      endInstruction: 587
+    - startInstruction: 524
+      endInstruction: 523
       startSourceChar: 1484
       endSourceChar: 1493
       line: 52
       lineChar: 27
       spanCodeSection: '"_Tile", '
-    - startInstruction: 588
-      endInstruction: 587
+    - startInstruction: 524
+      endInstruction: 523
       startSourceChar: 1493
       endSourceChar: 1493
       line: 52
       lineChar: 36
       spanCodeSection: 
-    - startInstruction: 588
-      endInstruction: 587
+    - startInstruction: 524
+      endInstruction: 523
       startSourceChar: 1493
       endSourceChar: 1493
       line: 52
       lineChar: 36
       spanCodeSection: 
-    - startInstruction: 588
-      endInstruction: 587
+    - startInstruction: 524
+      endInstruction: 523
       startSourceChar: 1493
       endSourceChar: 1497
       line: 52
       lineChar: 36
       spanCodeSection: int.
-    - startInstruction: 588
-      endInstruction: 587
+    - startInstruction: 524
+      endInstruction: 523
       startSourceChar: 1497
       endSourceChar: 1503
       line: 52
       lineChar: 40
       spanCodeSection: Parse(
-    - startInstruction: 588
-      endInstruction: 587
+    - startInstruction: 524
+      endInstruction: 523
       startSourceChar: 1503
       endSourceChar: 1503
       line: 52
       lineChar: 46
       spanCodeSection: 
-    - startInstruction: 588
-      endInstruction: 587
+    - startInstruction: 524
+      endInstruction: 523
       startSourceChar: 1503
       endSourceChar: 1503
       line: 52
       lineChar: 46
       spanCodeSection: 
-    - startInstruction: 588
-      endInstruction: 587
+    - startInstruction: 524
+      endInstruction: 523
       startSourceChar: 1503
       endSourceChar: 1503
       line: 52
       lineChar: 46
       spanCodeSection: 
-    - startInstruction: 588
-      endInstruction: 587
+    - startInstruction: 524
+      endInstruction: 523
       startSourceChar: 1503
       endSourceChar: 1503
       line: 52
       lineChar: 46
       spanCodeSection: 
-    - startInstruction: 588
-      endInstruction: 587
+    - startInstruction: 524
+      endInstruction: 523
       startSourceChar: 1503
       endSourceChar: 1508
       line: 52
       lineChar: 46
       spanCodeSection: tile.
-    - startInstruction: 588
-      endInstruction: 587
+    - startInstruction: 524
+      endInstruction: 523
       startSourceChar: 1508
       endSourceChar: 1519
       line: 52
       lineChar: 51
       spanCodeSection: gameObject.
-    - startInstruction: 588
-      endInstruction: 611
+    - startInstruction: 524
+      endInstruction: 547
       startSourceChar: 1519
       endSourceChar: 1524
       line: 52
       lineChar: 62
       spanCodeSection: name.
-    - startInstruction: 612
-      endInstruction: 635
+    - startInstruction: 548
+      endInstruction: 571
       startSourceChar: 1524
       endSourceChar: 1534
       line: 52
       lineChar: 67
       spanCodeSection: Substring(
-    - startInstruction: 636
-      endInstruction: 635
+    - startInstruction: 572
+      endInstruction: 571
       startSourceChar: 1534
       endSourceChar: 1536
       line: 52
       lineChar: 77
       spanCodeSection: 0,
-    - startInstruction: 636
-      endInstruction: 755
+    - startInstruction: 572
+      endInstruction: 691
       startSourceChar: 1536
       endSourceChar: 1555
       line: 52
       lineChar: 79
       spanCodeSection: "2)));\r\n            "
-    - startInstruction: 756
-      endInstruction: 755
+    - startInstruction: 692
+      endInstruction: 691
       startSourceChar: 1555
       endSourceChar: 1555
       line: 53
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 756
-      endInstruction: 755
+    - startInstruction: 692
+      endInstruction: 691
       startSourceChar: 1555
       endSourceChar: 1555
       line: 53
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 756
-      endInstruction: 755
+    - startInstruction: 692
+      endInstruction: 691
       startSourceChar: 1555
       endSourceChar: 1555
       line: 53
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 756
-      endInstruction: 755
+    - startInstruction: 692
+      endInstruction: 691
       startSourceChar: 1555
       endSourceChar: 1555
       line: 53
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 756
-      endInstruction: 755
+    - startInstruction: 692
+      endInstruction: 691
       startSourceChar: 1555
       endSourceChar: 1555
       line: 53
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 756
-      endInstruction: 755
+    - startInstruction: 692
+      endInstruction: 691
       startSourceChar: 1555
       endSourceChar: 1555
       line: 53
       lineChar: 12
       spanCodeSection: 
-    - startInstruction: 756
-      endInstruction: 755
+    - startInstruction: 692
+      endInstruction: 691
       startSourceChar: 1555
       endSourceChar: 1560
       line: 53
       lineChar: 12
       spanCodeSection: tile.
-    - startInstruction: 756
-      endInstruction: 755
+    - startInstruction: 692
+      endInstruction: 691
       startSourceChar: 1560
       endSourceChar: 1571
       line: 53
       lineChar: 17
       spanCodeSection: gameObject.
-    - startInstruction: 756
-      endInstruction: 779
+    - startInstruction: 692
+      endInstruction: 715
       startSourceChar: 1571
       endSourceChar: 1583
       line: 53
       lineChar: 28
       spanCodeSection: GetComponent
-    - startInstruction: 780
-      endInstruction: 779
+    - startInstruction: 716
+      endInstruction: 715
       startSourceChar: 1583
       endSourceChar: 1584
       line: 53
       lineChar: 40
       spanCodeSection: <
-    - startInstruction: 780
-      endInstruction: 835
+    - startInstruction: 716
+      endInstruction: 771
       startSourceChar: 1584
       endSourceChar: 1600
       line: 53
       lineChar: 41
       spanCodeSection: MeshRenderer>().
-    - startInstruction: 836
-      endInstruction: 835
+    - startInstruction: 772
+      endInstruction: 771
       startSourceChar: 1600
       endSourceChar: 1617
       line: 53
       lineChar: 57
       spanCodeSection: SetPropertyBlock(
-    - startInstruction: 836
-      endInstruction: 836
+    - startInstruction: 772
+      endInstruction: 772
       startSourceChar: 1617
       endSourceChar: 1617
       line: 53

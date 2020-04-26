@@ -937,6 +937,15 @@ public partial class VRCSdkControlPanel : EditorWindow
             OnGUIWarning(scene, "Zero gravity will make walking extremely difficult, though we support different gravity, player orientation is always 'upwards' so this may not have the effect you're looking for.",
                 delegate { SettingsService.OpenProjectSettings("Project/Physics"); }, null);
 
+        if(CheckFogSettings())
+        {
+            OnGUIWarning(
+                scene, 
+                "Fog shader stripping is set to Custom, this may lead to incorrect or unnecessary shader variants being included in the build. You should use Automatic unless you change the fog mode at runtime.", 
+                delegate { SettingsService.OpenProjectSettings("Project/Graphics");},
+                delegate () { EnvConfig.SetFogSettings(new EnvConfig.FogSettings(EnvConfig.FogSettings.FogStrippingMode.Automatic));});
+        }
+
         if (scene.autoSpatializeAudioSources)
         {
             OnGUIWarning(scene, "Your scene previously used the 'Auto Spatialize Audio Sources' feature. This has been deprecated, press 'Fix' to disable. Also, please add VRC_SpatialAudioSource to all your audio sources. Make sure Spatial Blend is set to 3D for the sources you want to spatialize.",
@@ -1499,12 +1508,14 @@ public partial class VRCSdkControlPanel : EditorWindow
             {
                 if (VRC.Core.APIUser.CurrentUser.canPublishWorlds)
                 {
+                    EditorPrefs.SetBool("VRC.SDKBase_StripAllShaders", false);
+
 #if VRC_SDK_VRCSDK2
                     VRC_SdkBuilder.shouldBuildUnityPackage = VRCSdkControlPanel.FutureProofPublishEnabled;
                     VRC_SdkBuilder.UploadLastExportedSceneBlueprint();
 #elif VRC_SDK_VRCSDK3
-                        VRC.SDK3.Editor.VRC_SdkBuilder.shouldBuildUnityPackage = VRCSdkControlPanel.FutureProofPublishEnabled;
-                        VRC.SDK3.Editor.VRC_SdkBuilder.UploadLastExportedSceneBlueprint();
+                    VRC.SDK3.Editor.VRC_SdkBuilder.shouldBuildUnityPackage = VRCSdkControlPanel.FutureProofPublishEnabled;
+                    VRC.SDK3.Editor.VRC_SdkBuilder.UploadLastExportedSceneBlueprint();
 #endif
                 }
                 else
@@ -1519,6 +1530,8 @@ public partial class VRCSdkControlPanel : EditorWindow
             if (VRC.Core.APIUser.CurrentUser.canPublishWorlds)
             {
                 EnvConfig.ConfigurePlayerSettings();
+                EditorPrefs.SetBool("VRC.SDKBase_StripAllShaders", false);
+
 #if VRC_SDK_VRCSDK2
                 VRC_SdkBuilder.shouldBuildUnityPackage = VRCSdkControlPanel.FutureProofPublishEnabled;
                 VRC_SdkBuilder.PreBuildBehaviourPackaging();
@@ -2142,14 +2155,24 @@ public partial class VRCSdkControlPanel : EditorWindow
         {
             if (VRC.Core.APIUser.CurrentUser.canPublishAvatars)
             {
-                EnvConfig.ForceEnableFog();
+                EnvConfig.FogSettings originalFogSettings = EnvConfig.GetFogSettings();
+                EnvConfig.SetFogSettings(new EnvConfig.FogSettings(EnvConfig.FogSettings.FogStrippingMode.Custom, true, true, true));
+
+                #if UNITY_ANDROID
+                EditorPrefs.SetBool("VRC.SDKBase_StripAllShaders", true);
+                #else
+                EditorPrefs.SetBool("VRC.SDKBase_StripAllShaders", false);
+                #endif
+
 #if VRC_SDK_VRCSDK2
                 VRC_SdkBuilder.shouldBuildUnityPackage = VRCSdkControlPanel.FutureProofPublishEnabled;
                 VRC_SdkBuilder.ExportAndUploadAvatarBlueprint(avatar.gameObject);
 #elif VRC_SDK_VRCSDK3
-                    VRC.SDK3.Editor.VRC_SdkBuilder.shouldBuildUnityPackage = VRCSdkControlPanel.FutureProofPublishEnabled;
-                    VRC.SDK3.Editor.VRC_SdkBuilder.ExportAndUploadAvatarBlueprint(avatar.gameObject);
+                VRC.SDK3.Editor.VRC_SdkBuilder.shouldBuildUnityPackage = VRCSdkControlPanel.FutureProofPublishEnabled;
+                VRC.SDK3.Editor.VRC_SdkBuilder.ExportAndUploadAvatarBlueprint(avatar.gameObject);
 #endif
+
+                EnvConfig.SetFogSettings(originalFogSettings);
             }
             else
             {
@@ -2194,6 +2217,17 @@ public partial class VRCSdkControlPanel : EditorWindow
         {
             // -> post processing not installed
         }
+    }
+
+    private static bool CheckFogSettings()
+    {
+        EnvConfig.FogSettings fogSettings = EnvConfig.GetFogSettings();
+        if(fogSettings.fogStrippingMode == EnvConfig.FogSettings.FogStrippingMode.Automatic)
+        {
+            return false;
+        }
+
+        return fogSettings.keepLinear || fogSettings.keepExp || fogSettings.keepExp2;
     }
 
 }

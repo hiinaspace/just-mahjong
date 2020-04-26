@@ -30,7 +30,8 @@ namespace VRC.Udon.Editor.ProgramSources
         {
             if(GUILayout.Button("Open Udon Graph", "LargeButton"))
             {
-                EditorWindow.GetWindow<UdonGraphWindow>("Udon Graph", true, typeof(SceneView));
+                var window = EditorWindow.GetWindow<UdonGraphWindow>("Udon Graph", true, typeof(SceneView));
+                window.lastClickedProgramSource = this;
             }
 
             DrawPublicVariables(udonBehaviour, ref dirty);
