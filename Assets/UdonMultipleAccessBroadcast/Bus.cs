@@ -20,24 +20,27 @@ using VRC.Udon;
 /// and change the synced variables simultaneously, Bus assumes that the server will
 /// choose a winner and sync back the winning owner/values in about another 200ms.
 /// 
-/// So, Bus uses the following protocol:
+/// The actual protocol source of truth is the code. It's roughly vanila
+/// CSMA-CA, but with more complications to the additional difficulty of the
+/// local race between ownership and setting synced variables.
 /// 
-/// 1. starting at a random Channel, probe for a Channel with empty ("") synced variables
-/// as a sentinel for 'idle Channel'.
-/// 2. Take ownership of the idle channel and set our frame in the variables.
-/// 3. wait ~400ms.
-/// 4. If the same channel is still owned by the local player and its synced variables
-/// are still equal to whatever we put there, assume that no other client tried to
-/// use the Channel in the meantime, and that all other clients also received the frame.
-/// Set the Channel variables back to "" to put the Channel back to idle.
-/// 4.1. If not, assume some other client got to the channel before us. Wait a random
-/// interval (possibly with exponential backoff) and try to send the frame again.
+/// Also, since we have multiple channels (generally), and transmitting on an
+/// already owned channel is pretty reliable, generally clients will stick to
+/// their own channel.
 /// 
-/// I don't know if it's entirely necesssary, or if a "fire and forget" protocol would
-/// also work, if the vrchat servers will see both ownership changes and synced variables,
-/// choose an arbitrary order, then broadcast both, leaving other clients with a view of both
-/// frames (however briefly). I think waiting for a confirmation in the form of "yeah it's 
-/// still our Channel" is at least safe though, if slower.
+/// Experimentally, this works well until there are less channels than clients
+/// actively wanting to transmit (tested with 2 clients, 1 channel). The ack
+/// check (channel is still owned a while after setting variables) is an
+/// unreliable indictator that the other client actually recieved the frame; it
+/// does still work about 90% of the time, but 10% loss is rough for some use
+/// cases.
+///
+/// My main concern is that the pretty gross state machines in here have some
+/// bugs that will crash or starve a client completely, so there's also a bunch
+/// of visual debugging materials and blinkenlights. I think making that
+/// available in a world should at least give some feedback when things are
+/// totally broken. For # of clients less than number of channels, I think
+/// it should be pretty robust.
 /// </summary>
 public class Bus : UdonSharpBehaviour
 {
@@ -51,12 +54,13 @@ public class Bus : UdonSharpBehaviour
     private const int maxDataCharSize = (int)((maxPacketCharSize - headerCharSize) / 8f) * 8;
     private const int maxDataByteSize = maxDataCharSize / 8 * 7;
 
-    private const int channelCount = 8;
+    private int channelCount = 8;
 
     public Channel[] channels;
     public MeshRenderer[] blinkenlights;
     public MeshRenderer blinkenlightSend;
     public Material idleMat;
+    public Material idleOursMat;
     public Material sendWaitMat;
     public Material ownerWaitMat;
     public Material cooldownWaitMat;
@@ -92,38 +96,57 @@ public class Bus : UdonSharpBehaviour
     [HideInInspector]
     public int successfulAckedHead = 0;
     
-    public float successfulBroadcastInterval = 2f;
+    public float ackWait = 0.2f;
     public float minContentionWait = 0.3f;
     public float maxContentionWait = 0.5f;
-    public float minCooldownWait = 1f;
-    public float maxCooldownWait = 1.5f;
+    public float minCooldownWait = 0.2f;
+    public float maxCooldownWait = 0.4f;
 
     public Text cooldown;
-    public Text ackWait;
+    public Text ackWaitText;
+    public Text numChans;
+
+    public void NumChanDown()
+    {
+        channelCount = Mathf.Max(1, channelCount - 1);
+        numChans.text = $"numChans: {channelCount}";
+    }
+    public void NumChanUp()
+    {
+        channelCount = Mathf.Min(8, channelCount + 1);
+        numChans.text = $"numChans: {channelCount}";
+    }
 
     public void AckWaitUp()
     {
-        successfulBroadcastInterval += 0.1f;
+        ackWait += 0.1f;
+        ackWaitText.text = $"ack {ackWait}";
     }
     public void AckWaitDown()
     {
-        successfulBroadcastInterval -= 0.1f;
+        ackWait -= 0.1f;
+        ackWaitText.text = $"ack {ackWait}";
     }
     public void CooldownUp()
     {
         maxCooldownWait += 0.1f;
         minCooldownWait += 0.1f;
+        cooldown.text = $"CD {maxCooldownWait}";
     }
     public void CooldownDown()
     {
         maxCooldownWait -= 0.1f;
         minCooldownWait -= 0.1f;
+        cooldown.text = $"CD {maxCooldownWait}";
     }
 
     void Start()
     {
         recvBuffer = new byte[recvBufferSize][];
         successfulAckedObjects = new object[recvBufferSize];
+        numChans.text = $"numChans: {channelCount}";
+        cooldown.text = $"CD {maxCooldownWait}";
+        ackWaitText.text = $"ack {ackWait}";
     }
 
     void Update()
@@ -132,8 +155,6 @@ public class Bus : UdonSharpBehaviour
         ReleaseChannels();
         RecvFrame();
         //SimulateSend();
-        cooldown.text = $"CD {maxCooldownWait}";
-        ackWait.text = $"ack {successfulBroadcastInterval}";
     }
 
     float simulateSendWaitTime = 0;
@@ -261,19 +282,38 @@ public class Bus : UdonSharpBehaviour
         // start random to avoid contention
         var startIdx = UnityEngine.Random.Range(0, channelCount);
         var idx = startIdx;
+        var idleIdx = -1;
+        Channel idleChan = null;
         do
         {
             var chan = channels[idx];
-            // if idle
             if (chan.string0.Length == 0)
             {
-                blinkenlights[idx].sharedMaterial = sendMat;
-                Debug.Log($"sending on chan {idx}");
-                return chan;
+                idleChan = chan;
+                idleIdx = idx;
+                if (Networking.IsOwner(chan.gameObject))
+                {
+                    // bias towards already owned channels; if all clients do
+                    // this and the send cooldown is greater than the ack wait,
+                    // then up to N clients should basically settle on a single
+                    // random channel and retain ownership, which is pretty reliable;
+                    // for a new client that doesn't own any channels, I think they'll
+                    // still have a small window of (sendCooldown - ack wait + ownerWait)
+                    // to race and take over the channel; Need to do some simulations with
+                    // 1 channel and two clients to test.
+                    // XXX not very clean logic for this
+                    break;
+                }
             }
             idx = (idx + 1) % channelCount;
         } while (idx != startIdx);
-        return null;
+
+        if (idleChan != null)
+        {
+            blinkenlights[idleIdx].sharedMaterial = sendMat;
+            Debug.Log($"sending on chan {idleChan.gameObject.name}");
+        }
+        return idleChan;
     }
 
     void ReleaseChannels()
@@ -284,7 +324,7 @@ public class Bus : UdonSharpBehaviour
             if (chan == activeSendChannel) continue;
 
             if (chan.string0.Length > 0 && Networking.IsOwner(chan.gameObject)
-                && (Time.time - chan.lastLocalSend) > successfulBroadcastInterval)
+                && (Time.time - chan.lastLocalSend) > ackWait)
             {
                 Debug.Log($"releasing chan {i}, last used at {chan.lastLocalSend}, now {Time.time}");
                 // mark channel idle
@@ -300,7 +340,13 @@ public class Bus : UdonSharpBehaviour
                 blinkenlights[i].sharedMaterial = ackMat;
             } else if (chan.string0.Length == 0)
             {
-                blinkenlights[i].sharedMaterial = idleMat;
+                if (Networking.IsOwner(blinkenlights[i].gameObject))
+                {
+                    blinkenlights[i].sharedMaterial = idleOursMat;
+                } else
+                {
+                    blinkenlights[i].sharedMaterial = idleMat;
+                }
             }
         }
     }
