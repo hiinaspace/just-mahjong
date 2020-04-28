@@ -10,7 +10,7 @@ namespace UdonSharp.Examples.Utilities
     [AddComponentMenu("Udon Sharp/Utilities/Tracking Data Follower")]
     public class TrackingDataFollower : UdonSharpBehaviour 
     {
-        public VRCPlayerApi.TrackingDataType trackingTarget;
+        public VRCPlayerApi.TrackingDataType trackingTarget = VRCPlayerApi.TrackingDataType.Head; 
 
         VRCPlayerApi playerApi;
         bool isInEditor;

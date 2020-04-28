@@ -31,7 +31,7 @@ MonoBehaviour:
     \       \r\n         # namespace UdonSharp.Examples.Utilities\r\n        \r\n
     \        # [AddComponentMenu(\"Udon Sharp/Utilities/Tracking Data Follower\")]\r\n
     \       \r\n         # public class TrackingDataFollower : UdonSharpBehaviour\r\n.code_start\r\n
-    \       \r\n         # public VRCPlayerApi.TrackingDataType trackingTarget;\r\n
+    \       \r\n         # public VRCPlayerApi.TrackingDataType trackingTarget = VRCPlayerApi.TrackingDataType.Head;\r\n
     \       \r\n         # VRCPlayerApi playerApi;\r\n        \r\n         # bool
     isInEditor;\r\n        \r\n         # private void Start()\r\n    .export _start\r\n
     \       \r\n    _start:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n
@@ -196,331 +196,332 @@ MonoBehaviour:
     - startInstruction: 0
       endInstruction: -1
       startSourceChar: 355
-      endSourceChar: 399
+      endSourceChar: 437
       line: 12
       lineChar: 28
-      spanCodeSection: "TrackingDataType trackingTarget;\r\n\r\n        "
+      spanCodeSection: "TrackingDataType trackingTarget = VRCPlayerApi.TrackingDataType.Head;
+        \r\n\r\n        "
     - startInstruction: 0
       endInstruction: -1
-      startSourceChar: 399
-      endSourceChar: 399
+      startSourceChar: 437
+      endSourceChar: 437
       line: 14
       lineChar: 8
       spanCodeSection: 
     - startInstruction: 0
       endInstruction: -1
-      startSourceChar: 399
-      endSourceChar: 399
+      startSourceChar: 437
+      endSourceChar: 437
       line: 14
       lineChar: 8
       spanCodeSection: 
     - startInstruction: 0
       endInstruction: -1
-      startSourceChar: 399
-      endSourceChar: 432
+      startSourceChar: 437
+      endSourceChar: 470
       line: 14
       lineChar: 8
       spanCodeSection: "VRCPlayerApi playerApi;\r\n        "
     - startInstruction: 0
       endInstruction: -1
-      startSourceChar: 432
-      endSourceChar: 432
+      startSourceChar: 470
+      endSourceChar: 470
       line: 15
       lineChar: 8
       spanCodeSection: 
     - startInstruction: 0
       endInstruction: -1
-      startSourceChar: 432
-      endSourceChar: 432
+      startSourceChar: 470
+      endSourceChar: 470
       line: 15
       lineChar: 8
       spanCodeSection: 
     - startInstruction: 0
       endInstruction: -1
-      startSourceChar: 432
-      endSourceChar: 460
+      startSourceChar: 470
+      endSourceChar: 498
       line: 15
       lineChar: 8
       spanCodeSection: "bool isInEditor;\r\n\r\n        "
     - startInstruction: 0
       endInstruction: 7
-      startSourceChar: 460
-      endSourceChar: 490
+      startSourceChar: 498
+      endSourceChar: 528
       line: 17
       lineChar: 8
       spanCodeSection: "private void Start()\r\n        "
     - startInstruction: 8
       endInstruction: 7
-      startSourceChar: 490
-      endSourceChar: 505
+      startSourceChar: 528
+      endSourceChar: 543
       line: 18
       lineChar: 8
       spanCodeSection: "{\r\n            "
     - startInstruction: 8
       endInstruction: 7
-      startSourceChar: 505
-      endSourceChar: 505
+      startSourceChar: 543
+      endSourceChar: 543
       line: 19
       lineChar: 12
       spanCodeSection: 
     - startInstruction: 8
       endInstruction: 7
-      startSourceChar: 505
-      endSourceChar: 517
+      startSourceChar: 543
+      endSourceChar: 555
       line: 19
       lineChar: 12
       spanCodeSection: 'playerApi = '
     - startInstruction: 8
       endInstruction: 7
-      startSourceChar: 517
-      endSourceChar: 517
+      startSourceChar: 555
+      endSourceChar: 555
       line: 19
       lineChar: 24
       spanCodeSection: 
     - startInstruction: 8
       endInstruction: 7
-      startSourceChar: 517
-      endSourceChar: 528
+      startSourceChar: 555
+      endSourceChar: 566
       line: 19
       lineChar: 24
       spanCodeSection: Networking.
     - startInstruction: 8
       endInstruction: 43
-      startSourceChar: 528
-      endSourceChar: 554
+      startSourceChar: 566
+      endSourceChar: 592
       line: 19
       lineChar: 35
       spanCodeSection: "LocalPlayer;\r\n            "
     - startInstruction: 44
       endInstruction: 43
-      startSourceChar: 554
-      endSourceChar: 554
+      startSourceChar: 592
+      endSourceChar: 592
       line: 20
       lineChar: 12
       spanCodeSection: 
     - startInstruction: 44
       endInstruction: 43
-      startSourceChar: 554
-      endSourceChar: 567
+      startSourceChar: 592
+      endSourceChar: 605
       line: 20
       lineChar: 12
       spanCodeSection: 'isInEditor = '
     - startInstruction: 44
       endInstruction: 43
-      startSourceChar: 567
-      endSourceChar: 567
+      startSourceChar: 605
+      endSourceChar: 605
       line: 20
       lineChar: 25
       spanCodeSection: 
     - startInstruction: 44
       endInstruction: 63
-      startSourceChar: 567
-      endSourceChar: 580
+      startSourceChar: 605
+      endSourceChar: 618
       line: 20
       lineChar: 25
       spanCodeSection: 'playerApi == '
     - startInstruction: 64
       endInstruction: 135
-      startSourceChar: 580
-      endSourceChar: 644
+      startSourceChar: 618
+      endSourceChar: 682
       line: 20
       lineChar: 38
       spanCodeSection: "null; // PlayerApi will be null in editor\r\n        }\r\n\r\n
         \       "
     - startInstruction: 136
       endInstruction: 143
-      startSourceChar: 644
-      endSourceChar: 679
+      startSourceChar: 682
+      endSourceChar: 717
       line: 23
       lineChar: 8
       spanCodeSection: "private void LateUpdate()\r\n        "
     - startInstruction: 144
       endInstruction: 143
-      startSourceChar: 679
-      endSourceChar: 798
+      startSourceChar: 717
+      endSourceChar: 836
       line: 24
       lineChar: 8
       spanCodeSection: "{\r\n            // PlayerApi data will only be valid in game
         so we don't run the update if we're in editor\r\n            "
     - startInstruction: 144
       endInstruction: 143
-      startSourceChar: 798
-      endSourceChar: 802
+      startSourceChar: 836
+      endSourceChar: 840
       line: 26
       lineChar: 12
       spanCodeSection: if (
     - startInstruction: 144
       endInstruction: 159
-      startSourceChar: 802
-      endSourceChar: 831
+      startSourceChar: 840
+      endSourceChar: 869
       line: 26
       lineChar: 16
       spanCodeSection: "isInEditor)\r\n                "
     - startInstruction: 160
       endInstruction: 179
-      startSourceChar: 831
-      endSourceChar: 854
+      startSourceChar: 869
+      endSourceChar: 892
       line: 27
       lineChar: 16
       spanCodeSection: "return;\r\n\r\n            "
     - startInstruction: 180
       endInstruction: 179
-      startSourceChar: 854
-      endSourceChar: 854
+      startSourceChar: 892
+      endSourceChar: 892
       line: 29
       lineChar: 12
       spanCodeSection: 
     - startInstruction: 180
       endInstruction: 179
-      startSourceChar: 854
-      endSourceChar: 854
+      startSourceChar: 892
+      endSourceChar: 892
       line: 29
       lineChar: 12
       spanCodeSection: 
     - startInstruction: 180
       endInstruction: 179
-      startSourceChar: 854
-      endSourceChar: 854
+      startSourceChar: 892
+      endSourceChar: 892
       line: 29
       lineChar: 12
       spanCodeSection: 
     - startInstruction: 180
       endInstruction: 179
-      startSourceChar: 854
-      endSourceChar: 854
+      startSourceChar: 892
+      endSourceChar: 892
       line: 29
       lineChar: 12
       spanCodeSection: 
     - startInstruction: 180
       endInstruction: 179
-      startSourceChar: 854
-      endSourceChar: 867
+      startSourceChar: 892
+      endSourceChar: 905
       line: 29
       lineChar: 12
       spanCodeSection: VRCPlayerApi.
     - startInstruction: 180
       endInstruction: 179
-      startSourceChar: 867
-      endSourceChar: 893
+      startSourceChar: 905
+      endSourceChar: 931
       line: 29
       lineChar: 25
       spanCodeSection: 'TrackingData trackingData '
     - startInstruction: 180
       endInstruction: 179
-      startSourceChar: 893
-      endSourceChar: 895
+      startSourceChar: 931
+      endSourceChar: 933
       line: 29
       lineChar: 51
       spanCodeSection: '= '
     - startInstruction: 180
       endInstruction: 179
-      startSourceChar: 895
-      endSourceChar: 895
+      startSourceChar: 933
+      endSourceChar: 933
       line: 29
       lineChar: 53
       spanCodeSection: 
     - startInstruction: 180
       endInstruction: 179
-      startSourceChar: 895
-      endSourceChar: 895
+      startSourceChar: 933
+      endSourceChar: 933
       line: 29
       lineChar: 53
       spanCodeSection: 
     - startInstruction: 180
       endInstruction: 179
-      startSourceChar: 895
-      endSourceChar: 905
+      startSourceChar: 933
+      endSourceChar: 943
       line: 29
       lineChar: 53
       spanCodeSection: playerApi.
     - startInstruction: 180
       endInstruction: 179
-      startSourceChar: 905
-      endSourceChar: 921
+      startSourceChar: 943
+      endSourceChar: 959
       line: 29
       lineChar: 63
       spanCodeSection: GetTrackingData(
     - startInstruction: 180
       endInstruction: 231
-      startSourceChar: 921
-      endSourceChar: 951
+      startSourceChar: 959
+      endSourceChar: 989
       line: 29
       lineChar: 79
       spanCodeSection: "trackingTarget);\r\n            "
     - startInstruction: 232
       endInstruction: 231
-      startSourceChar: 951
-      endSourceChar: 951
+      startSourceChar: 989
+      endSourceChar: 989
       line: 30
       lineChar: 12
       spanCodeSection: 
     - startInstruction: 232
       endInstruction: 231
-      startSourceChar: 951
-      endSourceChar: 951
+      startSourceChar: 989
+      endSourceChar: 989
       line: 30
       lineChar: 12
       spanCodeSection: 
     - startInstruction: 232
       endInstruction: 231
-      startSourceChar: 951
-      endSourceChar: 951
+      startSourceChar: 989
+      endSourceChar: 989
       line: 30
       lineChar: 12
       spanCodeSection: 
     - startInstruction: 232
       endInstruction: 231
-      startSourceChar: 951
-      endSourceChar: 961
+      startSourceChar: 989
+      endSourceChar: 999
       line: 30
       lineChar: 12
       spanCodeSection: transform.
     - startInstruction: 232
       endInstruction: 231
-      startSourceChar: 961
-      endSourceChar: 984
+      startSourceChar: 999
+      endSourceChar: 1022
       line: 30
       lineChar: 22
       spanCodeSection: SetPositionAndRotation(
     - startInstruction: 232
       endInstruction: 231
-      startSourceChar: 984
-      endSourceChar: 984
+      startSourceChar: 1022
+      endSourceChar: 1022
       line: 30
       lineChar: 45
       spanCodeSection: 
     - startInstruction: 232
       endInstruction: 231
-      startSourceChar: 984
-      endSourceChar: 997
+      startSourceChar: 1022
+      endSourceChar: 1035
       line: 30
       lineChar: 45
       spanCodeSection: trackingData.
     - startInstruction: 232
       endInstruction: 255
-      startSourceChar: 997
-      endSourceChar: 1007
+      startSourceChar: 1035
+      endSourceChar: 1045
       line: 30
       lineChar: 58
       spanCodeSection: 'position, '
     - startInstruction: 256
       endInstruction: 255
-      startSourceChar: 1007
-      endSourceChar: 1007
+      startSourceChar: 1045
+      endSourceChar: 1045
       line: 30
       lineChar: 68
       spanCodeSection: 
     - startInstruction: 256
       endInstruction: 255
-      startSourceChar: 1007
-      endSourceChar: 1020
+      startSourceChar: 1045
+      endSourceChar: 1058
       line: 30
       lineChar: 68
       spanCodeSection: trackingData.
     - startInstruction: 256
       endInstruction: 256
-      startSourceChar: 1020
-      endSourceChar: 1020
+      startSourceChar: 1058
+      endSourceChar: 1058
       line: 30
       lineChar: 81
       spanCodeSection: 

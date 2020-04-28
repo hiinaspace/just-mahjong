@@ -5,6 +5,7 @@
         _Color ("Color", Color) = (1,1,1,1)
         _MainTex ("Tile Texture", 2D) = "white" {}
         _FaceTex ("Tile Face Texture Atlas", 2D) = "white" {}
+        _NormalFaceTex ("Tile Normal Texture Atlas", 2D) = "white" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
         [PerRendererData] _Tile ("Tile index", Int) = 0
@@ -27,6 +28,7 @@
 
         sampler2D _MainTex;
         sampler2D _FaceTex;
+        sampler2D _NormalFaceTex;
 
         struct Input
         {
@@ -69,6 +71,8 @@
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
             o.Alpha = c.a;
+
+            o.Normal = UnpackNormal(tex2D(_NormalFaceTex, offset + IN.uv2_FaceTex));
         }
         ENDCG
     }

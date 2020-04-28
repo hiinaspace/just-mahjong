@@ -138,10 +138,11 @@ public class GenTiles : MonoBehaviour
         {
             for (int i = 0; i < 13; ++i)
             {
-                float x = (j % 2 == 0) ? (i - 6.5f) * dims.x : 0;
-                float z = (j % 2 == 0) ? 0 : (i - 6.5f) * dims.x;
+                float x = (j % 2 == 0) ? (6f - i) * dims.x : 0;
+                float z = (j % 2 == 0) ? 0 : (6f - i) * dims.x;
                 var obj = new GameObject($"Hand-{j}-{i}-{n++}");
                 obj.transform.parent = parent;
+                obj.AddComponent<DrawTileGizmo>();
                 obj.transform.localPosition = new Vector3(
                     hands[j].x + x,
                     .0f,
@@ -156,10 +157,11 @@ public class GenTiles : MonoBehaviour
             float y = dims.y * j;
             for (int i = 0; i < 7; ++i)
             {
-                float x = i * dims.x - 0.5f;
+                float x = i * dims.x - 0.32f;
                 var obj = new GameObject($"Dead-{j}-{i}-{n++}");
                 obj.transform.parent = parent;
-                obj.transform.localPosition = new Vector3(x, y, 0.6f);
+                obj.AddComponent<DrawTileGizmo>();
+                obj.transform.localPosition = new Vector3(x, y, 0.7f);
                 obj.transform.rotation = rot;
                 // dora is flipped, very intelligent
                 if (j == 1 && i == 4)
@@ -184,27 +186,40 @@ public class GenTiles : MonoBehaviour
                 float y = dims.y * k;
                 for (int i = 0; i < lens[j]; ++i)
                 {
-                    float x = (j % 2 == 1) ? (i - 8.5f) * dims.x : dims.z;
-                    float z = (j % 2 == 1) ? dims.z : (i - 8.5f) * dims.x;
+                    float x = (j % 2 == 1) ? (i - 8f) * dims.x : 0;
+                    float z = (j % 2 == 1) ? 0 : (i - 8f) * dims.x;
                     var obj = new GameObject($"Wall-{j}-{i}-{n++}");
                     obj.transform.parent = parent;
+                    obj.AddComponent<DrawTileGizmo>();
                     obj.transform.localPosition = new Vector3(walls[j].x + x, y, walls[j].y + z);
                     obj.transform.rotation = Quaternion.Euler(90, 0, (1 + j) * -90);
                 }
             }
         }
-        // then leftover 10
-        //for (int j = 0; j < 2; ++j)
-        //{
-        //    for (int i = 0; i < 5; ++i)
-        //    {
-        //        float x = 0.50f - i * dims.x;
-        //        float y = dims.y * j;
-        //        var obj = new GameObject($"Leftover-{j}-{i}-{n++}");
-        //        obj.transform.parent = parent;
-        //        obj.transform.localPosition = new Vector3(x, y, 0.60f);
-        //        obj.transform.rotation = rot;
-        //    }
-        //}
+    }
+
+    [MenuItem("RiichiHelpers/Generate Hand Placements")]
+    static void GenerateHandPlacements()
+    {
+        var dims = new Vector3(0.040f, 0.032f, 0.054f);
+        for (int i = 0; i < 4; ++i)
+        {
+            var parent = GameObject.Find($"HandPlacements{i}").transform;
+            for (int j = 0; j < 16; ++j)
+            {
+                var t = parent.Find($"hand-{i}-{j}");
+                GameObject obj;
+                if (t == null)
+                {
+                    obj = new GameObject($"hand-{i}-{j}");
+                    obj.transform.parent = parent;
+                } else
+                {
+                    obj = t.gameObject;
+                }
+                obj.transform.localPosition = new Vector3(dims.x * (6f - j), 0, 0);
+                obj.AddComponent<DrawTileGizmo>();
+            }
+        }
     }
 }
