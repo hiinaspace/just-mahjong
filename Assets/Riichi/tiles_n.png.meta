@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8a1de7ed70f4eae4c841dc054488a731
+guid: 3e2b0227e96546b4492a6dde9ff39d49
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
@@ -18,8 +18,8 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 1
     externalNormalMap: 0
-    heightScale: 0.25
-    normalMapFilter: 1
+    heightScale: 0.3
+    normalMapFilter: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
@@ -60,7 +60,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 2
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -71,7 +71,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1

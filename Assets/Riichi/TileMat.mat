@@ -27,6 +27,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 9a6e7e9837063f04bab38eaeaa6dac64, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NormalFaceTex:
+        m_Texture: {fileID: 2800000, guid: 3e2b0227e96546b4492a6dde9ff39d49, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Glossiness: 1
     - _Metallic: 0.484
