@@ -1,3 +1,5 @@
+//#define DEBUG
+#undef DEBUG
 
 using System;
 using System.Collections;
@@ -57,6 +59,7 @@ public class Bus : UdonSharpBehaviour
     private int channelCount = 8;
 
     public Channel[] channels;
+#if (DEBUG)
     public MeshRenderer[] blinkenlights;
     public MeshRenderer blinkenlightSend;
     public Material idleMat;
@@ -70,6 +73,7 @@ public class Bus : UdonSharpBehaviour
 
     public Material sendMat;
     public Material ackMat;
+#endif
 
     [HideInInspector]
     public byte[] sendBuffer = new byte[maxDataByteSize];
@@ -102,6 +106,7 @@ public class Bus : UdonSharpBehaviour
     public float minCooldownWait = 0.2f;
     public float maxCooldownWait = 0.4f;
 
+#if (DEBUG)
     public Text cooldown;
     public Text ackWaitText;
     public Text numChans;
@@ -140,13 +145,17 @@ public class Bus : UdonSharpBehaviour
         cooldown.text = $"CD {maxCooldownWait}";
     }
 
+#endif
+
     void Start()
     {
         recvBuffer = new byte[recvBufferSize][];
         successfulAckedObjects = new object[recvBufferSize];
+#if (DEBUG)
         numChans.text = $"numChans: {channelCount}";
         cooldown.text = $"CD {maxCooldownWait}";
         ackWaitText.text = $"ack {ackWait}";
+#endif
     }
 
     void Update()
@@ -199,7 +208,9 @@ public class Bus : UdonSharpBehaviour
         sendWaitTime -= Time.deltaTime;
         if (sendWaitTime > 0) return;
 
+#if DEBUG
         blinkenlightSend.sharedMaterial = idleMat;
+#endif
 
         // if not actively sending
         // XXX very messy state machine
@@ -219,7 +230,10 @@ public class Bus : UdonSharpBehaviour
                 // no idle channels, wait random
                 sendReady = false;
                 sendWaitTime = UnityEngine.Random.Range(minContentionWait, maxContentionWait);
+
+#if DEBUG
                 blinkenlightSend.sharedMaterial = sendWaitMat;
+#endif
                 return;
             }
             activeSendChannel = chan;
@@ -230,7 +244,9 @@ public class Bus : UdonSharpBehaviour
             // thus, try to get ownership a few times before proceeding. XXX weird state machine
             Networking.SetOwner(Networking.LocalPlayer, activeSendChannel.gameObject);
             ownerWaitTime = 0.2f;
+#if DEBUG
             blinkenlightSend.sharedMaterial = ownerWaitMat;
+#endif
             return; // wait for owner
         }
 
@@ -248,7 +264,9 @@ public class Bus : UdonSharpBehaviour
         {
             Debug.Log($"couldn't retain ownership of {activeSendChannel.gameObject.name}, retrying");
             sendWaitTime = UnityEngine.Random.Range(minContentionWait, maxContentionWait);
+#if DEBUG
             blinkenlightSend.sharedMaterial = sendWaitMat;
+#endif
             sendReady = false;
             activeSendChannel = null;
             return;
@@ -274,7 +292,9 @@ public class Bus : UdonSharpBehaviour
         // wait before attempting next send
         sendReady = false;
         sendWaitTime = UnityEngine.Random.Range(minCooldownWait, maxCooldownWait);
+#if DEBUG
         blinkenlightSend.sharedMaterial = cooldownWaitMat;
+#endif
     }
 
     Channel ProbeIdleChannel()
@@ -308,11 +328,13 @@ public class Bus : UdonSharpBehaviour
             idx = (idx + 1) % channelCount;
         } while (idx != startIdx);
 
+#if DEBUG
         if (idleChan != null)
         {
             blinkenlights[idleIdx].sharedMaterial = sendMat;
             Debug.Log($"sending on chan {idleChan.gameObject.name}");
         }
+#endif
         return idleChan;
     }
 
@@ -337,6 +359,7 @@ public class Bus : UdonSharpBehaviour
                 chan.localAckObject = null;
                 successfulAckedHead = (successfulAckedHead + 1) % recvBufferSize;
 
+#if DEBUG
                 blinkenlights[i].sharedMaterial = ackMat;
             } else if (chan.string0.Length == 0)
             {
@@ -347,6 +370,7 @@ public class Bus : UdonSharpBehaviour
                 {
                     blinkenlights[i].sharedMaterial = idleMat;
                 }
+#endif
             }
         }
     }
@@ -368,15 +392,18 @@ public class Bus : UdonSharpBehaviour
 
                 recvBuffer[recvBufferHead] = DeserializeFrame(frame);
                 recvBufferHead = (recvBufferHead + 1) % recvBufferSize;
-
+#if DEBUG
                 blinkenlights[i].sharedMaterial = recvMat;
                 blinkenlightRecv.sharedMaterial = recvMat;
                 Debug.Log($"Received on chan {i}");
                 recv = true;
+#endif
             }
         }
+#if DEBUG
         if (!recv)
             blinkenlightRecv.sharedMaterial = idleMat;
+#endif
     }
 
     private char[] SerializeFrame(byte[] buf)

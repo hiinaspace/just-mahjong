@@ -1,13 +1,5 @@
-
-using System;
-using System.Reflection.Emit;
-using System.Runtime.Remoting.Messaging;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using UdonSharp;
-using UnityEditor.MemoryProfiler;
 using UnityEngine;
-using UnityEngine.Tilemaps;
-using UnityEngine.UI;
 using VRC.SDKBase;
 
 /// <summary>
@@ -52,6 +44,12 @@ public class RiichiGame : UdonSharpBehaviour
     // to 'true' as soon as the local client gets any packet related to the game, 
     // first by the table owner when they press the shuffle button.
     private bool gameStarted = false;
+
+    // counter to prevent old pre-shuffle packets from messing up a post-shuffle game
+    // table owner updates the game epoch and sends with shuffle packet;
+    // clients will update their epoch per that packet, and reject packets from older
+    // epochs.
+    private int gameEpoch = 0;
 
     // private bool sanmaMode = TODO maybe eventually
 
@@ -142,6 +140,7 @@ public class RiichiGame : UdonSharpBehaviour
             shuffleOrder[i] = i;
             locallyMovedTiles[i] = false;
         }
+        handTransforms = new Transform[4][];
         for (int i = 0; i < 4; ++i)
         {
             scores[i] = 25000;
@@ -173,7 +172,6 @@ public class RiichiGame : UdonSharpBehaviour
 
     private float sendWait;
     private const float sendInterval = 0.2f;
-    private int sendCursor;
 
     // XXX udonsharp can't access other const members, so duplicate from Bus
     private const int maxSyncedStringSize = 105;
@@ -202,14 +200,17 @@ public class RiichiGame : UdonSharpBehaviour
     private float lerpSpeed = 0.05f;
     private float slerpSpeed = 5f;
 
+    private float shuffleStateWait = 0;
+    private const float shuffleStateInterval = 2f;
+
     void Update()
     {
         // check recv buffer, read any packets
         while (bus.recvBufferHead != recvBufIdx)
         {
-            var packet = bus.recvBuffer[recvBufIdx][0];
+            var packet = bus.recvBuffer[recvBufIdx];
 
-            // read out packets, update internal state
+            ReadPacket(packet);
 
             recvBufIdx = (recvBufIdx + 1) % bus.recvBufferSize;
         }
@@ -217,10 +218,13 @@ public class RiichiGame : UdonSharpBehaviour
         // check ack buffer, undirty any tiles we sent
         while (bus.successfulAckedHead != ackBufIdx)
         {
-            var ackedTiles = (int[])bus.successfulAckedObjects[ackBufIdx];
-            foreach (int i in ackedTiles)
+            var ackedTiles = (bool[])bus.successfulAckedObjects[ackBufIdx];
+            for (int i = 0; i < ackedTiles.Length; ++i)
             {
-                locallyMovedTiles[i] = false;
+                if (ackedTiles[i])
+                {
+                    locallyMovedTiles[i] = false;
+                }
             }
             ackBufIdx = (ackBufIdx + 1) % bus.recvBufferSize;
         }
@@ -260,64 +264,151 @@ public class RiichiGame : UdonSharpBehaviour
 
         if (IsSeated())
         {
-            for (int i = 0; i < checkedTilesPerUpdate; ++i)
-            {
-                var n = localTileCursor;
-                localTileCursor = (localTileCursor + 1) % 136;
-                var tile = tiles[localTileCursor];
-                // skip unowned tiles
-                if (!Networking.IsOwner(tile)) continue;
+            CheckMovedLocalTiles();
 
-                // rely on rigidbody's sleep detection for movement; Definitely quicker
-                // than comparing transforms in udon, and I think should work for this
-                // purpose. locally kinematic tiles can't have moved either,
-                // since the tile behavior makes them unkinematic on pickup, and pickup is
-                // the only way to move tiles locally (besides shuffle/sort)
-                var r = tileRigidBodies[n];
-                if (!r.isKinematic && !r.IsSleeping())
+            // if we're the table owner, send out deal state packets every once and a while
+            shuffleStateWait -= Time.deltaTime;
+            if (shuffleStateWait < 0)
+            {
+                shuffleStateWait = shuffleStateInterval;
+                SendShuffleState();
+            } 
+            BroadcastTiles();
+        }
+    }
+
+    void SendShuffleState()
+    {
+        // only EAST needs to send these out. If we're master but not EAST, don't bother
+        // XXX IsTableOwner very confusing, i know
+        if (!Networking.IsOwner(seats[EAST].gameObject)) return;
+        // if bus not ready, or we put a packet there
+        if (!bus.sendReady || bus.sendBufferReady) return;
+        var buf = bus.sendBuffer;
+
+        WriteHeader(buf, true);
+
+        WriteDealBitmap(1, buf);
+
+        // write out entire shuffle order
+        var n = 2;
+        for (int i = 0; i < 136; ++i)
+        {
+            buf[n++] = (byte)shuffleOrder[i];
+        }
+
+        // empty ack object; we'll send the shuffle state periodically anyway
+        bus.sendAckObject = new bool[0]; 
+        bus.sendBufferReady = true;
+    }
+    
+    void CheckMovedLocalTiles()
+    {
+        for (int i = 0; i < checkedTilesPerUpdate; ++i)
+        {
+            var n = localTileCursor;
+            localTileCursor = (localTileCursor + 1) % 136;
+            var tile = tiles[localTileCursor];
+            // skip unowned tiles
+            if (!Networking.IsOwner(tile)) continue;
+
+            // rely on rigidbody's sleep detection for movement; Definitely quicker
+            // than comparing transforms in udon, and I think should work for this
+            // purpose. locally kinematic tiles can't have moved either,
+            // since the tile behavior makes them unkinematic on pickup, and pickup is
+            // the only way to move tiles locally (besides shuffle/sort)
+            var r = tileRigidBodies[n];
+            if (!r.isKinematic && !r.IsSleeping())
+            {
+                locallyMovedTiles[n] = true;
+                UpdateInternalTileState(n);
+            }
+        }
+    }
+
+    void BroadcastTiles()
+    {
+        // load any dirty tiles into send buffer when ready
+        sendWait -= Time.deltaTime;
+        if (sendWait > 0) return;
+        // if bus not ready, or we put a packet there
+        if (!bus.sendReady || bus.sendBufferReady) return;
+        sendWait = sendInterval;
+
+        var buf = bus.sendBuffer;
+        WriteHeader(buf, false);
+
+        var boolmap = new bool[136];
+
+        int n = 1;
+        var limit = maxDataByteSize - 1 - 17; // 1 byte for EOF, 17 for bitmap
+
+        for (int i = 0; i < 136; ++i)
+        {
+            if (!locallyMovedTiles[n]) continue;
+            var state = tileState[i];
+            if (state == DEAL) continue; // skip deal packets, table owner will broadcast those
+
+            var packSize = PACK_SIZE[state];
+            if (n + packSize >= limit) break; // not enough room
+
+            switch (state)
+            {
+                case HAND: PackHand(i, n, buf); break;
+                case UPRIGHT: PackUpright(i, n, buf); break;
+                case TABLE: PackTable(i, n, buf); break;
+                case ARBITRARY: PackArbitrary(i, n, buf); break;
+            }
+            n += packSize;
+            boolmap[i] = true;
+        }
+
+        WriteTileBitmap(boolmap, 1, buf);
+
+        bus.sendAckObject = boolmap; 
+        bus.sendBufferReady = true;
+    }
+
+    void ReadPacket(byte[] packet)
+    {
+        var header = packet[0];
+        var packetGameId = (header >> 6) & 3;
+        if (packetGameId != gameId) return;
+
+        var packetGameEpoch = (header >> 1) & 31;
+        var packetIsShuffle = (header & 1) == 1;
+        if (packetIsShuffle)
+        {
+            // shuffle packet is canonical for new epochs, ratchet forward.
+            gameEpoch = packetGameEpoch;
+        } else if (packetGameEpoch != gameEpoch)
+        {
+            // stale packet from before; in theory we could also get a packet
+            // before we get the shuffle packet, but I think that's unlikely enough
+            // not to matter
+            return;
+        }
+
+        if (packetIsShuffle)
+        {
+            bool[] inShuffle = ReadTileBitmap(1, packet);
+            for (int i = 0; i < 136; ++i)
+            {
+                shuffleOrder[i] = packet[i + 18];
+                if (inShuffle[i])
                 {
-                    locallyMovedTiles[n] = true;
-                    UpdateInternalTileState(n);
+                    tileState[i] = DEAL;
                 }
             }
-
-            // load any dirty tiles into send buffer when ready
-            sendWait -= Time.deltaTime;
-            if (sendWait < 0 && bus.sendReady)
+        } else
+        {
+            bool[] inPacket = ReadTileBitmap(1, packet);
+            int n = 18;
+            for (int i = 0; i < 136; ++i)
             {
-                sendWait = sendInterval;
-                var sendStart = sendCursor; // prevent infinite loop if no locallyMovedTiles
+                if (!inPacket[i]) continue;
 
-                var buf = bus.sendBuffer;
-                buf[0] = (byte)gameId; // disambiguate between games
-
-                int n = 1;
-                while (n < maxDataByteSize)
-                {
-                    while (!locallyMovedTiles[sendCursor])
-                    {
-                        sendCursor = (sendCursor + 1) % 136;
-                        if (sendCursor == sendStart) break;
-                    }
-                    // XXX break outer while too, no goto
-                    if (!locallyMovedTiles[sendCursor]) break;
-
-                    var state = tileState[sendCursor];
-                    var packSize = PACK_SIZE[state];
-                    if (n + 1 + packSize > maxDataByteSize) break; // not enough room
-
-                    buf[n++] = (byte)sendCursor; // tile idx
-                    switch (state)
-                    {
-                        case HAND:      PackHand(sendCursor, n, buf); break;
-                        case UPRIGHT:   PackUpright(sendCursor, n, buf); break;
-                        case TABLE:     PackTable(sendCursor, n, buf); break;
-                        case ARBITRARY: PackArbitrary(sendCursor, n, buf); break;
-                    }
-                    n += packSize;
-                }
-
-                bus.sendBufferReady = true;
+                n += ReadTile(i, n, packet);
             }
         }
     }
@@ -331,7 +422,12 @@ public class RiichiGame : UdonSharpBehaviour
     // [17 bytes bitmap]      tiles that are in deal position
     // [136 bytes]            shuffleOrder
     // else:
-    // [1 byte tileIdx, or 255 as EOF]
+    // TODO pack score and seat
+    // TODO maybe it'd be better to use a byte per tile instead of a bitmap; most packets will only have
+    // 1 tile on average, so all the time spent serializing and deserializing the bitmap could be heavy.
+    // obviously for new players or resyncing where we need to send the whole state, it's larger, but even
+    // so, should have headroom for the average case.
+    // [17 bytes bitmap]      tiles that are in packet
     // variable length:
     // [1] [1 bit up or down] [8 bits euler z] [11 bits x] [11 bits z] = 4 bytes, on table
     // [0] [1] [2 bits seat pos] [4 bits hand pos] = 1 byte, in hand
@@ -339,27 +435,137 @@ public class RiichiGame : UdonSharpBehaviour
     // [0] [0] [0] [1] [12 bits x] [12 bits y] [12 bits z] [2 bits largest component] [30 bits components] = 9 bytes
     // 
     // for the regular case of 13 tiles upright/on table in calls, 18 discards on table, 1 tile in hand, that's
-    // 109 bytes of tiles positions, 31 bytes tile indices, with 41 bytes to spare. Could instead pack the
-    // present tiles into a bitmap, but those are more expensive to encode/decode, so going with full bytes for now.
+    // 109 bytes of tiles positions, 17 bytes bitmap, with 56 bytes to spare.
     #region bitpacking methods
+    int ReadTile(int idx, int n, byte[] buf)
+    {
+        var first = buf[n];
+        if ((first & 128) > 0) // table
+        {
+            ReadTable(idx, n, buf);
+            return 4;
+        }
+        else if ((first & 64) > 0) // hand
+        {
 
-    void WriteInt(int i, int pos, byte[] buf)
+            ReadHand(idx, n, buf);
+            return 1;
+        }
+        else if ((first & 32) > 0) // upright
+        {
+            ReadUpright(idx, n, buf);
+            return 4;
+        }
+        else // arbitrary
+        {
+            ReadArbitrary(idx, n, buf);
+            return 9;
+        }
+    }
+
+    void WriteHeader(byte[] buf, bool isShuffle)
+    {
+        int header = gameId;
+        header = (header << 5) + gameEpoch;
+        header = (header << 1) + (isShuffle ? 1 : 0);
+        buf[0] = (byte)header;
+    }
+
+    void WriteDealBitmap(int n, byte[] buf)
+    {
+        for (int i = 0; i < 17; ++i)
+        {
+            var j = i * 8;
+            buf[n + i] = (byte)(
+                (tileState[j] == DEAL ? 128 : 0) +
+                (tileState[j + 1] == DEAL ? 64 : 0) +
+                (tileState[j + 2] == DEAL ? 32 : 0) +
+                (tileState[j + 3] == DEAL ? 16 : 0) +
+                (tileState[j + 4] == DEAL ? 8 : 0) +
+                (tileState[j + 5] == DEAL ? 4 : 0) +
+                (tileState[j + 6] == DEAL ? 2 : 0) +
+                (tileState[j + 7] == DEAL ? 1 : 0));
+        }
+    }
+
+    void WriteTileBitmap(bool[] boolmap, int n, byte[] buf)
+    {
+        for (int i = 0; i < 17; ++i)
+        {
+            var j = i * 8;
+            buf[n + i] = (byte)(
+                (boolmap[j] ? 128 : 0) +
+                (boolmap[j + 1] ? 64 : 0) +
+                (boolmap[j + 2] ? 32 : 0) +
+                (boolmap[j + 3] ? 16 : 0) +
+                (boolmap[j + 4] ? 8 : 0) +
+                (boolmap[j + 5] ? 4 : 0) +
+                (boolmap[j + 6] ? 2 : 0) +
+                (boolmap[j + 7] ? 1 : 0));
+        }
+    }
+
+    bool[] ReadTileBitmap(int n, byte[] buf)
+    {
+        bool[] boolmap = new bool[136];
+        var j = 0;
+        for (int i = 0; i < 17; ++i)
+        {
+            int b = buf[n + i];
+            boolmap[j++] = (b & 128) > 0;
+            boolmap[j++] = (b & 64) > 0;
+            boolmap[j++] = (b & 32) > 0;
+            boolmap[j++] = (b & 16) > 0;
+            boolmap[j++] = (b & 8) > 0;
+            boolmap[j++] = (b & 4) > 0;
+            boolmap[j++] = (b & 2) > 0;
+            boolmap[j++] = (b & 1) > 0;
+        }
+        return boolmap;
+    }
+
+    void WriteInt(uint i, int pos, byte[] buf)
     {
         buf[pos]   = (byte)(i >> 24);
         buf[pos+1] = (byte)((i >> 16) & 255);
         buf[pos+2] = (byte)((i >> 8) & 255);
         buf[pos+3] = (byte)(i & 255);
     }
+    uint ReadInt(int n, byte[] buf)
+    {
+        uint pack =          buf[n];
+        pack = (pack << 8) + buf[n+1];
+        pack = (pack << 8) + buf[n+2];
+        pack = (pack << 8) + buf[n+3];
+        return pack;
+    }
+
+    void ReadTable(int i, int n, byte[] buf)
+    {
+        uint p = ReadInt(n, buf);
+        tableUp[i] = (p >> 31) > 0;
+        tableZRot[i] = UnpackFloat((p >> 22) & 255U, 0, 360, 255);
+        tableXZ[i] = new Vector2(
+            UnpackFloat((p >> 11) & 2047U, -1, 1, 2047),
+            UnpackFloat(p & 2047U, -1, 1, 2047));
+    }
 
     void PackTable(int i, int n, byte[] buf)
     {
         // int p = 1 << 1; 
-        int p = 2 + (tableUp[i] ? 0 : 1);
-        p = (p << 8) + PackFloat(Mathf.Repeat(tableZRot[i], 360), 0, 360, 8);
+        uint p = 2U + (tableUp[i] ? 1U : 0U);
+        p = (p << 8) + PackFloat(Mathf.Repeat(tableZRot[i], 360), 0, 360, 255);
         var v = tableXZ[i];
-        p = (p << 11) + PackFloat(v.x, -1, 1, 11);
-        p = (p << 11) + PackFloat(v.y, -1, 1, 11);
+        p = (p << 11) + PackFloat(v.x, -1, 1, 2047);
+        p = (p << 11) + PackFloat(v.y, -1, 1, 2047);
         WriteInt(p, n, buf);
+    }
+
+    void ReadHand(int i, int n, byte[] buf)
+    {
+        int p = buf[n];
+        handSeat[i] = (p >> 4) & 3;
+        handOrder[i] = p & 15;
     }
 
     void PackHand(int i, int n, byte[] buf)
@@ -369,46 +575,70 @@ public class RiichiGame : UdonSharpBehaviour
         p = (p << 4) + handOrder[i];
         buf[n] = (byte)p;
     }
+    void ReadUpright(int i, int n, byte[] buf)
+    {
+        uint p = ReadInt(n, buf);
+        uprightYRot[i] = UnpackFloat((p >> 22) & 127U, 0, 360, 127);
+        uprightXZ[i] = new Vector2(
+            UnpackFloat((p >> 11) & 2047U, -1, 1, 2047),
+            UnpackFloat(p & 2047U, -1, 1, 2047));
+    }
+
     void PackUpright(int i, int n, byte[] buf)
     {
         // int p = 1 << 7;
-        int p = 128 + PackFloat(Mathf.Repeat(uprightYRot[i], 360), 0, 360, 7);
+        uint p = 128U + PackFloat(Mathf.Repeat(uprightYRot[i], 360), 0, 360, 127);
         var v = uprightXZ[i];
-        p = (p << 11) + PackFloat(v.x, -1, 1, 11);
-        p = (p << 11) + PackFloat(v.y, -1, 1, 11);
+        p = (p << 11) + PackFloat(v.x, -1, 1, 2047);
+        p = (p << 11) + PackFloat(v.y, -1, 1, 2047);
         WriteInt(p, n, buf);
     }
+
+    void ReadArbitrary(int i, int n, byte[] buf)
+    {
+        uint px = (((uint)buf[n] & 15U) << 8) + (uint)buf[n + 1];
+        uint py = ((uint)buf[n+2] << 4) + (uint)(buf[n + 3] >> 4) & 15U;
+        uint pz = (((uint)buf[n+3] & 15U) << 8) + (uint)buf[n + 4];
+
+        arbitraryTilePositions[i] = new Vector3(
+            UnpackFloat(px, -2, 2, 4095),
+            UnpackFloat(py, 0, 3, 4095),
+            UnpackFloat(pz, -2, 2, 4095));
+
+        arbitraryTileRotations[i] = UnpackQuaternion(buf, n + 5);
+    }
+
     void PackArbitrary(int i, int n, byte[] buf)
     {
         var v = arbitraryTilePositions[i];
-        var px = PackFloat(v.x, -2, 2, 12);
-        var py = PackFloat(v.y, 0, 3, 12);
-        var pz = PackFloat(v.z, -2, 2, 12);
+        var px = PackFloat(v.x, -2, 2, 4095);
+        var py = PackFloat(v.y, 0, 3, 4095);
+        var pz = PackFloat(v.z, -2, 2, 4095);
         // 0001xxxx|xxxxxxxx|yyyyyyyy|yyyyzzzz|zzzzzzz
         buf[n++] = (byte)(32 + ((px >> 8) & 15));
         buf[n++] = (byte)(px & 255);
         buf[n++] = (byte)((py >> 4) & 255);
-        buf[n++] = (byte)((py & 15) << 4 + ((pz >> 8) & 15));
+        buf[n++] = (byte)(((py & 15) << 4) + ((pz >> 8) & 15));
         buf[n++] = (byte)(pz & 255);
 
         PackQuaternion(arbitraryTileRotations[i], buf, n);
     }
 
-    int PackFloat(float f, float min, float max, int bits)
+    uint PackFloat(float f, float min, float max, int bitmask)
     {
         f = Mathf.Clamp(f, min, max);
         f = Mathf.InverseLerp(min, max, f);
-        return Mathf.RoundToInt(f * ((1 << bits) - 1));
+        return (uint)Mathf.RoundToInt(f * bitmask);
     }
-    float UnpackFloat(int i, float min, float max, int bits)
+    float UnpackFloat(uint i, float min, float max, int bitmask)
     {
-        return Mathf.Lerp(min, max, (float)i / ((1 << bits) - 1));
+        return Mathf.Lerp(min, max, (float)i / bitmask);
     }
 
     void PackQuaternion(Quaternion q, byte[] array, int idx)
     {
         // two bits for largest component idx, 10 bits per smallest 3
-        int largest_idx = 0;
+        uint largest_idx = 0;
         float largest = q.x;
         if (Mathf.Abs(q.y) > Mathf.Abs(largest))
         {
@@ -426,33 +656,27 @@ public class RiichiGame : UdonSharpBehaviour
             largest = q.w;
         }
 
-        int x = PackFloat(q.x / largest, -1, 1, 10);
-        int y = PackFloat(q.y / largest, -1, 1, 10);
-        int z = PackFloat(q.z / largest, -1, 1, 10);
-        int w = PackFloat(q.w / largest, -1, 1, 10);
+        uint x = PackFloat(q.x / largest, -1, 1, 1023);
+        uint y = PackFloat(q.y / largest, -1, 1, 1023);
+        uint z = PackFloat(q.z / largest, -1, 1, 1023);
+        uint w = PackFloat(q.w / largest, -1, 1, 1023);
 
-        int pack = largest_idx;
+        uint pack = largest_idx;
         if (largest_idx != 0) pack = ((pack << 10) + x);
         if (largest_idx != 1) pack = ((pack << 10) + y);
         if (largest_idx != 2) pack = ((pack << 10) + z);
         if (largest_idx != 3) pack = ((pack << 10) + w);
-
-        array[idx]   = (byte)((pack >> 24) & 255);
-        array[idx+1] = (byte)((pack >> 16) & 255);
-        array[idx+2] = (byte)((pack >> 8)  & 255);
-        array[idx+3] = (byte)(pack         & 255);
+        WriteInt(pack, idx, array);
     }
+
     Quaternion UnpackQuaternion(byte[] array, int idx)
     {
-        int pack =           array[idx];
-        pack = (pack << 8) + array[idx+1];
-        pack = (pack << 8) + array[idx+2];
-        pack = (pack << 8) + array[idx+3];
 
-        int largest_idx = pack >> 30;
-        float a = UnpackFloat(((pack >> 20) & 1023), -1, 1, 10);
-        float b = UnpackFloat(((pack >> 10) & 1023), -1, 1, 10);
-        float c = UnpackFloat((pack & 1023), -1, 1, 10);
+        var pack = ReadInt(idx, array);
+        uint largest_idx = pack >> 30;
+        float a = UnpackFloat(((pack >> 20) & 1023U), -1, 1, 1023);
+        float b = UnpackFloat(((pack >> 10) & 1023U), -1, 1, 1023);
+        float c = UnpackFloat((pack & 1023U), -1, 1, 1023);
         Quaternion q;
         switch (largest_idx)
         {
@@ -483,7 +707,7 @@ public class RiichiGame : UdonSharpBehaviour
             uprightYRot[n] = e.y;
         }
         // t.forward is straight up (or down) for on table tiles
-        else if (Mathf.Approximately(p.y, tableY) && Math.Abs(t.forward.y) > 0.99)
+        else if (Mathf.Approximately(p.y, tableY) && Mathf.Abs(t.forward.y) > 0.99)
         {
             tileState[n] = TABLE;
             tableXZ[n] = new Vector2(p.x, p.z);
@@ -522,6 +746,9 @@ public class RiichiGame : UdonSharpBehaviour
         if (!IsTableOwner()) return;
 
         gameStarted = true;
+        // update game epoch, after other clients get our shuffle state, then they should
+        // start ignoring packets before the epoch (wrapped around in 5 bits)
+        gameEpoch = (gameEpoch + 1) % 15;
 
         int swap;
         for (int i = 135; i >= 1; --i)
@@ -559,8 +786,26 @@ public class RiichiGame : UdonSharpBehaviour
         // packet, to reject packets from before the shuffle.
     }
 
+    public void EnableTiles()
+    {
+        for (int j = 0; j < 136; ++j)
+        {
+            tileBoxColliders[j].enabled = true;
+        }
+    }
+    public void DisableTiles()
+    {
+        for (int j = 0; j < 136; ++j)
+        {
+            tileBoxColliders[j].enabled = false;
+        }
+    }
+
     public void SortHand(int seat)
     {
+        // XXX odd place to do it, not sure yet where to put
+        EnableTiles();
+
         var t = seats[seat].transform;
         var zone = seats[seat].handZone;
         var halfExtents = zone.size / 2;

@@ -54,7 +54,7 @@ public class RiichiSeat : UdonSharpBehaviour
     // called by UI buttons
     public void SortHand()
     {
-        if (Networking.IsOwner(gameObject))
+        if (Networking.IsOwner(gameObject) && playerSeated)
         {
             game.SortHand(seat);
         }
@@ -73,6 +73,7 @@ public class RiichiSeat : UdonSharpBehaviour
         {
             Networking.SetOwner(Networking.LocalPlayer, gameObject);
             playerSeated = false;
+            game.DisableTiles();
         }
     }
 
@@ -89,6 +90,6 @@ public class RiichiSeat : UdonSharpBehaviour
     public void ScoreUp1000() { AdjustScore(1000); }
     public void ScoreDown1000() { AdjustScore(-1000); }
     public void ScoreUp10000() { AdjustScore(-10000); }
-    public void ScoreDown10000() { AdjustScore(-10000); }
+    public void ScoreDown10000() { AdjustScore(10000); }
 
 }

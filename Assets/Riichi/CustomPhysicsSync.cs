@@ -105,7 +105,7 @@ public class CustomPhysicsSync : UdonSharpBehaviour
 
         // [1] [1 bit up or down] [8 bits euler y] [11 bits x] [11 bits z] = 4 bytes, on table
         // [0] [1] [13 bits x] [12 bits y] [13 bits z] [2 bits largest component] [30 bits components] = 9 bytes
-        // [0] [0] [1] [5 bytes hand pos] = 1 byte, in hand
+        // [0] [0] [1] [2 bits seat pos] [3 bits hand pos] = 1 byte, in hand
         // then for full initial or deal position it's 46 bytes (run length 3)
 
         // so shuffle behavior has 136 bytes of shuffle state, then 4 bytes for other stuff (in shorts)
