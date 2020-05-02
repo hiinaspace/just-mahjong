@@ -11,6 +11,7 @@ public class TileFacesInEditor : MonoBehaviour
         foreach (Transform tile in transform)
         {
             props.SetFloat("_Tile", int.Parse(tile.gameObject.name.Substring(0,2)));
+            props.SetColor("_BackColorOffset", Color.black);
             tile.gameObject.GetComponent<MeshRenderer>().SetPropertyBlock(props);
         }
     }

@@ -3,6 +3,7 @@
     Properties
     {
         _Color ("Color", Color) = (1,1,1,1)
+        _BackColor ("Back Color", Color) = (0, 1, 0, 1)
         _MainTex ("Tile Texture", 2D) = "white" {}
         _FaceTex ("Tile Face Texture Atlas", 2D) = "white" {}
         _NormalFaceTex ("Tile Normal Texture Atlas", 2D) = "white" {}
@@ -40,6 +41,7 @@
         half _Glossiness;
         half _Metallic;
         fixed4 _Color;
+        fixed4 _BackColor;
 
         // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
         // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
@@ -47,6 +49,7 @@
         UNITY_INSTANCING_BUFFER_START(Props)
             // put more per-instance properties here
             UNITY_DEFINE_INSTANCED_PROP(float, _Tile)
+            UNITY_DEFINE_INSTANCED_PROP(fixed4, _BackColorOffset)
         UNITY_INSTANCING_BUFFER_END(Props)
 
         void surf (Input IN, inout SurfaceOutputStandard o)
@@ -62,15 +65,19 @@
             fixed4 tileFace = tex2D(_FaceTex, offset + IN.uv2_FaceTex);
             tileFace.rgb = tileFace.rgb * tileFace.a;
             fixed isFrontFace = IN.tileFaceMask.r; // dumb masking technique in tile model.
-            // Albedo comes from a texture tinted by color
-            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-            o.Albedo.rgb = lerp(c, tileFace, tileFace.a * isFrontFace);
+
+            // MainTex is a mask, black = top color, white = bottom color
+            fixed4 mask = tex2D(_MainTex, IN.uv_MainTex);
+            // fmod to clamp to 0-1
+            fixed4 backColor = fmod(_BackColor + UNITY_ACCESS_INSTANCED_PROP(Props, _BackColorOffset), 1.0001);
+            fixed4 background = lerp(_Color, backColor, mask);
+            o.Albedo.rgb = lerp(background, tileFace, tileFace.a * isFrontFace);
             //o.Albedo.rgb = IN.tileFaceMask;
 
             // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
-            o.Alpha = c.a;
+            o.Alpha = 1.0;
 
             o.Normal = UnpackNormal(tex2D(_NormalFaceTex, offset + IN.uv2_FaceTex));
         }

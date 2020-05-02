@@ -46,6 +46,7 @@
         UNITY_INSTANCING_BUFFER_START(Props)
             // put more per-instance properties here
             UNITY_DEFINE_INSTANCED_PROP(float, _Tile)
+            UNITY_DEFINE_INSTANCED_PROP(fixed4, _BackColor)
         UNITY_INSTANCING_BUFFER_END(Props)
 	
         void surf (Input IN, inout SurfaceOutput o)
@@ -61,9 +62,10 @@
             fixed4 tileFace = tex2D(_FaceTex, offset + IN.uv2_FaceTex);
             tileFace.rgb = tileFace.rgb * tileFace.a;
             fixed isFrontFace = IN.tileFaceMask.r; // dumb masking technique in tile model.
-            // Albedo comes from a texture tinted by color
-            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-            o.Albedo.rgb = lerp(c, tileFace, tileFace.a * isFrontFace);
+
+            fixed4 mask = tex2D(_MainTex, IN.uv_MainTex);
+            fixed4 background = lerp(_Color, UNITY_ACCESS_INSTANCED_PROP(Props, _BackColor), mask);
+            o.Albedo.rgb = lerp(background, tileFace, tileFace.a * isFrontFace);
             //o.Albedo.rgb = IN.tileFaceMask;
         }
         ENDCG
