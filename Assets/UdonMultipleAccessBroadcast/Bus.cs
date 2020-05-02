@@ -348,7 +348,7 @@ public class Bus : UdonSharpBehaviour
             if (chan.string0.Length > 0 && Networking.IsOwner(chan.gameObject)
                 && (Time.time - chan.lastLocalSend) > ackWait)
             {
-                Debug.Log($"releasing chan {i}, last used at {chan.lastLocalSend}, now {Time.time}");
+                //Debug.Log($"releasing chan {i}, last used at {chan.lastLocalSend}, now {Time.time}");
                 // mark channel idle
                 chan.string0 = "";
                 chan.lastLocalString0 = "";

@@ -34,20 +34,24 @@ public class RiichiSeat : UdonSharpBehaviour
     [UdonSynced]
     public bool playerSeated = false;
 
+    float updateWait = 0;
+
     void Update()
     {
+        if ((updateWait -= Time.deltaTime) > 0) return;
+        updateWait = 0.2f;
         string score = game.scores[seat].ToString();
         foreach (Text t in thisPlayerScores)
         {
             t.text = score;
         }
-        seatStateIndicator.text = playerSeated ? LocalPlayerName() : "Seat Open";
+        seatStateIndicator.text = playerSeated ? OwnerName() : "Seat Open";
     }
 
-    private string LocalPlayerName()
+    private string OwnerName()
     {
-        var player = Networking.LocalPlayer;
-        if (player != null) return player.displayName;
+        var p = Networking.GetOwner(gameObject);
+        if (p != null) return p.displayName;
         return "Editor";
     }
 
@@ -65,23 +69,25 @@ public class RiichiSeat : UdonSharpBehaviour
         if (playerSeated) return; // can't take over
         Networking.SetOwner(Networking.LocalPlayer, gameObject);
         playerSeated = true;
+        Update();
     }
 
     public void ReleaseSeat()
     {
-        if (Networking.IsOwner(gameObject) || Networking.IsMaster)
+        if (playerSeated && (Networking.IsOwner(gameObject) || Networking.IsMaster))
         {
             Networking.SetOwner(Networking.LocalPlayer, gameObject);
             playerSeated = false;
-            game.DisableTiles();
+            Update();
         }
     }
 
     private void AdjustScore(int delta)
     {
-        if (Networking.IsOwner(gameObject))
+        if (Networking.IsOwner(gameObject) && playerSeated)
         {
             game.AdjustScore(seat, delta);
+            Update();
         }
     }
 
@@ -89,7 +95,7 @@ public class RiichiSeat : UdonSharpBehaviour
     public void ScoreDown100() { AdjustScore(-100); }
     public void ScoreUp1000() { AdjustScore(1000); }
     public void ScoreDown1000() { AdjustScore(-1000); }
-    public void ScoreUp10000() { AdjustScore(-10000); }
-    public void ScoreDown10000() { AdjustScore(10000); }
+    public void ScoreUp10000() { AdjustScore(10000); }
+    public void ScoreDown10000() { AdjustScore(-10000); }
 
 }
