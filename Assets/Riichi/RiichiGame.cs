@@ -29,6 +29,14 @@ using VRC.SDKBase;
 ///     Honba and stuff
 ///   ShuffleButton
 ///   ScoreDisplay
+///   
+/// TODO:
+/// - remove any ownership toggling in favor of custom ownership tracking, removes
+///   weird race conditions i'm seeing
+/// - add server timestamp to packets to reject packets older than local state
+/// - add VRC_Pickup array so we can tell when tiles are picked up.
+/// - make test runner do two way packet rewriting; might need to change sendBuffer though
+/// - make tile backing UVs better and add _color parameter, can use for ownership visualization
 /// </summary>
 public class RiichiGame : UdonSharpBehaviour
 {

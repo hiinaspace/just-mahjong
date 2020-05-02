@@ -4,7 +4,7 @@ using UnityEngine;
 using VRC.SDKBase;
 using VRC.Udon;
 
-public class TileScript : UdonSharpBehaviour
+public class RiichiTile : UdonSharpBehaviour
 {
     private Rigidbody r;
 
@@ -14,10 +14,8 @@ public class TileScript : UdonSharpBehaviour
         props.SetFloat("_Tile", int.Parse(name.Substring(0,2)));
         GetComponent<MeshRenderer>().SetPropertyBlock(props);
 
-        // try to stop exploding tiles
         r = GetComponent<Rigidbody>();
         r.maxDepenetrationVelocity = 0.1f;
-        //SendCustomEvent("DoTestEvent");
 
         // disable pickup by default; when you hit a sort tile button you can
         // grab them. Prevents non-players from messing with tiles.
@@ -27,7 +25,6 @@ public class TileScript : UdonSharpBehaviour
     }
     void OnPickup()
     {
-        Networking.SetOwner(Networking.LocalPlayer, gameObject); // already happens?
         r.isKinematic = false;
     }
 
