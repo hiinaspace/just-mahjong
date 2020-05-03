@@ -3,6 +3,7 @@ using System;
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
+using VRC.Udon;
 
 /// <summary>
 /// Riichi game state manager, using Bus to synchronize with other clients.
@@ -30,13 +31,6 @@ using VRC.SDKBase;
 ///   ShuffleButton
 ///   ScoreDisplay
 ///   
-/// TODO:
-/// - remove any ownership toggling in favor of custom ownership tracking, removes
-///   weird race conditions i'm seeing
-/// - add server timestamp to packets to reject packets older than local state
-/// - add VRC_Pickup array so we can tell when tiles are picked up.
-/// - make test runner do two way packet rewriting; might need to change sendBuffer though
-/// - make tile backing UVs better and add _color parameter, can use for ownership visualization
 /// </summary>
 public class RiichiGame : UdonSharpBehaviour
 {
@@ -55,12 +49,6 @@ public class RiichiGame : UdonSharpBehaviour
     // first by the table owner when they press the shuffle button.
     private bool gameStarted = false;
 
-    // counter to prevent old pre-shuffle packets from messing up a post-shuffle game
-    // table owner updates the game epoch and sends with shuffle packet;
-    // clients will update their epoch per that packet, and reject packets from older
-    // epochs.
-    private int gameEpoch = 0;
-
     // private bool sanmaMode = TODO maybe eventually
 
     // abstract game state:
@@ -74,11 +62,19 @@ public class RiichiGame : UdonSharpBehaviour
     [HideInInspector]
     public int[] scores = new int[4];
 
+    // TODO  the HAND state is really hard to make 'stick' compared to upright
+    // in that the checking for locally moved tiles would need to check for exact
+    // equality for all our hand positions. We don't, so sorted hand tiles pretty much
+    // immediately go into UPRIGHT state the next frame, making the HAND packing not
+    // that useful even though it's 4x smaller. 13 * 4 = 52 bytes, plus 18 in the discard
+    // for another 72 bytes is only 124 bytes total, still not bad.
     const int DEAL = 0, HAND = 1, UPRIGHT = 2, TABLE = 3, ARBITRARY = 4;
 
     // byte sizes for each tile state
     // DEAL is zero because shuffle state is transmitted separately
     private int[] PACK_SIZE = new int[] { 0, 1, 4, 4, 9 };
+
+    const int headerSize = 5;
 
     private int[] tileState = new int[136];
 
@@ -115,8 +111,9 @@ public class RiichiGame : UdonSharpBehaviour
     // access to actual unity state
     private GameObject[] tiles = new GameObject[136];
     private Transform[] tileTransforms = new Transform[136];
-    private Rigidbody[] tileRigidBodies = new Rigidbody[136];
     private BoxCollider[] tileBoxColliders = new BoxCollider[136];
+
+    private RiichiTile[] riichiTiles;
 
     // note upwards (Y) is for upright tiles; Z is up for tiles on the table;
     private Vector3 tileDimensions = new Vector3(0.0375f, 0.05f, 0.032f);
@@ -141,13 +138,16 @@ public class RiichiGame : UdonSharpBehaviour
 
         var tileParent = transform.Find("Tiles");
         var dealParent = transform.Find("Placements");
+        riichiTiles = new RiichiTile[136];
         for (int i = 0; i < 136; ++i)
         {
             var tile = tileParent.GetChild(i).gameObject;
             tiles[i] = tile;
             tileTransforms[i] = tile.transform;
-            tileRigidBodies[i] = tile.GetComponent<Rigidbody>();
             tileBoxColliders[i] = tile.GetComponent<BoxCollider>();
+
+            var rt = tile.GetComponent<RiichiTile>();
+            riichiTiles[i] = rt;
 
             dealTransforms[i] = dealParent.GetChild(i);
 
@@ -179,11 +179,7 @@ public class RiichiGame : UdonSharpBehaviour
 
     private bool IsTableOwner()
     {
-        // TODO if we're the owner of the EAST seat, or instance master. so for
-        // multiple tables, master doesn't have to be there. could instead use
-        // the ownership on this behavior, but would seem weird that table
-        // owner doesn't have to be playing as well. thus requiring seat owner.
-        return Networking.IsMaster || Networking.IsOwner(seats[EAST].gameObject);
+        return Networking.IsOwner(seats[EAST].gameObject) && seats[EAST].playerSeated;
     }
 
     // to cut down on Update() time, only check a subset of the tiles each frame
@@ -240,6 +236,11 @@ public class RiichiGame : UdonSharpBehaviour
                 {
                     var ack = ackedTiles[i];
                     if (ack == 255) break;
+                    var rt = riichiTiles[ack];
+                    if (rt.IsCustomOwnedAndNotInDealPosition())
+                    {
+                        rt.SetBackColorOffset(Color.blue);
+                    }
                     locallyMovedTiles[ack] = false;
                 }
             }
@@ -271,6 +272,15 @@ public class RiichiGame : UdonSharpBehaviour
         }
     }
 
+    int GetServerTime()
+    {
+        if (Networking.LocalPlayer == null) // editor
+        {
+            return Mathf.FloorToInt(Time.time * 1000);
+        }
+        return Networking.GetServerTimeInMilliseconds();
+    }
+
     void SendShuffleState()
     {
         // only EAST needs to send these out. If we're master but not EAST, don't bother
@@ -283,12 +293,12 @@ public class RiichiGame : UdonSharpBehaviour
 
         //Debug.Log($"sending shuffle state");
 
-        WriteHeader(buf, true);
+        WriteHeader(buf, true, GetServerTime());
 
-        WriteDealBitmap(1, buf);
+        WriteDealBitmap(headerSize, buf);
 
         // write out entire shuffle order
-        var n = 18;
+        var n = headerSize + 17;
         for (int i = 0; i < 136; ++i)
         {
             buf[n++] = (byte)shuffleOrder[i];
@@ -308,33 +318,34 @@ public class RiichiGame : UdonSharpBehaviour
             var n = localTileCursor++;
             localTileCursor %= 136;
 
-            var tile = tiles[n];
-            // skip unowned tiles
-            if (!Networking.IsOwner(tile)) continue;
-            // r.isKinematic is set to false OnPickup or on Sort, so use it as
-            // a cheap "has this tile been moved from deal position" check.
-            var rb = tileRigidBodies[n];
-            if (rb.isKinematic) continue;
+            var rt = riichiTiles[n];
 
-            var t = tileTransforms[n];
-            var p = t.localPosition;
-            var r = t.localRotation;
-            var lp = lastKnownPos[n];
-            var lr = lastKnownRot[n];
-            if ((Time.time - lastMoved[n]) < 1f)
+            if (rt.IsCustomOwnedAndNotInDealPosition())
             {
-                // keep updating until tile settles.
-                lastKnownPos[n] = p;
-                lastKnownRot[n] = r;
-                locallyMovedTiles[n] = true;
-                UpdateInternalTileState(n);
-            } else if (p != lp || !rotEq(r, lr))
-            {
-                lastMoved[n] = Time.time;
-                lastKnownPos[n] = p;
-                lastKnownRot[n] = r;
-                locallyMovedTiles[n] = true;
-                UpdateInternalTileState(n);
+                var t = tileTransforms[n];
+                var p = t.localPosition;
+                var r = t.localRotation;
+                var lp = lastKnownPos[n];
+                var lr = lastKnownRot[n];
+
+                bool recentlyMoved = (Time.time - lastMoved[n]) < 1f;
+                bool newlyMoved = !recentlyMoved && (p != lp || !rotEq(r, lr));
+                if (newlyMoved)
+                {
+                    lastMoved[n] = Time.time;
+                }
+
+                if (newlyMoved || recentlyMoved)
+                {
+                    //Debug.Log($"{gameId} found {n} tile moved locally");
+                    lastKnownPos[n] = p;
+                    lastKnownRot[n] = r;
+                    locallyMovedTiles[n] = true;
+
+                    rt.SetBackColorOffset(new Color(0.5f, 0.1f, 0.5f));
+
+                    UpdateInternalTileState(n);
+                }
             }
         }
     }
@@ -346,11 +357,11 @@ public class RiichiGame : UdonSharpBehaviour
         if (sendWait > 0) return;
         // if bus not ready, or we put a packet there
         if (!bus.sendReady || bus.sendBufferReady) return;
-        sendWait = sendInterval;
+        sendWait = UnityEngine.Random.Range(.0f, .2f) + sendInterval;
 
         var buf = bus.sendBuffer;
 
-        int n = 3; // 1 byte header, 2 bytes seat/score
+        int n = headerSize + 2; 
         var limit = maxDataByteSize - 1; // 1 byte for EOF
 
         int[] presentTiles = new int[137]; // one extra slot for an EOF after 136 tiles, though it'll never happen
@@ -367,7 +378,7 @@ public class RiichiGame : UdonSharpBehaviour
 
             presentTiles[j++] = i;
             buf[n++] = (byte)i;
-            //Debug.Log($"wrote tile {i} state {state} at pos {n}");
+            //Debug.Log($"{gameId} wrote tile {i} state {state} at pos {n}");
             switch (state)
             {
                 case HAND: PackHand(i, n, buf); break;
@@ -384,15 +395,15 @@ public class RiichiGame : UdonSharpBehaviour
             return;
         }
 
-        WriteHeader(buf, false);
+        WriteHeader(buf, false, GetServerTime());
 
-        WriteSeatAndScore(buf);
+        WriteSeatAndScore(buf, headerSize); // after header
         scoreChanged = false;
 
         buf[n] = 255; // EOF in packet
         presentTiles[j] = 255; // EOF in ack object
 
-        //Debug.Log($" sent packet");
+        //Debug.Log($" sent packet from {gameId}");
 
         bus.sendAckObject = presentTiles; 
         bus.sendBufferReady = true;
@@ -402,37 +413,33 @@ public class RiichiGame : UdonSharpBehaviour
     {
         var header = packet[0];
         var packetGameId = (header >> 6) & 3;
+
+        var packetTime = ReadSInt(1, packet);
         //Debug.Log($"{gameId} read packet for {packetGameId} {header}");
         if (packetGameId != gameId) return;
 
-        var packetGameEpoch = (header >> 1) & 31;
         var packetIsShuffle = (header & 1) == 1;
         if (packetIsShuffle)
         {
-            // shuffle packet is canonical for new epochs, ratchet forward.
-            gameEpoch = packetGameEpoch;
+            // avoid checking local tiles until first shuffle packet from table owner
             gameStarted = true;
-        } else if (packetGameEpoch != gameEpoch)
-        {
-            // stale packet from before; in theory we could also get a packet
-            // before we get the shuffle packet, but I think that's unlikely enough
-            // not to matter
-            return;
-        }
+        } 
 
         if (packetIsShuffle)
         {
             //DebugBytes($"{gameId} got shuffle packet ", packet, 182);
-            bool[] inShuffle = ReadTileBitmap(1, packet);
+            bool[] inShuffle = ReadTileBitmap(headerSize, packet);
             for (int i = 0; i < 136; ++i)
             {
-                shuffleOrder[i] = packet[i + 18];
-                // skip tiles we own; note this can race ownership changes, so shuffle is a little
-                // flaky, but can press multiple times i guess.
-                if (Networking.IsOwner(tiles[i])) continue;
-                if (inShuffle[i])
+                shuffleOrder[i] = packet[i + headerSize + 17];
+
+                var rt = riichiTiles[i];
+                // if tile in shuffle and we haven't moved it locally in the meantime
+                if (inShuffle[i] && rt.IsRemoteTile(packetTime))
                 {
                     tileState[i] = DEAL;
+                    rt.ReleaseCustomOwnership();
+                    rt.SetBackColorOffset(new Color(0, 0.1f, 0));
                     MoveLocally(i);
                 }
             }
@@ -440,19 +447,25 @@ public class RiichiGame : UdonSharpBehaviour
         {
             //Debug.Log($"{gameId} got tile packet");
             //DebugBytes($"{gameId} got tile packet ", packet, 182);
-            ReadSeatAndScore(packet);
-            int n = 3;
+            ReadSeatAndScore(packet, headerSize);
+            int n = headerSize + 2;
             int idx = packet[n++];
             while (idx != 255) // EOF
             {
-                //Debug.Log($"see packet {idx}");
-                var remoteTile = !Networking.IsOwner(tiles[idx]);
+                //Debug.Log($"see packet {idx} at {n}");
+
+                // tile is remote if
+                //   it's kinematic (we never touched it locally since last MoveLocally)
+                //   it's nonKinematic but we haven't touched it since 
+                // TODO also check packet timestamp against last locally moved or picked up.
+                var rt = riichiTiles[idx];
+                var remoteTile = rt.IsRemoteTile(packetTime);
+
                 n += ReadTile(idx, n, packet, remoteTile);
 
-                // Ownership change can race with earlier packets from other players, so avoid moving
-                // tiles we know (locally) are ours.
                 if (remoteTile)
                 {
+                    rt.ReleaseCustomOwnership();
                     MoveLocally(idx);
                 }
 
@@ -463,8 +476,6 @@ public class RiichiGame : UdonSharpBehaviour
 
     void MoveLocally(int idx)
     {
-        // since the tile moved remotely, make kinematic so our local physics stops running
-        tileRigidBodies[idx].isKinematic = true;
         var t = tileTransforms[idx];
         switch (tileState[idx])
         {
@@ -507,8 +518,11 @@ public class RiichiGame : UdonSharpBehaviour
     // packet format:
     // 
     // [2 bits game id]       disambiguate multiple games on same Bus
-    // [5 bits game epoch]    disambiguate packets from after shuffle; shuffle bumps epoch, clients reject old epochs
+    // [6 bits empty]         TODO use for something
     // [1 bit isShuffle]
+    //
+    // [4 bytes serverTime]
+    //
     // if isShuffle:
     // [17 bytes bitmap]      tiles that are in deal position
     // [136 bytes]            shuffleOrder
@@ -524,7 +538,7 @@ public class RiichiGame : UdonSharpBehaviour
     // since tiles will eventually get acked, regular tile states will be pretty short, 1 tile that's currently moving
     // 13 tiles on hand sort.
     #region bitpacking methods
-    void WriteSeatAndScore(byte[] buf)
+    void WriteSeatAndScore(byte[] buf, int n)
     {
         // XXX kinda hacky
         int seat = 0;
@@ -538,14 +552,14 @@ public class RiichiGame : UdonSharpBehaviour
 
         int score = scores[seat] / 100;
 
-        buf[1] = (byte)((seat << 6) + ((score >> 8) & 63));
-        buf[2] = (byte)(score & 255);
+        buf[n] = (byte)((seat << 6) + ((score >> 8) & 63));
+        buf[n+1] = (byte)(score & 255);
     }
 
-    void ReadSeatAndScore(byte[] buf)
+    void ReadSeatAndScore(byte[] buf, int n)
     {
-        int seat = (buf[1] >> 6) & 3;
-        int score = ((buf[1] & 63) << 8) + buf[2];
+        int seat = (buf[n] >> 6) & 3;
+        int score = ((buf[n] & 63) << 8) + buf[n +1];
         scores[seat] = score * 100;
     }
 
@@ -596,12 +610,15 @@ public class RiichiGame : UdonSharpBehaviour
             return 9;
         }
     }
-    void WriteHeader(byte[] buf, bool isShuffle)
+    void WriteHeader(byte[] buf, bool isShuffle, int serverTimeMillis)
     {
         int header = gameId;
-        header = (header << 5) + gameEpoch;
-        header = (header << 1) + (isShuffle ? 1 : 0);
+        //header = (header << 5) + gameEpoch;
+        header = (header << 6) + (isShuffle ? 1 : 0);
         buf[0] = (byte)header;
+        //Debug.Log($"writing server time {serverTimeMillis}");
+        WriteSInt(serverTimeMillis, 1, buf);
+        //DebugBytes("wrote header: ", buf, 5);
     }
 
     void WriteDealBitmap(int n, byte[] buf)
@@ -650,6 +667,21 @@ public class RiichiGame : UdonSharpBehaviour
     uint ReadInt(int n, byte[] buf)
     {
         uint pack =          buf[n];
+        pack = (pack << 8) + buf[n+1];
+        pack = (pack << 8) + buf[n+2];
+        pack = (pack << 8) + buf[n+3];
+        return pack;
+    }
+    void WriteSInt(int i, int pos, byte[] buf)
+    {
+        buf[pos]   = (byte)((i >> 24) & 255);
+        buf[pos+1] = (byte)((i >> 16) & 255);
+        buf[pos+2] = (byte)((i >> 8) & 255);
+        buf[pos+3] = (byte)(i & 255);
+    }
+    int ReadSInt(int n, byte[] buf)
+    {
+        int pack =          buf[n];
         pack = (pack << 8) + buf[n+1];
         pack = (pack << 8) + buf[n+2];
         pack = (pack << 8) + buf[n+3];
@@ -823,8 +855,7 @@ public class RiichiGame : UdonSharpBehaviour
     {
         // don't bother checking for DEAL or HAND; those states are entered through
         // deal or sorting, and not worth checking to see if the player somehow lined
-        // up a tile right back to where it was. The isKinematic/Sleeping check should
-        // prevent checking for those tiles anyway;
+        // up a tile right back to where it was. 
         var t = tileTransforms[n];
         var p = t.localPosition;
         var r = t.localRotation;
@@ -874,8 +905,11 @@ public class RiichiGame : UdonSharpBehaviour
         {
             locallyMovedTiles[i] = true;
             var state = tileState[i];
-            if (state == DEAL || state == HAND) continue;
-            UpdateInternalTileState(i);
+            if (state != DEAL && state != HAND)
+            {
+                riichiTiles[i].SetBackColorOffset(new Color(0.5f, 0.1f, 0.5f));
+                UpdateInternalTileState(i);
+            }
         }
     }
 
@@ -884,9 +918,6 @@ public class RiichiGame : UdonSharpBehaviour
         if (!IsTableOwner()) return;
 
         gameStarted = true;
-        // update game epoch, after other clients get our shuffle state, then they should
-        // start ignoring packets before the epoch (wrapped around in 5 bits)
-        gameEpoch = (gameEpoch + 1) % 15;
 
         int swap;
         for (int i = 135; i >= 1; --i)
@@ -897,24 +928,16 @@ public class RiichiGame : UdonSharpBehaviour
             shuffleOrder[i] = swap;
         }
 
-        // take control of all tiles
-        var player = Networking.LocalPlayer;
         for (int i = 0; i < 136; ++i)
         {
-            Networking.SetOwner(player, tiles[i]);
             tileState[i] = DEAL;
-            // normally in Update() we'd defer to our local state in unity
-            // since we own the tiles, so also actually move the tiles locally;
-            // on other clients this will happen naturally since they don't own
-            // the tiles
+
+            var rt = (RiichiTile)riichiTiles[i];
+            rt.TakeOwnershipForShuffle();
+
             var tileT = tileTransforms[i];
             var dealT = dealTransforms[shuffleOrder[i]];
             tileT.SetPositionAndRotation(dealT.position, dealT.rotation);
-            // freeze, so stacked walls work okay.
-            tileRigidBodies[i].isKinematic = true;
-
-            // invalidate so we'll send all the tiles
-            locallyMovedTiles[i] = true;
         }
     }
 
@@ -929,7 +952,7 @@ public class RiichiGame : UdonSharpBehaviour
     {
         for (int j = 0; j < 136; ++j)
         {
-            tileRigidBodies[j].isKinematic = true;
+            ((RiichiTile)riichiTiles[j]).ReleaseCustomOwnership();
             tileBoxColliders[j].enabled = false;
         }
     }
@@ -949,16 +972,12 @@ public class RiichiGame : UdonSharpBehaviour
         {
             var tile = collide[i].transform;
             var obj = tile.gameObject;
-            Networking.SetOwner(Networking.LocalPlayer, obj);
 
             // XXX
             if (i >= placements.Length) break;
 
             var placement = placements[i];
             tile.SetPositionAndRotation(placement.position, placement.rotation);
-            var r = tile.gameObject.GetComponent<Rigidbody>();
-            // allow local movement when collided for hand rearrangement
-            r.isKinematic = false;
 
             // update internal state
             // XXX linear probe, oh well;
@@ -966,6 +985,10 @@ public class RiichiGame : UdonSharpBehaviour
             {
                 if (tiles[j] == obj)
                 {
+                    var rt = riichiTiles[j];
+                    rt.TakeCustomOwnership();
+                    rt.SetBackColorOffset(new Color(1.0f, 0.1f, 0));
+
                     tileState[j] = HAND;
                     handOrder[j] = i;
                     handSeat[j] = seat;

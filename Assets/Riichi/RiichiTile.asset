@@ -16,45 +16,78 @@ MonoBehaviour:
     type: 2}
   udonAssembly: ".data_start\r\n\r\n\r\n    __refl_const_intnl_udonTypeID: %SystemInt64,
     null\r\n    __refl_const_intnl_udonTypeName: %SystemString, null\r\n    collider:
-    %UnityEngineBoxCollider, null\r\n    props: %UnityEngineMaterialPropertyBlock,
-    null\r\n    renderer: %UnityEngineMeshRenderer, null\r\n    r: %UnityEngineRigidbody,
-    null\r\n    pickup: %VRCSDK3ComponentsVRCPickup, null\r\n    __0_this_intnl_RiichiTile:
-    %VRCUdonUdonBehaviour, this\r\n    __0_color_Color: %UnityEngineColor, null\r\n
-    \   __0_const_intnl_SystemBoolean: %SystemBoolean, null\r\n    __0_const_intnl_SystemInt32:
-    %SystemInt32, null\r\n    __1_const_intnl_SystemInt32: %SystemInt32, null\r\n
-    \   __0_const_intnl_SystemSingle: %SystemSingle, null\r\n    __0_const_intnl_SystemString:
-    %SystemString, null\r\n    __1_const_intnl_SystemString: %SystemString, null\r\n
-    \   __0_const_intnl_SystemType: %SystemType, null\r\n    __1_const_intnl_SystemType:
+    %UnityEngineBoxCollider, null\r\n    lastMovedLocallyServerTime: %SystemInt32,
+    null\r\n    props: %UnityEngineMaterialPropertyBlock, null\r\n    renderer: %UnityEngineMeshRenderer,
+    null\r\n    r: %UnityEngineRigidbody, null\r\n    pickup: %VRCSDK3ComponentsVRCPickup,
+    null\r\n    __0_this_intnl_RiichiTile: %VRCUdonUdonBehaviour, this\r\n    __0_color_Color:
+    %UnityEngineColor, null\r\n    __0_seenInRemotePacket_Int32: %SystemInt32, null\r\n
+    \   __0_seenServerTimeMillis_Int32: %SystemInt32, null\r\n    __0_const_intnl_SystemBoolean:
+    %SystemBoolean, null\r\n    __1_const_intnl_SystemBoolean: %SystemBoolean, null\r\n
+    \   __0_const_intnl_SystemInt32: %SystemInt32, null\r\n    __1_const_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __2_const_intnl_SystemInt32: %SystemInt32, null\r\n
+    \   __0_const_intnl_SystemObject: %SystemObject, null\r\n    __0_const_intnl_UnityEngineRigidbody:
+    %UnityEngineRigidbody, null\r\n    __0_const_intnl_SystemSingle: %SystemSingle,
+    null\r\n    __0_const_intnl_SystemString: %SystemString, null\r\n    __1_const_intnl_SystemString:
+    %SystemString, null\r\n    __0_const_intnl_SystemType: %SystemType, null\r\n    __1_const_intnl_SystemType:
     %SystemType, null\r\n    __2_const_intnl_SystemType: %SystemType, null\r\n    __3_const_intnl_SystemType:
     %SystemType, null\r\n    __0_const_intnl_exitJumpLoc_UInt32: %SystemUInt32, null\r\n
-    \   __0_const_intnl_SystemUInt32: %SystemUInt32, null\r\n    __0_intnl_returnValSymbol_Boolean:
-    %SystemBoolean, null\r\n    __0_intnl_SystemBoolean: %SystemBoolean, null\r\n
-    \   __0_intnl_UnityEngineBoxCollider: %UnityEngineBoxCollider, null\r\n    __0_intnl_UnityEngineColor:
-    %UnityEngineColor, null\r\n    __0_intnl_UnityEngineComponent: %UnityEngineComponent,
-    null\r\n    __0_intnl_SystemInt32: %SystemInt32, null\r\n    __0_intnl_UnityEngineMaterialPropertyBlock:
-    %UnityEngineMaterialPropertyBlock, null\r\n    __0_intnl_UnityEngineMeshRenderer:
-    %UnityEngineMeshRenderer, null\r\n    __0_intnl_UnityEngineRigidbody: %UnityEngineRigidbody,
-    null\r\n    __0_intnl_SystemSingle: %SystemSingle, null\r\n    __0_intnl_SystemString:
-    %SystemString, null\r\n    __1_intnl_SystemString: %SystemString, null\r\n    __0_intnl_returnTarget_UInt32:
-    %SystemUInt32, null\r\n    __0_intnl_VRCSDK3ComponentsVRCPickup: %VRCSDK3ComponentsVRCPickup,
-    null\r\n\r\n.data_end\r\n\r\n        \r\n         # using System;\r\n        \r\n
-    \        # using UdonSharp;\r\n        \r\n         # using UnityEngine;\r\n        \r\n
-    \        # using VRC.SDKBase;\r\n        \r\n         # using VRC.Udon;\r\n        \r\n
-    \        # public class RiichiTile : UdonSharpBehaviour\r\n.code_start\r\n        \r\n
-    \        # private Rigidbody r;\r\n        \r\n         # private MaterialPropertyBlock
-    props;\r\n        \r\n         # private MeshRenderer renderer;\r\n        \r\n
-    \        # private BoxCollider collider;\r\n        \r\n         # private VRC_Pickup
-    pickup;\r\n        \r\n         # void Start()\r\n    .export _start\r\n        \r\n
-    \   _start:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n        \r\n
-    \        # {\r\n        \r\n         # renderer = GetComponent<MeshRenderer>();\r\n
+    \   __0_const_intnl_SystemUInt32: %SystemUInt32, null\r\n    __1_const_intnl_exitJumpLoc_UInt32:
+    %SystemUInt32, null\r\n    __2_const_intnl_exitJumpLoc_UInt32: %SystemUInt32,
+    null\r\n    __3_const_intnl_exitJumpLoc_UInt32: %SystemUInt32, null\r\n    __4_const_intnl_exitJumpLoc_UInt32:
+    %SystemUInt32, null\r\n    __5_const_intnl_exitJumpLoc_UInt32: %SystemUInt32,
+    null\r\n    __6_const_intnl_exitJumpLoc_UInt32: %SystemUInt32, null\r\n    __0_const_intnl_VRCSDK3ComponentsVRCPickup:
+    %VRCSDK3ComponentsVRCPickup, null\r\n    __0_intnl_returnValSymbol_Boolean: %SystemBoolean,
+    null\r\n    __0_intnl_SystemBoolean: %SystemBoolean, null\r\n    __1_intnl_returnValSymbol_Boolean:
+    %SystemBoolean, null\r\n    __1_intnl_SystemBoolean: %SystemBoolean, null\r\n
+    \   __10_intnl_SystemBoolean: %SystemBoolean, null\r\n    __11_intnl_SystemBoolean:
+    %SystemBoolean, null\r\n    __12_intnl_SystemBoolean: %SystemBoolean, null\r\n
+    \   __13_intnl_SystemBoolean: %SystemBoolean, null\r\n    __14_intnl_SystemBoolean:
+    %SystemBoolean, null\r\n    __15_intnl_SystemBoolean: %SystemBoolean, null\r\n
+    \   __16_intnl_SystemBoolean: %SystemBoolean, null\r\n    __17_intnl_SystemBoolean:
+    %SystemBoolean, null\r\n    __2_intnl_returnValSymbol_Boolean: %SystemBoolean,
+    null\r\n    __2_intnl_SystemBoolean: %SystemBoolean, null\r\n    __3_intnl_SystemBoolean:
+    %SystemBoolean, null\r\n    __4_intnl_SystemBoolean: %SystemBoolean, null\r\n
+    \   __5_intnl_SystemBoolean: %SystemBoolean, null\r\n    __6_intnl_SystemBoolean:
+    %SystemBoolean, null\r\n    __7_intnl_SystemBoolean: %SystemBoolean, null\r\n
+    \   __8_intnl_SystemBoolean: %SystemBoolean, null\r\n    __9_intnl_SystemBoolean:
+    %SystemBoolean, null\r\n    __0_intnl_UnityEngineBoxCollider: %UnityEngineBoxCollider,
+    null\r\n    __0_intnl_UnityEngineColor: %UnityEngineColor, null\r\n    __1_intnl_UnityEngineColor:
+    %UnityEngineColor, null\r\n    __2_intnl_UnityEngineColor: %UnityEngineColor,
+    null\r\n    __3_intnl_UnityEngineColor: %UnityEngineColor, null\r\n    __0_intnl_UnityEngineComponent:
+    %UnityEngineComponent, null\r\n    __0_intnl_SystemInt32: %SystemInt32, null\r\n
+    \   __1_intnl_SystemInt32: %SystemInt32, null\r\n    __2_intnl_SystemInt32: %SystemInt32,
+    null\r\n    __3_intnl_SystemInt32: %SystemInt32, null\r\n    __4_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __5_intnl_SystemInt32: %SystemInt32, null\r\n    __6_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __7_intnl_SystemInt32: %SystemInt32, null\r\n    __8_intnl_SystemInt32:
+    %SystemInt32, null\r\n    __0_intnl_UnityEngineMaterialPropertyBlock: %UnityEngineMaterialPropertyBlock,
+    null\r\n    __0_intnl_UnityEngineMeshRenderer: %UnityEngineMeshRenderer, null\r\n
+    \   __0_intnl_UnityEngineRigidbody: %UnityEngineRigidbody, null\r\n    __1_intnl_UnityEngineRigidbody:
+    %UnityEngineRigidbody, null\r\n    __0_intnl_SystemSingle: %SystemSingle, null\r\n
+    \   __1_intnl_SystemSingle: %SystemSingle, null\r\n    __2_intnl_SystemSingle:
+    %SystemSingle, null\r\n    __0_intnl_SystemString: %SystemString, null\r\n    __1_intnl_SystemString:
+    %SystemString, null\r\n    __0_intnl_returnTarget_UInt32: %SystemUInt32, null\r\n
+    \   __0_intnl_VRCSDK3ComponentsVRCPickup: %VRCSDK3ComponentsVRCPickup, null\r\n
+    \   __1_intnl_VRCSDK3ComponentsVRCPickup: %VRCSDK3ComponentsVRCPickup, null\r\n\r\n.data_end\r\n\r\n
+    \       \r\n         # using System;\r\n        \r\n         # using UdonSharp;\r\n
+    \       \r\n         # using UnityEngine;\r\n        \r\n         # using VRC.SDKBase;\r\n
+    \       \r\n         # using VRC.Udon;\r\n        \r\n         # public class
+    RiichiTile : UdonSharpBehaviour\r\n.code_start\r\n        \r\n         # private
+    Rigidbody r;\r\n        \r\n         # private MaterialPropertyBlock props;\r\n
+    \       \r\n         # private new MeshRenderer renderer;\r\n        \r\n         #
+    private new BoxCollider collider;\r\n        \r\n         # private VRC_Pickup
+    pickup;\r\n        \r\n         # int lastMovedLocallyServerTime;\r\n        \r\n
+    \        # void Start()\r\n    .export _start\r\n        \r\n    _start:\r\n        \r\n
+    \       PUSH, __0_const_intnl_SystemUInt32\r\n        \r\n         # {\r\n        \r\n
+    \        # Init();\r\n        PUSH, __0_const_intnl_exitJumpLoc_UInt32\r\n        JUMP,
+    0x000001B4\r\n        \r\n         # renderer = GetComponent<MeshRenderer>();\r\n
     \       PUSH, __0_this_intnl_RiichiTile\r\n        PUSH, __0_const_intnl_SystemType\r\n
     \       PUSH, __0_intnl_UnityEngineMeshRenderer\r\n        EXTERN, \"UnityEngineMeshRenderer.__GetComponent__T\"\r\n
     \       PUSH, __0_intnl_UnityEngineMeshRenderer\r\n        PUSH, renderer\r\n
     \       COPY\r\n        \r\n         # props = new MaterialPropertyBlock();\r\n
     \       PUSH, __0_intnl_UnityEngineMaterialPropertyBlock\r\n        EXTERN, \"UnityEngineMaterialPropertyBlock.__ctor____UnityEngineMaterialPropertyBlock\"\r\n
     \       PUSH, __0_intnl_UnityEngineMaterialPropertyBlock\r\n        PUSH, props\r\n
-    \       COPY\r\n        \r\n         # props.SetFloat(\"_Tile\", int.Parse(name.Substring(0,2)));\r\n
-    \       PUSH, __0_this_intnl_RiichiTile\r\n        PUSH, __0_intnl_SystemString\r\n
+    \       COPY\r\n        \r\n         # props.SetFloat(\"_Tile\", int.Parse(name.Substring(0,
+    2)));\r\n        PUSH, __0_this_intnl_RiichiTile\r\n        PUSH, __0_intnl_SystemString\r\n
     \       EXTERN, \"UnityEngineComponent.__get_name__SystemString\"\r\n        PUSH,
     __0_intnl_SystemString\r\n        PUSH, __0_const_intnl_SystemInt32\r\n        PUSH,
     __1_const_intnl_SystemInt32\r\n        PUSH, __1_intnl_SystemString\r\n        EXTERN,
@@ -67,41 +100,153 @@ MonoBehaviour:
     \       \r\n         # SetBackColorOffset(Color.black);\r\n        PUSH, __0_intnl_UnityEngineColor\r\n
     \       EXTERN, \"UnityEngineColor.__get_black__UnityEngineColor\"\r\n        PUSH,
     __0_intnl_UnityEngineColor\r\n        PUSH, __0_color_Color\r\n        COPY\r\n
-    \       PUSH, __0_const_intnl_exitJumpLoc_UInt32\r\n        JUMP, 0x000002CC\r\n
-    \       \r\n         # r = GetComponent<Rigidbody>();\r\n        PUSH, __0_this_intnl_RiichiTile\r\n
-    \       PUSH, __1_const_intnl_SystemType\r\n        PUSH, __0_intnl_UnityEngineRigidbody\r\n
-    \       EXTERN, \"UnityEngineRigidbody.__GetComponent__T\"\r\n        PUSH, __0_intnl_UnityEngineRigidbody\r\n
-    \       PUSH, r\r\n        COPY\r\n        \r\n         # r.maxDepenetrationVelocity
-    = 0.1f;\r\n        PUSH, r\r\n        PUSH, __0_const_intnl_SystemSingle\r\n        EXTERN,
-    \"UnityEngineRigidbody.__set_maxDepenetrationVelocity__SystemSingle__SystemVoid\"\r\n
-    \       \r\n         # pickup = (VRC_Pickup)(GetComponent(typeof(VRC_Pickup)));\r\n
-    \       PUSH, __0_this_intnl_RiichiTile\r\n        PUSH, __2_const_intnl_SystemType\r\n
-    \       PUSH, __0_intnl_UnityEngineComponent\r\n        EXTERN, \"UnityEngineComponent.__GetComponent__SystemType__UnityEngineComponent\"\r\n
-    \       PUSH, __0_intnl_UnityEngineComponent\r\n        PUSH, __0_intnl_VRCSDK3ComponentsVRCPickup\r\n
-    \       COPY\r\n        PUSH, __0_intnl_VRCSDK3ComponentsVRCPickup\r\n        PUSH,
-    pickup\r\n        COPY\r\n        \r\n         # collider = GetComponent<BoxCollider>();\r\n
-    \       PUSH, __0_this_intnl_RiichiTile\r\n        PUSH, __3_const_intnl_SystemType\r\n
-    \       PUSH, __0_intnl_UnityEngineBoxCollider\r\n        EXTERN, \"UnityEngineBoxCollider.__GetComponent__T\"\r\n
+    \       PUSH, __1_const_intnl_exitJumpLoc_UInt32\r\n        JUMP, 0x00000858\r\n
+    \       \r\n         # r.maxDepenetrationVelocity = 0.1f;\r\n        PUSH, r\r\n
+    \       PUSH, __0_const_intnl_SystemSingle\r\n        EXTERN, \"UnityEngineRigidbody.__set_maxDepenetrationVelocity__SystemSingle__SystemVoid\"\r\n
+    \       \r\n         # collider = GetComponent<BoxCollider>();\r\n        PUSH,
+    __0_this_intnl_RiichiTile\r\n        PUSH, __1_const_intnl_SystemType\r\n        PUSH,
+    __0_intnl_UnityEngineBoxCollider\r\n        EXTERN, \"UnityEngineBoxCollider.__GetComponent__T\"\r\n
     \       PUSH, __0_intnl_UnityEngineBoxCollider\r\n        PUSH, collider\r\n        COPY\r\n
     \       \r\n         # collider.enabled = false;\r\n        PUSH, collider\r\n
     \       PUSH, __0_const_intnl_SystemBoolean\r\n        EXTERN, \"UnityEngineBoxCollider.__set_enabled__SystemBoolean__SystemVoid\"\r\n
     \       PUSH, __0_intnl_returnTarget_UInt32 #Function epilogue\r\n        COPY\r\n
     \       JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n        \r\n
-    \        # void OnPickup()\r\n    .export _onPickup\r\n        \r\n    _onPickup:\r\n
-    \       \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n        \r\n         #
-    {\r\n        \r\n         # r.isKinematic = false;\r\n        PUSH, r\r\n        PUSH,
-    __0_const_intnl_SystemBoolean\r\n        EXTERN, \"UnityEngineRigidbody.__set_isKinematic__SystemBoolean__SystemVoid\"\r\n
+    \        # void Init()\r\n    Init:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n
+    \       \r\n         # {\r\n        \r\n         # if (pickup == null) pickup
+    = (VRC_Pickup)(GetComponent(typeof(VRC_Pickup)));\r\n        PUSH, pickup\r\n
+    \       PUSH, __0_intnl_VRCSDK3ComponentsVRCPickup\r\n        COPY\r\n        PUSH,
+    __0_intnl_VRCSDK3ComponentsVRCPickup\r\n        PUSH, __0_const_intnl_VRCSDK3ComponentsVRCPickup\r\n
+    \       PUSH, __0_intnl_SystemBoolean\r\n        EXTERN, \"UnityEngineObject.__op_Equality__UnityEngineObject_UnityEngineObject__SystemBoolean\"\r\n
+    \       PUSH, __0_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x00000240\r\n
+    \       PUSH, __0_this_intnl_RiichiTile\r\n        PUSH, __2_const_intnl_SystemType\r\n
+    \       PUSH, __0_intnl_UnityEngineComponent\r\n        EXTERN, \"UnityEngineComponent.__GetComponent__SystemType__UnityEngineComponent\"\r\n
+    \       PUSH, __0_intnl_UnityEngineComponent\r\n        PUSH, __1_intnl_VRCSDK3ComponentsVRCPickup\r\n
+    \       COPY\r\n        PUSH, __1_intnl_VRCSDK3ComponentsVRCPickup\r\n        PUSH,
+    pickup\r\n        COPY\r\n        \r\n         # if (r == null) r = GetComponent<Rigidbody>();\r\n
+    \       PUSH, r\r\n        PUSH, __0_intnl_UnityEngineRigidbody\r\n        COPY\r\n
+    \       PUSH, __0_intnl_UnityEngineRigidbody\r\n        PUSH, __0_const_intnl_UnityEngineRigidbody\r\n
+    \       PUSH, __1_intnl_SystemBoolean\r\n        EXTERN, \"UnityEngineObject.__op_Equality__UnityEngineObject_UnityEngineObject__SystemBoolean\"\r\n
+    \       PUSH, __1_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x000002B8\r\n
+    \       PUSH, __0_this_intnl_RiichiTile\r\n        PUSH, __3_const_intnl_SystemType\r\n
+    \       PUSH, __1_intnl_UnityEngineRigidbody\r\n        EXTERN, \"UnityEngineRigidbody.__GetComponent__T\"\r\n
+    \       PUSH, __1_intnl_UnityEngineRigidbody\r\n        PUSH, r\r\n        COPY\r\n
     \       PUSH, __0_intnl_returnTarget_UInt32 #Function epilogue\r\n        COPY\r\n
     \       JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n        \r\n
-    \        # void OnDrop()\r\n    .export _onDrop\r\n        \r\n    _onDrop:\r\n
+    \        # void OnPickup()\r\n    .export _onPickup\r\n        \r\n    _onPickup:\r\n
     \       \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n        \r\n         #
-    {\r\n        PUSH, __0_intnl_returnTarget_UInt32 #Function epilogue\r\n        COPY\r\n
+    {\r\n        \r\n         # TakeCustomOwnership();\r\n        PUSH, __2_const_intnl_exitJumpLoc_UInt32\r\n
+    \       JUMP, 0x00000434\r\n        PUSH, __0_intnl_returnTarget_UInt32 #Function
+    epilogue\r\n        COPY\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n
+    \       \r\n        \r\n         # void OnDrop()\r\n    .export _onDrop\r\n        \r\n
+    \   _onDrop:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n        \r\n
+    \        # {\r\n        \r\n         # TakeCustomOwnership();\r\n        PUSH,
+    __3_const_intnl_exitJumpLoc_UInt32\r\n        JUMP, 0x00000434\r\n        PUSH,
+    __0_intnl_returnTarget_UInt32 #Function epilogue\r\n        COPY\r\n        JUMP_INDIRECT,
+    __0_intnl_returnTarget_UInt32\r\n        \r\n        \r\n         # public void
+    TakeOwnershipForShuffle()\r\n    .export TakeOwnershipForShuffle\r\n        \r\n
+    \   TakeOwnershipForShuffle:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n
+    \       \r\n         # {\r\n        \r\n         # r.isKinematic = true;\r\n        PUSH,
+    r\r\n        PUSH, __1_const_intnl_SystemBoolean\r\n        EXTERN, \"UnityEngineRigidbody.__set_isKinematic__SystemBoolean__SystemVoid\"\r\n
+    \       \r\n         # lastMovedLocallyServerTime = Networking.GetServerTimeInMilliseconds()
+    + 100;\r\n        PUSH, __1_intnl_SystemInt32\r\n        EXTERN, \"VRCSDKBaseNetworking.__GetServerTimeInMilliseconds__SystemInt32\"\r\n
+    \       PUSH, __1_intnl_SystemInt32\r\n        PUSH, __2_intnl_SystemInt32\r\n
+    \       COPY\r\n        PUSH, __2_intnl_SystemInt32\r\n        PUSH, __2_const_intnl_SystemInt32\r\n
+    \       PUSH, __3_intnl_SystemInt32\r\n        EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n
+    \       PUSH, __3_intnl_SystemInt32\r\n        PUSH, lastMovedLocallyServerTime\r\n
+    \       COPY\r\n        \r\n         # SetBackColorOffset(new Color(0, 0.1f, 0));\r\n
+    \       PUSH, __0_const_intnl_SystemInt32\r\n        PUSH, __1_intnl_SystemSingle\r\n
+    \       EXTERN, \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n        PUSH,
+    __0_const_intnl_SystemInt32\r\n        PUSH, __2_intnl_SystemSingle\r\n        EXTERN,
+    \"SystemConvert.__ToSingle__SystemInt32__SystemSingle\"\r\n        PUSH, __1_intnl_SystemSingle\r\n
+    \       PUSH, __0_const_intnl_SystemSingle\r\n        PUSH, __2_intnl_SystemSingle\r\n
+    \       PUSH, __1_intnl_UnityEngineColor\r\n        EXTERN, \"UnityEngineColor.__ctor__SystemSingle_SystemSingle_SystemSingle__UnityEngineColor\"\r\n
+    \       PUSH, __1_intnl_UnityEngineColor\r\n        PUSH, __0_color_Color\r\n
+    \       COPY\r\n        PUSH, __4_const_intnl_exitJumpLoc_UInt32\r\n        JUMP,
+    0x00000858\r\n        PUSH, __0_intnl_returnTarget_UInt32 #Function epilogue\r\n
+    \       COPY\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n
+    \       \r\n         # public void TakeCustomOwnership()\r\n    .export TakeCustomOwnership\r\n
+    \       \r\n    TakeCustomOwnership:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n
+    \       \r\n         # {\r\n        \r\n         # r.isKinematic = false;\r\n
+    \       PUSH, r\r\n        PUSH, __0_const_intnl_SystemBoolean\r\n        EXTERN,
+    \"UnityEngineRigidbody.__set_isKinematic__SystemBoolean__SystemVoid\"\r\n        \r\n
+    \        # lastMovedLocallyServerTime = Networking.GetServerTimeInMilliseconds()
+    + 100;\r\n        PUSH, __4_intnl_SystemInt32\r\n        EXTERN, \"VRCSDKBaseNetworking.__GetServerTimeInMilliseconds__SystemInt32\"\r\n
+    \       PUSH, __4_intnl_SystemInt32\r\n        PUSH, __5_intnl_SystemInt32\r\n
+    \       COPY\r\n        PUSH, __5_intnl_SystemInt32\r\n        PUSH, __2_const_intnl_SystemInt32\r\n
+    \       PUSH, __6_intnl_SystemInt32\r\n        EXTERN, \"SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32\"\r\n
+    \       PUSH, __6_intnl_SystemInt32\r\n        PUSH, lastMovedLocallyServerTime\r\n
+    \       COPY\r\n        \r\n         # SetBackColorOffset(Color.blue);\r\n        PUSH,
+    __2_intnl_UnityEngineColor\r\n        EXTERN, \"UnityEngineColor.__get_blue__UnityEngineColor\"\r\n
+    \       PUSH, __2_intnl_UnityEngineColor\r\n        PUSH, __0_color_Color\r\n
+    \       COPY\r\n        PUSH, __5_const_intnl_exitJumpLoc_UInt32\r\n        JUMP,
+    0x00000858\r\n        PUSH, __0_intnl_returnTarget_UInt32 #Function epilogue\r\n
+    \       COPY\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n
+    \       \r\n         # public void ReleaseCustomOwnership()\r\n    .export ReleaseCustomOwnership\r\n
+    \       \r\n    ReleaseCustomOwnership:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n
+    \       \r\n         # {\r\n        \r\n         # r.isKinematic = true;\r\n        PUSH,
+    r\r\n        PUSH, __1_const_intnl_SystemBoolean\r\n        EXTERN, \"UnityEngineRigidbody.__set_isKinematic__SystemBoolean__SystemVoid\"\r\n
+    \       \r\n         # SetBackColorOffset(Color.black);\r\n        PUSH, __3_intnl_UnityEngineColor\r\n
+    \       EXTERN, \"UnityEngineColor.__get_black__UnityEngineColor\"\r\n        PUSH,
+    __3_intnl_UnityEngineColor\r\n        PUSH, __0_color_Color\r\n        COPY\r\n
+    \       PUSH, __6_const_intnl_exitJumpLoc_UInt32\r\n        JUMP, 0x00000858\r\n
+    \       PUSH, __0_intnl_returnTarget_UInt32 #Function epilogue\r\n        COPY\r\n
     \       JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        \r\n        \r\n
-    \        # public bool IsHeld()\r\n    .export IsHeld\r\n        \r\n    IsHeld:\r\n
-    \       \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n        \r\n         #
-    {\r\n        \r\n         # return pickup.IsHeld;\r\n        PUSH, pickup\r\n
-    \       PUSH, __0_intnl_SystemBoolean\r\n        EXTERN, \"VRCSDK3ComponentsVRCPickup.__get_IsHeld__SystemBoolean\"\r\n
-    \       PUSH, __0_intnl_SystemBoolean\r\n        PUSH, __0_intnl_returnValSymbol_Boolean\r\n
+    \        # public bool IsCustomOwnedAndNotInDealPosition()\r\n    .export IsCustomOwnedAndNotInDealPosition\r\n
+    \       \r\n    IsCustomOwnedAndNotInDealPosition:\r\n        \r\n        PUSH,
+    __0_const_intnl_SystemUInt32\r\n        \r\n         # {\r\n        \r\n         #
+    return pickup.IsHeld || !r.isKinematic;\r\n        PUSH, pickup\r\n        PUSH,
+    __3_intnl_SystemBoolean\r\n        EXTERN, \"VRCSDK3ComponentsVRCPickup.__get_IsHeld__SystemBoolean\"\r\n
+    \       PUSH, __3_intnl_SystemBoolean\r\n        PUSH, __2_intnl_SystemBoolean\r\n
+    \       COPY\r\n        PUSH, __2_intnl_SystemBoolean\r\n        PUSH, __4_intnl_SystemBoolean\r\n
+    \       EXTERN, \"SystemBoolean.__op_UnaryNegation__SystemBoolean__SystemBoolean\"\r\n
+    \       PUSH, __4_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x00000614\r\n
+    \       PUSH, r\r\n        PUSH, __5_intnl_SystemBoolean\r\n        EXTERN, \"UnityEngineRigidbody.__get_isKinematic__SystemBoolean\"\r\n
+    \       PUSH, __5_intnl_SystemBoolean\r\n        PUSH, __6_intnl_SystemBoolean\r\n
+    \       EXTERN, \"SystemBoolean.__op_UnaryNegation__SystemBoolean__SystemBoolean\"\r\n
+    \       PUSH, __2_intnl_SystemBoolean\r\n        PUSH, __6_intnl_SystemBoolean\r\n
+    \       PUSH, __7_intnl_SystemBoolean\r\n        EXTERN, \"SystemBoolean.__op_ConditionalOr__SystemBoolean_SystemBoolean__SystemBoolean\"\r\n
+    \       PUSH, __7_intnl_SystemBoolean\r\n        PUSH, __2_intnl_SystemBoolean\r\n
+    \       COPY\r\n        PUSH, __2_intnl_SystemBoolean\r\n        PUSH, __0_intnl_returnValSymbol_Boolean\r\n
+    \       COPY\r\n        PUSH, __0_intnl_returnTarget_UInt32 #Explicit return sequence\r\n
+    \       COPY\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        PUSH,
+    __0_intnl_returnTarget_UInt32 #Function epilogue\r\n        COPY\r\n        JUMP_INDIRECT,
+    __0_intnl_returnTarget_UInt32\r\n        \r\n        \r\n         # public bool
+    IsRemoteTile(int seenInRemotePacket)\r\n    .export IsRemoteTile\r\n        \r\n
+    \   IsRemoteTile:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n
+    \       \r\n         # {\r\n        \r\n         # return !pickup.IsHeld && lastMovedLocallyServerTime
+    < seenInRemotePacket;\r\n        PUSH, pickup\r\n        PUSH, __9_intnl_SystemBoolean\r\n
+    \       EXTERN, \"VRCSDK3ComponentsVRCPickup.__get_IsHeld__SystemBoolean\"\r\n
+    \       PUSH, __9_intnl_SystemBoolean\r\n        PUSH, __10_intnl_SystemBoolean\r\n
+    \       EXTERN, \"SystemBoolean.__op_UnaryNegation__SystemBoolean__SystemBoolean\"\r\n
+    \       PUSH, __10_intnl_SystemBoolean\r\n        PUSH, __8_intnl_SystemBoolean\r\n
+    \       COPY\r\n        PUSH, __8_intnl_SystemBoolean\r\n        JUMP_IF_FALSE,
+    0x00000714\r\n        PUSH, lastMovedLocallyServerTime\r\n        PUSH, __7_intnl_SystemInt32\r\n
+    \       COPY\r\n        PUSH, __7_intnl_SystemInt32\r\n        PUSH, __0_seenInRemotePacket_Int32\r\n
+    \       PUSH, __11_intnl_SystemBoolean\r\n        EXTERN, \"SystemInt32.__op_LessThan__SystemInt32_SystemInt32__SystemBoolean\"\r\n
+    \       PUSH, __8_intnl_SystemBoolean\r\n        PUSH, __11_intnl_SystemBoolean\r\n
+    \       PUSH, __12_intnl_SystemBoolean\r\n        EXTERN, \"SystemBoolean.__op_ConditionalAnd__SystemBoolean_SystemBoolean__SystemBoolean\"\r\n
+    \       PUSH, __12_intnl_SystemBoolean\r\n        PUSH, __8_intnl_SystemBoolean\r\n
+    \       COPY\r\n        PUSH, __8_intnl_SystemBoolean\r\n        PUSH, __1_intnl_returnValSymbol_Boolean\r\n
+    \       COPY\r\n        PUSH, __0_intnl_returnTarget_UInt32 #Explicit return sequence\r\n
+    \       COPY\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        PUSH,
+    __0_intnl_returnTarget_UInt32 #Function epilogue\r\n        COPY\r\n        JUMP_INDIRECT,
+    __0_intnl_returnTarget_UInt32\r\n        \r\n        \r\n         # public bool
+    IsCustomOwnedAfterServerTime(int seenServerTimeMillis)\r\n    .export IsCustomOwnedAfterServerTime\r\n
+    \       \r\n    IsCustomOwnedAfterServerTime:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n
+    \       \r\n         # {\r\n        \r\n         # return pickup.IsHeld || lastMovedLocallyServerTime
+    > seenServerTimeMillis;\r\n        PUSH, pickup\r\n        PUSH, __14_intnl_SystemBoolean\r\n
+    \       EXTERN, \"VRCSDK3ComponentsVRCPickup.__get_IsHeld__SystemBoolean\"\r\n
+    \       PUSH, __14_intnl_SystemBoolean\r\n        PUSH, __13_intnl_SystemBoolean\r\n
+    \       COPY\r\n        PUSH, __13_intnl_SystemBoolean\r\n        PUSH, __15_intnl_SystemBoolean\r\n
+    \       EXTERN, \"SystemBoolean.__op_UnaryNegation__SystemBoolean__SystemBoolean\"\r\n
+    \       PUSH, __15_intnl_SystemBoolean\r\n        JUMP_IF_FALSE, 0x00000814\r\n
+    \       PUSH, lastMovedLocallyServerTime\r\n        PUSH, __8_intnl_SystemInt32\r\n
+    \       COPY\r\n        PUSH, __8_intnl_SystemInt32\r\n        PUSH, __0_seenServerTimeMillis_Int32\r\n
+    \       PUSH, __16_intnl_SystemBoolean\r\n        EXTERN, \"SystemInt32.__op_GreaterThan__SystemInt32_SystemInt32__SystemBoolean\"\r\n
+    \       PUSH, __13_intnl_SystemBoolean\r\n        PUSH, __16_intnl_SystemBoolean\r\n
+    \       PUSH, __17_intnl_SystemBoolean\r\n        EXTERN, \"SystemBoolean.__op_ConditionalOr__SystemBoolean_SystemBoolean__SystemBoolean\"\r\n
+    \       PUSH, __17_intnl_SystemBoolean\r\n        PUSH, __13_intnl_SystemBoolean\r\n
+    \       COPY\r\n        PUSH, __13_intnl_SystemBoolean\r\n        PUSH, __2_intnl_returnValSymbol_Boolean\r\n
     \       COPY\r\n        PUSH, __0_intnl_returnTarget_UInt32 #Explicit return sequence\r\n
     \       COPY\r\n        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32\r\n        PUSH,
     __0_intnl_returnTarget_UInt32 #Function epilogue\r\n        COPY\r\n        JUMP_INDIRECT,
@@ -306,683 +451,1396 @@ MonoBehaviour:
     - startInstruction: 0
       endInstruction: -1
       startSourceChar: 215
-      endSourceChar: 223
+      endSourceChar: 227
       line: 11
       lineChar: 4
-      spanCodeSection: 'private '
+      spanCodeSection: 'private new '
     - startInstruction: 0
       endInstruction: -1
-      startSourceChar: 223
-      endSourceChar: 223
+      startSourceChar: 227
+      endSourceChar: 227
       line: 11
-      lineChar: 12
+      lineChar: 16
       spanCodeSection: 
     - startInstruction: 0
       endInstruction: -1
-      startSourceChar: 223
-      endSourceChar: 251
+      startSourceChar: 227
+      endSourceChar: 255
       line: 11
-      lineChar: 12
+      lineChar: 16
       spanCodeSection: "MeshRenderer renderer;\r\n    "
     - startInstruction: 0
       endInstruction: -1
-      startSourceChar: 251
-      endSourceChar: 259
+      startSourceChar: 255
+      endSourceChar: 267
       line: 12
       lineChar: 4
-      spanCodeSection: 'private '
+      spanCodeSection: 'private new '
     - startInstruction: 0
       endInstruction: -1
-      startSourceChar: 259
-      endSourceChar: 259
+      startSourceChar: 267
+      endSourceChar: 267
       line: 12
-      lineChar: 12
+      lineChar: 16
       spanCodeSection: 
     - startInstruction: 0
       endInstruction: -1
-      startSourceChar: 259
-      endSourceChar: 286
+      startSourceChar: 267
+      endSourceChar: 294
       line: 12
-      lineChar: 12
+      lineChar: 16
       spanCodeSection: "BoxCollider collider;\r\n    "
     - startInstruction: 0
       endInstruction: -1
-      startSourceChar: 286
-      endSourceChar: 294
+      startSourceChar: 294
+      endSourceChar: 302
       line: 13
       lineChar: 4
       spanCodeSection: 'private '
     - startInstruction: 0
       endInstruction: -1
-      startSourceChar: 294
-      endSourceChar: 294
+      startSourceChar: 302
+      endSourceChar: 302
       line: 13
       lineChar: 12
       spanCodeSection: 
     - startInstruction: 0
       endInstruction: -1
-      startSourceChar: 294
-      endSourceChar: 320
+      startSourceChar: 302
+      endSourceChar: 1285
       line: 13
       lineChar: 12
-      spanCodeSection: "VRC_Pickup pickup;\r\n\r\n    "
+      spanCodeSection: "VRC_Pickup pickup;\r\n\r\n    /// <summary>\r\n    /// udon's
+        native ownership tracking is unreliable and gets out of sync with\r\n    ///
+        the custom networking in RiichiGame.\r\n    /// Instead, we transmit ownership
+        changes implicitly; if the local client reads\r\n    /// a packet with a tile
+        in it, we assume that tile is now owned remotely (by whoever).\r\n    ///
+        Unless: the server timestamp sent with that packet is earlier than we ourselves\r\n
+        \   /// moved the tile, or we're currently holding the tile. OnDrop, we update
+        our\r\n    /// locally last seen serverTime (I think it's from the last packet
+        we\r\n    /// received from vrchat servers, possibly plus some local delta),
+        as well\r\n    /// as when we sort the hand or shuffle.\r\n    /// \r\n    ///
+        XXX isKinematic is also dual duty with 'is in deal position' since the\r\n
+        \   /// stacked walls won't work without it.\r\n    /// \r\n    /// Not the
+        clearest implementation of ownership, but hopefully documented at least.\r\n
+        \   /// </summary>\r\n    "
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 1285
+      endSourceChar: 1285
+      line: 31
+      lineChar: 4
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 1285
+      endSourceChar: 1285
+      line: 31
+      lineChar: 4
+      spanCodeSection: 
+    - startInstruction: 0
+      endInstruction: -1
+      startSourceChar: 1285
+      endSourceChar: 1324
+      line: 31
+      lineChar: 4
+      spanCodeSection: "int lastMovedLocallyServerTime;\r\n\r\n    "
     - startInstruction: 0
       endInstruction: 7
-      startSourceChar: 320
-      endSourceChar: 338
-      line: 15
+      startSourceChar: 1324
+      endSourceChar: 1342
+      line: 33
       lineChar: 4
       spanCodeSection: "void Start()\r\n    "
     - startInstruction: 8
       endInstruction: 7
-      startSourceChar: 338
-      endSourceChar: 349
-      line: 16
+      startSourceChar: 1342
+      endSourceChar: 1353
+      line: 34
       lineChar: 4
       spanCodeSection: "{\r\n        "
     - startInstruction: 8
       endInstruction: 7
-      startSourceChar: 349
-      endSourceChar: 349
-      line: 17
+      startSourceChar: 1353
+      endSourceChar: 1353
+      line: 35
       lineChar: 8
       spanCodeSection: 
     - startInstruction: 8
       endInstruction: 7
-      startSourceChar: 349
-      endSourceChar: 360
-      line: 17
+      startSourceChar: 1353
+      endSourceChar: 1353
+      line: 35
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 8
+      endInstruction: 23
+      startSourceChar: 1353
+      endSourceChar: 1380
+      line: 35
+      lineChar: 8
+      spanCodeSection: "Init();\r\n        \r\n        "
+    - startInstruction: 24
+      endInstruction: 23
+      startSourceChar: 1380
+      endSourceChar: 1380
+      line: 37
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 24
+      endInstruction: 23
+      startSourceChar: 1380
+      endSourceChar: 1391
+      line: 37
       lineChar: 8
       spanCodeSection: 'renderer = '
-    - startInstruction: 8
-      endInstruction: 7
-      startSourceChar: 360
-      endSourceChar: 360
-      line: 17
+    - startInstruction: 24
+      endInstruction: 23
+      startSourceChar: 1391
+      endSourceChar: 1391
+      line: 37
       lineChar: 19
       spanCodeSection: 
-    - startInstruction: 8
-      endInstruction: 7
-      startSourceChar: 360
-      endSourceChar: 372
-      line: 17
+    - startInstruction: 24
+      endInstruction: 23
+      startSourceChar: 1391
+      endSourceChar: 1403
+      line: 37
       lineChar: 19
       spanCodeSection: GetComponent
-    - startInstruction: 8
-      endInstruction: 7
-      startSourceChar: 372
-      endSourceChar: 373
-      line: 17
+    - startInstruction: 24
+      endInstruction: 23
+      startSourceChar: 1403
+      endSourceChar: 1404
+      line: 37
       lineChar: 31
       spanCodeSection: <
-    - startInstruction: 8
-      endInstruction: 59
-      startSourceChar: 373
-      endSourceChar: 401
-      line: 17
+    - startInstruction: 24
+      endInstruction: 75
+      startSourceChar: 1404
+      endSourceChar: 1432
+      line: 37
       lineChar: 32
       spanCodeSection: "MeshRenderer>();\r\n\r\n        "
-    - startInstruction: 60
-      endInstruction: 59
-      startSourceChar: 401
-      endSourceChar: 401
-      line: 19
+    - startInstruction: 76
+      endInstruction: 75
+      startSourceChar: 1432
+      endSourceChar: 1432
+      line: 39
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 60
-      endInstruction: 59
-      startSourceChar: 401
-      endSourceChar: 409
-      line: 19
+    - startInstruction: 76
+      endInstruction: 75
+      startSourceChar: 1432
+      endSourceChar: 1440
+      line: 39
       lineChar: 8
       spanCodeSection: 'props = '
-    - startInstruction: 60
-      endInstruction: 59
-      startSourceChar: 409
-      endSourceChar: 413
-      line: 19
+    - startInstruction: 76
+      endInstruction: 75
+      startSourceChar: 1440
+      endSourceChar: 1444
+      line: 39
       lineChar: 16
       spanCodeSection: 'new '
-    - startInstruction: 60
-      endInstruction: 95
-      startSourceChar: 413
-      endSourceChar: 447
-      line: 19
+    - startInstruction: 76
+      endInstruction: 111
+      startSourceChar: 1444
+      endSourceChar: 1478
+      line: 39
       lineChar: 20
       spanCodeSection: "MaterialPropertyBlock();\r\n        "
-    - startInstruction: 96
-      endInstruction: 95
-      startSourceChar: 447
-      endSourceChar: 447
-      line: 20
+    - startInstruction: 112
+      endInstruction: 111
+      startSourceChar: 1478
+      endSourceChar: 1478
+      line: 40
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 96
-      endInstruction: 95
-      startSourceChar: 447
-      endSourceChar: 447
-      line: 20
+    - startInstruction: 112
+      endInstruction: 111
+      startSourceChar: 1478
+      endSourceChar: 1478
+      line: 40
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 96
-      endInstruction: 95
-      startSourceChar: 447
-      endSourceChar: 447
-      line: 20
+    - startInstruction: 112
+      endInstruction: 111
+      startSourceChar: 1478
+      endSourceChar: 1478
+      line: 40
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 96
-      endInstruction: 95
-      startSourceChar: 447
-      endSourceChar: 453
-      line: 20
+    - startInstruction: 112
+      endInstruction: 111
+      startSourceChar: 1478
+      endSourceChar: 1484
+      line: 40
       lineChar: 8
       spanCodeSection: props.
-    - startInstruction: 96
-      endInstruction: 95
-      startSourceChar: 453
-      endSourceChar: 462
-      line: 20
+    - startInstruction: 112
+      endInstruction: 111
+      startSourceChar: 1484
+      endSourceChar: 1493
+      line: 40
       lineChar: 14
       spanCodeSection: SetFloat(
-    - startInstruction: 96
-      endInstruction: 95
-      startSourceChar: 462
-      endSourceChar: 471
-      line: 20
+    - startInstruction: 112
+      endInstruction: 111
+      startSourceChar: 1493
+      endSourceChar: 1502
+      line: 40
       lineChar: 23
       spanCodeSection: '"_Tile", '
-    - startInstruction: 96
-      endInstruction: 95
-      startSourceChar: 471
-      endSourceChar: 471
-      line: 20
+    - startInstruction: 112
+      endInstruction: 111
+      startSourceChar: 1502
+      endSourceChar: 1502
+      line: 40
       lineChar: 32
       spanCodeSection: 
-    - startInstruction: 96
-      endInstruction: 95
-      startSourceChar: 471
-      endSourceChar: 471
-      line: 20
+    - startInstruction: 112
+      endInstruction: 111
+      startSourceChar: 1502
+      endSourceChar: 1502
+      line: 40
       lineChar: 32
       spanCodeSection: 
-    - startInstruction: 96
-      endInstruction: 95
-      startSourceChar: 471
-      endSourceChar: 475
-      line: 20
+    - startInstruction: 112
+      endInstruction: 111
+      startSourceChar: 1502
+      endSourceChar: 1506
+      line: 40
       lineChar: 32
       spanCodeSection: int.
-    - startInstruction: 96
-      endInstruction: 95
-      startSourceChar: 475
-      endSourceChar: 481
-      line: 20
+    - startInstruction: 112
+      endInstruction: 111
+      startSourceChar: 1506
+      endSourceChar: 1512
+      line: 40
       lineChar: 36
       spanCodeSection: Parse(
-    - startInstruction: 96
-      endInstruction: 95
-      startSourceChar: 481
-      endSourceChar: 481
-      line: 20
+    - startInstruction: 112
+      endInstruction: 111
+      startSourceChar: 1512
+      endSourceChar: 1512
+      line: 40
       lineChar: 42
       spanCodeSection: 
-    - startInstruction: 96
-      endInstruction: 95
-      startSourceChar: 481
-      endSourceChar: 481
-      line: 20
+    - startInstruction: 112
+      endInstruction: 111
+      startSourceChar: 1512
+      endSourceChar: 1512
+      line: 40
       lineChar: 42
       spanCodeSection: 
-    - startInstruction: 96
-      endInstruction: 95
-      startSourceChar: 481
-      endSourceChar: 486
-      line: 20
+    - startInstruction: 112
+      endInstruction: 111
+      startSourceChar: 1512
+      endSourceChar: 1517
+      line: 40
       lineChar: 42
       spanCodeSection: name.
-    - startInstruction: 96
-      endInstruction: 119
-      startSourceChar: 486
-      endSourceChar: 496
-      line: 20
+    - startInstruction: 112
+      endInstruction: 135
+      startSourceChar: 1517
+      endSourceChar: 1527
+      line: 40
       lineChar: 47
       spanCodeSection: Substring(
-    - startInstruction: 120
-      endInstruction: 119
-      startSourceChar: 496
-      endSourceChar: 498
-      line: 20
+    - startInstruction: 136
+      endInstruction: 135
+      startSourceChar: 1527
+      endSourceChar: 1530
+      line: 40
       lineChar: 57
-      spanCodeSection: 0,
-    - startInstruction: 120
-      endInstruction: 239
-      startSourceChar: 498
-      endSourceChar: 515
-      line: 20
-      lineChar: 59
+      spanCodeSection: '0, '
+    - startInstruction: 136
+      endInstruction: 255
+      startSourceChar: 1530
+      endSourceChar: 1547
+      line: 40
+      lineChar: 60
       spanCodeSection: "2)));\r\n\r\n        "
-    - startInstruction: 240
-      endInstruction: 239
-      startSourceChar: 515
-      endSourceChar: 515
-      line: 22
+    - startInstruction: 256
+      endInstruction: 255
+      startSourceChar: 1547
+      endSourceChar: 1547
+      line: 42
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 240
-      endInstruction: 239
-      startSourceChar: 515
-      endSourceChar: 515
-      line: 22
+    - startInstruction: 256
+      endInstruction: 255
+      startSourceChar: 1547
+      endSourceChar: 1547
+      line: 42
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 240
-      endInstruction: 239
-      startSourceChar: 515
-      endSourceChar: 534
-      line: 22
+    - startInstruction: 256
+      endInstruction: 255
+      startSourceChar: 1547
+      endSourceChar: 1566
+      line: 42
       lineChar: 8
       spanCodeSection: SetBackColorOffset(
-    - startInstruction: 240
-      endInstruction: 239
-      startSourceChar: 534
-      endSourceChar: 534
-      line: 22
+    - startInstruction: 256
+      endInstruction: 255
+      startSourceChar: 1566
+      endSourceChar: 1566
+      line: 42
       lineChar: 27
       spanCodeSection: 
-    - startInstruction: 240
-      endInstruction: 239
-      startSourceChar: 534
-      endSourceChar: 540
-      line: 22
+    - startInstruction: 256
+      endInstruction: 255
+      startSourceChar: 1566
+      endSourceChar: 1572
+      line: 42
       lineChar: 27
       spanCodeSection: Color.
-    - startInstruction: 240
-      endInstruction: 291
-      startSourceChar: 540
-      endSourceChar: 559
-      line: 22
+    - startInstruction: 256
+      endInstruction: 307
+      startSourceChar: 1572
+      endSourceChar: 1591
+      line: 42
       lineChar: 33
       spanCodeSection: "black);\r\n\r\n        "
-    - startInstruction: 292
-      endInstruction: 291
-      startSourceChar: 559
-      endSourceChar: 559
-      line: 24
+    - startInstruction: 308
+      endInstruction: 307
+      startSourceChar: 1591
+      endSourceChar: 1591
+      line: 44
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 292
-      endInstruction: 291
-      startSourceChar: 559
-      endSourceChar: 563
-      line: 24
-      lineChar: 8
-      spanCodeSection: 'r = '
-    - startInstruction: 292
-      endInstruction: 291
-      startSourceChar: 563
-      endSourceChar: 563
-      line: 24
-      lineChar: 12
-      spanCodeSection: 
-    - startInstruction: 292
-      endInstruction: 291
-      startSourceChar: 563
-      endSourceChar: 575
-      line: 24
-      lineChar: 12
-      spanCodeSection: GetComponent
-    - startInstruction: 292
-      endInstruction: 291
-      startSourceChar: 575
-      endSourceChar: 576
-      line: 24
-      lineChar: 24
-      spanCodeSection: <
-    - startInstruction: 292
-      endInstruction: 343
-      startSourceChar: 576
-      endSourceChar: 599
-      line: 24
-      lineChar: 25
-      spanCodeSection: "Rigidbody>();\r\n        "
-    - startInstruction: 344
-      endInstruction: 343
-      startSourceChar: 599
-      endSourceChar: 599
-      line: 25
-      lineChar: 8
-      spanCodeSection: 
-    - startInstruction: 344
-      endInstruction: 343
-      startSourceChar: 599
-      endSourceChar: 628
-      line: 25
+    - startInstruction: 308
+      endInstruction: 307
+      startSourceChar: 1591
+      endSourceChar: 1620
+      line: 44
       lineChar: 8
       spanCodeSection: 'r.maxDepenetrationVelocity = '
-    - startInstruction: 344
-      endInstruction: 367
-      startSourceChar: 628
-      endSourceChar: 793
-      line: 25
+    - startInstruction: 308
+      endInstruction: 331
+      startSourceChar: 1620
+      endSourceChar: 1785
+      line: 44
       lineChar: 37
       spanCodeSection: "0.1f;\r\n\r\n        // disable pickup by default; when you
         hit a sort tile button you can\r\n        // grab them. Prevents non-players
         from messing with tiles.\r\n        "
-    - startInstruction: 368
-      endInstruction: 367
-      startSourceChar: 793
-      endSourceChar: 793
-      line: 29
+    - startInstruction: 332
+      endInstruction: 331
+      startSourceChar: 1785
+      endSourceChar: 1785
+      line: 48
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 368
-      endInstruction: 367
-      startSourceChar: 793
-      endSourceChar: 802
-      line: 29
-      lineChar: 8
-      spanCodeSection: 'pickup = '
-    - startInstruction: 368
-      endInstruction: 367
-      startSourceChar: 802
-      endSourceChar: 814
-      line: 29
-      lineChar: 17
-      spanCodeSection: (VRC_Pickup)
-    - startInstruction: 368
-      endInstruction: 367
-      startSourceChar: 814
-      endSourceChar: 815
-      line: 29
-      lineChar: 29
-      spanCodeSection: (
-    - startInstruction: 368
-      endInstruction: 367
-      startSourceChar: 815
-      endSourceChar: 815
-      line: 29
-      lineChar: 30
-      spanCodeSection: 
-    - startInstruction: 368
-      endInstruction: 367
-      startSourceChar: 815
-      endSourceChar: 828
-      line: 29
-      lineChar: 30
-      spanCodeSection: GetComponent(
-    - startInstruction: 368
-      endInstruction: 367
-      startSourceChar: 828
-      endSourceChar: 835
-      line: 29
-      lineChar: 43
-      spanCodeSection: typeof(
-    - startInstruction: 368
-      endInstruction: 439
-      startSourceChar: 835
-      endSourceChar: 912
-      line: 29
-      lineChar: 50
-      spanCodeSection: "VRC_Pickup)));\r\n        // XXX doesn't work pickup.enabled
-        = false;\r\n        "
-    - startInstruction: 440
-      endInstruction: 439
-      startSourceChar: 912
-      endSourceChar: 912
-      line: 31
-      lineChar: 8
-      spanCodeSection: 
-    - startInstruction: 440
-      endInstruction: 439
-      startSourceChar: 912
-      endSourceChar: 923
-      line: 31
+    - startInstruction: 332
+      endInstruction: 331
+      startSourceChar: 1785
+      endSourceChar: 1796
+      line: 48
       lineChar: 8
       spanCodeSection: 'collider = '
-    - startInstruction: 440
-      endInstruction: 439
-      startSourceChar: 923
-      endSourceChar: 923
-      line: 31
+    - startInstruction: 332
+      endInstruction: 331
+      startSourceChar: 1796
+      endSourceChar: 1796
+      line: 48
       lineChar: 19
       spanCodeSection: 
-    - startInstruction: 440
-      endInstruction: 439
-      startSourceChar: 923
-      endSourceChar: 935
-      line: 31
+    - startInstruction: 332
+      endInstruction: 331
+      startSourceChar: 1796
+      endSourceChar: 1808
+      line: 48
       lineChar: 19
       spanCodeSection: GetComponent
-    - startInstruction: 440
-      endInstruction: 439
-      startSourceChar: 935
-      endSourceChar: 936
-      line: 31
+    - startInstruction: 332
+      endInstruction: 331
+      startSourceChar: 1808
+      endSourceChar: 1809
+      line: 48
       lineChar: 31
       spanCodeSection: <
-    - startInstruction: 440
-      endInstruction: 491
-      startSourceChar: 936
-      endSourceChar: 961
-      line: 31
+    - startInstruction: 332
+      endInstruction: 383
+      startSourceChar: 1809
+      endSourceChar: 1834
+      line: 48
       lineChar: 32
       spanCodeSection: "BoxCollider>();\r\n        "
-    - startInstruction: 492
-      endInstruction: 491
-      startSourceChar: 961
-      endSourceChar: 961
-      line: 32
+    - startInstruction: 384
+      endInstruction: 383
+      startSourceChar: 1834
+      endSourceChar: 1834
+      line: 49
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 492
-      endInstruction: 491
-      startSourceChar: 961
-      endSourceChar: 980
-      line: 32
+    - startInstruction: 384
+      endInstruction: 383
+      startSourceChar: 1834
+      endSourceChar: 1853
+      line: 49
       lineChar: 8
       spanCodeSection: 'collider.enabled = '
-    - startInstruction: 492
-      endInstruction: 535
-      startSourceChar: 980
-      endSourceChar: 999
-      line: 32
+    - startInstruction: 384
+      endInstruction: 427
+      startSourceChar: 1853
+      endSourceChar: 1874
+      line: 49
       lineChar: 27
-      spanCodeSection: "false;\r\n    }\r\n    "
-    - startInstruction: 536
-      endInstruction: 543
-      startSourceChar: 999
-      endSourceChar: 1020
-      line: 34
+      spanCodeSection: "false;\r\n    }\r\n\r\n    "
+    - startInstruction: 428
+      endInstruction: 435
+      startSourceChar: 1874
+      endSourceChar: 1891
+      line: 52
+      lineChar: 4
+      spanCodeSection: "void Init()\r\n    "
+    - startInstruction: 436
+      endInstruction: 435
+      startSourceChar: 1891
+      endSourceChar: 1902
+      line: 53
+      lineChar: 4
+      spanCodeSection: "{\r\n        "
+    - startInstruction: 436
+      endInstruction: 435
+      startSourceChar: 1902
+      endSourceChar: 1906
+      line: 54
+      lineChar: 8
+      spanCodeSection: if (
+    - startInstruction: 436
+      endInstruction: 435
+      startSourceChar: 1906
+      endSourceChar: 1906
+      line: 54
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 436
+      endInstruction: 455
+      startSourceChar: 1906
+      endSourceChar: 1916
+      line: 54
+      lineChar: 12
+      spanCodeSection: 'pickup == '
+    - startInstruction: 456
+      endInstruction: 503
+      startSourceChar: 1916
+      endSourceChar: 1922
+      line: 54
+      lineChar: 22
+      spanCodeSection: 'null) '
+    - startInstruction: 504
+      endInstruction: 503
+      startSourceChar: 1922
+      endSourceChar: 1922
+      line: 54
+      lineChar: 28
+      spanCodeSection: 
+    - startInstruction: 504
+      endInstruction: 503
+      startSourceChar: 1922
+      endSourceChar: 1931
+      line: 54
+      lineChar: 28
+      spanCodeSection: 'pickup = '
+    - startInstruction: 504
+      endInstruction: 503
+      startSourceChar: 1931
+      endSourceChar: 1943
+      line: 54
+      lineChar: 37
+      spanCodeSection: (VRC_Pickup)
+    - startInstruction: 504
+      endInstruction: 503
+      startSourceChar: 1943
+      endSourceChar: 1944
+      line: 54
+      lineChar: 49
+      spanCodeSection: (
+    - startInstruction: 504
+      endInstruction: 503
+      startSourceChar: 1944
+      endSourceChar: 1944
+      line: 54
+      lineChar: 50
+      spanCodeSection: 
+    - startInstruction: 504
+      endInstruction: 503
+      startSourceChar: 1944
+      endSourceChar: 1957
+      line: 54
+      lineChar: 50
+      spanCodeSection: GetComponent(
+    - startInstruction: 504
+      endInstruction: 503
+      startSourceChar: 1957
+      endSourceChar: 1964
+      line: 54
+      lineChar: 63
+      spanCodeSection: typeof(
+    - startInstruction: 504
+      endInstruction: 575
+      startSourceChar: 1964
+      endSourceChar: 1988
+      line: 54
+      lineChar: 70
+      spanCodeSection: "VRC_Pickup)));\r\n        "
+    - startInstruction: 576
+      endInstruction: 575
+      startSourceChar: 1988
+      endSourceChar: 1992
+      line: 55
+      lineChar: 8
+      spanCodeSection: if (
+    - startInstruction: 576
+      endInstruction: 575
+      startSourceChar: 1992
+      endSourceChar: 1992
+      line: 55
+      lineChar: 12
+      spanCodeSection: 
+    - startInstruction: 576
+      endInstruction: 595
+      startSourceChar: 1992
+      endSourceChar: 1997
+      line: 55
+      lineChar: 12
+      spanCodeSection: 'r == '
+    - startInstruction: 596
+      endInstruction: 643
+      startSourceChar: 1997
+      endSourceChar: 2003
+      line: 55
+      lineChar: 17
+      spanCodeSection: 'null) '
+    - startInstruction: 644
+      endInstruction: 643
+      startSourceChar: 2003
+      endSourceChar: 2003
+      line: 55
+      lineChar: 23
+      spanCodeSection: 
+    - startInstruction: 644
+      endInstruction: 643
+      startSourceChar: 2003
+      endSourceChar: 2007
+      line: 55
+      lineChar: 23
+      spanCodeSection: 'r = '
+    - startInstruction: 644
+      endInstruction: 643
+      startSourceChar: 2007
+      endSourceChar: 2007
+      line: 55
+      lineChar: 27
+      spanCodeSection: 
+    - startInstruction: 644
+      endInstruction: 643
+      startSourceChar: 2007
+      endSourceChar: 2019
+      line: 55
+      lineChar: 27
+      spanCodeSection: GetComponent
+    - startInstruction: 644
+      endInstruction: 643
+      startSourceChar: 2019
+      endSourceChar: 2020
+      line: 55
+      lineChar: 39
+      spanCodeSection: <
+    - startInstruction: 644
+      endInstruction: 715
+      startSourceChar: 2020
+      endSourceChar: 2048
+      line: 55
+      lineChar: 40
+      spanCodeSection: "Rigidbody>();\r\n    }\r\n\r\n    "
+    - startInstruction: 716
+      endInstruction: 723
+      startSourceChar: 2048
+      endSourceChar: 2069
+      line: 58
       lineChar: 4
       spanCodeSection: "void OnPickup()\r\n    "
-    - startInstruction: 544
-      endInstruction: 543
-      startSourceChar: 1020
-      endSourceChar: 1031
-      line: 35
+    - startInstruction: 724
+      endInstruction: 723
+      startSourceChar: 2069
+      endSourceChar: 2080
+      line: 59
       lineChar: 4
       spanCodeSection: "{\r\n        "
-    - startInstruction: 544
-      endInstruction: 543
-      startSourceChar: 1031
-      endSourceChar: 1031
-      line: 36
+    - startInstruction: 724
+      endInstruction: 723
+      startSourceChar: 2080
+      endSourceChar: 2080
+      line: 60
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 544
-      endInstruction: 543
-      startSourceChar: 1031
-      endSourceChar: 1047
-      line: 36
+    - startInstruction: 724
+      endInstruction: 723
+      startSourceChar: 2080
+      endSourceChar: 2080
+      line: 60
       lineChar: 8
-      spanCodeSection: 'r.isKinematic = '
-    - startInstruction: 544
-      endInstruction: 587
-      startSourceChar: 1047
-      endSourceChar: 1068
-      line: 36
-      lineChar: 24
-      spanCodeSection: "false;\r\n    }\r\n\r\n    "
-    - startInstruction: 588
-      endInstruction: 595
-      startSourceChar: 1068
-      endSourceChar: 1087
-      line: 39
+      spanCodeSection: 
+    - startInstruction: 724
+      endInstruction: 759
+      startSourceChar: 2080
+      endSourceChar: 2117
+      line: 60
+      lineChar: 8
+      spanCodeSection: "TakeCustomOwnership();\r\n    }\r\n\r\n    "
+    - startInstruction: 760
+      endInstruction: 767
+      startSourceChar: 2117
+      endSourceChar: 2136
+      line: 63
       lineChar: 4
       spanCodeSection: "void OnDrop()\r\n    "
-    - startInstruction: 596
-      endInstruction: 615
-      startSourceChar: 1087
-      endSourceChar: 1107
-      line: 40
-      lineChar: 4
-      spanCodeSection: "{\r\n    }\r\n    \r\n    "
-    - startInstruction: 616
-      endInstruction: 623
-      startSourceChar: 1107
-      endSourceChar: 1133
-      line: 43
-      lineChar: 4
-      spanCodeSection: "public bool IsHeld()\r\n    "
-    - startInstruction: 624
-      endInstruction: 623
-      startSourceChar: 1133
-      endSourceChar: 1144
-      line: 44
+    - startInstruction: 768
+      endInstruction: 767
+      startSourceChar: 2136
+      endSourceChar: 2147
+      line: 64
       lineChar: 4
       spanCodeSection: "{\r\n        "
-    - startInstruction: 624
-      endInstruction: 623
-      startSourceChar: 1144
-      endSourceChar: 1151
-      line: 45
+    - startInstruction: 768
+      endInstruction: 767
+      startSourceChar: 2147
+      endSourceChar: 2147
+      line: 65
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 768
+      endInstruction: 767
+      startSourceChar: 2147
+      endSourceChar: 2147
+      line: 65
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 768
+      endInstruction: 803
+      startSourceChar: 2147
+      endSourceChar: 2184
+      line: 65
+      lineChar: 8
+      spanCodeSection: "TakeCustomOwnership();\r\n    }\r\n\r\n    "
+    - startInstruction: 804
+      endInstruction: 811
+      startSourceChar: 2184
+      endSourceChar: 2227
+      line: 68
+      lineChar: 4
+      spanCodeSection: "public void TakeOwnershipForShuffle()\r\n    "
+    - startInstruction: 812
+      endInstruction: 811
+      startSourceChar: 2227
+      endSourceChar: 2441
+      line: 69
+      lineChar: 4
+      spanCodeSection: "{\r\n        // XXX the stacked walls will vibrate and fall
+        apart unless the tiles\r\n        // are kinematic while in it. Weird with
+        the whole ownership thing, but\r\n        // hopefully encapsulated here.\r\n\r\n
+        \       "
+    - startInstruction: 812
+      endInstruction: 811
+      startSourceChar: 2441
+      endSourceChar: 2441
+      line: 74
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 812
+      endInstruction: 811
+      startSourceChar: 2441
+      endSourceChar: 2457
+      line: 74
+      lineChar: 8
+      spanCodeSection: 'r.isKinematic = '
+    - startInstruction: 812
+      endInstruction: 835
+      startSourceChar: 2457
+      endSourceChar: 2528
+      line: 74
+      lineChar: 24
+      spanCodeSection: "true;\r\n        // add small fudge factor for tiles to settle;\r\n
+        \       "
+    - startInstruction: 836
+      endInstruction: 835
+      startSourceChar: 2528
+      endSourceChar: 2528
+      line: 76
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 836
+      endInstruction: 835
+      startSourceChar: 2528
+      endSourceChar: 2557
+      line: 76
+      lineChar: 8
+      spanCodeSection: 'lastMovedLocallyServerTime = '
+    - startInstruction: 836
+      endInstruction: 835
+      startSourceChar: 2557
+      endSourceChar: 2557
+      line: 76
+      lineChar: 37
+      spanCodeSection: 
+    - startInstruction: 836
+      endInstruction: 835
+      startSourceChar: 2557
+      endSourceChar: 2557
+      line: 76
+      lineChar: 37
+      spanCodeSection: 
+    - startInstruction: 836
+      endInstruction: 835
+      startSourceChar: 2557
+      endSourceChar: 2557
+      line: 76
+      lineChar: 37
+      spanCodeSection: 
+    - startInstruction: 836
+      endInstruction: 835
+      startSourceChar: 2557
+      endSourceChar: 2568
+      line: 76
+      lineChar: 37
+      spanCodeSection: Networking.
+    - startInstruction: 836
+      endInstruction: 871
+      startSourceChar: 2568
+      endSourceChar: 2600
+      line: 76
+      lineChar: 48
+      spanCodeSection: 'GetServerTimeInMilliseconds() + '
+    - startInstruction: 872
+      endInstruction: 923
+      startSourceChar: 2600
+      endSourceChar: 2662
+      line: 76
+      lineChar: 80
+      spanCodeSection: "100;\r\n\r\n        // visual indicator of shuffle state\r\n
+        \       "
+    - startInstruction: 924
+      endInstruction: 923
+      startSourceChar: 2662
+      endSourceChar: 2662
+      line: 79
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 924
+      endInstruction: 923
+      startSourceChar: 2662
+      endSourceChar: 2662
+      line: 79
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 924
+      endInstruction: 923
+      startSourceChar: 2662
+      endSourceChar: 2681
+      line: 79
+      lineChar: 8
+      spanCodeSection: SetBackColorOffset(
+    - startInstruction: 924
+      endInstruction: 923
+      startSourceChar: 2681
+      endSourceChar: 2685
+      line: 79
+      lineChar: 27
+      spanCodeSection: 'new '
+    - startInstruction: 924
+      endInstruction: 923
+      startSourceChar: 2685
+      endSourceChar: 2691
+      line: 79
+      lineChar: 31
+      spanCodeSection: Color(
+    - startInstruction: 924
+      endInstruction: 923
+      startSourceChar: 2691
+      endSourceChar: 2691
+      line: 79
+      lineChar: 37
+      spanCodeSection: 
+    - startInstruction: 924
+      endInstruction: 923
+      startSourceChar: 2691
+      endSourceChar: 2694
+      line: 79
+      lineChar: 37
+      spanCodeSection: '0, '
+    - startInstruction: 924
+      endInstruction: 923
+      startSourceChar: 2694
+      endSourceChar: 2694
+      line: 79
+      lineChar: 40
+      spanCodeSection: 
+    - startInstruction: 924
+      endInstruction: 923
+      startSourceChar: 2694
+      endSourceChar: 2700
+      line: 79
+      lineChar: 40
+      spanCodeSection: '0.1f, '
+    - startInstruction: 924
+      endInstruction: 923
+      startSourceChar: 2700
+      endSourceChar: 2700
+      line: 79
+      lineChar: 46
+      spanCodeSection: 
+    - startInstruction: 924
+      endInstruction: 1067
+      startSourceChar: 2700
+      endSourceChar: 2719
+      line: 79
+      lineChar: 46
+      spanCodeSection: "0));\r\n    }\r\n\r\n    "
+    - startInstruction: 1068
+      endInstruction: 1075
+      startSourceChar: 2719
+      endSourceChar: 2758
+      line: 82
+      lineChar: 4
+      spanCodeSection: "public void TakeCustomOwnership()\r\n    "
+    - startInstruction: 1076
+      endInstruction: 1075
+      startSourceChar: 2758
+      endSourceChar: 2769
+      line: 83
+      lineChar: 4
+      spanCodeSection: "{\r\n        "
+    - startInstruction: 1076
+      endInstruction: 1075
+      startSourceChar: 2769
+      endSourceChar: 2769
+      line: 84
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1076
+      endInstruction: 1075
+      startSourceChar: 2769
+      endSourceChar: 2785
+      line: 84
+      lineChar: 8
+      spanCodeSection: 'r.isKinematic = '
+    - startInstruction: 1076
+      endInstruction: 1099
+      startSourceChar: 2785
+      endSourceChar: 2859
+      line: 84
+      lineChar: 24
+      spanCodeSection: "false;\r\n\r\n        // add small fudge factor for tiles
+        to settle;\r\n        "
+    - startInstruction: 1100
+      endInstruction: 1099
+      startSourceChar: 2859
+      endSourceChar: 2859
+      line: 87
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1100
+      endInstruction: 1099
+      startSourceChar: 2859
+      endSourceChar: 2888
+      line: 87
+      lineChar: 8
+      spanCodeSection: 'lastMovedLocallyServerTime = '
+    - startInstruction: 1100
+      endInstruction: 1099
+      startSourceChar: 2888
+      endSourceChar: 2888
+      line: 87
+      lineChar: 37
+      spanCodeSection: 
+    - startInstruction: 1100
+      endInstruction: 1099
+      startSourceChar: 2888
+      endSourceChar: 2888
+      line: 87
+      lineChar: 37
+      spanCodeSection: 
+    - startInstruction: 1100
+      endInstruction: 1099
+      startSourceChar: 2888
+      endSourceChar: 2888
+      line: 87
+      lineChar: 37
+      spanCodeSection: 
+    - startInstruction: 1100
+      endInstruction: 1099
+      startSourceChar: 2888
+      endSourceChar: 2899
+      line: 87
+      lineChar: 37
+      spanCodeSection: Networking.
+    - startInstruction: 1100
+      endInstruction: 1135
+      startSourceChar: 2899
+      endSourceChar: 2931
+      line: 87
+      lineChar: 48
+      spanCodeSection: 'GetServerTimeInMilliseconds() + '
+    - startInstruction: 1136
+      endInstruction: 1187
+      startSourceChar: 2931
+      endSourceChar: 2989
+      line: 87
+      lineChar: 80
+      spanCodeSection: "100;\r\n\r\n        // visual indicator of ownership\r\n        "
+    - startInstruction: 1188
+      endInstruction: 1187
+      startSourceChar: 2989
+      endSourceChar: 2989
+      line: 90
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1188
+      endInstruction: 1187
+      startSourceChar: 2989
+      endSourceChar: 2989
+      line: 90
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1188
+      endInstruction: 1187
+      startSourceChar: 2989
+      endSourceChar: 3008
+      line: 90
+      lineChar: 8
+      spanCodeSection: SetBackColorOffset(
+    - startInstruction: 1188
+      endInstruction: 1187
+      startSourceChar: 3008
+      endSourceChar: 3008
+      line: 90
+      lineChar: 27
+      spanCodeSection: 
+    - startInstruction: 1188
+      endInstruction: 1187
+      startSourceChar: 3008
+      endSourceChar: 3014
+      line: 90
+      lineChar: 27
+      spanCodeSection: Color.
+    - startInstruction: 1188
+      endInstruction: 1259
+      startSourceChar: 3014
+      endSourceChar: 3035
+      line: 90
+      lineChar: 33
+      spanCodeSection: "blue);\r\n    }\r\n\r\n    "
+    - startInstruction: 1260
+      endInstruction: 1267
+      startSourceChar: 3035
+      endSourceChar: 3077
+      line: 93
+      lineChar: 4
+      spanCodeSection: "public void ReleaseCustomOwnership()\r\n    "
+    - startInstruction: 1268
+      endInstruction: 1267
+      startSourceChar: 3077
+      endSourceChar: 3088
+      line: 94
+      lineChar: 4
+      spanCodeSection: "{\r\n        "
+    - startInstruction: 1268
+      endInstruction: 1267
+      startSourceChar: 3088
+      endSourceChar: 3088
+      line: 95
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1268
+      endInstruction: 1267
+      startSourceChar: 3088
+      endSourceChar: 3104
+      line: 95
+      lineChar: 8
+      spanCodeSection: 'r.isKinematic = '
+    - startInstruction: 1268
+      endInstruction: 1291
+      startSourceChar: 3104
+      endSourceChar: 3156
+      line: 95
+      lineChar: 24
+      spanCodeSection: "true;\r\n        // visually reset ownership\r\n        "
+    - startInstruction: 1292
+      endInstruction: 1291
+      startSourceChar: 3156
+      endSourceChar: 3156
+      line: 97
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1292
+      endInstruction: 1291
+      startSourceChar: 3156
+      endSourceChar: 3156
+      line: 97
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 1292
+      endInstruction: 1291
+      startSourceChar: 3156
+      endSourceChar: 3175
+      line: 97
+      lineChar: 8
+      spanCodeSection: SetBackColorOffset(
+    - startInstruction: 1292
+      endInstruction: 1291
+      startSourceChar: 3175
+      endSourceChar: 3175
+      line: 97
+      lineChar: 27
+      spanCodeSection: 
+    - startInstruction: 1292
+      endInstruction: 1291
+      startSourceChar: 3175
+      endSourceChar: 3181
+      line: 97
+      lineChar: 27
+      spanCodeSection: Color.
+    - startInstruction: 1292
+      endInstruction: 1363
+      startSourceChar: 3181
+      endSourceChar: 3203
+      line: 97
+      lineChar: 33
+      spanCodeSection: "black);\r\n    }\r\n\r\n    "
+    - startInstruction: 1364
+      endInstruction: 1371
+      startSourceChar: 3203
+      endSourceChar: 3256
+      line: 100
+      lineChar: 4
+      spanCodeSection: "public bool IsCustomOwnedAndNotInDealPosition()\r\n    "
+    - startInstruction: 1372
+      endInstruction: 1371
+      startSourceChar: 3256
+      endSourceChar: 3267
+      line: 101
+      lineChar: 4
+      spanCodeSection: "{\r\n        "
+    - startInstruction: 1372
+      endInstruction: 1371
+      startSourceChar: 3267
+      endSourceChar: 3274
+      line: 102
       lineChar: 8
       spanCodeSection: 'return '
-    - startInstruction: 624
-      endInstruction: 623
-      startSourceChar: 1151
-      endSourceChar: 1151
-      line: 45
+    - startInstruction: 1372
+      endInstruction: 1371
+      startSourceChar: 3274
+      endSourceChar: 3274
+      line: 102
       lineChar: 15
       spanCodeSection: 
-    - startInstruction: 624
-      endInstruction: 623
-      startSourceChar: 1151
-      endSourceChar: 1158
-      line: 45
+    - startInstruction: 1372
+      endInstruction: 1371
+      startSourceChar: 3274
+      endSourceChar: 3274
+      line: 102
+      lineChar: 15
+      spanCodeSection: 
+    - startInstruction: 1372
+      endInstruction: 1371
+      startSourceChar: 3274
+      endSourceChar: 3281
+      line: 102
       lineChar: 15
       spanCodeSection: pickup.
-    - startInstruction: 624
-      endInstruction: 707
-      startSourceChar: 1158
-      endSourceChar: 1180
-      line: 45
+    - startInstruction: 1372
+      endInstruction: 1455
+      startSourceChar: 3281
+      endSourceChar: 3291
+      line: 102
       lineChar: 22
-      spanCodeSection: "IsHeld;\r\n    }\r\n\r\n    "
-    - startInstruction: 708
-      endInstruction: 715
-      startSourceChar: 1180
-      endSourceChar: 1229
-      line: 48
+      spanCodeSection: 'IsHeld || '
+    - startInstruction: 1456
+      endInstruction: 1455
+      startSourceChar: 3291
+      endSourceChar: 3292
+      line: 102
+      lineChar: 32
+      spanCodeSection: '!'
+    - startInstruction: 1456
+      endInstruction: 1455
+      startSourceChar: 3292
+      endSourceChar: 3292
+      line: 102
+      lineChar: 33
+      spanCodeSection: 
+    - startInstruction: 1456
+      endInstruction: 1455
+      startSourceChar: 3292
+      endSourceChar: 3294
+      line: 102
+      lineChar: 33
+      spanCodeSection: r.
+    - startInstruction: 1456
+      endInstruction: 1615
+      startSourceChar: 3294
+      endSourceChar: 3321
+      line: 102
+      lineChar: 35
+      spanCodeSection: "isKinematic;\r\n    }\r\n\r\n    "
+    - startInstruction: 1616
+      endInstruction: 1623
+      startSourceChar: 3321
+      endSourceChar: 3375
+      line: 105
       lineChar: 4
-      spanCodeSection: "public void SetBackColorOffset(Color color)\r\n    "
-    - startInstruction: 716
-      endInstruction: 715
-      startSourceChar: 1229
-      endSourceChar: 1240
-      line: 49
+      spanCodeSection: "public bool IsRemoteTile(int seenInRemotePacket)\r\n    "
+    - startInstruction: 1624
+      endInstruction: 1623
+      startSourceChar: 3375
+      endSourceChar: 3477
+      line: 106
+      lineChar: 4
+      spanCodeSection: "{\r\n        // we're not currently holding it and we haven't
+        moved it after the remote packet\r\n        "
+    - startInstruction: 1624
+      endInstruction: 1623
+      startSourceChar: 3477
+      endSourceChar: 3484
+      line: 108
+      lineChar: 8
+      spanCodeSection: 'return '
+    - startInstruction: 1624
+      endInstruction: 1623
+      startSourceChar: 3484
+      endSourceChar: 3484
+      line: 108
+      lineChar: 15
+      spanCodeSection: 
+    - startInstruction: 1624
+      endInstruction: 1623
+      startSourceChar: 3484
+      endSourceChar: 3485
+      line: 108
+      lineChar: 15
+      spanCodeSection: '!'
+    - startInstruction: 1624
+      endInstruction: 1623
+      startSourceChar: 3485
+      endSourceChar: 3485
+      line: 108
+      lineChar: 16
+      spanCodeSection: 
+    - startInstruction: 1624
+      endInstruction: 1623
+      startSourceChar: 3485
+      endSourceChar: 3492
+      line: 108
+      lineChar: 16
+      spanCodeSection: pickup.
+    - startInstruction: 1624
+      endInstruction: 1707
+      startSourceChar: 3492
+      endSourceChar: 3502
+      line: 108
+      lineChar: 23
+      spanCodeSection: 'IsHeld && '
+    - startInstruction: 1708
+      endInstruction: 1707
+      startSourceChar: 3502
+      endSourceChar: 3502
+      line: 108
+      lineChar: 33
+      spanCodeSection: 
+    - startInstruction: 1708
+      endInstruction: 1727
+      startSourceChar: 3502
+      endSourceChar: 3531
+      line: 108
+      lineChar: 33
+      spanCodeSection: 'lastMovedLocallyServerTime < '
+    - startInstruction: 1728
+      endInstruction: 1871
+      startSourceChar: 3531
+      endSourceChar: 3565
+      line: 108
+      lineChar: 62
+      spanCodeSection: "seenInRemotePacket;\r\n    }\r\n\r\n    "
+    - startInstruction: 1872
+      endInstruction: 1879
+      startSourceChar: 3565
+      endSourceChar: 3637
+      line: 111
+      lineChar: 4
+      spanCodeSection: "public bool IsCustomOwnedAfterServerTime(int seenServerTimeMillis)\r\n
+        \   "
+    - startInstruction: 1880
+      endInstruction: 1879
+      startSourceChar: 3637
+      endSourceChar: 3648
+      line: 112
       lineChar: 4
       spanCodeSection: "{\r\n        "
-    - startInstruction: 716
-      endInstruction: 715
-      startSourceChar: 1240
-      endSourceChar: 1240
-      line: 50
+    - startInstruction: 1880
+      endInstruction: 1879
+      startSourceChar: 3648
+      endSourceChar: 3655
+      line: 113
+      lineChar: 8
+      spanCodeSection: 'return '
+    - startInstruction: 1880
+      endInstruction: 1879
+      startSourceChar: 3655
+      endSourceChar: 3655
+      line: 113
+      lineChar: 15
+      spanCodeSection: 
+    - startInstruction: 1880
+      endInstruction: 1879
+      startSourceChar: 3655
+      endSourceChar: 3655
+      line: 113
+      lineChar: 15
+      spanCodeSection: 
+    - startInstruction: 1880
+      endInstruction: 1879
+      startSourceChar: 3655
+      endSourceChar: 3662
+      line: 113
+      lineChar: 15
+      spanCodeSection: pickup.
+    - startInstruction: 1880
+      endInstruction: 1963
+      startSourceChar: 3662
+      endSourceChar: 3672
+      line: 113
+      lineChar: 22
+      spanCodeSection: 'IsHeld || '
+    - startInstruction: 1964
+      endInstruction: 1963
+      startSourceChar: 3672
+      endSourceChar: 3672
+      line: 113
+      lineChar: 32
+      spanCodeSection: 
+    - startInstruction: 1964
+      endInstruction: 1983
+      startSourceChar: 3672
+      endSourceChar: 3701
+      line: 113
+      lineChar: 32
+      spanCodeSection: 'lastMovedLocallyServerTime > '
+    - startInstruction: 1984
+      endInstruction: 2127
+      startSourceChar: 3701
+      endSourceChar: 3737
+      line: 113
+      lineChar: 61
+      spanCodeSection: "seenServerTimeMillis;\r\n    }\r\n\r\n    "
+    - startInstruction: 2128
+      endInstruction: 2135
+      startSourceChar: 3737
+      endSourceChar: 3786
+      line: 116
+      lineChar: 4
+      spanCodeSection: "public void SetBackColorOffset(Color color)\r\n    "
+    - startInstruction: 2136
+      endInstruction: 2135
+      startSourceChar: 3786
+      endSourceChar: 3797
+      line: 117
+      lineChar: 4
+      spanCodeSection: "{\r\n        "
+    - startInstruction: 2136
+      endInstruction: 2135
+      startSourceChar: 3797
+      endSourceChar: 3797
+      line: 118
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 716
-      endInstruction: 715
-      startSourceChar: 1240
-      endSourceChar: 1240
-      line: 50
+    - startInstruction: 2136
+      endInstruction: 2135
+      startSourceChar: 3797
+      endSourceChar: 3797
+      line: 118
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 716
-      endInstruction: 715
-      startSourceChar: 1240
-      endSourceChar: 1240
-      line: 50
+    - startInstruction: 2136
+      endInstruction: 2135
+      startSourceChar: 3797
+      endSourceChar: 3797
+      line: 118
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 716
-      endInstruction: 715
-      startSourceChar: 1240
-      endSourceChar: 1246
-      line: 50
+    - startInstruction: 2136
+      endInstruction: 2135
+      startSourceChar: 3797
+      endSourceChar: 3803
+      line: 118
       lineChar: 8
       spanCodeSection: props.
-    - startInstruction: 716
-      endInstruction: 715
-      startSourceChar: 1246
-      endSourceChar: 1255
-      line: 50
+    - startInstruction: 2136
+      endInstruction: 2135
+      startSourceChar: 3803
+      endSourceChar: 3812
+      line: 118
       lineChar: 14
       spanCodeSection: SetColor(
-    - startInstruction: 716
-      endInstruction: 715
-      startSourceChar: 1255
-      endSourceChar: 1275
-      line: 50
+    - startInstruction: 2136
+      endInstruction: 2135
+      startSourceChar: 3812
+      endSourceChar: 3832
+      line: 118
       lineChar: 23
       spanCodeSection: '"_BackColorOffset", '
-    - startInstruction: 716
-      endInstruction: 747
-      startSourceChar: 1275
-      endSourceChar: 1292
-      line: 50
+    - startInstruction: 2136
+      endInstruction: 2167
+      startSourceChar: 3832
+      endSourceChar: 3849
+      line: 118
       lineChar: 43
       spanCodeSection: "color);\r\n        "
-    - startInstruction: 748
-      endInstruction: 747
-      startSourceChar: 1292
-      endSourceChar: 1292
-      line: 51
+    - startInstruction: 2168
+      endInstruction: 2167
+      startSourceChar: 3849
+      endSourceChar: 3849
+      line: 119
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 748
-      endInstruction: 747
-      startSourceChar: 1292
-      endSourceChar: 1292
-      line: 51
+    - startInstruction: 2168
+      endInstruction: 2167
+      startSourceChar: 3849
+      endSourceChar: 3849
+      line: 119
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 748
-      endInstruction: 747
-      startSourceChar: 1292
-      endSourceChar: 1292
-      line: 51
+    - startInstruction: 2168
+      endInstruction: 2167
+      startSourceChar: 3849
+      endSourceChar: 3849
+      line: 119
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 748
-      endInstruction: 747
-      startSourceChar: 1292
-      endSourceChar: 1301
-      line: 51
+    - startInstruction: 2168
+      endInstruction: 2167
+      startSourceChar: 3849
+      endSourceChar: 3858
+      line: 119
       lineChar: 8
       spanCodeSection: renderer.
-    - startInstruction: 748
-      endInstruction: 747
-      startSourceChar: 1301
-      endSourceChar: 1318
-      line: 51
+    - startInstruction: 2168
+      endInstruction: 2167
+      startSourceChar: 3858
+      endSourceChar: 3875
+      line: 119
       lineChar: 17
       spanCodeSection: SetPropertyBlock(
-    - startInstruction: 748
-      endInstruction: 748
-      startSourceChar: 1318
-      endSourceChar: 1318
-      line: 51
+    - startInstruction: 2168
+      endInstruction: 2168
+      startSourceChar: 3875
+      endSourceChar: 3875
+      line: 119
       lineChar: 34
       spanCodeSection: 
   hasInteractEvent: 0
@@ -1008,7 +1866,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 5
+      Data: 6
     - Name: 
       Entry: 7
       Data: 
@@ -1306,6 +2164,69 @@ MonoBehaviour:
     - Name: fieldAttributes
       Entry: 7
       Data: 21|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: userBehaviourSource
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: lastMovedLocallyServerTime
+    - Name: $v
+      Entry: 7
+      Data: 22|UdonSharp.FieldDefinition, UdonSharp.Editor
+    - Name: fieldSymbol
+      Entry: 7
+      Data: 23|UdonSharp.SymbolDefinition, UdonSharp.Editor
+    - Name: internalType
+      Entry: 7
+      Data: 24|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Int32, mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: declarationType
+      Entry: 3
+      Data: 2
+    - Name: syncMode
+      Entry: 3
+      Data: 0
+    - Name: symbolResolvedTypeName
+      Entry: 1
+      Data: SystemInt32
+    - Name: symbolOriginalName
+      Entry: 1
+      Data: lastMovedLocallyServerTime
+    - Name: symbolUniqueName
+      Entry: 1
+      Data: lastMovedLocallyServerTime
+    - Name: symbolDefaultValue
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fieldAttributes
+      Entry: 7
+      Data: 25|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
