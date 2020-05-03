@@ -30,6 +30,7 @@ public class WhiteboardSlider : UdonSharpBehaviour
 
     void SetColor()
     {
+        slider.value = hue; // to sync UI element on remote.
         markerMat.color = Color.HSVToRGB(hue, 1, 1);
         background.color = Color.HSVToRGB(hue, 1, 1);
     }

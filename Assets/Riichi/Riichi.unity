@@ -1164,7 +1164,7 @@ GameObject:
   - component: {fileID: 31940619}
   - component: {fileID: 31940620}
   m_Layer: 17
-  m_Name: Row
+  m_Name: Row-03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4848,7 +4848,7 @@ GameObject:
   - component: {fileID: 155671152}
   - component: {fileID: 155671153}
   m_Layer: 17
-  m_Name: Row
+  m_Name: Row-03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6846,7 +6846,7 @@ GameObject:
   - component: {fileID: 251153326}
   - component: {fileID: 251153327}
   m_Layer: 17
-  m_Name: Row
+  m_Name: Row-03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8027,7 +8027,7 @@ GameObject:
   - component: {fileID: 321202019}
   - component: {fileID: 321202020}
   m_Layer: 17
-  m_Name: Row
+  m_Name: Row-01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9234,7 +9234,7 @@ GameObject:
   - component: {fileID: 380672874}
   - component: {fileID: 380672875}
   m_Layer: 17
-  m_Name: Row
+  m_Name: Row-00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12144,7 +12144,7 @@ GameObject:
   - component: {fileID: 494588776}
   - component: {fileID: 494588777}
   m_Layer: 17
-  m_Name: Row
+  m_Name: Row-02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12582,7 +12582,7 @@ GameObject:
   - component: {fileID: 516004222}
   - component: {fileID: 516004223}
   m_Layer: 17
-  m_Name: Row
+  m_Name: Row-02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17489,7 +17489,7 @@ GameObject:
   - component: {fileID: 755936216}
   - component: {fileID: 755936217}
   m_Layer: 17
-  m_Name: Row
+  m_Name: Row-03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24184,7 +24184,7 @@ GameObject:
   - component: {fileID: 846563773}
   - component: {fileID: 846563774}
   m_Layer: 17
-  m_Name: Row
+  m_Name: Row-01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27262,7 +27262,7 @@ GameObject:
   - component: {fileID: 976921961}
   - component: {fileID: 976921962}
   m_Layer: 17
-  m_Name: Row
+  m_Name: Row-01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31541,7 +31541,7 @@ GameObject:
   - component: {fileID: 1165929049}
   - component: {fileID: 1165929050}
   m_Layer: 17
-  m_Name: Row
+  m_Name: Row-00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35654,7 +35654,7 @@ GameObject:
   - component: {fileID: 1374589834}
   - component: {fileID: 1374589835}
   m_Layer: 17
-  m_Name: Row
+  m_Name: Row-00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35714,7 +35714,7 @@ GameObject:
   - component: {fileID: 1379233921}
   - component: {fileID: 1379233922}
   m_Layer: 17
-  m_Name: Row
+  m_Name: Row-01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37752,35 +37752,21 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'To start playing, hit the ''Sit'' button next to each side of the table.
-    The east player (closest to this message) can then shuffle the tiles. Press ''Sort
-    Hand'' to stand sort and align hand tiles.
-
-
-    Only seated players can move tiles. Press "Unseat" to let another player sit,
-
-    or have the instance master press it.
-
-
-    Due to Udon limitations, tile positions are only synced every second or so, so
-    other player''s tiles will appear to jump around.
-
-
-    If tiles seem out of sync according to other players , hit the "Resync Physics"
-    button to hopefully get things back in order. If that doesn''t work, you may have
-    to rejoin the instance.
-
-
-    Late-joiners and spectators should also see synced tiles, and can also hit "Resync
-    Physics" buttons if things seem broken.
-
-
-    The source for this world and its synchronization system are at https://github.com/hiinaspace/just-mahjong
-    .
-
-
-    Please report any bugs on github, by email to riichi@hiina.space, or by matrix
-    to @hiina:vrg.party, or by discord to hiina#7736.'
+  m_Text: "To start playing, hit the 'Sit' button next to each side of the table.
+    The east player (closest to this message) can then shuffle the tiles. Press 'Sort
+    Hand' to stand sort and align hand tiles.\n\nOnly seated players can move tiles.
+    Press \"Unseat\" to let another player sit,\nor have the instance master press
+    it to remove them fromm the game.\n\nDue to Udon limitations, tile positions are
+    only synced every second or so, so other player's tiles will appear to jump around.
+    If tiles seem out of sync according to other players , hit the \"Resync Physics\"
+    button to hopefully get things back in order. If that doesn't work, you may have
+    to rejoin the instance.\n\nLate-joiners and spectators should also see synced
+    tiles, and can also hit \"Resync Physics\" buttons if things seem broken.\n\nThe
+    tile backs will change color locally to represent sync state (for debugging).\nI'll
+    add an option to turn off the color changes soon\u2122\n\nThe source for this
+    world and its synchronization system are at https://github.com/hiinaspace/just-mahjong
+    .\n\nPlease report any bugs on github, by email to riichi@hiina.space, or by matrix
+    to @hiina:vrg.party, or by discord to hiina#7736."
 --- !u!222 &1474791925
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -38297,7 +38283,7 @@ GameObject:
   - component: {fileID: 1514911779}
   - component: {fileID: 1514911780}
   m_Layer: 17
-  m_Name: Row
+  m_Name: Row-02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42950,7 +42936,7 @@ GameObject:
   - component: {fileID: 1752040534}
   - component: {fileID: 1752040535}
   m_Layer: 17
-  m_Name: Row
+  m_Name: Row-02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50053,7 +50039,7 @@ GameObject:
   - component: {fileID: 2074458503}
   - component: {fileID: 2074458504}
   m_Layer: 17
-  m_Name: Row
+  m_Name: Row-00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -11,6 +11,7 @@
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _FaceGlossiness ("Face Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
+        _FaceMetallic ("Face Metallic", Range(0,1)) = 0.0
 		_Parallax("Parallax", float) = 0
         [PerRendererData] _Tile ("Tile index", Int) = 0
     }
@@ -46,6 +47,7 @@
         half _Glossiness;
         half _FaceGlossiness;
         half _Metallic;
+        half _FaceMetallic;
         fixed4 _Color;
         fixed4 _BackColor;
         float _Parallax;
@@ -86,7 +88,7 @@
             //o.Albedo.rgb = IN.tileFaceMask;
 
             // Metallic and smoothness come from slider variables
-            o.Metallic = _Metallic;
+            o.Metallic = lerp(_FaceMetallic, _Metallic, height);
             o.Smoothness = lerp(_FaceGlossiness, _Glossiness, height);
             o.Alpha = 1.0;
 
