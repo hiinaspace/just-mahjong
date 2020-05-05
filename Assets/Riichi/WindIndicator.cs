@@ -18,19 +18,12 @@ public class WindIndicator : UdonSharpBehaviour
     void Interact()
     {
         Networking.SetOwner(Networking.LocalPlayer, gameObject);
-        transform.Rotate(new Vector3(0, 0, 90));
+        transform.Rotate(new Vector3(0, 0, 270));
         rot = transform.rotation;
     }
 
-    float lastUpdate = 0;
-
-    void FixedUpdate()
+    public override void OnDeserialization()
     {
-        lastUpdate += Time.deltaTime;
-        if (lastUpdate > 1)
-        {
-            lastUpdate = 0;
-            transform.rotation = rot;
-        }
+        transform.rotation = rot;
     }
 }
