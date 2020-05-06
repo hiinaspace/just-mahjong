@@ -1,5 +1,5 @@
-//#define DEBUG
-#undef DEBUG
+#define DEBUG
+//#undef DEBUG
 
 using System;
 using System.Collections;
@@ -106,56 +106,10 @@ public class Bus : UdonSharpBehaviour
     public float minCooldownWait = 0.2f;
     public float maxCooldownWait = 0.4f;
 
-#if (DEBUG)
-    public Text cooldown;
-    public Text ackWaitText;
-    public Text numChans;
-
-    public void NumChanDown()
-    {
-        channelCount = Mathf.Max(1, channelCount - 1);
-        numChans.text = $"numChans: {channelCount}";
-    }
-    public void NumChanUp()
-    {
-        channelCount = Mathf.Min(8, channelCount + 1);
-        numChans.text = $"numChans: {channelCount}";
-    }
-
-    public void AckWaitUp()
-    {
-        ackWait += 0.1f;
-        ackWaitText.text = $"ack {ackWait}";
-    }
-    public void AckWaitDown()
-    {
-        ackWait -= 0.1f;
-        ackWaitText.text = $"ack {ackWait}";
-    }
-    public void CooldownUp()
-    {
-        maxCooldownWait += 0.1f;
-        minCooldownWait += 0.1f;
-        cooldown.text = $"CD {maxCooldownWait}";
-    }
-    public void CooldownDown()
-    {
-        maxCooldownWait -= 0.1f;
-        minCooldownWait -= 0.1f;
-        cooldown.text = $"CD {maxCooldownWait}";
-    }
-
-#endif
-
     void Start()
     {
         recvBuffer = new byte[recvBufferSize][];
         successfulAckedObjects = new object[recvBufferSize];
-#if (DEBUG)
-        numChans.text = $"numChans: {channelCount}";
-        cooldown.text = $"CD {maxCooldownWait}";
-        ackWaitText.text = $"ack {ackWait}";
-#endif
     }
 
     void Update()

@@ -28,8 +28,10 @@ public class RiichiTile : UdonSharpBehaviour
     /// stacked walls won't work without it.
     /// 
     /// Not the clearest implementation of ownership, but hopefully documented at least.
+    /// note that Networking.GetSErverTimeInMilliseconds starts at int.MinValue (far negative)
+    /// not as zero.
     /// </summary>
-    int lastMovedLocallyServerTime;
+    public int lastMovedLocallyServerTime = int.MinValue;
 
     void Start()
     {

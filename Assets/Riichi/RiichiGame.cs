@@ -1,7 +1,9 @@
 #define DEBUG
 using System;
+using System.CodeDom;
 using UdonSharp;
 using UnityEngine;
+using UnityEngine.UI;
 using VRC.SDKBase;
 using VRC.Udon;
 
@@ -127,9 +129,44 @@ public class RiichiGame : UdonSharpBehaviour
     // last know tile transform
     private Vector3[] lastKnownPos = new Vector3[136];
     private Quaternion[] lastKnownRot = new Quaternion[136];
+    float[] lastMoved = new float[136];
 
     // XXX kludge for syncing score
     bool scoreChanged = false;
+
+    public Text debugText;
+    private const int LOG_SIZE = 16;
+    private string[] logLines = new string[LOG_SIZE];
+    private int logLine = 0;
+    float logWait;
+    const float logInterval = 0.25f;
+
+    // to cut down on Update() time, only check a subset of the tiles each frame
+    private int localTileCursor;
+    private const int checkedTilesPerUpdate = 17;
+
+    private float sendWait;
+    private const float sendInterval = 0.5f;
+
+    // XXX udonsharp can't access other const members, so duplicate from Bus
+    private const int maxSyncedStringSize = 105;
+    private const int maxPacketCharSize = maxSyncedStringSize * 2;
+    // 14 bits leftover to do something with
+    // possibly packing player id + seqNo to monitor per-player packet loss.
+    private const int headerCharSize = 2; 
+    // for simplicity of the byte -> 7bit packing, which packs 7 bytes to 8 chars, 56 bits at a time
+    // header size at 2 makes this a nice round 208 chars or 182 bytes
+    private const int maxDataCharSize = (int)((maxPacketCharSize - headerCharSize) / 8f) * 8;
+    private const int maxDataByteSize = maxDataCharSize / 8 * 7;
+
+    // ring buffers of Bus
+    private int recvBufIdx;
+    private int ackBufIdx;
+
+    private float shuffleStateWait = 0;
+    private const float shuffleStateInterval = 10f;
+
+    float disableWait = 0;
 
     void Start()
     {
@@ -177,39 +214,86 @@ public class RiichiGame : UdonSharpBehaviour
         SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.All, "DoResync");
     }
 
+    #region Debug state
+
+    private void WriteDebugState()
+    {
+        var s =  $@"
+game: {gameId} gameStarted: {gameStarted}
+shuffleHash: {shuffleHash()} serverTimeMillis: {GetServerTime()}
+latestTileMovedLocally: {latestTileMovedLocallyServerTime()}
+lmtTileCnt: {trueCount(locallyMovedTiles)}
+sendWait: {sendWait}
+shuffleStateWait: {shuffleStateWait}
+isTableOwner: {IsTableOwner()} isSeated: {IsSeated()}
+EAST  player: {getSeatOwner(EAST)}
+NORTH player: {getSeatOwner(NORTH)}
+WEST  player: {getSeatOwner(WEST)}
+SOUTH player: {getSeatOwner(SOUTH)}
+";
+        for (int i = 0; i < LOG_SIZE; ++i)
+        {
+            s += logLines[i] + "\n";
+        }
+        debugText.text = s;
+    }
+
+    private int trueCount(bool[] boolmap)
+    {
+        int n = 0;
+        for (int i = 0; i < 136; ++i)
+        {
+            if (boolmap[i]) n++;
+        }
+        return n;
+    }
+    
+    private int latestTileMovedLocallyServerTime()
+    {
+        int n = int.MinValue;
+        for (int i = 0; i < 136; ++i)
+        {
+            n = Mathf.Max(riichiTiles[i].lastMovedLocallyServerTime, n);
+        }
+        return n;
+    }
+
+    private int shuffleHash()
+    {
+        int h = 0;
+        for (int i = 0; i < 136; ++i)
+        {
+            h = 31 * h + shuffleOrder[i];
+        }
+        return h;
+    }
+
+
+    private string getSeatOwner(int seat)
+    {
+        var s = seats[seat];
+        var p = Networking.GetOwner(s.gameObject);
+        if (p == null)
+        {
+            return "Editor";
+        }
+        return $"{p.displayName} seated: {s.playerSeated}";
+    }
+
+    void LogInternal(string s)
+    {
+        logLines[logLine++] = $"{Networking.GetNetworkDateTime()} {GetServerTime()}: {s}";
+        logLine %= LOG_SIZE;
+    }
+
+    #endregion
+
     private bool IsTableOwner()
     {
         return Networking.IsOwner(seats[EAST].gameObject) && seats[EAST].playerSeated;
     }
 
-    // to cut down on Update() time, only check a subset of the tiles each frame
-    private int localTileCursor;
-    private const int checkedTilesPerUpdate = 17;
-
-    private float sendWait;
-    private const float sendInterval = 1f;
-
-    // XXX udonsharp can't access other const members, so duplicate from Bus
-    private const int maxSyncedStringSize = 105;
-    private const int maxPacketCharSize = maxSyncedStringSize * 2;
-    // 14 bits leftover to do something with
-    // possibly packing player id + seqNo to monitor per-player packet loss.
-    private const int headerCharSize = 2; 
-    // for simplicity of the byte -> 7bit packing, which packs 7 bytes to 8 chars, 56 bits at a time
-    // header size at 2 makes this a nice round 208 chars or 182 bytes
-    private const int maxDataCharSize = (int)((maxPacketCharSize - headerCharSize) / 8f) * 8;
-    private const int maxDataByteSize = maxDataCharSize / 8 * 7;
-
-    // ring buffers of Bus
-    private int recvBufIdx;
-    private int ackBufIdx;
-
-    private float shuffleStateWait = 0;
-    private const float shuffleStateInterval = 2f;
-
-    float disableWait = 0;
-
-    bool rotEq(Quaternion a, Quaternion b)
+        bool rotEq(Quaternion a, Quaternion b)
     {
         return Mathf.Abs(Quaternion.Dot(a, b)) > 0.999f;
     }
@@ -239,6 +323,10 @@ public class RiichiGame : UdonSharpBehaviour
                     var rt = riichiTiles[ack];
                     if (rt.IsCustomOwnedAndNotInDealPosition())
                     {
+
+
+                        // send next shuffle packet immediately
+                        shuffleStateWait = -1f;
                         rt.SetBackColorOffset(Color.blue);
                     }
                     locallyMovedTiles[ack] = false;
@@ -248,27 +336,38 @@ public class RiichiGame : UdonSharpBehaviour
         }
 
         // skip other stuff if table is idle
-        if (!gameStarted) return;
-
-        if (IsSeated())
+        if (gameStarted)
         {
-            CheckMovedLocalTiles();
+            if (IsSeated())
+            {
+                CheckMovedLocalTiles();
 
-            // if we're the table owner, send out deal state packets every once and a while
-            if ((shuffleStateWait -= Time.deltaTime) < 0)
-            {
-                shuffleStateWait = shuffleStateInterval;
-                SendShuffleState();
-            } else
-            {
-                BroadcastTiles();
+                // if we're the table owner, send out deal state packets every once and a while
+                if ((shuffleStateWait -= Time.deltaTime) < 0)
+                {
+                    shuffleStateWait = shuffleStateInterval;
+                    SendShuffleState();
+                }
+                else
+                {
+                    BroadcastTiles();
+                }
             }
-        } else
+            else
+            {
+                // XXX if player isn't seated, dont let them touch tiles
+                if ((disableWait -= Time.deltaTime) <= 0)
+                {
+                    disableWait = 1f;
+                    DisableTiles();
+                }
+            }
+
+        }
+        if ((logWait -= Time.deltaTime) < 0)
         {
-            // XXX if player isn't seated, dont let them touch tiles
-            if ((disableWait -= Time.deltaTime) > 0) return;
-            disableWait = 1f;
-            DisableTiles();
+            logWait = logInterval;
+            WriteDebugState();
         }
     }
 
@@ -308,8 +407,6 @@ public class RiichiGame : UdonSharpBehaviour
         bus.sendAckObject = new int[0]; 
         bus.sendBufferReady = true;
     }
-
-    float[] lastMoved = new float[136];
     
     void CheckMovedLocalTiles()
     {
@@ -346,6 +443,11 @@ public class RiichiGame : UdonSharpBehaviour
 
                     UpdateInternalTileState(n);
                 }
+            } else if (tileState[n] == DEAL)
+            {
+                // clear out for dealt tiles (never should be in lmt in the first place)
+                // XXX more xtreme kludge, mostly to get the debug lmt state more accurate
+                locallyMovedTiles[n] = false;
             }
         }
     }
@@ -395,7 +497,8 @@ public class RiichiGame : UdonSharpBehaviour
             return;
         }
 
-        WriteHeader(buf, false, GetServerTime());
+        var st = GetServerTime();
+        WriteHeader(buf, false, st);
 
         WriteSeatAndScore(buf, headerSize); // after header
         scoreChanged = false;
@@ -403,7 +506,7 @@ public class RiichiGame : UdonSharpBehaviour
         buf[n] = 255; // EOF in packet
         presentTiles[j] = 255; // EOF in ack object
 
-        //Debug.Log($" sent packet from {gameId}");
+        LogInternal($"sent {n} byte packet st={st}");
 
         bus.sendAckObject = presentTiles; 
         bus.sendBufferReady = true;
@@ -428,6 +531,7 @@ public class RiichiGame : UdonSharpBehaviour
         if (packetIsShuffle)
         {
             //DebugBytes($"{gameId} got shuffle packet ", packet, 182);
+            LogInternal($"read shuffle packet st={packetTime}");
             bool[] inShuffle = ReadTileBitmap(headerSize, packet);
             for (int i = 0; i < 136; ++i)
             {
@@ -447,6 +551,7 @@ public class RiichiGame : UdonSharpBehaviour
         {
             //Debug.Log($"{gameId} got tile packet");
             //DebugBytes($"{gameId} got tile packet ", packet, 182);
+            LogInternal($"read tile packet st={packetTime}");
             ReadSeatAndScore(packet, headerSize);
             int n = headerSize + 2;
             int idx = packet[n++];
@@ -879,7 +984,6 @@ public class RiichiGame : UdonSharpBehaviour
             tableUp[n] = t.forward.y > 0;
             //Debug.Log($"tile {n} moved to TABLE at {p.x} {p.y} {p.z} {e.y} ({e}) isUp = {tableUp[n]}");
         }
-        // from IsSleeping check, assume it's now in some new arbitrary position
         else {
             //Debug.Log($"tile {n} moved to ARBITRARY at {p.x} {p.y} {p.z}");
             tileState[n] = ARBITRARY;
@@ -901,6 +1005,7 @@ public class RiichiGame : UdonSharpBehaviour
     public void DoResync()
     {
         Debug.Log($"Local resync requested, invalidating all tiles");
+        LogInternal($"local resync, invalidating all tiles");
         for (int i = 0; i < 136; ++i)
         {
             locallyMovedTiles[i] = true;
@@ -911,6 +1016,8 @@ public class RiichiGame : UdonSharpBehaviour
                 UpdateInternalTileState(i);
             }
         }
+        // for owner, send shuffle state immediately
+        shuffleStateWait = -1f;
     }
 
     public void Shuffle()
@@ -939,22 +1046,36 @@ public class RiichiGame : UdonSharpBehaviour
             var dealT = dealTransforms[shuffleOrder[i]];
             tileT.SetPositionAndRotation(dealT.position, dealT.rotation);
         }
+
+
+        // send next shuffle packet immediately
+        shuffleStateWait = -1f;
+        LogInternal($"shuffled to hash {shuffleHash()}");
     }
+
+    // XXX another kludge to avoid excessive disables
+    private bool lastKnownTilesEnabled = false;
 
     public void EnableTiles()
     {
+        LogInternal("enabling tile pickup");
         for (int j = 0; j < 136; ++j)
         {
             tileBoxColliders[j].enabled = true;
         }
+        lastKnownTilesEnabled = true;
     }
+
     public void DisableTiles()
     {
+        if (!lastKnownTilesEnabled) return;
+        LogInternal("disabling tile pickup");
         for (int j = 0; j < 136; ++j)
         {
-            ((RiichiTile)riichiTiles[j]).ReleaseCustomOwnership();
+            riichiTiles[j].ReleaseCustomOwnership();
             tileBoxColliders[j].enabled = false;
         }
+        lastKnownTilesEnabled = false;
     }
 
     public void SortHand(int seat)
@@ -993,12 +1114,15 @@ public class RiichiGame : UdonSharpBehaviour
                     handOrder[j] = i;
                     handSeat[j] = seat;
                     // reset last known so we won't detect it as moved
-                    lastKnownPos[i] = tile.localPosition;
-                    lastKnownRot[i] = tile.localRotation;
+                    lastKnownPos[j] = tile.localPosition;
+                    lastKnownRot[j] = tile.localRotation;
+                    // but transmit
+                    locallyMovedTiles[j] = true;
                     break;
                 }
             }
         }
+        LogInternal($"sorted {collide.Length} hand tiles");
     }
 
     private void Sort(Collider[] tiles)
