@@ -32,7 +32,6 @@ public class RiichiTestRunner : UdonSharpBehaviour
         self = (UdonBehaviour)GetComponent(typeof(UdonBehaviour));
 
         wheel.Delay(0.2f, self, "DoTest");
-        wheel.Repeat(0.05f, self, "CapturePacket");
     }
 
     public void DoTest()
@@ -95,17 +94,11 @@ public class RiichiTestRunner : UdonSharpBehaviour
             sendCapture = new byte[182];
             bus.sendBuffer.CopyTo(sendCapture, 0);
             ackCapture = bus.sendAckObject;
-            captured = true;
-        }
-    }
-
-    public void CapturePacket() { 
-        if (captured)
-        {
             // echo back into recv buffer, different game
             byte h = sendCapture[0];
             int gid = ((h >> 6) & 3) == 0  ? 1 : 0;
 
+            captured = true;
             //Debug.Log($"rewriting packet from {(h >> 6 & 3)} to {gid}");
 
             int header = (gid << 6) + (sendCapture[0] & 63);
@@ -115,7 +108,8 @@ public class RiichiTestRunner : UdonSharpBehaviour
             bus.recvBufferHead = (bus.recvBufferHead + 1) % bus.recvBufferSize;
             bus.successfulAckedObjects[bus.successfulAckedHead] = ackCapture;
             bus.successfulAckedHead = (bus.successfulAckedHead + 1) % bus.recvBufferSize;
-            captured = false;
         }
+
+        if (!bus.sendBufferReady) captured = false;
     }
 }
