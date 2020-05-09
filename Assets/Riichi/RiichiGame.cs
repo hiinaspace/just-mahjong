@@ -1,7 +1,9 @@
 #define DEBUG
 using System;
 using System.CodeDom;
+using System.Runtime.InteropServices;
 using UdonSharp;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
 using VRC.SDKBase;
@@ -44,23 +46,17 @@ public class RiichiGame : UdonSharpBehaviour
     public int gameId = 0;
     public LayerMask tileLayer;
 
-    const int EAST = 0, NORTH = 1, WEST = 2, SOUTH = 3;
+    const int EAST = 0, SOUTH = 1, WEST = 2, NORTH = 3;
 
     // XXX avoid moving tiles until initial shuffle; this is implicitly synced
     // to 'true' as soon as the local client gets any packet related to the game, 
     // first by the table owner when they press the shuffle button.
     private bool gameStarted = false;
 
-    // lamport clock similar to the per-tile clocks; when a new shuffle happens,
-    // clock is incremented. remote players receive the shuffle packet, they
-    // increment their own game clock, then reject packets from previous games,
-    // and reset the board to deal position. 
-    // if a tile packet comes in for a later game, the local client will ratchet
-    // forward the game clock; this makes it so late joiners don't have to
-    // absolutely receive the shuffle packet first thing.
-    //
-    // 5 bits so max value is 31. wraps around like the tile clocks do.
-    private int gameClock = 0;
+    // XXX while all of these parallel arrays could be moved to fields in the
+    // RiichiTile behaviour, Udon doesn't let you see updates to the fields of
+    // other behaviours until the next frame, so in practice it's easier to
+    // maintain all these parallel arrays.
 
     // private bool sanmaMode = TODO maybe eventually
 
@@ -87,6 +83,7 @@ public class RiichiGame : UdonSharpBehaviour
     // DEAL is zero because shuffle state is transmitted separately
     private int[] PACK_SIZE = new int[] { 0, 1, 4, 4, 9 };
 
+    // game id, seat id, isShuffle packed into byte
     const int headerSize = 1;
 
     private int[] tileState = new int[136];
@@ -155,7 +152,7 @@ public class RiichiGame : UdonSharpBehaviour
 
     // to cut down on Update() time, only check a subset of the tiles each frame
     private int localTileCursor;
-    private const int checkedTilesPerUpdate = 17;
+    private const int checkedTilesPerUpdate = 1;
 
     private float sendWait;
     private const float sendInterval = 0.5f;
@@ -231,15 +228,15 @@ public class RiichiGame : UdonSharpBehaviour
     private void WriteDebugState()
     {
         var s =  $@"
-game: {gameId} gameStarted: {gameStarted} gameClock: {gameClock}
+game: {gameId} gameStarted: {gameStarted}
 shuffleHash: {shuffleHash()} 
 unbroadcast local tiles: {unbroadcastCount()}
 sendWait: {sendWait}
 isTableOwner: {IsTableOwner()} isSeated: {IsSeated()}
 EAST  player: {getSeatOwner(EAST)}
-NORTH player: {getSeatOwner(NORTH)}
-WEST  player: {getSeatOwner(WEST)}
 SOUTH player: {getSeatOwner(SOUTH)}
+WEST  player: {getSeatOwner(WEST)}
+NORTH player: {getSeatOwner(NORTH)}
 ";
         var j = (logLine + 1) % LOG_SIZE;
         for (int i = 0; i < LOG_SIZE; ++i)
@@ -269,8 +266,6 @@ SOUTH player: {getSeatOwner(SOUTH)}
         }
         return h;
     }
-
-
     private string getSeatOwner(int seat)
     {
         var s = seats[seat];
@@ -294,28 +289,31 @@ SOUTH player: {getSeatOwner(SOUTH)}
     {
         return Networking.IsOwner(seats[EAST].gameObject) && seats[EAST].playerSeated;
     }
+    
+    // get seat we're currently in, kinda hacky
+    private int GetSeat()
+    {
+        int seat = -1;
+        for (int i = 0; i < 4; ++i)
+        {
+            if (Networking.IsOwner(seats[i].gameObject) && seats[i].playerSeated)
+            {
+                seat = i; break;
+            }
+        }
+        return seat;
+    }
 
     bool rotEq(Quaternion a, Quaternion b)
     {
         return Mathf.Abs(Quaternion.Dot(a, b)) > 0.999f;
     }
 
-    // XXX udon has a problem where you can read updates to other UdonBehaviour
-    // fields until the next frame. when we ratched forward, we reset all the
-    // game clocks of the tiles to 0, but we won't see that update for the packets
-    // we're currently reading. So we reset this to false at first, then check it
-    // in our update (consistent) to special case the tile clocks to to -1.
-    // reminds me why parallel arrays are more reliable than separate behaviours for
-    // structs.
-    bool ratchetedForwardThisUpdate = false;
-
     void Update()
     {
         // check recv buffer, read any packets
         while (bus.recvBufferHead != recvBufIdx)
         {
-            ratchetedForwardThisUpdate = false;
-
             var packet = bus.recvBuffer[recvBufIdx];
 
             ReadPacket(packet);
@@ -354,9 +352,12 @@ SOUTH player: {getSeatOwner(SOUTH)}
             {
                 CheckMovedLocalTiles();
 
+                sendWait -= Time.deltaTime;
                 // if bus not ready, or we put a packet there
-                if (bus.sendReady && !bus.sendBufferReady)
+                if (sendWait < 0 && bus.sendReady && !bus.sendBufferReady)
                 {
+                    sendWait = UnityEngine.Random.Range(.0f, .2f) + sendInterval;
+
                     if (needShufflePacket)
                     {
                         SendShuffleState();
@@ -377,7 +378,6 @@ SOUTH player: {getSeatOwner(SOUTH)}
                     DisableTiles();
                 }
             }
-
         }
         if ((logWait -= Time.deltaTime) < 0)
         {
@@ -385,6 +385,10 @@ SOUTH player: {getSeatOwner(SOUTH)}
             WriteDebugState();
         }
     }
+
+    // shuffle packets are a kludge to be able to transmit the entire shuffle state in one packet, whereas
+    // using a regular packet in the DEAL state would need some sort of runlength encoding to fit (naively,
+    // 136 tile indices + 136 bytes for deal position.
     void SendShuffleState()
     {
         // only EAST needs to send these out. If we're master but not EAST, don't bother
@@ -394,20 +398,39 @@ SOUTH player: {getSeatOwner(SOUTH)}
         // if bus not ready, or we put a packet there
         var buf = bus.sendBuffer;
 
-        //Debug.Log($"sending shuffle state");
+        // XXX kind of nasty ack object; we want to know both the index of the tile and its
+        // lastMoved time that we're currently sending, so if a tile is still moving while
+        // we're broadcasting, we know which move time we actually broadcast (and whether
+        // we still need to broadcast more.
+        float[] ackObj = new float[137 * 2];
+        int ackI = 0;
 
-        WriteHeader(buf, true);
+        // shuffles only come from the east player
+        WriteHeader(buf, EAST, true);
+
+        // write bitmap for tiles still in DEAL state
+        WriteDealBitmap(headerSize, buf);
 
         // write out entire shuffle order
-        var n = headerSize;
+        var n = headerSize + 17;
+        var j = 0;
         for (int i = 0; i < 136; ++i)
         {
             buf[n++] = (byte)shuffleOrder[i];
+            // and if DEAL tile, update ack obj
+            if (tileState[j] == DEAL)
+            {
+                j++;
+                ackObj[ackI++] = i;
+                ackObj[ackI++] = lastMoved[i];
+            }
         }
 
-        // empty ack object, assume players will hit resync if they need shuffle state again
-        bus.sendAckObject = new int[0]; 
+        ackObj[ackI] = 255; // EOF in ack object
+        bus.sendAckObject = ackObj; 
         bus.sendBufferReady = true;
+
+        LogInternal($"SEND shufl hash={shuffleHash()} tiles={j}");
     }
     
     void CheckMovedLocalTiles()
@@ -434,8 +457,6 @@ SOUTH player: {getSeatOwner(SOUTH)}
                     lastKnownRot[n] = r;
                     lastMoved[n] = Time.time;
 
-                    // increment so we'll send the new data.
-                    rt.clock = (rt.clock + 1) % 256;
                     rt.SetBackColorOffset(new Color(0.5f, 0.1f, 0.5f));
 
                     UpdateInternalTileState(n);
@@ -446,11 +467,6 @@ SOUTH player: {getSeatOwner(SOUTH)}
 
     void BroadcastTiles()
     {
-        // load any dirty tiles into send buffer when ready
-        sendWait -= Time.deltaTime;
-        if (sendWait > 0) return;
-        sendWait = UnityEngine.Random.Range(.0f, .2f) + sendInterval;
-
         var buf = bus.sendBuffer;
 
         int n = headerSize + 2; 
@@ -469,19 +485,15 @@ SOUTH player: {getSeatOwner(SOUTH)}
             if (lastAcked[i] >= lastMoved[i]) continue;
             var state = tileState[i];
             if (state == DEAL) continue; // skip deal packets, table owner will broadcast those
-            var rt = riichiTiles[i];
-            if (rt.clock == -1) continue; // we got a new game/shuffle, but locallyMovedTiles raced it
 
             var packSize = PACK_SIZE[state];
-            // index + clock
-            if (n + 2 + packSize >= limit) break; // not enough room
-
+            // 1 for index
+            if (n + 1 + packSize >= limit) break; // not enough room
 
             ackObj[ackI++] = i;
             ackObj[ackI++] = lastMoved[i];
 
             buf[n++] = (byte)i;
-            buf[n++] = (byte)rt.clock;
             //Debug.Log($"{gameId} wrote tile {i} state {state} at pos {n}");
             switch (state)
             {
@@ -500,80 +512,30 @@ SOUTH player: {getSeatOwner(SOUTH)}
             return;
         }
 
-        WriteHeader(buf, false);
+        var seat = GetSeat();
+        WriteHeader(buf, seat, false);
 
-        WriteSeatAndScore(buf, headerSize); // after header
+        WriteScore(buf, headerSize); // after header
         scoreChanged = false;
 
         buf[n] = 255; // EOF in packet
         ackObj[ackI] = 255; // EOF in ack object
 
-        LogInternal($"sent {n} byte tile packet with {j} tiles");
+        LogInternal($"SEND tiles seat={seat} tiles={j} bytes={n}");
 
         bus.sendAckObject = ackObj; 
         bus.sendBufferReady = true;
     }
 
-    const int LT = -1, EQ = 0, GT = 1;
-    // whether the packetGameClock is newer than ours, modulo 32
-    // -1 for less than, 1 for greater than, 0 for equal
-    int compareGameClock(int packetGameClock)
-    {
-        if (packetGameClock == gameClock) return EQ;
-        // I think this modular math works out right for modular >
-        // with the wraparound centered at gameClock (more than 16 ahead of us,
-        // consider it less than)
-        int newestConsidered = gameClock + 16;
-        int nextNow = gameClock + 32;
-        int nextPacketClock = packetGameClock + 32;
-        if ((nextPacketClock < newestConsidered) || (nextPacketClock > nextNow)) {
-            return GT;
-        } else
-        {
-            return LT;
-        }
-    }
-
-
     void ReadPacket(byte[] packet)
     {
         var header = packet[0];
         var packetGameId = (header >> 6) & 3;
+        //Debug.Log($"{gameId} read packet for {packetGameId} {Convert.ToString(header, 2).PadLeft(8, '0')}");
 
-        //Debug.Log($"{gameId} read packet for {packetGameId} {header}");
         if (packetGameId != gameId) return;
 
-        var packetGameClock = (header >> 1) & 31;
-
-        int comp = compareGameClock(packetGameClock);
-
-        if (comp == GT)
-        {
-            // ratchet forward to new game
-            gameClock = packetGameClock;
-
-            // XXX see field comment for why this is necessary
-            ratchetedForwardThisUpdate = true;
-
-            // and reset all our local tile clocks
-            // if we got a shuffle packet as first new game clock (usually)
-            // then we'll proceed to move all the tiles into deal position
-            // if we got a tile packet instead though (shuffle packet got lost),
-            // we'll move the tiles from the packets into place until we finally
-            // get the shuffle packet (possible from resync)
-            for (int i = 0; i < 136; ++i)
-            {
-                var rt = riichiTiles[i];
-                rt.clock = -1;
-            }
-            LogInternal($"got new gameClock: {packetGameClock}, ratcheted forward");
-        } else if (comp == LT)
-        {
-            LogInternal($"rejecting old packet clock: {packetGameClock}, latest: {gameClock}");
-            return;
-        }
-        // else game clock is good to go
-
+        var packetSeat = (header >> 4) & 3;
         var packetIsShuffle = (header & 1) == 1;
 
         // avoid checking local tiles in update if seated until first packet from table
@@ -582,58 +544,52 @@ SOUTH player: {getSeatOwner(SOUTH)}
         if (packetIsShuffle)
         {
             //DebugBytes($"{gameId} got shuffle packet ", packet, 182);
+            var shufBitmap = ReadTileBitmap(headerSize, packet);
+            var j = 0;
+            var n = headerSize + 17;
             for (int i = 0; i < 136; ++i)
             {
-                shuffleOrder[i] = packet[i + headerSize];
-
+                shuffleOrder[i] = packet[n++];
                 var rt = riichiTiles[i];
-
-                // if hasn't yet been moved from deal position
-                // XXX see ratchet comment
-                if (ratchetedForwardThisUpdate || rt.clock == -1)
+                if (shufBitmap[i])
                 {
                     tileState[i] = DEAL;
-                    rt.ReleaseCustomOwnership(-1);
+                    rt.ReleaseCustomOwnership();
                     rt.SetBackColorOffset(new Color(0, 0.1f, 0));
                     MoveLocally(i);
+                    j++;
                 }
             }
-            LogInternal($"read shuffle packet clock={packetGameClock}, hash={shuffleHash()}");
+            LogInternal($"RECV shufl seat={packetSeat} hash={shuffleHash()}, tiles={j}");
         } else
         {
             //Debug.Log($"{gameId} got tile packet");
             //DebugBytes($"{gameId} got tile packet ", packet, 182);
-            ReadSeatAndScore(packet, headerSize);
+
+            ReadScore(packet, headerSize, packetSeat);
             int n = headerSize + 2;
             int idx = packet[n++];
             int j = 0;
             while (idx != 255) // EOF
             {
-                //Debug.Log($"see packet {idx} at {n}");
-                var packetTileClock = packet[n++];
-
                 var rt = riichiTiles[idx];
 
-                // XXX see ratchet comment
-                var remoteTile = ratchetedForwardThisUpdate ||
-                    rt.IsNewerRemoteTile(packetTileClock);
+                // don't yank tiles out of a players hands, but otherwise
+                // assume the remote player took ownership.
+                var remoteTile = !rt.IsHeld();
 
                 n += ReadTile(idx, n, packet, remoteTile);
 
                 if (remoteTile)
                 {
-                    Debug.Log($"{gameId} tile {rt.gameObject.name} {idx} newer remotely {rt.clock} vs {packetTileClock}");
-                    rt.ReleaseCustomOwnership(packetTileClock);
+                    rt.ReleaseCustomOwnership();
                     MoveLocally(idx);
-                } else
-                {
-                    Debug.Log($"{gameId} tile {rt.gameObject.name} {idx} newer locally {rt.clock} vs {packetTileClock}");
                 }
 
                 idx = packet[n++];
                 j++;
             }
-            LogInternal($"{gameId} read {j} tiles in {n} byte packet clock={packetGameClock}");
+            LogInternal($"RECV tiles seat={packetSeat} tiles={j} bytes={n}");
         }
     }
 
@@ -670,7 +626,7 @@ SOUTH player: {getSeatOwner(SOUTH)}
                 t.localRotation = arbitraryTileRotations[idx];
                 break;
         }
-        Debug.Log($"{gameId} tile {idx} moved to remote position");
+        //Debug.Log($"{gameId} tile {idx} moved to remote position");
     }
 
     string print(Vector3 v)
@@ -689,17 +645,16 @@ SOUTH player: {getSeatOwner(SOUTH)}
     // packet format:
     // 
     // [2 bits game id]       disambiguate multiple games on same Bus
-    // [5 bits empty]         game clock
+    // [2 bits seat]         
+    // [3 bits leftover]
     // [1 bit isShuffle]
-    //
     // if isShuffle:
     // [17 bytes bitmap]      tiles that are in deal position
     // [136 bytes]            shuffleOrder
     // else:
-    // [2 bits seat] [14 bits player score]
+    // [16 bits player score] TODO removing in favor of tenbou sticks
     // variable length:
     // [1 byte tile idx]
-    // [1 byte tile clock]
     // [1] [1 bit up or down] [8 bits euler z] [11 bits x] [11 bits z] = 4 bytes, on table
     // [0] [1] [2 bits seat pos] [4 bits hand pos] = 1 byte, in hand
     // [0] [0] [1] [7 bits euler y] [11 bits x] [11 bits z] = 4 bytes, upright on table
@@ -708,28 +663,16 @@ SOUTH player: {getSeatOwner(SOUTH)}
     // since tiles will eventually get acked, regular tile states will be pretty short, 1 tile that's currently moving
     // 13 tiles on hand sort.
     #region bitpacking methods
-    void WriteSeatAndScore(byte[] buf, int n)
+    void WriteScore(byte[] buf, int n)
     {
-        // XXX kinda hacky
-        int seat = 0;
-        for (int i = 0; i < 4; ++i)
-        {
-            if (Networking.IsOwner(seats[i].gameObject) && seats[i].playerSeated)
-            {
-                seat = i; break;
-            }
-        }
-
-        int score = scores[seat] / 100;
-
-        buf[n] = (byte)((seat << 6) + ((score >> 8) & 63));
+        int score = scores[GetSeat()] / 100;
+        buf[n] = (byte)((score >> 8) & 255);
         buf[n+1] = (byte)(score & 255);
     }
 
-    void ReadSeatAndScore(byte[] buf, int n)
+    void ReadScore(byte[] buf, int n, int seat)
     {
-        int seat = (buf[n] >> 6) & 3;
-        int score = ((buf[n] & 63) << 8) + buf[n +1];
+        int score = (buf[n] << 8) + buf[n + 1];
         scores[seat] = score * 100;
     }
 
@@ -746,7 +689,7 @@ SOUTH player: {getSeatOwner(SOUTH)}
                 tileState[idx] = TABLE;
                 ReadTable(idx, n, buf);
             }
-            Debug.Log($"read tile {idx} TABLE at {n}, {print(tableXZ[idx])} {tableZRot[idx]} {tableUp[idx]}");
+            //Debug.Log($"read tile {idx} TABLE at {n}, {print(tableXZ[idx])} {tableZRot[idx]} {tableUp[idx]}");
             return 4;
         }
         else if ((first & 64) > 0) // hand
@@ -776,16 +719,53 @@ SOUTH player: {getSeatOwner(SOUTH)}
                 tileState[idx] = ARBITRARY;
                 ReadArbitrary(idx, n, buf);
             }
-            Debug.Log($"read tile {idx} ARBITRARY at {n} {print(arbitraryTilePositions[idx])} {arbitraryTileRotations[idx]}");
+            //Debug.Log($"read tile {idx} ARBITRARY at {n} {print(arbitraryTilePositions[idx])} {arbitraryTileRotations[idx]}");
             return 9;
         }
     }
-    void WriteHeader(byte[] buf, bool isShuffle)
+    void WriteHeader(byte[] buf, int seat, bool isShuffle)
     {
         int header = gameId;
-        header = (header << 5) + gameClock;
-        header = (header << 1) + (isShuffle ? 1 : 0);
+        header = (header << 2) + seat;
+        // empty gap of 3 bits
+        header = (header << 4) + (isShuffle ? 1 : 0);
         buf[0] = (byte)header;
+    }
+
+    void WriteDealBitmap(int n, byte[] buf)
+    {
+        for (int i = 0; i < 17; ++i)
+        {
+            var j = i * 8;
+            buf[n + i] = (byte)(
+                (tileState[j] == DEAL ? 128 : 0) +
+                (tileState[j + 1] == DEAL ? 64 : 0) +
+                (tileState[j + 2] == DEAL ? 32 : 0) +
+                (tileState[j + 3] == DEAL ? 16 : 0) +
+                (tileState[j + 4] == DEAL ? 8 : 0) +
+                (tileState[j + 5] == DEAL ? 4 : 0) +
+                (tileState[j + 6] == DEAL ? 2 : 0) +
+                (tileState[j + 7] == DEAL ? 1 : 0));
+        }
+    }
+
+    bool[] ReadTileBitmap(int n, byte[] buf)
+    {
+        bool[] boolmap = new bool[136];
+        var j = 0;
+        for (int i = 0; i < 17; ++i)
+        {
+            int b = buf[n + i];
+            boolmap[j++] = (b & 128) > 0;
+            boolmap[j++] = (b & 64) > 0;
+            boolmap[j++] = (b & 32) > 0;
+            boolmap[j++] = (b & 16) > 0;
+            boolmap[j++] = (b & 8) > 0;
+            boolmap[j++] = (b & 4) > 0;
+            boolmap[j++] = (b & 2) > 0;
+            boolmap[j++] = (b & 1) > 0;
+        }
+        return boolmap;
     }
 
     void WriteInt(uint i, int pos, byte[] buf)
@@ -827,7 +807,6 @@ SOUTH player: {getSeatOwner(SOUTH)}
         WriteInt(p, n, buf);
         //DebugTablePack(buf, n);
     }
-
     void ReadHand(int i, int n, byte[] buf)
     {
         int p = buf[n];
@@ -906,7 +885,6 @@ SOUTH player: {getSeatOwner(SOUTH)}
     {
         return Mathf.Lerp(min, max, (float)i / bitmask);
     }
-
     void PackQuaternion(Quaternion q, byte[] array, int idx)
     {
         // two bits for largest component idx, 10 bits per smallest 3
@@ -1027,18 +1005,19 @@ SOUTH player: {getSeatOwner(SOUTH)}
         LogInternal($"local resync, invalidating all tiles");
         for (int i = 0; i < 136; ++i)
         {
-            lastMoved[i] = Time.time;
             var rt = riichiTiles[i];
-            // XXX bump clocks too so we actually take effect on remote clients.
             if (rt.IsCustomOwnedAndNotInDealPosition())
             {
+                lastMoved[i] = Time.time;
                 UpdateInternalTileState(i);
-                rt.clock = (rt.clock + 1) % 256;
                 riichiTiles[i].SetBackColorOffset(new Color(0.5f, 0.1f, 0.5f));
             }
         }
-        // for owner, send shuffle state immediately
-        needShufflePacket = true;
+        // for owner, also send shuffle state immediately
+        if (IsTableOwner())
+        {
+            needShufflePacket = true;
+        }
     }
 
     public void Shuffle()
@@ -1046,9 +1025,6 @@ SOUTH player: {getSeatOwner(SOUTH)}
         if (!IsTableOwner()) return;
 
         gameStarted = true;
-
-        gameClock++;
-        gameClock %= 32; // 5 bits
 
         int swap;
         for (int i = 135; i >= 1; --i)
@@ -1069,10 +1045,11 @@ SOUTH player: {getSeatOwner(SOUTH)}
             var tileT = tileTransforms[i];
             var dealT = dealTransforms[shuffleOrder[i]];
             tileT.SetPositionAndRotation(dealT.position, dealT.rotation);
+            lastMoved[i] = Time.time;
         }
 
         needShufflePacket = true;
-        LogInternal($"shuffled to hash {shuffleHash()}, clock: {gameClock}");
+        LogInternal($"shuffled to hash {shuffleHash()}");
     }
 
     // XXX another kludge to avoid excessive disables
@@ -1095,10 +1072,7 @@ SOUTH player: {getSeatOwner(SOUTH)}
         for (int j = 0; j < 136; ++j)
         {
             var rt = riichiTiles[j]; 
-            // reset clock to earliest non-shuffle time;
-            // that way we'll get updates stil but not be overridden by shuffle.
-            // XXX hacky
-            rt.ReleaseCustomOwnership((rt.clock + 129) % 256);
+            rt.ReleaseCustomOwnership();
             tileBoxColliders[j].enabled = false;
         }
         lastKnownTilesEnabled = false;

@@ -1,3 +1,4 @@
+using System;
 using UdonSharp;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -60,23 +61,23 @@ public class RiichiTestRunner : UdonSharpBehaviour
             case SORTED:
                 if (moving)
                 {
-                    var tile = tileRoot.GetChild(Random.Range(0, 136)).gameObject;
-                    tile.transform.localPosition = new Vector3(Random.Range(-0.6f, 0.6f), 0.25f, Random.Range(-0.6f, 0.6f));
-                    tile.transform.localRotation = Quaternion.Euler(Random.value > 0.5 ? 270 : 90, Random.Range(0, 4) * 90 + Random.Range(-3f, 3f), 0);
+                    var tile = tileRoot.GetChild(UnityEngine.Random.Range(0, 136)).gameObject;
+                    tile.transform.localPosition = new Vector3(UnityEngine.Random.Range(-0.6f, 0.6f), 0.25f, UnityEngine.Random.Range(-0.6f, 0.6f));
+                    tile.transform.localRotation = Quaternion.Euler(UnityEngine.Random.value > 0.5 ? 270 : 90, UnityEngine.Random.Range(0, 4) * 90 + UnityEngine.Random.Range(-3f, 3f), 0);
                     var rt = tile.GetComponent<RiichiTile>();
                     rt.TakeCustomOwnership();
 
-                    tile = tileRoot2.GetChild(Random.Range(0, 136)).gameObject;
-                    tile.transform.localPosition = new Vector3(Random.Range(-0.6f, 0.6f), 0.25f, Random.Range(-0.6f, 0.6f));
-                    tile.transform.localRotation = Quaternion.Euler(Random.value > 0.5 ? 270 : 90, Random.Range(0, 4) * 90 + Random.Range(-3f, 3f), 0);
+                    tile = tileRoot2.GetChild(UnityEngine.Random.Range(0, 136)).gameObject;
+                    tile.transform.localPosition = new Vector3(UnityEngine.Random.Range(-0.6f, 0.6f), 0.25f, UnityEngine.Random.Range(-0.6f, 0.6f));
+                    tile.transform.localRotation = Quaternion.Euler(UnityEngine.Random.value > 0.5 ? 270 : 90, UnityEngine.Random.Range(0, 4) * 90 + UnityEngine.Random.Range(-3f, 3f), 0);
                     rt = tile.GetComponent<RiichiTile>();
                     rt.TakeCustomOwnership();
 
-                    if (Random.value > 0.8f)
+                    if (UnityEngine.Random.value > 0.8f)
                     {
                         seat0.SortHand();
                     }
-                    if (Random.value > 0.8f)
+                    if (UnityEngine.Random.value > 0.8f)
                     {
                         seat2.SortHand();
                     }
@@ -96,10 +97,10 @@ public class RiichiTestRunner : UdonSharpBehaviour
             ackCapture = bus.sendAckObject;
             // echo back into recv buffer, different game
             byte h = sendCapture[0];
-            int gid = ((h >> 6) & 3) == 0  ? 1 : 0;
+            int gid = ((h >> 6) & 3) == 0 ? 1 : 0;
 
             captured = true;
-            //Debug.Log($"rewriting packet from {(h >> 6 & 3)} to {gid}");
+            //Debug.Log($"rewriting packet {Convert.ToString(h, 2).PadLeft(8,'0')} from {((h >> 6) & 3)} to {gid}");
 
             int header = (gid << 6) + (sendCapture[0] & 63);
             sendCapture[0] = (byte)header;
