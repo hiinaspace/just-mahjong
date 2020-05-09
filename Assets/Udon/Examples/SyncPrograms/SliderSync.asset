@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f11136daadff0b44ac2278a314682ab, type: 3}
   m_Name: SliderSync
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 8d3c62464b5f4d842944e6927887632d,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: af1e5e7dd625b274dac1257d19c6610b,
     type: 2}
   udonAssembly: ".data_start\r\n\r\n    .export uiSlider\r\n    .export uiText\r\n
     \   .sync sliderValue, none\r\n    \r\n    instance_0: %UnityEngineUISlider, null\r\n

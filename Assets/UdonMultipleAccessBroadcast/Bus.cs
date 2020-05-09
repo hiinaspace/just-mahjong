@@ -286,7 +286,7 @@ public class Bus : UdonSharpBehaviour
         if (idleChan != null)
         {
             blinkenlights[idleIdx].sharedMaterial = sendMat;
-            Debug.Log($"sending on chan {idleChan.gameObject.name}");
+            //Debug.Log($"sending on chan {idleChan.gameObject.name}");
         }
 #endif
         return idleChan;
