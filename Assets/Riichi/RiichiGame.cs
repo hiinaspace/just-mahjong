@@ -98,7 +98,7 @@ public class RiichiGame : UdonSharpBehaviour
     // I don't think i need upsidedown but upright tiles, they can be arbitrary
     
     private Vector3[] tableXZ = new Vector3[136]; // if TABLE, xy on table pos with constant y
-    private float[] tableYRot = new float[136]; // if TABLE, Y euler axis rotation
+    private float[] tableZRot = new float[136]; // if TABLE, Z euler axis rotation
     private bool[] tableUp = new bool[136]; // if TABLE, whether tile is face-up or down
 
     // if ARBITRARY, full precision pos/rot
@@ -170,6 +170,7 @@ public class RiichiGame : UdonSharpBehaviour
 
     void Start()
     {
+
         uprightY = tileDimensions.y / 2;
         tableY = tileDimensions.z / 2;
 
@@ -594,11 +595,18 @@ SOUTH player: {getSeatOwner(SOUTH)}
                 break;
             case UPRIGHT:
                 t.localPosition = uprightXZ[idx];
-                t.localRotation = Quaternion.Euler(0, uprightYRot[idx], 0);
+                // not sure why Vector3.down instead of up, but the calculation in
+                // UpdateInternalTileState from the right angle seems to be "reversed"
+                t.localRotation = Quaternion.AngleAxis(uprightYRot[idx], Vector3.down);
                 break;
             case TABLE:
                 t.localPosition = tableXZ[idx];
-                t.localRotation = Quaternion.Euler(tableUp[idx] ? 270 : 90, tableYRot[idx], 0);
+                // same here. I just don't understand quaternions well enough to know why
+                // first flip the tile up or down
+                var up = tableUp[idx];
+                t.localRotation = Quaternion.AngleAxis(up ? 270 : 90, Vector3.right)  *
+                    // then rotate around its (local) Z which is world up
+                    Quaternion.AngleAxis(tableZRot[idx], up ? Vector3.back : Vector3.forward);
                 break;
             case ARBITRARY:
                 t.localPosition = arbitraryTilePositions[idx];
@@ -798,7 +806,7 @@ SOUTH player: {getSeatOwner(SOUTH)}
         //DebugTablePack(buf, n);
         uint p = ReadInt(n, buf);
         tableUp[i] = ((p >> 30) & 1) > 0;
-        tableYRot[i] = UnpackFloat((p >> 22) & 255U, 0, 360, 255);
+        tableZRot[i] = UnpackFloat((p >> 22) & 255U, 0, 360, 255);
         var xz = tableXZ[i];
         xz.x = UnpackFloat((p >> 11) & 2047U, -1, 1, 2047);
         xz.z = UnpackFloat(p & 2047U, -1, 1, 2047);
@@ -809,7 +817,7 @@ SOUTH player: {getSeatOwner(SOUTH)}
     void PackTable(int i, int n, byte[] buf)
     {
         uint p = 2U + (tableUp[i] ? 1U : 0U);
-        p = (p << 8) + PackFloat(Mathf.Repeat(tableYRot[i], 360), 0, 360, 255);
+        p = (p << 8) + PackFloat(Mathf.Repeat(tableZRot[i], 360), 0, 360, 255);
         var v = tableXZ[i];
         p = (p << 11) + PackFloat(v.x, -1, 1, 2047);
         p = (p << 11) + PackFloat(v.z, -1, 1, 2047);
@@ -964,7 +972,6 @@ SOUTH player: {getSeatOwner(SOUTH)}
         var t = tileTransforms[n];
         var p = t.localPosition;
         var r = t.localRotation;
-        var e = r.eulerAngles;
         // t.up is normalized local Y (in world coords), so tile is upright when it's mostly 1.
         if (ApproxEq(p.y, uprightY) && t.up.y > 0.9)
         {
@@ -972,16 +979,25 @@ SOUTH player: {getSeatOwner(SOUTH)}
             tileState[n] = UPRIGHT;
             uprightXZ[n].x = p.x;
             uprightXZ[n].z = p.z;
-            uprightYRot[n] = e.y;
+
+            // I'm not entirely sure this is the best way to get this, but it seems to work okay
+            // the Y rotation reconstructed from the xz angle from local +X axis in world coords
+            var right = t.right;
+            uprightYRot[n] = Mathf.Atan2(right.z, right.x) * Mathf.Rad2Deg;
         }
         // t.forward is straight up (or down) for on table tiles
         else if (ApproxEq(p.y, tableY) && Mathf.Abs(t.forward.y) > 0.9)
         {
+
             tileState[n] = TABLE;
             tableXZ[n].x = p.x;
             tableXZ[n].z = p.z;
-            tableYRot[n] = e.y;
             tableUp[n] = t.forward.y > 0;
+
+            // same here; get the world Y rotation from the +X axis, which is the local Z rotation
+            var right = t.right;
+            tableZRot[n] = Mathf.Atan2(right.z, right.x) * Mathf.Rad2Deg;
+
             //Debug.Log($"tile {n} moved to TABLE at {p.x} {p.y} {p.z} {e.y} ({e}) isUp = {tableUp[n]}");
         }
         else {

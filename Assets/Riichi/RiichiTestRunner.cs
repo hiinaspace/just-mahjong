@@ -62,14 +62,14 @@ public class RiichiTestRunner : UdonSharpBehaviour
                 if (moving)
                 {
                     var tile = tileRoot.GetChild(Random.Range(0, 136)).gameObject;
-                    tile.transform.localPosition = new Vector3(Random.Range(-0.6f, 0.6f), 0.15f, Random.Range(-0.6f, 0.6f));
-                    tile.transform.localRotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
+                    tile.transform.localPosition = new Vector3(Random.Range(-0.6f, 0.6f), 0.25f, Random.Range(-0.6f, 0.6f));
+                    tile.transform.localRotation = Quaternion.Euler(Random.value > 0.5 ? 270 : 90, Random.Range(0, 4) * 90 + Random.Range(-3f, 3f), 0);
                     var rt = tile.GetComponent<RiichiTile>();
                     rt.TakeCustomOwnership();
 
                     tile = tileRoot2.GetChild(Random.Range(0, 136)).gameObject;
-                    tile.transform.localPosition = new Vector3(Random.Range(-0.6f, 0.6f), 0.15f, Random.Range(-0.6f, 0.6f));
-                    tile.transform.localRotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
+                    tile.transform.localPosition = new Vector3(Random.Range(-0.6f, 0.6f), 0.25f, Random.Range(-0.6f, 0.6f));
+                    tile.transform.localRotation = Quaternion.Euler(Random.value > 0.5 ? 270 : 90, Random.Range(0, 4) * 90 + Random.Range(-3f, 3f), 0);
                     rt = tile.GetComponent<RiichiTile>();
                     rt.TakeCustomOwnership();
 
