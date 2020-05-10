@@ -221,4 +221,55 @@ public class GenTiles : MonoBehaviour
             }
         }
     }
+
+    [MenuItem("RiichiHelpers/Generate Tenbou")]
+    static void GenerateTenbou()
+    {
+        var dims = new Vector3(0.14f, 0.015f, 0.015f);
+
+        var prefab = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Riichi/Tenbou/tenbouPrefab.prefab", typeof(Object));
+
+        var y = dims.y / 2;
+
+        for (int i = 0; i < 4; ++i)
+        {
+            var parent = GameObject.Find($"Tenbou{i}").transform;
+
+            GameObject go = (GameObject)PrefabUtility.InstantiatePrefab(prefab, parent);
+            go.name = $"0.0-tenbou-10k-{i}";
+            go.transform.parent = parent;
+            go.transform.localPosition = new Vector3(dims.x * 2f, y, 0);
+
+            for (int j = 0; j < 2; ++j)
+            {
+                go = (GameObject)PrefabUtility.InstantiatePrefab(prefab, parent);
+                go.name = $"1.{j}-tenbou-5k-{i}";
+                go.transform.parent = parent;
+                go.transform.localPosition = new Vector3(dims.x * 1f, y, 0 + dims.y * j);
+            }
+
+            for (int j = 0; j < 4; ++j)
+            {
+                go = (GameObject)PrefabUtility.InstantiatePrefab(prefab, parent);
+                go.name = $"2.{j}-tenbou-1k-{i}";
+                go.transform.parent = parent;
+                go.transform.localPosition = new Vector3(0, y, 0 + dims.y * j);
+            }
+
+            for (int j = 0; j < 5; ++j)
+            {
+                go = (GameObject)PrefabUtility.InstantiatePrefab(prefab, parent);
+                go.name = $"3.{j}-tenbou-100-{i}";
+                go.transform.parent = parent;
+                go.transform.localPosition = new Vector3(dims.x * -1, y, 0 + dims.y * j);
+            }
+            for (int j = 0; j < 5; ++j)
+            {
+                go = (GameObject)PrefabUtility.InstantiatePrefab(prefab, parent);
+                go.name = $"3.{j + 5}-tenbou-100-{i}";
+                go.transform.parent = parent;
+                go.transform.localPosition = new Vector3(dims.x * -2, y, 0 + dims.y * j);
+            }
+        }
+    }
 }

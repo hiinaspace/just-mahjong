@@ -1,9 +1,6 @@
 #define DEBUG
 using System;
-using System.CodeDom;
-using System.Runtime.InteropServices;
 using UdonSharp;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
 using VRC.SDKBase;
@@ -45,6 +42,7 @@ public class RiichiGame : UdonSharpBehaviour
     // networking system gets too congested to sync reliably.
     public int gameId = 0;
     public LayerMask tileLayer;
+    public LayerMask tenbouLayer;
 
     const int EAST = 0, SOUTH = 1, WEST = 2, NORTH = 3;
 
@@ -68,8 +66,6 @@ public class RiichiGame : UdonSharpBehaviour
     //// XXX the dealer's wind will be east despite being on a different
     //// side of the table; this just controls the rotation of the wind indicator
     //private int dealer = EAST;
-    [HideInInspector]
-    public int[] scores = new int[4];
 
     // TODO  the HAND state is really hard to make 'stick' compared to upright
     // in that the checking for locally moved tiles would need to check for exact
@@ -140,11 +136,19 @@ public class RiichiGame : UdonSharpBehaviour
     private Vector3[] lastKnownPos = new Vector3[136];
     private Quaternion[] lastKnownRot = new Quaternion[136];
 
-    // XXX kludge for syncing score
-    bool scoreChanged = false;
+    // and since we have room in the byte indices we use for tiles,
+    // also sync the tenbou sticks in basically the same way
+    private Transform[] tenbou = new Transform[68];
+    private Rigidbody[] tenbouRigidbodies = new Rigidbody[68];
+    private object[] tenbouVrcPickups = new object[68];
+    private int tenbouCursor;
+    private Vector3[] tenbouLastKnownPos = new Vector3[68];
+    private Quaternion[] tenbouLastKnownRot = new Quaternion[68];
+    private float[] tenbouLastMoved = new float[68];
+    private float[] tenbouLastAcked = new float[68];
 
     public Text debugText;
-    private const int LOG_SIZE = 16;
+    private const int LOG_SIZE = 24;
     private string[] logLines = new string[LOG_SIZE];
     private int logLine = 0;
     float logWait;
@@ -178,6 +182,9 @@ public class RiichiGame : UdonSharpBehaviour
 
     float disableWait = 0;
 
+    float scoreWait = 0;
+    const float scoreInterval = 1f;
+
     void Start()
     {
         uprightY = tileDimensions.y / 2;
@@ -209,13 +216,20 @@ public class RiichiGame : UdonSharpBehaviour
         handTransforms = new Transform[4][];
         for (int i = 0; i < 4; ++i)
         {
-            scores[i] = 25000;
             var handParent = transform.Find($"HandPlacements{i}");
             handTransforms[i] = new Transform[16];
             for (int j = 0; j < 16; ++j)
             {
                 handTransforms[i][j] = handParent.GetChild(j);
             }
+        }
+        var tenbouParent = transform.Find("Tenbou");
+        for (int i = 0; i < 68; ++i)
+        {
+            var t = tenbouParent.GetChild(i);
+            tenbou[i] = t;
+            tenbouVrcPickups[i] = (VRC_Pickup)t.gameObject.GetComponent(typeof(VRC_Pickup));
+            tenbouRigidbodies[i] = t.gameObject.GetComponent<Rigidbody>();
         }
 
         // this behavior is running on a new player (in this map, not game), so request
@@ -231,6 +245,7 @@ public class RiichiGame : UdonSharpBehaviour
 game: {gameId} gameStarted: {gameStarted}
 shuffleHash: {shuffleHash()} 
 unbroadcast local tiles: {unbroadcastCount()}
+unbroadcast tenbou: {unbroadcastTenbou()}
 sendWait: {sendWait}
 isTableOwner: {IsTableOwner()} isSeated: {IsSeated()}
 EAST  player: {getSeatOwner(EAST)}
@@ -253,6 +268,15 @@ NORTH player: {getSeatOwner(NORTH)}
         for (int i = 0; i < 136; ++i)
         {
             if (lastMoved[i] > lastAcked[i]) n++;
+        }
+        return n;
+    }
+    private int unbroadcastTenbou()
+    {
+        int n = 0;
+        for (int i = 0; i < 68; ++i)
+        {
+            if (tenbouLastMoved[i] > tenbouLastAcked[i]) n++;
         }
         return n;
     }
@@ -325,21 +349,28 @@ NORTH player: {getSeatOwner(NORTH)}
         while (bus.successfulAckedHead != ackBufIdx)
         {
             // packed float array of idx (int) and then the lastMoved time as sent
-            var ackedTiles = (float[])bus.successfulAckedObjects[ackBufIdx];
-            if (ackedTiles != null)
+            var acked = (float[])bus.successfulAckedObjects[ackBufIdx];
+            if (acked != null)
             {
-                for (int i = 0; i < ackedTiles.Length; i += 2)
+                for (int i = 0; i < acked.Length; i += 2)
                 {
-                    var ack = Mathf.FloorToInt(ackedTiles[i]);
-                    var ackTime = ackedTiles[i + 1];
+                    var ack = Mathf.FloorToInt(acked[i]);
+                    var ackTime = acked[i + 1];
                     if (ack == 255) break; // eof
 
-                    var rt = riichiTiles[ack];
-                    if (rt.IsCustomOwnedAndNotInDealPosition())
+                    // XXX tenbou are above 136
+                    if (ack < 136)
                     {
-                        rt.SetBackColorOffset(Color.blue);
+                        var rt = riichiTiles[ack];
+                        if (rt.IsCustomOwnedAndNotInDealPosition())
+                        {
+                            rt.SetBackColorOffset(Color.blue);
+                        }
+                        lastAcked[ack] = ackTime;
+                    } else
+                    {
+                        tenbouLastAcked[ack - 136] = ackTime;
                     }
-                    lastAcked[ack] = ackTime;
                 }
             }
             ackBufIdx = (ackBufIdx + 1) % bus.recvBufferSize;
@@ -351,6 +382,7 @@ NORTH player: {getSeatOwner(NORTH)}
             if (IsSeated())
             {
                 CheckMovedLocalTiles();
+                CheckMovedTenbou();
 
                 sendWait -= Time.deltaTime;
                 // if bus not ready, or we put a packet there
@@ -365,7 +397,7 @@ NORTH player: {getSeatOwner(NORTH)}
                     }
                     else
                     {
-                        BroadcastTiles();
+                        BroadcastTilesAndTenbou();
                     }
                 }
             }
@@ -374,7 +406,7 @@ NORTH player: {getSeatOwner(NORTH)}
                 // XXX if player isn't seated, dont let them touch tiles
                 if ((disableWait -= Time.deltaTime) <= 0)
                 {
-                    disableWait = 1f;
+                    disableWait = 5f;
                     DisableTiles();
                 }
             }
@@ -384,6 +416,34 @@ NORTH player: {getSeatOwner(NORTH)}
             logWait = logInterval;
             WriteDebugState();
         }
+        if ((scoreWait -= Time.deltaTime) < 0)
+        {
+            scoreWait = scoreInterval;
+            UpdateScores();
+        }
+    }
+
+    private int[] scoreByTenbou = new int[] { 10000, 5000, 1000, 100 };
+
+    void UpdateScores()
+    {
+        for (int i = 0; i < 4; ++i)
+        {
+            var rs = seats[i];
+            var zone = rs.tenbouZone;
+            var t = zone.transform;
+            var halfExtents = zone.size / 2;
+            var collide = Physics.OverlapBox(t.position, halfExtents, t.rotation, tenbouLayer);
+            var len = collide.Length;
+            var score = 0;
+            for (int j = 0; j < len; ++j)
+            {
+                // parsing names is a useful kludge
+                score += scoreByTenbou[int.Parse(collide[j].gameObject.name.Substring(0, 1))];
+            }
+            rs.UpdateScore(score);
+        }
+
     }
 
     // shuffle packets are a kludge to be able to transmit the entire shuffle state in one packet, whereas
@@ -465,18 +525,43 @@ NORTH player: {getSeatOwner(NORTH)}
         }
     }
 
-    void BroadcastTiles()
+    void CheckMovedTenbou()
+    {
+        var n = tenbouCursor++;
+        tenbouCursor %= 68;
+
+        var rb = tenbouRigidbodies[n];
+        if (!rb.isKinematic)
+        {
+            var t = tenbou[n];
+            var p = t.localPosition;
+            var r = t.localRotation;
+            var lp = tenbouLastKnownPos[n];
+            var lr = tenbouLastKnownRot[n];
+
+            if (p != lp || !rotEq(r, lr))
+            {
+                tenbouLastKnownPos[n] = p;
+                tenbouLastKnownRot[n] = r;
+                tenbouLastMoved[n] = Time.time;
+                // no internal tile state here, don't think it's worth the bookkeeping
+                // since we're only doing ARBITRARY
+            }
+        }
+    }
+
+    void BroadcastTilesAndTenbou()
     {
         var buf = bus.sendBuffer;
 
-        int n = headerSize + 2; 
+        int n = headerSize; 
         var limit = maxDataByteSize - 1; // 1 byte for EOF
 
         // XXX kind of nasty ack object; we want to know both the index of the tile and its
         // lastMoved time that we're currently sending, so if a tile is still moving while
         // we're broadcasting, we know which move time we actually broadcast (and whether
         // we still need to broadcast more.
-        float[] ackObj = new float[136 * 2];
+        float[] ackObj = new float[256 * 2];
         int ackI = 0;
         int j = 0;
 
@@ -500,28 +585,48 @@ NORTH player: {getSeatOwner(NORTH)}
                 case HAND: PackHand(i, n, buf); break;
                 case UPRIGHT: PackUpright(i, n, buf); break;
                 case TABLE: PackTable(i, n, buf); break;
-                case ARBITRARY: PackArbitrary(i, n, buf); break;
+                case ARBITRARY: PackArbitrary(arbitraryTilePositions[i], arbitraryTileRotations[i], n, buf); break;
             }
             n += packSize;
             j++;
         }
 
-        if (j == 0 && !scoreChanged)
+        var k = 0;
+
+        for (int i = 0; i < 68; ++i)
         {
-            // actually no tiles changed so leave bus how it is.
+            if (tenbouLastAcked[i] >= tenbouLastMoved[i]) continue;
+            var rb = tenbouRigidbodies[i];
+            if (rb.isKinematic) continue; // not ours
+
+            // 1 for index, 9 for ARBITRARY
+            if (n + 1 + 9 >= limit) break; // not enough room
+
+            var t = tenbou[i];
+
+            ackObj[ackI++] = i + 136;
+            ackObj[ackI++] = tenbouLastMoved[i];
+
+            buf[n++] = (byte)(i + 136);
+            PackArbitrary(t.localPosition, t.localRotation, n, buf);
+
+            n += 9;
+            k++;
+        }
+
+        if (j == 0 && k == 0)
+        {
+            // actually nothing changed so leave bus how it is.
             return;
         }
 
         var seat = GetSeat();
         WriteHeader(buf, seat, false);
 
-        WriteScore(buf, headerSize); // after header
-        scoreChanged = false;
-
         buf[n] = 255; // EOF in packet
         ackObj[ackI] = 255; // EOF in ack object
 
-        LogInternal($"SEND tiles seat={seat} tiles={j} bytes={n}");
+        LogInternal($"SEND tiles seat={seat} tiles={j} tenbou={k} bytes={n}");
 
         bus.sendAckObject = ackObj; 
         bus.sendBufferReady = true;
@@ -566,30 +671,38 @@ NORTH player: {getSeatOwner(NORTH)}
             //Debug.Log($"{gameId} got tile packet");
             //DebugBytes($"{gameId} got tile packet ", packet, 182);
 
-            ReadScore(packet, headerSize, packetSeat);
-            int n = headerSize + 2;
+            int n = headerSize;
             int idx = packet[n++];
-            int j = 0;
+            int j = 0, k = 0;
             while (idx != 255) // EOF
             {
-                var rt = riichiTiles[idx];
-
-                // don't yank tiles out of a players hands, but otherwise
-                // assume the remote player took ownership.
-                var remoteTile = !rt.IsHeld();
-
-                n += ReadTile(idx, n, packet, remoteTile);
-
-                if (remoteTile)
+                if (idx < 136)
                 {
-                    rt.ReleaseCustomOwnership();
-                    MoveLocally(idx);
-                }
+                    var rt = riichiTiles[idx];
 
+                    // don't yank tiles out of a players hands, but otherwise
+                    // assume the remote player took ownership.
+                    var remoteTile = !rt.IsHeld();
+
+                    n += ReadTile(idx, n, packet, remoteTile);
+
+                    if (remoteTile)
+                    {
+                        rt.ReleaseCustomOwnership();
+                        MoveLocally(idx);
+                    }
+
+                    j++;
+                } else
+                {
+                    // tenbou
+                    ReadArbitraryToTransform(tenbou[idx - 136], n, packet);
+                    n += 9;
+                    k++;
+                }
                 idx = packet[n++];
-                j++;
             }
-            LogInternal($"RECV tiles seat={packetSeat} tiles={j} bytes={n}");
+            LogInternal($"RECV tiles seat={packetSeat} tiles={j} tenbou={k} bytes={n}");
         }
     }
 
@@ -652,7 +765,6 @@ NORTH player: {getSeatOwner(NORTH)}
     // [17 bytes bitmap]      tiles that are in deal position
     // [136 bytes]            shuffleOrder
     // else:
-    // [16 bits player score] TODO removing in favor of tenbou sticks
     // variable length:
     // [1 byte tile idx]
     // [1] [1 bit up or down] [8 bits euler z] [11 bits x] [11 bits z] = 4 bytes, on table
@@ -662,20 +774,9 @@ NORTH player: {getSeatOwner(NORTH)}
     //
     // since tiles will eventually get acked, regular tile states will be pretty short, 1 tile that's currently moving
     // 13 tiles on hand sort.
+    //
+    // kludge for tenbou sticks:, if the tile idx is 136-208, it's a tenbou index instead and synced as ARBITRARY
     #region bitpacking methods
-    void WriteScore(byte[] buf, int n)
-    {
-        int score = scores[GetSeat()] / 100;
-        buf[n] = (byte)((score >> 8) & 255);
-        buf[n+1] = (byte)(score & 255);
-    }
-
-    void ReadScore(byte[] buf, int n, int seat)
-    {
-        int score = (buf[n] << 8) + buf[n + 1];
-        scores[seat] = score * 100;
-    }
-
     int ReadTile(int idx, int n, byte[] buf, bool remoteTile)
     {
         // XXX remoteTile checks to avoid clobbering our own tile state
@@ -843,6 +944,20 @@ NORTH player: {getSeatOwner(NORTH)}
 
         WriteInt(p, n, buf);
     }
+    void ReadArbitraryToTransform(Transform t, int n, byte[] buf)
+    {
+        // 0001xxxx|xxxxxxxx|yyyyyyyy|yyyyzzzz|zzzzzzz
+        uint px = (((uint)buf[n] & 15U) << 8) + (uint)buf[n + 1];
+        uint py = ((uint)buf[n+2] << 4) + ((uint)(buf[n + 3] >> 4) & 15U);
+        uint pz = (((uint)buf[n+3] & 15U) << 8) + (uint)buf[n + 4];
+
+        t.localPosition = new Vector3(
+            UnpackFloat(px, -2, 2, 4095),
+            UnpackFloat(py, -0.3f, 3, 4095),
+            UnpackFloat(pz, -2, 2, 4095));
+
+        t.localRotation = UnpackQuaternion(buf, n + 5);
+    }
 
     void ReadArbitrary(int i, int n, byte[] buf)
     {
@@ -859,9 +974,8 @@ NORTH player: {getSeatOwner(NORTH)}
         arbitraryTileRotations[i] = UnpackQuaternion(buf, n + 5);
     }
 
-    void PackArbitrary(int i, int n, byte[] buf)
+    void PackArbitrary(Vector3 v, Quaternion q, int n, byte[] buf)
     {
-        var v = arbitraryTilePositions[i];
         var px = PackFloat(v.x, -2, 2, 4095);
         var py = PackFloat(v.y, -0.3f, 3, 4095);
         var pz = PackFloat(v.z, -2, 2, 4095);
@@ -872,7 +986,7 @@ NORTH player: {getSeatOwner(NORTH)}
         buf[n++] = (byte)(((py & 15) << 4) + ((pz >> 8) & 15));
         buf[n++] = (byte)(pz & 255);
 
-        PackQuaternion(arbitraryTileRotations[i], buf, n);
+        PackQuaternion(q, buf, n);
     }
 
     uint PackFloat(float f, float min, float max, int bitmask)
@@ -1013,6 +1127,14 @@ NORTH player: {getSeatOwner(NORTH)}
                 riichiTiles[i].SetBackColorOffset(new Color(0.5f, 0.1f, 0.5f));
             }
         }
+        for (int i = 0; i < 68; ++i)
+        {
+            var rb = tenbouRigidbodies[i];
+            if (!rb.isKinematic)
+            {
+                tenbouLastMoved[i] = Time.time;
+            }
+        }
         // for owner, also send shuffle state immediately
         if (IsTableOwner())
         {
@@ -1057,31 +1179,72 @@ NORTH player: {getSeatOwner(NORTH)}
 
     public void EnableTiles()
     {
-        LogInternal("enabling tile pickup");
+        LogInternal("enabling tile/tenbou pickup");
         for (int j = 0; j < 136; ++j)
         {
             tileBoxColliders[j].enabled = true;
         }
+        for (int j = 0; j < 68; ++j)
+        {
+            ((VRC_Pickup)tenbouVrcPickups[j]).pickupable = true;
+        }
+
         lastKnownTilesEnabled = true;
     }
 
     public void DisableTiles()
     {
         if (!lastKnownTilesEnabled) return;
-        LogInternal("disabling tile pickup");
+        LogInternal("disabling tile/tenbou pickup");
         for (int j = 0; j < 136; ++j)
         {
             var rt = riichiTiles[j]; 
             rt.ReleaseCustomOwnership();
             tileBoxColliders[j].enabled = false;
         }
+        for (int j = 0; j < 68; ++j)
+        {
+            ((VRC_Pickup)tenbouVrcPickups[j]).pickupable = false;
+            tenbouRigidbodies[j].isKinematic = true;
+        }
         lastKnownTilesEnabled = false;
+    }
+
+    void ToggleTenbouPhysics(int seat)
+    {
+        var rs = seats[seat];
+        var zone = rs.tenbouZone;
+        var t = zone.transform;
+        var halfExtents = zone.size / 2;
+        var collide = Physics.OverlapBox(t.position, halfExtents, t.rotation, tenbouLayer);
+        var len = collide.Length;
+        for (int i = 0; i < len; ++i)
+        {
+            var o = collide[i].gameObject;
+            // linear scan, oh well
+            for (int j = 0; j < 68; ++j)
+            {
+                if (tenbou[j].gameObject == o)
+                {
+                    var rb = tenbouRigidbodies[j];
+                    if (rb.isKinematic)
+                    {
+                        rb.isKinematic = false;
+                    }
+                    break;
+                }
+            }
+        }
     }
 
     public void SortHand(int seat)
     {
         // XXX odd place to do it, not sure yet where to put
         EnableTiles();
+
+        // also kludge, enable "our" scoring sticks, could also sort scoring
+        // sticks but probably will get messy.
+        ToggleTenbouPhysics(seat);
 
         var t = seats[seat].transform;
         var zone = seats[seat].handZone;
@@ -1142,18 +1305,6 @@ NORTH player: {getSeatOwner(NORTH)}
             }
             tiles[j + 1] = tile1;
         }
-    }
-    
-    // TODO if udon networking doesn't straight up break with 20ish objects with
-    // synced variables (not trying to pack and change them every 200ms), then
-    // it'd be easier to sync all this non-transform stuff through that and leave
-    // the complex Bus stuff to the transforms. should do a simple world test of
-    // N synced objects and see how well it works.
-
-    public void AdjustScore(int seat, int delta)
-    {
-        scores[seat] += delta;
-        scoreChanged = true;
     }
 
     private float lastResync = float.MinValue;

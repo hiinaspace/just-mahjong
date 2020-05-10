@@ -1,6 +1,7 @@
 
 using UdonSharp;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 using VRC.SDKBase;
 
@@ -23,8 +24,8 @@ public class RiichiSeat : UdonSharpBehaviour
 {
     public RiichiGame game;
     public BoxCollider handZone;
+    public BoxCollider tenbouZone;
 
-    const int EAST = 0, NORTH = 1, WEST = 2, SOUTH = 3;
     public int seat; 
 
     // all score indicators for this seat
@@ -40,12 +41,15 @@ public class RiichiSeat : UdonSharpBehaviour
     {
         if ((updateWait -= Time.deltaTime) > 0) return;
         updateWait = 0.2f;
-        string score = game.scores[seat].ToString();
+        seatStateIndicator.text = playerSeated ? OwnerName() : "Seat Open";
+    }
+
+    public void UpdateScore(int score)
+    {
         foreach (Text t in thisPlayerScores)
         {
-            t.text = score;
+            t.text = $"{score}";
         }
-        seatStateIndicator.text = playerSeated ? OwnerName() : "Seat Open";
     }
 
     private string OwnerName()
@@ -81,21 +85,4 @@ public class RiichiSeat : UdonSharpBehaviour
             Update();
         }
     }
-
-    private void AdjustScore(int delta)
-    {
-        if (Networking.IsOwner(gameObject) && playerSeated)
-        {
-            game.AdjustScore(seat, delta);
-            Update();
-        }
-    }
-
-    public void ScoreUp100() { AdjustScore(100); }
-    public void ScoreDown100() { AdjustScore(-100); }
-    public void ScoreUp1000() { AdjustScore(1000); }
-    public void ScoreDown1000() { AdjustScore(-1000); }
-    public void ScoreUp10000() { AdjustScore(10000); }
-    public void ScoreDown10000() { AdjustScore(-10000); }
-
 }
