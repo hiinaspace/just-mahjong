@@ -231,10 +231,16 @@ public class RiichiGame : UdonSharpBehaviour
             tenbouVrcPickups[i] = (VRC_Pickup)t.gameObject.GetComponent(typeof(VRC_Pickup));
             tenbouRigidbodies[i] = t.gameObject.GetComponent<Rigidbody>();
         }
+    }
 
-        // this behavior is running on a new player (in this map, not game), so request
-        // that all clients start rebroadcasting their state for us.
-        SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.All, "DoResync");
+    public override void OnPlayerJoined(VRCPlayerApi player)
+    {
+        if (Networking.LocalPlayer == player)
+        {
+            // this behavior is running on a new player (in this map, not game), so request
+            // that all clients start rebroadcasting their state for us.
+            SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.All, "DoResync");
+        }
     }
 
     #region Debug state
