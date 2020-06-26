@@ -28,16 +28,16 @@ MonoBehaviour:
     \   __0_intnl_UnityEngineComponent: %UnityEngineComponent, null\r\n    __0_intnl_SystemInt32:
     %SystemInt32, null\r\n    __0_intnl_UnityEngineMaterialPropertyBlock: %UnityEngineMaterialPropertyBlock,
     null\r\n    __0_intnl_UnityEngineMeshRenderer: %UnityEngineMeshRenderer, null\r\n
-    \   __0_intnl_UnityEngineRigidbody: %UnityEngineRigidbody, null\r\n    __0_intnl_SystemSingle:
-    %SystemSingle, null\r\n    __0_intnl_SystemString: %SystemString, null\r\n    __1_intnl_SystemString:
-    %SystemString, null\r\n    __0_intnl_returnTarget_UInt32: %SystemUInt32, null\r\n
-    \   __0_intnl_VRCSDK3ComponentsVRCPickup: %VRCSDK3ComponentsVRCPickup, null\r\n\r\n.data_end\r\n\r\n
-    \       \r\n         # using UdonSharp;\r\n        \r\n         # using UnityEngine;\r\n
-    \       \r\n         # using VRC.SDKBase;\r\n        \r\n         # using VRC.Udon;\r\n
-    \       \r\n         # public class Tenbou : UdonSharpBehaviour\r\n.code_start\r\n
-    \       \r\n         # Rigidbody rigidbody;\r\n        \r\n         # void Start()\r\n
-    \   .export _start\r\n        \r\n    _start:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n
-    \       \r\n         # {\r\n        \r\n         # var renderer = GetComponent<MeshRenderer>();\r\n
+    \   __0_intnl_SystemSingle: %SystemSingle, null\r\n    __0_intnl_SystemString:
+    %SystemString, null\r\n    __1_intnl_SystemString: %SystemString, null\r\n    __0_intnl_returnTarget_UInt32:
+    %SystemUInt32, null\r\n    __0_intnl_VRCSDK3ComponentsVRCPickup: %VRCSDK3ComponentsVRCPickup,
+    null\r\n\r\n.data_end\r\n\r\n        \r\n         # using UdonSharp;\r\n        \r\n
+    \        # using UnityEngine;\r\n        \r\n         # using VRC.SDKBase;\r\n
+    \       \r\n         # using VRC.Udon;\r\n        \r\n         # public class
+    Tenbou : UdonSharpBehaviour\r\n.code_start\r\n        \r\n         # Rigidbody
+    rigidbody;\r\n        \r\n         # void Start()\r\n    .export _start\r\n        \r\n
+    \   _start:\r\n        \r\n        PUSH, __0_const_intnl_SystemUInt32\r\n        \r\n
+    \        # {\r\n        \r\n         # var renderer = GetComponent<MeshRenderer>();\r\n
     \       PUSH, __0_this_intnl_Tenbou\r\n        PUSH, __0_const_intnl_SystemType\r\n
     \       PUSH, __0_intnl_UnityEngineMeshRenderer\r\n        EXTERN, \"UnityEngineMeshRenderer.__GetComponent__T\"\r\n
     \       PUSH, __0_intnl_UnityEngineMeshRenderer\r\n        PUSH, __0_renderer_MeshRenderer\r\n
@@ -59,10 +59,9 @@ MonoBehaviour:
     \       PUSH, __0_props_MaterialPropertyBlock\r\n        EXTERN, \"UnityEngineMeshRenderer.__SetPropertyBlock__UnityEngineMaterialPropertyBlock__SystemVoid\"\r\n
     \       \r\n         # rigidbody = GetComponent<Rigidbody>();\r\n        PUSH,
     __0_this_intnl_Tenbou\r\n        PUSH, __1_const_intnl_SystemType\r\n        PUSH,
-    __0_intnl_UnityEngineRigidbody\r\n        EXTERN, \"UnityEngineRigidbody.__GetComponent__T\"\r\n
-    \       PUSH, __0_intnl_UnityEngineRigidbody\r\n        PUSH, rigidbody\r\n        COPY\r\n
-    \       \r\n         # rigidbody.maxDepenetrationVelocity = 0.1f;\r\n        PUSH,
-    rigidbody\r\n        PUSH, __0_const_intnl_SystemSingle\r\n        EXTERN, \"UnityEngineRigidbody.__set_maxDepenetrationVelocity__SystemSingle__SystemVoid\"\r\n
+    rigidbody\r\n        EXTERN, \"UnityEngineRigidbody.__GetComponent__T\"\r\n        \r\n
+    \        # rigidbody.maxDepenetrationVelocity = 0.1f;\r\n        PUSH, rigidbody\r\n
+    \       PUSH, __0_const_intnl_SystemSingle\r\n        EXTERN, \"UnityEngineRigidbody.__set_maxDepenetrationVelocity__SystemSingle__SystemVoid\"\r\n
     \       \r\n         # var pickup = (VRC_Pickup)(GetComponent(typeof(VRC_Pickup)));\r\n
     \       PUSH, __0_this_intnl_Tenbou\r\n        PUSH, __2_const_intnl_SystemType\r\n
     \       PUSH, __0_intnl_UnityEngineComponent\r\n        EXTERN, \"UnityEngineComponent.__GetComponent__SystemType__UnityEngineComponent\"\r\n
@@ -510,6 +509,13 @@ MonoBehaviour:
     - startInstruction: 264
       endInstruction: 263
       startSourceChar: 571
+      endSourceChar: 571
+      line: 21
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 264
+      endInstruction: 263
+      startSourceChar: 571
       endSourceChar: 583
       line: 21
       lineChar: 8
@@ -536,155 +542,218 @@ MonoBehaviour:
       lineChar: 32
       spanCodeSection: <
     - startInstruction: 264
-      endInstruction: 315
+      endInstruction: 295
       startSourceChar: 596
       endSourceChar: 619
       line: 21
       lineChar: 33
       spanCodeSection: "Rigidbody>();\r\n        "
-    - startInstruction: 316
-      endInstruction: 315
+    - startInstruction: 296
+      endInstruction: 295
       startSourceChar: 619
       endSourceChar: 619
       line: 22
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 316
-      endInstruction: 315
+    - startInstruction: 296
+      endInstruction: 295
       startSourceChar: 619
-      endSourceChar: 656
+      endSourceChar: 619
       line: 22
       lineChar: 8
-      spanCodeSection: 'rigidbody.maxDepenetrationVelocity = '
-    - startInstruction: 316
-      endInstruction: 339
+      spanCodeSection: 
+    - startInstruction: 296
+      endInstruction: 295
+      startSourceChar: 619
+      endSourceChar: 619
+      line: 22
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 296
+      endInstruction: 295
+      startSourceChar: 619
+      endSourceChar: 629
+      line: 22
+      lineChar: 8
+      spanCodeSection: rigidbody.
+    - startInstruction: 296
+      endInstruction: 295
+      startSourceChar: 629
+      endSourceChar: 656
+      line: 22
+      lineChar: 18
+      spanCodeSection: 'maxDepenetrationVelocity = '
+    - startInstruction: 296
+      endInstruction: 319
       startSourceChar: 656
       endSourceChar: 780
       line: 22
       lineChar: 45
       spanCodeSection: "0.1f;\r\n\r\n        // by default don't let players grab
         the tiles. when seated, the pickup\r\n        // gets enabled.\r\n        "
-    - startInstruction: 340
-      endInstruction: 339
+    - startInstruction: 320
+      endInstruction: 319
       startSourceChar: 780
       endSourceChar: 780
       line: 26
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 340
-      endInstruction: 339
+    - startInstruction: 320
+      endInstruction: 319
       startSourceChar: 780
       endSourceChar: 780
       line: 26
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 340
-      endInstruction: 339
+    - startInstruction: 320
+      endInstruction: 319
       startSourceChar: 780
       endSourceChar: 791
       line: 26
       lineChar: 8
       spanCodeSection: 'var pickup '
-    - startInstruction: 340
-      endInstruction: 339
+    - startInstruction: 320
+      endInstruction: 319
       startSourceChar: 791
       endSourceChar: 793
       line: 26
       lineChar: 19
       spanCodeSection: '= '
-    - startInstruction: 340
-      endInstruction: 339
+    - startInstruction: 320
+      endInstruction: 319
       startSourceChar: 793
       endSourceChar: 805
       line: 26
       lineChar: 21
       spanCodeSection: (VRC_Pickup)
-    - startInstruction: 340
-      endInstruction: 339
+    - startInstruction: 320
+      endInstruction: 319
       startSourceChar: 805
       endSourceChar: 806
       line: 26
       lineChar: 33
       spanCodeSection: (
-    - startInstruction: 340
-      endInstruction: 339
+    - startInstruction: 320
+      endInstruction: 319
       startSourceChar: 806
       endSourceChar: 806
       line: 26
       lineChar: 34
       spanCodeSection: 
-    - startInstruction: 340
-      endInstruction: 339
+    - startInstruction: 320
+      endInstruction: 319
       startSourceChar: 806
       endSourceChar: 819
       line: 26
       lineChar: 34
       spanCodeSection: GetComponent(
-    - startInstruction: 340
-      endInstruction: 339
+    - startInstruction: 320
+      endInstruction: 319
       startSourceChar: 819
       endSourceChar: 826
       line: 26
       lineChar: 47
       spanCodeSection: typeof(
-    - startInstruction: 340
-      endInstruction: 411
+    - startInstruction: 320
+      endInstruction: 391
       startSourceChar: 826
       endSourceChar: 850
       line: 26
       lineChar: 54
       spanCodeSection: "VRC_Pickup)));\r\n        "
-    - startInstruction: 412
-      endInstruction: 411
+    - startInstruction: 392
+      endInstruction: 391
       startSourceChar: 850
       endSourceChar: 850
       line: 27
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 412
-      endInstruction: 411
+    - startInstruction: 392
+      endInstruction: 391
       startSourceChar: 850
-      endSourceChar: 870
+      endSourceChar: 850
       line: 27
       lineChar: 8
-      spanCodeSection: 'pickup.pickupable = '
-    - startInstruction: 412
-      endInstruction: 455
+      spanCodeSection: 
+    - startInstruction: 392
+      endInstruction: 391
+      startSourceChar: 850
+      endSourceChar: 850
+      line: 27
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 392
+      endInstruction: 391
+      startSourceChar: 850
+      endSourceChar: 857
+      line: 27
+      lineChar: 8
+      spanCodeSection: pickup.
+    - startInstruction: 392
+      endInstruction: 391
+      startSourceChar: 857
+      endSourceChar: 870
+      line: 27
+      lineChar: 15
+      spanCodeSection: 'pickupable = '
+    - startInstruction: 392
+      endInstruction: 435
       startSourceChar: 870
       endSourceChar: 891
       line: 27
       lineChar: 28
       spanCodeSection: "false;\r\n    }\r\n\r\n    "
-    - startInstruction: 456
-      endInstruction: 463
+    - startInstruction: 436
+      endInstruction: 443
       startSourceChar: 891
       endSourceChar: 912
       line: 30
       lineChar: 4
       spanCodeSection: "void OnPickup()\r\n    "
-    - startInstruction: 464
-      endInstruction: 463
+    - startInstruction: 444
+      endInstruction: 443
       startSourceChar: 912
       endSourceChar: 923
       line: 31
       lineChar: 4
       spanCodeSection: "{\r\n        "
-    - startInstruction: 464
-      endInstruction: 463
+    - startInstruction: 444
+      endInstruction: 443
       startSourceChar: 923
       endSourceChar: 923
       line: 32
       lineChar: 8
       spanCodeSection: 
-    - startInstruction: 464
-      endInstruction: 463
+    - startInstruction: 444
+      endInstruction: 443
       startSourceChar: 923
-      endSourceChar: 947
+      endSourceChar: 923
       line: 32
       lineChar: 8
-      spanCodeSection: 'rigidbody.isKinematic = '
-    - startInstruction: 464
-      endInstruction: 464
+      spanCodeSection: 
+    - startInstruction: 444
+      endInstruction: 443
+      startSourceChar: 923
+      endSourceChar: 923
+      line: 32
+      lineChar: 8
+      spanCodeSection: 
+    - startInstruction: 444
+      endInstruction: 443
+      startSourceChar: 923
+      endSourceChar: 933
+      line: 32
+      lineChar: 8
+      spanCodeSection: rigidbody.
+    - startInstruction: 444
+      endInstruction: 443
+      startSourceChar: 933
+      endSourceChar: 947
+      line: 32
+      lineChar: 18
+      spanCodeSection: 'isKinematic = '
+    - startInstruction: 444
+      endInstruction: 444
       startSourceChar: 947
       endSourceChar: 947
       line: 32

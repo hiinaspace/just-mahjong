@@ -3,7 +3,6 @@ using System;
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
-using VRC.Udon;
 
 public class RiichiTile : UdonSharpBehaviour
 {
@@ -32,7 +31,7 @@ public class RiichiTile : UdonSharpBehaviour
         collider.enabled = false;
     }
 
-    void Init()
+    public void Init()
     {
         if (pickup == null) pickup = (VRC_Pickup)(GetComponent(typeof(VRC_Pickup)));
         if (r == null) r = GetComponent<Rigidbody>();
