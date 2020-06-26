@@ -70,3 +70,10 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 *.blend1
+Assets/GotoUdon*
+
+Assets/Udon
+Assets/Merlin
+Assets/UdonSharp
+Assets/VRCSDK
+Assets/VRChat\ Examples
