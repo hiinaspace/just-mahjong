@@ -72319,7 +72319,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 54
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 300
     m_Alignment: 0
@@ -72330,19 +72330,23 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "To start playing, hit the 'Sit' button next to each side of the table.
     The east player (closest to this message) can then shuffle the tiles. Press 'Sort
-    Hand' to stand sort and align hand tiles.\n\nOnly seated players can move tiles.
-    Press \"Unseat\" to let another player sit,\nor have the instance master press
-    it to remove them from the game.\n\nDue to Udon limitations, tile positions are
-    only synced every second or so, so other player's tiles will appear to jump around.
-    If tiles seem out of sync according to other players , hit the \"Resync Physics\"
-    button to hopefully get things back in order. If that doesn't work, you may have
-    to rejoin the instance.\n\nLate-joiners and spectators should also see synced
-    tiles, and can also hit \"Resync Physics\" buttons if things seem broken.\n\nThe
-    tile backs will change color locally to represent sync state (for debugging).\nI'll
-    add an option to turn off the color changes soon\u2122\n\nThe source for this
-    world and its synchronization system are at https://github.com/hiinaspace/just-mahjong
-    .\n\nPlease report any bugs on github, by email to riichi@hiina.space, or by matrix
-    to @hiina:vrg.party, or by discord to hiina#7736."
+    Hand' to sort and align hand tiles, and enable manipulating the tiles and tenbou
+    (point sticks). Only seated players can pick up and move tiles. Press \"Unseat\"
+    to let another player sit, or have the instance master press it to remove them
+    from the game.\n\nDesktop users: click the left mouse button while holding a tile
+    to drop the tile reoriented facing you (e.g. after drawing). Unfortunately lining
+    up your discards will still be tricky. Ask a VR user to help. \n\nDue to Udon
+    limitations, tile positions are only synced every second or so, so other player's
+    tiles will appear to jump around. If tiles seem out of sync according to other
+    players , hit the \"Resync Physics\" button to hopefully get things back in order.
+    If that doesn't work, you may have to rejoin the instance.\n\nLate-joiners and
+    spectators should also see synced tiles, and can also hit \"Resync Physics\" buttons
+    if things seem broken.\n\nThe tile backs will change color locally to represent
+    sync state (for debugging).\nI'll add an option to turn off the color changes
+    soon\u2122\n\nThe source for this world and its synchronization system are at
+    https://github.com/hiinaspace/just-mahjong .\n\nPlease report any bugs on github,
+    by email to riichi@hiina.space, or by matrix to @hiina:vrg.party, or by discord
+    to hiina#7736."
 --- !u!222 &1474791925
 CanvasRenderer:
   m_ObjectHideFlags: 0

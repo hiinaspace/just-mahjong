@@ -29,6 +29,11 @@ public class RiichiTile : UdonSharpBehaviour
         // grab them. Prevents non-players from messing with tiles.
         collider = GetComponent<BoxCollider>();
         collider.enabled = false;
+
+        if (!Networking.LocalPlayer.IsUserInVR())
+        {
+            pickup.UseText = "Drop (rotated towards you)";
+        }
     }
 
     public void Init()
@@ -45,6 +50,18 @@ public class RiichiTile : UdonSharpBehaviour
     void OnDrop()
     {
         TakeCustomOwnership();
+    }
+
+    public override void OnPickupUseDown()
+    {
+        if (!Networking.LocalPlayer.IsUserInVR())
+        {
+            // crutch for desktoppers, rotate the tile to face the screen if they click.
+            // have to immediately drop the pickup though since the pickup script always
+            // tries to set the orientation to whatever it was on pickup.
+            pickup.Drop();
+            transform.LookAt(Networking.LocalPlayer.GetTrackingData(VRCPlayerApi.TrackingDataType.Head).position);
+        }
     }
 
     public void TakeOwnershipForShuffle()
