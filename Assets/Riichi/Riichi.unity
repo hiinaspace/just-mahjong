@@ -8241,6 +8241,206 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
+--- !u!1 &157304239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 157304245}
+  - component: {fileID: 157304244}
+  - component: {fileID: 157304243}
+  - component: {fileID: 157304242}
+  - component: {fileID: 157304241}
+  - component: {fileID: 157304240}
+  - component: {fileID: 157304247}
+  - component: {fileID: 157304246}
+  - component: {fileID: 157304248}
+  m_Layer: 13
+  m_Name: Rules1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &157304240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157304239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &157304241
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157304239}
+  m_CullTransparentMesh: 0
+--- !u!114 &157304242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157304239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &157304243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157304239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+--- !u!223 &157304244
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157304239}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!224 &157304245
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157304239}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2.786}
+  m_LocalScale: {x: 0.00025, y: 0.00025, z: 0.00025}
+  m_Children:
+  - {fileID: 2130275516}
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -1.247, y: 0.508}
+  m_SizeDelta: {x: 1600, y: 2048}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &157304246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157304239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1804438810, guid: 661092b4961be7145bfbe56e1e62337b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MomentumTransferMethod: 0
+  DisallowTheft: 0
+  ExactGun: {fileID: 0}
+  ExactGrip: {fileID: 0}
+  allowManipulationWhenEquipped: 0
+  orientation: 0
+  AutoHold: 0
+  InteractionText: 
+  UseText: Use
+  useEventBroadcastType: 0
+  UseDownEventName: 
+  UseUpEventName: 
+  pickupDropEventBroadcastType: 0
+  PickupEventName: 
+  DropEventName: 
+  ThrowVelocityBoostMinSpeed: 1
+  ThrowVelocityBoostScale: 1
+  currentlyHeldBy: {fileID: 0}
+  pickupable: 1
+  proximity: 2
+--- !u!54 &157304247
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157304239}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &157304248
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157304239}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1600, y: 2048, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &158804367
 GameObject:
   m_ObjectHideFlags: 0
@@ -9083,6 +9283,131 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 178339760}
+  m_CullTransparentMesh: 0
+--- !u!1 &183736126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 183736127}
+  - component: {fileID: 183736129}
+  - component: {fileID: 183736128}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &183736127
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183736126}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 399489542}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1550, y: 2020}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &183736128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183736126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 98baae691215eb546a697ff7d942a5bb, type: 3}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "<size=48>Riichi</size>\r\n\r\nIf a player has an entirely closed hand (he
+    hasn\u2019t called any tiles from other players), and is in tenpai (can win with
+    just one more tile), then they have the option to declare riichi. To call riichi,
+    the player must call it right before they discard a tile, place a 1000 points
+    stick out in front of their hand, and turn the tile they discard sideways to indicate
+    when riichi was called. From this point onward they are essentially playing on
+    autopilot, and they cannot change their hand in any way. The player picks up a
+    tile on his turn, and if it is not his winning tile, he must discard it. The only
+    exception to this is that the player can turn any closed triplet into a closed
+    kan, providing it does not change the tile(s) they are waiting on to win.\r\n\r\nA
+    player who has called riichi can only call ron on their first opportunity. They
+    cannot wait for their winning tiles to be discarded by specific players if they
+    have already been discarded by somebody else (see furiten below).\r Advantages
+    of calling riichi:\r\n\r\n- Riichi is one yaku, increasing the value of the hand
+    and allowing the player to win even though his hand would otherwise not contain
+    a yaku.\r\n- It is potentially a second yaku, ippatsu, if the player wins within
+    one turn of declaring riichi, provided nothing else is called during that turn.\r\n-
+    The player has the opportunity to increase the value of the hand even more with
+    reverse dora (see below) and the potential ippatsu yaku.\r\n- Riichi can pressure
+    other players into folding, therefore reducing the likelihood that someone else
+    might win\r\n\r\nDisadvantages of calling riichi:\r\n\r\n- It alerts the other
+    players that the player is in tenpai.\r\n- It means the player cannot advance
+    the hand any further if they draw the right tiles.\r\n- The player loses the 1000
+    points they bet while calling if they do not win.\r\n- The player is forced to
+    deal dangerous tiles if they cannot win with them.\r\n\r\nWhile the disadvantages
+    of riichi can seem worse than the advantages, the additional yaku and reverse
+    dora are generally far more valuable, and it is usually more beneficial for the
+    player to call riichi than to not, unless they have a hand which would be worth
+    a lot regardless, or another player may have a high-value hand which would be
+    bad to deal into.\r\n\n<size=48>Dora</size>\r\n\r\nThe dora is indicated by a
+    face-up tile in the dead wall, which will mark the next tile in the suit as the
+    dora. For example, if the face up tile is 3 sou, then 4 sou is the dora tile.
+    A 9 tile indicates the 1 tile of the same suit, so 9 pin would indicate 1 pin
+    as the dora. Winds and Dragons cycle as follows:\r\nEast => South => West => North
+    => East\r \nGreen => Red => White => Green\r\n\r\nIf a tile is a dora, it retains
+    the exact same behaviour during the game as it would otherwise. However, after
+    a player has won, each dora tile contained in their hand will give the player
+    one han. Importantly however, dora do not count towards a hand being allowed to
+    win \u2013 they do not count as yaku.\r This set of mahjong also has red fives
+    in play. One 5 sou, one 5 man and one 5 pin will be coloured entirely red, and
+    these red fives are one dora. Again, they do not count as yaku, and only make
+    a difference after the hand has won.\r\n\r\nExtra tiles can be dora during the
+    game if people declare kans, which cause a second additional indicator to be flipped
+    over. If both indicators are the same, then each indicated tile would be be two
+    dora instead of one. If the dora is a five, then any red five would be two dora
+    \u2013 both the red dora and the indicated dora.\r\n\r\nIf a player wins after
+    declaring riichi, then the tiles in the wall under any displayed dora indicators
+    also become indicators themselves (called ura-dora), doubling the number of possible
+    dora for the winning player. This is one of the main advantages of declaring riichi.\r\n"
+--- !u!222 &183736129
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183736126}
   m_CullTransparentMesh: 0
 --- !u!1001 &185356021
 PrefabInstance:
@@ -19413,6 +19738,206 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileSize: {x: 0.036, y: 0.05, z: 0.032}
+--- !u!1 &399489536
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 399489542}
+  - component: {fileID: 399489541}
+  - component: {fileID: 399489540}
+  - component: {fileID: 399489539}
+  - component: {fileID: 399489538}
+  - component: {fileID: 399489537}
+  - component: {fileID: 399489544}
+  - component: {fileID: 399489543}
+  - component: {fileID: 399489545}
+  m_Layer: 13
+  m_Name: Rules3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &399489537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399489536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &399489538
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399489536}
+  m_CullTransparentMesh: 0
+--- !u!114 &399489539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399489536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &399489540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399489536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+--- !u!223 &399489541
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399489536}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!224 &399489542
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399489536}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2.786}
+  m_LocalScale: {x: 0.00025, y: 0.00025, z: 0.00025}
+  m_Children:
+  - {fileID: 183736127}
+  m_Father: {fileID: 0}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.426, y: 0.508}
+  m_SizeDelta: {x: 1600, y: 2048}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &399489543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399489536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1804438810, guid: 661092b4961be7145bfbe56e1e62337b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MomentumTransferMethod: 0
+  DisallowTheft: 0
+  ExactGun: {fileID: 0}
+  ExactGrip: {fileID: 0}
+  allowManipulationWhenEquipped: 0
+  orientation: 0
+  AutoHold: 0
+  InteractionText: 
+  UseText: Use
+  useEventBroadcastType: 0
+  UseDownEventName: 
+  UseUpEventName: 
+  pickupDropEventBroadcastType: 0
+  PickupEventName: 
+  DropEventName: 
+  ThrowVelocityBoostMinSpeed: 1
+  ThrowVelocityBoostScale: 1
+  currentlyHeldBy: {fileID: 0}
+  pickupable: 1
+  proximity: 2
+--- !u!54 &399489544
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399489536}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &399489545
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399489536}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1600, y: 2048, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &401280617
 GameObject:
   m_ObjectHideFlags: 0
@@ -19963,9 +20488,9 @@ GameObject:
   - component: {fileID: 408009309}
   - component: {fileID: 408009308}
   - component: {fileID: 408009307}
-  - component: {fileID: 408009306}
   - component: {fileID: 408009305}
   - component: {fileID: 408009304}
+  - component: {fileID: 408009306}
   m_Layer: 13
   m_Name: Yaku
   m_TagString: Untagged
@@ -20016,13 +20541,13 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &408009306
-MeshCollider:
+--- !u!65 &408009306
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -20031,10 +20556,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 6.1232336e-17}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &408009307
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20088,7 +20612,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408009303}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.124, y: 0.896, z: 2.827}
+  m_LocalPosition: {x: -0.124, y: 1.029, z: 2.827}
   m_LocalScale: {x: 0.625, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -20210,7 +20734,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 421509487}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.203, y: 0.921, z: 2.779}
+  m_LocalPosition: {x: -1.203, y: 1.051, z: 2.779}
   m_LocalScale: {x: 0.1339837, y: 0.1339837, z: 0.1339837}
   m_Children: []
   m_Father: {fileID: 0}
@@ -24148,6 +24672,122 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileSize: {x: 0.036, y: 0.05, z: 0.032}
+--- !u!1 &508745571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 508745572}
+  - component: {fileID: 508745574}
+  - component: {fileID: 508745573}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &508745572
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508745571}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1520785569}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1550, y: 2020}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &508745573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508745571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 98baae691215eb546a697ff7d942a5bb, type: 3}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "<size=48>Furiten</size>\r\n\r\nA key aspect of strategy in mahjong is the
+    furiten rule. If a player is in furiten they may not call a ron (ie. win) from
+    another player\u2019s discard. However, they may still win by tiles they draw
+    themselves.\r\n\r\nThere are three ways a player can be in furiten:\r\n\r\n- They
+    have previously discarded any potential winning tiles in the current hand, indicated
+    either by the tile being in their discard rows, or as called tiles in other players\u2019
+    open melds\r\n- One of the potential winning tiles has been discarded since the
+    player declared riichi.\r\n- One of the potential winning tiles has been discarded
+    since their last turn, and they did not call it. This is a temporary furiten until
+    the player next discards a tile.\r\n\r\nIt is worth noting that furiten is a state
+    applied to the player, not to a specific tile. If a player is in a furiten state,
+    they cannot win on any tile, even if the tile that places the player in furiten
+    is not the tile they would like to win on. For example if a player is waiting
+    on a 3 or 6 sou to complete their hand, and have previously discarded a 3 sou,
+    then they are in furiten and cannot make ron calls on either the 3 sou \u2018or\u2019
+    the 6 sou.\r\n\r\nFuriten allows players greater defence against dealing into
+    winning hands, as they can be sure that any tile which the player has previously
+    discarded is safe from being that player\u2019s winning tile (though other players
+    can still win with it!).\r\n\r\nFuriten only affects the ron call. Tiles which
+    have previously been discarded can still be used for chii, pon and tsumo calls
+    as usual. Calling ron with a hand that is in furiten is penalised with a chombo
+    penalty.\n\r\nIt is also worth noting that tiles which have been discarded and
+    called by another player still count towards furiten discards. For this reason
+    called tiles are typically rotated and placed to indicate the seating of the player
+    that discarded them (left tile is rotated for player to the left, right tile to
+    the right, middle tile for opposing player).\r\n\n<size=48>Scoring</size>\r\n\r\nScoring
+    is based on the number of yaku in the hand (from the hand structure, riichi declaration,
+    and dora), the numbe of fu (based on meld composition), whether the winner is
+    the round dealer, and how the winning tile was drawn. See the Scoring chart for
+    exact calculation  As a rule of thumb, hands won by the dealer are typically worth
+    50% more than hands won by a non-dealer player. If the player wins by ron, then
+    the points for the winning hand are paid by the player who discarded the final
+    tile (this penalty places a high emphasis in riichi mahjong for not discarding
+    other players\u2019 winning tiles!). If the player draws his winning tile himself,
+    and wins by tsumo, then the score is shared by the other three players. These
+    payments are split equally if the dealer wins, and not equally if a non-dealer
+    wins, with the dealer paying half of the value and the two other non-dealer players
+    each paying one quarter.\r\n\n<size=48>Ending The Game</size>\r\n\r\nA game finishes
+    under one of two conditions:\r\n\r\n- The final round of South (or, optionally,
+    just East) is played\r\n- One of the players goes below 0 points\r"
+--- !u!222 &508745574
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508745571}
+  m_CullTransparentMesh: 0
 --- !u!1001 &509171665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36129,7 +36769,7 @@ PrefabInstance:
     - target: {fileID: 6759095419728963412, guid: 8894fa7e4588a5c4fab98453e558847d,
         type: 3}
       propertyPath: DynamicMaterials.Array.size
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6759095419728963412, guid: 8894fa7e4588a5c4fab98453e558847d,
         type: 3}
@@ -40665,7 +41305,7 @@ PrefabInstance:
         type: 3}
       propertyPath: DynamicMaterials.Array.data[11]
       value: 
-      objectReference: {fileID: 2100000, guid: 52f63a13fe7eac94cbbe31202d1f1b94, type: 2}
+      objectReference: {fileID: 2100000, guid: 1e3d7a6550e955f48826d797e4f1780a, type: 2}
     - target: {fileID: 6759095419728963412, guid: 8894fa7e4588a5c4fab98453e558847d,
         type: 3}
       propertyPath: DynamicMaterials.Array.data[12]
@@ -64872,6 +65512,127 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1324510338}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1325313056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1325313057}
+  - component: {fileID: 1325313059}
+  - component: {fileID: 1325313058}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1325313057
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325313056}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1807229070}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1550, y: 2020}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1325313058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325313056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 98baae691215eb546a697ff7d942a5bb, type: 3}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "<size=48>Calling Tiles</size>\n\nWhen a player discards the tile, other
+    players may call it if it completes a set or their entire hand. There are four
+    different types of calls for discarded tiles:\r\n\r\n- Chii: This is the call
+    to complete a sequence. The chii call can only be used for discards from the player
+    immediately to the left of the player calling\r.\n- Pon: This is the call to complete
+    a triplet. The pon call can be used for discards by any player.\r\n- Kan: This
+    is the call to complete a kan. The kan call can be used for discards by any player.
+    This call is also used when the player has four of the same tile in their hand
+    and wishes to declare it as a kan, or has a previously melded pon and then draw
+    the fourth tile, allowing them to upgrade it to a kan.\r\n- Ron: This is the call
+    when a player is in tenpai (i.e. only needs one more tile to win) and another
+    player discards the last tile required to complete their winning hand. Ron can
+    be called from any player.\r\n\r\nAfter a set has been called, the tiles are placed
+    face-up to the right of the player who called them. The called tile is rotated
+    so that it is sideways, and is positioned to indicate which player discarded it,
+    e.g. if the right tile is turned sideways then it indicates the player to the
+    right discarded it.\n\n<size=48>Winning</size>\r\n\r\nA winning hand consists
+    of 14 tiles (excluding kans), which will almost always be four sets plus one pair.
+    A crucial condition for the player is that the winning hand must contain a yaku.
+    A yaku is something special about the hand which increases its value. See the
+    Yaku Guide sheet for a list of common and less common yaku.\r Each yaku will add
+    a multiplier to the value of the hand, known as han (or fan), which doubles the
+    value. Some yaku are worth multiple han, and therefore can increase the hand value
+    by 4 or 8 times.\r\n\r\nA player can either win by the call ron or the call tsumo.
+    Ron is the call when the winning tile is discarded by another player. This winning
+    tile can be called regardless of which player discards it, and regardless of whether
+    it forms a meld or completes the player\u2019s pair. Tsumo is the call when the
+    player draws the tile themselves out of the wall at the start of their turn.\n\n<size=48>Open
+    & Closed</size>\r\n\r\nHands and sets can both be described as in either an open
+    state, or a closed state.\r\n\r\nA player\u2019s hand is referred to as \u2018closed\u2019
+    if they have not made any pon, chii or open kan calls from other players. There
+    are several yaku which are worth more if the hand is closed compared to open,
+    and in the case of pinfu and iipeikou they are only a valid yaku if the hand is
+    closed. A ron call does not cause a closed hand to become open for the purposes
+    of scoring yaku. A closed hand which is won by tsumo will have one extra yaku
+    (menzen tsumo) than the same hand won by ron.\r\n\r\nTypically it is recommended
+    that new players try and keep their hand closed where possible, and only call
+    tiles when they have a clear yaku to win with. Although opening the hand by calling
+    tiles can progress the hand more quickly, it usually restricts the player\u2019s
+    ability to defend and lowers the potential value of the hand, in particular as
+    you lose the ability to riichi.\r\n\r\nIn contrast to the hand, sets are considered
+    open if any tile within that set was not self-drawn by the player. For example
+    the yaku Sanankou (three closed triplets) is only valid if all three triplets
+    were entirely drawn by the player \u2013 a ron call on the last triplet will count
+    that triplet as open and it cannot be considered for the yaku."
+--- !u!222 &1325313059
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325313056}
+  m_CullTransparentMesh: 0
 --- !u!1 &1325879207
 GameObject:
   m_ObjectHideFlags: 0
@@ -67823,7 +68584,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1373588319
 Transform:
   m_ObjectHideFlags: 0
@@ -71571,7 +72332,7 @@ MonoBehaviour:
     The east player (closest to this message) can then shuffle the tiles. Press 'Sort
     Hand' to stand sort and align hand tiles.\n\nOnly seated players can move tiles.
     Press \"Unseat\" to let another player sit,\nor have the instance master press
-    it to remove them fromm the game.\n\nDue to Udon limitations, tile positions are
+    it to remove them from the game.\n\nDue to Udon limitations, tile positions are
     only synced every second or so, so other player's tiles will appear to jump around.
     If tiles seem out of sync according to other players , hit the \"Resync Physics\"
     button to hopefully get things back in order. If that doesn't work, you may have
@@ -73622,6 +74383,206 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1520253277}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1520785563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1520785569}
+  - component: {fileID: 1520785568}
+  - component: {fileID: 1520785567}
+  - component: {fileID: 1520785566}
+  - component: {fileID: 1520785565}
+  - component: {fileID: 1520785564}
+  - component: {fileID: 1520785571}
+  - component: {fileID: 1520785570}
+  - component: {fileID: 1520785572}
+  m_Layer: 13
+  m_Name: Rules4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1520785564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520785563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &1520785565
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520785563}
+  m_CullTransparentMesh: 0
+--- !u!114 &1520785566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520785563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &1520785567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520785563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+--- !u!223 &1520785568
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520785563}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!224 &1520785569
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520785563}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2.786}
+  m_LocalScale: {x: 0.00025, y: 0.00025, z: 0.00025}
+  m_Children:
+  - {fileID: 508745572}
+  m_Father: {fileID: 0}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.014999986, y: 0.508}
+  m_SizeDelta: {x: 1600, y: 2048}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1520785570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520785563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1804438810, guid: 661092b4961be7145bfbe56e1e62337b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MomentumTransferMethod: 0
+  DisallowTheft: 0
+  ExactGun: {fileID: 0}
+  ExactGrip: {fileID: 0}
+  allowManipulationWhenEquipped: 0
+  orientation: 0
+  AutoHold: 0
+  InteractionText: 
+  UseText: Use
+  useEventBroadcastType: 0
+  UseDownEventName: 
+  UseUpEventName: 
+  pickupDropEventBroadcastType: 0
+  PickupEventName: 
+  DropEventName: 
+  ThrowVelocityBoostMinSpeed: 1
+  ThrowVelocityBoostScale: 1
+  currentlyHeldBy: {fileID: 0}
+  pickupable: 1
+  proximity: 2
+--- !u!54 &1520785571
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520785563}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1520785572
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520785563}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1600, y: 2048, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1520953718
 GameObject:
   m_ObjectHideFlags: 0
@@ -85612,6 +86573,206 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1803100562}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1807229064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1807229070}
+  - component: {fileID: 1807229069}
+  - component: {fileID: 1807229068}
+  - component: {fileID: 1807229067}
+  - component: {fileID: 1807229066}
+  - component: {fileID: 1807229065}
+  - component: {fileID: 1807229072}
+  - component: {fileID: 1807229071}
+  - component: {fileID: 1807229073}
+  m_Layer: 13
+  m_Name: Rules2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1807229065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807229064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &1807229066
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807229064}
+  m_CullTransparentMesh: 0
+--- !u!114 &1807229067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807229064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &1807229068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807229064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+--- !u!223 &1807229069
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807229064}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!224 &1807229070
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807229064}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2.786}
+  m_LocalScale: {x: 0.00025, y: 0.00025, z: 0.00025}
+  m_Children:
+  - {fileID: 1325313057}
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.838, y: 0.508}
+  m_SizeDelta: {x: 1600, y: 2048}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1807229071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807229064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1804438810, guid: 661092b4961be7145bfbe56e1e62337b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MomentumTransferMethod: 0
+  DisallowTheft: 0
+  ExactGun: {fileID: 0}
+  ExactGrip: {fileID: 0}
+  allowManipulationWhenEquipped: 0
+  orientation: 0
+  AutoHold: 0
+  InteractionText: 
+  UseText: Use
+  useEventBroadcastType: 0
+  UseDownEventName: 
+  UseUpEventName: 
+  pickupDropEventBroadcastType: 0
+  PickupEventName: 
+  DropEventName: 
+  ThrowVelocityBoostMinSpeed: 1
+  ThrowVelocityBoostScale: 1
+  currentlyHeldBy: {fileID: 0}
+  pickupable: 1
+  proximity: 2
+--- !u!54 &1807229072
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807229064}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1807229073
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807229064}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1600, y: 2048, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1809041245
 GameObject:
   m_ObjectHideFlags: 0
@@ -86317,9 +87478,9 @@ GameObject:
   - component: {fileID: 1823481226}
   - component: {fileID: 1823481225}
   - component: {fileID: 1823481224}
-  - component: {fileID: 1823481223}
   - component: {fileID: 1823481222}
   - component: {fileID: 1823481221}
+  - component: {fileID: 1823481223}
   m_Layer: 13
   m_Name: HanFu
   m_TagString: Untagged
@@ -86370,13 +87531,13 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &1823481223
-MeshCollider:
+--- !u!65 &1823481223
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -86385,10 +87546,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 6.1232336e-17}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1823481224
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -86442,7 +87602,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823481220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.788, y: 0.896, z: 2.827}
+  m_LocalPosition: {x: -0.788, y: 1.029, z: 2.827}
   m_LocalScale: {x: 0.64, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -98606,25 +99766,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &2041253385 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1094421957795851142, guid: 8894fa7e4588a5c4fab98453e558847d,
-    type: 3}
-  m_PrefabInstance: {fileID: 784368979}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2041253390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2041253385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 229740497, guid: 4ecd63eff847044b68db9453ce219299, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  contentType: 1
 --- !u!1 &2042805757
 GameObject:
   m_ObjectHideFlags: 0
@@ -102489,6 +103630,132 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileSize: {x: 0.036, y: 0.05, z: 0.032}
+--- !u!1 &2130275515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2130275516}
+  - component: {fileID: 2130275518}
+  - component: {fileID: 2130275517}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2130275516
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130275515}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 157304245}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1550, y: 2020}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2130275517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130275515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 98baae691215eb546a697ff7d942a5bb, type: 3}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "<size=48>Basic Rules</size> (adapted from https://mahjong.guide/a-beginners-guide-to-riichi-mahjong)\n\nRiichi
+    mahjong is played with 34 different tiles, of which there are four of each type,
+    to make up 136 tiles used in total. The majority of the tiles consist of the numbers
+    1 to 9 in three \u2018suits\u2019, which are:\r\n- Souzu aka Sou, Bamboo, Sticks
+    (Note that the 1 Sou is represented with a bird, usually a peacock or owl, rather
+    than a single stick)\r\n- Pinzu aka Pin, Circles, Dots \n- Manzu aka Man, Characters,
+    Cracks (The numbers are represented with the Chinese/Japanese number characters)\r\n\r\nIn
+    addition to the three suits, there are Honour/Value tiles, which are made up of
+    two subsets:\r\n- Winds:\r East, South, West, North\r\n\r- Dragons:\r Green, Red,
+    White\n\nPlayers are dealt 13 tiles each. At the start of their turn, each player
+    will draw a tile from the wall, or claim the discard from another player, which
+    will temporarily give them 14 tiles. At this point, if they have a complete hand
+    of four groups and one pair (3+3+3+3+2=14), and have a valid yaku (explained below),
+    they can declare they have won. If the player doesn\u2019t have a finished hand,
+    they must discard and will go back to 13 tiles.\r\n\r\nThe core aim of a player
+    while playing mahjong is to create a winning hand by forming sets. There are three
+    types of set:\n- Sequence (Shuntsu)\r. This is the easiest set to form, and consist
+    of a run of three consecutive tiles of the same suit. A sequence cannot wrap around
+    the ends of a suit, cannot be made of tiles from different suits and cannot be
+    made from honour tiles.\n- Triplet (Koutsu)\r. A triplet consists of three of
+    the same tile.\n- Kan (Kantsu)\r. A kan is four of the same tile. As a kan uses
+    up four tiles instead of the usual three for sets, to form part of a winning hand
+    it needs to be declared, and the player receives an extra tile from the dead wall
+    to make up for the extra tile inside the set (otherwise the player will have one
+    too few tiles to make four sets plus one pair). A closed kan is declared by showing
+    all four tiles, and then flipping over a tile at either end. Closed kans do not
+    have to be called as soon as they are formed in the hand \u2013 a player can choose
+    when to declare them, though they must be declared before the player can win.\n\n<size=48>Playing</size>\n\nOnce
+    starting hands have been dealt, the dealer takes a tile from the end of the wall.
+    He then either wins from this tile, or discards a tile of their choosing, placing
+    the discarded tile in front of them. Discards are placed in rows in front of each
+    player, in chronological order, and typically in rows six tiles long.\r\n\r\nWhen
+    a player discards a tile, other players may call it if they wish to use it to
+    complete a set. A tile can only be picked up if it is the final tile in a complete
+    set, which must be displayed face up to the side of the player\u2019s remaining
+    hand. Once a set is called (melded), it no longer forms an active part of the
+    players hand and the tiles that form that meld may not be discarded or swapped.
+    If the tile is not called, then play goes anti-clockwise, and the player to the
+    dealer\u2019s right then picks up a tile from the end of the wall, and will then
+    either discard or complete their hand to win. If the tile is called, the turn
+    switches to the player who called, and play resumes from their position, skipping
+    any players who would otherwise have had a turn.\r\n\r\nPlay continues until either
+    a player wins, or all tiles in the wall are dealt (except for the dead wall \u2013
+    the last 14 tiles in the wall), in which case the hand is drawn. If the dealer
+    wins, or is in tenpai (one tile away from winning \u2013 a 14th tile will complete
+    their hand) in the case of a draw, then they retain their dealership, else dealership
+    passes to the player on their right. The first round is East round, and once all
+    players have been dealer once (i.e. the dealer is the person who started the game
+    as dealer initially) the game becomes South round. Typically a game will consist
+    of an East and a South round."
+--- !u!222 &2130275518
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130275515}
+  m_CullTransparentMesh: 0
 --- !u!1 &2130772443
 GameObject:
   m_ObjectHideFlags: 0
