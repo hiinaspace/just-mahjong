@@ -20,6 +20,7 @@ public class RiichiTile : UdonSharpBehaviour
 
         props = new MaterialPropertyBlock();
         props.SetFloat("_Tile", int.Parse(name.Substring(0, 2)));
+        renderer.SetPropertyBlock(props);
 
         SetBackColorOffset(Color.black);
 
@@ -30,7 +31,7 @@ public class RiichiTile : UdonSharpBehaviour
         collider = GetComponent<BoxCollider>();
         collider.enabled = false;
 
-        if (!Networking.LocalPlayer.IsUserInVR())
+        if (Networking.LocalPlayer != null && !Networking.LocalPlayer.IsUserInVR())
         {
             pickup.UseText = "Drop (rotated towards you)";
         }
@@ -99,7 +100,8 @@ public class RiichiTile : UdonSharpBehaviour
 
     public void SetBackColorOffset(Color color)
     {
-        props.SetColor("_BackColorOffset", color);
-        renderer.SetPropertyBlock(props);
+        return;
+        //props.SetColor("_BackColorOffset", color);
+        //renderer.SetPropertyBlock(props);
     }
 }

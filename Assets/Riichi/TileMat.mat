@@ -28,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 9a6e7e9837063f04bab38eaeaa6dac64, type: 3}
+        m_Texture: {fileID: 2800000, guid: 67d0e6caf81ab1b40a0dbbe30744f74c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalFaceTex:
@@ -39,11 +39,11 @@ Material:
     - _EdgeLength: 5
     - _FaceGlossiness: 0.323
     - _FaceMetallic: 0
-    - _Glossiness: 1
+    - _Glossiness: 0.645
     - _Metallic: 0.4
     - _Parallax: 0.002
     - _Phong: 0.5
     - _Tile: 0
     m_Colors:
-    - _BackColor: {r: 0, g: 1, b: 0, a: 1}
+    - _BackColor: {r: 0.017354928, g: 0.20703818, b: 0.735849, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

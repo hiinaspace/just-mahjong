@@ -80,10 +80,11 @@
             fixed isFrontFace = IN.tileFaceMask.r; // dumb masking technique in tile model.
 
             // MainTex is a mask, black = top color, white = bottom color
-            fixed4 mask = tex2D(_MainTex, IN.uv_MainTex);
+            //fixed4 mask = tex2D(_MainTex, IN.uv_MainTex);
             // fmod to clamp to 0-1
-            fixed4 backColor = fmod(_BackColor + UNITY_ACCESS_INSTANCED_PROP(Props, _BackColorOffset), 1.0001);
-            fixed4 background = lerp(_Color, backColor, mask);
+            //fixed4 backColor = fmod(_BackColor + UNITY_ACCESS_INSTANCED_PROP(Props, _BackColorOffset), 1.0001);
+            //fixed4 background = lerp(_Color, backColor, mask);
+            fixed4 background = tex2D(_MainTex, IN.uv_MainTex);
             o.Albedo.rgb = lerp(background, tileFace, tileFace.a * isFrontFace);
             //o.Albedo.rgb = IN.tileFaceMask;
 
@@ -96,5 +97,5 @@
         }
         ENDCG
     }
-    FallBack "Diffuse"
+    FallBack "Standard"
 }
