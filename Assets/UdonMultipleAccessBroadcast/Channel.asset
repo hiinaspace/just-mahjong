@@ -14,23 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serializedUdonProgramAsset: {fileID: 11400000, guid: 14474c2cebff0ee41bfa6297d0929100,
     type: 2}
-  udonAssembly: ".data_start\r\n\r\n    .export string0\r\n    .export string1\r\n
-    \   .export lastLocalSend\r\n    .export lastLocalString0\r\n    .export localAckObject\r\n
-    \   .sync string0, none\r\n    .sync string1, none\r\n\r\n    __refl_const_intnl_udonTypeID:
-    %SystemInt64, null\r\n    __refl_const_intnl_udonTypeName: %SystemString, null\r\n
-    \   localAckObject: %SystemObject, null\r\n    lastLocalSend: %SystemSingle, null\r\n
-    \   lastLocalString0: %SystemString, null\r\n    string0: %SystemString, null\r\n
-    \   string1: %SystemString, null\r\n    __0_intnl_returnTarget_UInt32: %SystemUInt32,
-    null\r\n\r\n.data_end\r\n\r\n        \r\n         # using UdonSharp;\r\n        \r\n
-    \        # using UnityEngine;\r\n        \r\n         # using VRC.SDKBase;\r\n
-    \       \r\n         # using VRC.Udon;\r\n        \r\n         # public class
-    Channel : UdonSharpBehaviour\r\n.code_start\r\n        \r\n         # [HideInInspector]\r\n
-    \       \r\n         # [UdonSynced] public string string0 = \"\";\r\n        \r\n
-    \        # [HideInInspector]\r\n        \r\n         # [UdonSynced] public string
-    string1 = \"\";\r\n        \r\n         # [HideInInspector]\r\n        \r\n         #
-    public float lastLocalSend = float.MinValue;\r\n        \r\n         # [HideInInspector]\r\n
-    \       \r\n         # public string lastLocalString0;\r\n        \r\n         #
-    [HideInInspector]\r\n        \r\n         # public object localAckObject;\r\n.code_end\r\n"
+  udonAssembly: ".data_start\n\n    .export string0\n    .export string1\n    .export
+    lastLocalSend\n    .export lastLocalString0\n    .export localAckObject\n    .sync
+    string0, none\n    .sync string1, none\n\n    __refl_const_intnl_udonTypeID: %SystemInt64,
+    null\n    __refl_const_intnl_udonTypeName: %SystemString, null\n    localAckObject:
+    %SystemObject, null\n    lastLocalSend: %SystemSingle, null\n    lastLocalString0:
+    %SystemString, null\n    string0: %SystemString, null\n    string1: %SystemString,
+    null\n    __0_intnl_returnTarget_UInt32: %SystemUInt32, null\n\n.data_end\n\n
+    \       \n         # using UdonSharp;\n        \n         # using UnityEngine;\n
+    \       \n         # using VRC.SDKBase;\n        \n         # using VRC.Udon;\n
+    \       \n         # public class Channel : UdonSharpBehaviour\n.code_start\n
+    \       \n         # [HideInInspector]\n        \n         # [UdonSynced] public
+    string string0 = \"\";\n        \n         # [HideInInspector]\n        \n         #
+    [UdonSynced] public string string1 = \"\";\n        \n         # [HideInInspector]\n
+    \       \n         # public float lastLocalSend = float.MinValue;\n        \n
+    \        # [HideInInspector]\n        \n         # public string lastLocalString0;\n
+    \       \n         # [HideInInspector]\n        \n         # public object localAckObject;\n.code_end\n"
   assemblyError: 
   sourceCsScript: {fileID: 11500000, guid: 7fdebfe1fb18f3e43a486eefd89f8edf, type: 3}
   behaviourIDHeapVarName: __refl_const_intnl_udonTypeID
