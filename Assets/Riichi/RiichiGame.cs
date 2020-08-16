@@ -537,7 +537,8 @@ NORTH player: {getSeatOwner(NORTH)}
         tenbouCursor %= 68;
 
         var rb = tenbouRigidbodies[n];
-        if (!rb.isKinematic)
+        var pickup = (VRC_Pickup)tenbouVrcPickups[n];
+        if (pickup.IsHeld || !rb.isKinematic)
         {
             var t = tenbou[n];
             var p = t.localPosition;
@@ -702,6 +703,8 @@ NORTH player: {getSeatOwner(NORTH)}
                 } else
                 {
                     // tenbou
+                    // release ownership
+                    tenbouRigidbodies[idx - 136].isKinematic = true;
                     ReadArbitraryToTransform(tenbou[idx - 136], n, packet);
                     n += 9;
                     k++;
